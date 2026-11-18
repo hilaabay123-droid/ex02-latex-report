@@ -118,4 +118,70 @@ BIPA is not in the bib and not in this table (official text unreachable).
 - McKinsey *State of Fashion*, Statista, MarketsandMarkets: never opened.
 - Other publishers' virtual-fitting-room market sizes (search listings only).
 - Any competitor's customer count, funding or revenue: not read from a primary page.
+- (Section G below adds the Israel rows. BIPA was dropped by the user, PRD v2.0.)
 - Any claim that a phone scan reaches a stated measurement accuracy: no independent source in hand. 3DLOOK's home page states "96-97% accuracy for body measurements" and "over 95% consistency in repeatability", but in a health and fitness context ("Exceptional Accuracy You Can Trust … average weight prediction error of just 3.5%"), with no method given. If the chapters use it, it is a vendor claim (VC) and must say so; I recommend not using it as evidence for apparel sizing.
+
+## G. Israel (IL-R1, 2026-11-18): beachhead market, Israeli law, platforms
+
+**Status codes here**: FT = I read the text. IMG = I read a Hebrew PDF as page images (the PDFs have no usable text layer), so Hebrew quotes were transcribed by eye from the page image. Re-check the Hebrew quotes against the PDF before print. EN-UNOFF = Ministry of Justice English translation, not binding.
+
+### G1. Privacy Protection Law, Amendment 13 (chapters 4, 7, 9)
+
+| ID | Key | Claim to use | Exact quote | Location | Status |
+|---|---|---|---|---|---|
+| IL01 | il_amend13_2024 | The amendment is an official law, published 14 Aug 2024 | Sefer HaChukim 3287, "י' באב התשפ"ד, 14.8.2024"; "חוק הגנת הפרטיות (תיקון מס' 13), התשפ"ד-2024", p. 1430 | Cover page, PDF p. 1 | IMG |
+| IL02 | il_amend13_2024 | Entry into force | "(א) תחילתו של חוק זה שנה מיום פרסומו (להלן – יום התחילה)." (in force one year after publication, so 14 Aug 2025) | Ch. C, section 74(a), printed p. 1495 | IMG. The date 14 Aug 2025 is our arithmetic (14.8.2024 + one year); law-firm notes agree |
+| IL03 | il_amend13_2024 | Definition of a biometric identifier | "'מזהה ביומטרי' – נתון ביומטרי המשמש לזיהוי אדם או לאימות זהותו, או אמצעי שניתן להפיק ממנו נתון כאמור; לעניין הגדרה זו, 'ביומטרי' – מאפיין אנושי, פיזיולוגי או התנהגותי, ייחודי, הניתן למדידה ממוחשבת;" | Section 3 definitions, printed p. 1431 | IMG |
+| IL04 | il_amend13_2024 | Biometric identifiers are "data of special sensitivity" only when used or intended for identification | "'מידע בעל רגישות מיוחדת' – כל אחד מאלה: … (4) מידע אישי שהוא מזהה ביומטרי המשמש או המיועד לשמש לזיהוי אדם או לאימות זהותו באופן ממוחשב;" | Section 3, printed p. 1431 | IMG. This is the textual basis of "scan for fit, not identification" |
+| IL05 | il_ppl_en | Same two definitions, in English | "biometric identifier" – a biometric data item used to identify a person or to verify that person's identity, or a biometric measure from which the said data item can be derived; for the purposes of this definition, "biometric" – unique human, physiological, or behavioral characteristic that can be measured through digital measurement." And: "(4) Personal data that is a biometric identifier used or intended to be used to identify a person or verify his identity in a digital manner;" | Article 3 (definitions) | FT, EN-UNOFF |
+| IL06 | il_ppl_en | Health data is a separate special-sensitivity category (relevant if a scan were ever treated as health data) | "(2) Personal data relating to a person's health status, including medical data as defined in the Patient Rights Law, 5756-1996;" | Article 3, "data of special sensitivity" | FT, EN-UNOFF. Whether body measurements for sizing are health data is a legal question: state it as a design risk, not as a conclusion |
+| IL07 | il_ppl_en | Notification duty above 100,000 people | "If the number of individuals that data of special sensitivity about them exceeds 100,000, in a database that is not subject to registration obligation under subsection (a)(1), the database controller shall notify the Authority, within 30 days of the aforesaid occurrence…" | Article 8A(b)(1) | FT, EN-UNOFF |
+| IL08 | il_ppl_en | Consent is defined as "explicit or implied" | ""consent" – informed consent, explicit or implied;" | Article 3 | FT, EN-UNOFF. The plan may choose explicit consent as a design standard, but the law's definition allows implied consent: do not write that the law requires explicit consent for this data |
+| IL09 | ppa_data_minimization2021 | The regulator's view on excess data | "…the collection of excess data beyond necessary constitutes, in and of itself, an infringement of privacy." | Background section, p. 1 | FT. A **draft opinion published for public hearing** (the document says so); its final status is unverified: write "the Privacy Protection Authority's 2021 draft opinion" |
+| IL10 | ppa_pets2025 | Privacy-enhancing technology as a trust foundation | "Integrating PETs into the design of digital systems supports compliance with privacy and data security laws, fulfills the core obligation to protect personal data, and serves as a foundation for building trust with users." | Introduction | FT. Official guide, April 2025; supports "privacy-by-design as a competitive advantage" only as the regulator's framing, not as evidence that customers pay for it |
+
+Amendment 13 effective-date check: the Hebrew law gives one year from publication (IL02). Law-firm notes (Shibolet, Goldfarb) give 14 Aug 2025. I did not use them as sources.
+
+### G2. Consumer Protection Law: online returns (chapters 1, 5)
+
+| ID | Key | Claim to use | Exact quote | Location | Status |
+|---|---|---|---|---|---|
+| IL11 | il_cpfta_guide | The right to cancel online purchases | "A consumer may cancel a distance selling transaction within fourteen days from the date of closing the transaction or the date of receiving the document containing the details of the transaction, whichever is later." | "Cancellation Right in a Distance Selling Transaction", p. 7 | FT. Official government guide, not the statute |
+| IL12 | il_cpfta_guide | Use does not remove the right | "Use of the product does not prevent the consumer of the right to cancel the transaction." | same | FT |
+| IL13 | il_cpfta_guide | Refund within 14 days | "The business shall refund the consumer, within 14 days of receiving the cancellation notice and must provide him with a copy of the notice for the cancelled charge." | same | FT |
+| IL14 | il_cpfta_guide | Return cost and fee | "…it is the consumer's responsibility to return the product to the business when cancelling a transaction, except when the product arrived defective."; "…5% of the transaction or NIS 100 – whichever is lower. In the event of a defect in the product, a discrepancy between the product or service and the details provided or a failure to deliver on time, the business may not charge a cancellation fee." | pp. 7–8, "Cancellation Fees" | FT |
+| IL15 | il_cpfta_guide | Made-to-measure exception | "The Cancellation Right applies to custom-made products (sizes or special requirements) until 3 days from the date of the transaction, and after 3 days – if production has not yet begun." | p. 7 | FT. Relevant if a retailer sold made-to-measure items on our sizing |
+| IL16 | il_cpl_amend7_1998 | Legislative basis: section 14C | Section 14C(c)(1): in a distance sale of goods, the consumer may cancel in writing "מיום עשיית העסקה ועד ארבעה עשר ימים מיום קבלת הנכס או מיום קבלת המסמך המכיל את הפרטים … לפי המאוחר" (from the date of the deal until fourteen days from receipt of the goods or of the document, whichever is later) | Art. 1, 14C(c)(1), p. 298 | IMG. This is the **1998 wording**. Later amendments (for example 2017) changed the regime, so the chapters cite IL11–IL14 for the current rules and this row only for the origin |
+
+Not retrieved: the current consolidated Hebrew text of section 14C (Nevo and the Knesset consolidated page were not reachable). The online-returns right is therefore sourced to the official Authority guide, not to a statute quote.
+
+### G3. Israeli e-commerce market (chapter 2)
+
+All figures below come from one Knesset report (knesset_ric2025). The report takes its market numbers from **Statista** (accessed 19 Nov 2024), so they are Statista estimates relayed by a Knesset research unit, not a Central Bureau of Statistics release. No CBS 2024 online-retail figure was found.
+
+| ID | Key | Claim to use | Exact quote (Hebrew, then my translation) | Location | Status |
+|---|---|---|---|---|---|
+| IL17 | knesset_ric2025 | Israel's online commerce 2024 and forecast 2029 | "בישראל סך הסחר המקוון בשנת 2024 נאמד בכ-6.9 מיליארד דולר, עלייה של 215% לעומת 2017. הצפי לשנת 2029 הוא 11.3 מיליארד דולר — עלייה של 65% לעומת 2024." (Israel's total online trade in 2024 is estimated at about $6.9 B, up 215% on 2017; the 2029 forecast is $11.3 B, up 65% on 2024.) | Summary (תמצית), printed p. 1 | IMG. Estimate |
+| IL18 | knesset_ric2025 | 2023 value and share of consumption | "בשנת 2023, סך המסחר המקוון בישראל היה כ-6.1 מיליארד דולר (כ-22.6 מיליארד ש"ח), עלייה בשיעור של כ-181% לעומת 2017, ונאמד בכ-2.6% מסך הצריכה הפרטית של משקי בית, לעומת כ-1.2% בשנת 2017." (2023: about $6.1 B, about NIS 22.6 B; 2.6% of household private consumption vs 1.2% in 2017.) | Section 2.2, printed p. 6 | IMG. Statista estimate. It also gives an implied NIS/USD ratio: 22.6 ÷ 6.1 ≈ 3.7 NIS per dollar (our division) |
+| IL19 | knesset_ric2025 | Fashion is the largest online category | Text under Fig. 6: "…שווי המסחר המקוון בענף האופנה היה כ-4.4 מיליארד ש"ח, שהיוו כ-22% מהמסחר המקוון…" and, for electronics, "כ-4.1 מיליארד ש"ח, שהיו כ-20%". Chart label: "אופנה, 4.37, 21.6%". (In 2022 fashion was about NIS 4.4 B, about 22% of online commerce; electronics NIS 4.1 B, 20%.) | Section 2.2, printed p. 7, Fig. 6 (pie chart, 2022, NIS billions) | IMG. Statista estimate. The text says 22%, the chart label 21.6% |
+| IL20 | knesset_ric2025 | Cross-border personal imports under the VAT exemption | Chart: personal imports exempt up to $75, in $ billions: 3.0 (2019), 3.8 (2020), 4.7 (2021), 5.0 (2022), 5.9 (2023). Text: "…בשנת 2023 היה 5.9 מיליארד דולר – עלייה של 97%" (2023: $5.9 B, up 97% on 2019) | Summary, printed p. 1 | IMG. All categories, not fashion. It is a different measure from the Statista e-commerce totals; do not add the two or compute a "cross-border share" from them |
+| IL21 | knesset_ric2025 | The largest Israeli online retailers by 2020 sales (the report cites the State Comptroller, Nov 2022) | Fig. 7, sales in $ millions: amazon.com 195, shein.com 151, ksp.co.il 111, next.co.il 96, iherb.com 68, asos.com 57, zara.com 51, wallashops.co.il 51, azrieli.com 49, ivory.co.il 49 | Section 2.2, printed p. 7, Fig. 7 | IMG. Mostly foreign sites. Only Shein, Next, ASOS and Zara are fashion; none is an Israeli fashion brand |
+| IL22 | globes2024shopify | Shopify has begun an Israeli presence | "…global e-commerce platform Shopify, which has a market cap of $100 billion, has decided to open a first Shopify Plus agency in the country…" | Article body, Globes, 1 Jan 2024 | FT |
+| IL23 | globes2024shopify | Local marketplaces closed | "Azrieli Group closed Azrieli.com; Shufersal abandoned its Marketplace after just a year; and Melisron gave up on Groo and Baligam, which it acquired two years ago." | same | FT |
+| IL24 | aguko_shopify_il | Shopify is a small share of Israeli sites | "There are 971 websites using Shopify in Israel (.il). Shopify has a 4.08% market share in Ecommerce in Israel." (page marked "Last updated: 15 November 2026") | Tracker page | FT. **Low confidence**: a third-party tracker that counts .il domains only and does not state its method. Use only as an indication and label it so |
+
+### G4. MySize (chapter 3)
+
+| ID | Key | Claim to use | Exact quote | Location | Status |
+|---|---|---|---|---|---|
+| IL25 | mysize10k2022 | MySize is an Israel-based company listed in the US | "MY SIZE, INC." (Delaware); "4 Hayarden, POB 1026, Airport City, Israel 7010000 (Address of principal executive offices)"; "MYSZ … The Nasdaq Capital Market" | Cover page of the Form 10-K for the FY ended 31 Dec 2022 | FT. The company's own copy. Say "Israel-based (principal executive offices in Airport City, per its FY2022 10-K), incorporated in Delaware, listed on Nasdaq". A later address was not checked |
+
+### G5. Not found (gaps for the Israel layer)
+
+- **Israeli online return rates:** none verified. Two Hebrew press items (an undated Calcalist piece giving 15–25% for adult fashion, and a 2019 Hon.co.il line giving 10–15%) have no stated method and were not read in full, so they are not in the bib. Statista has an Israel fashion return-rate series behind a paywall. The Israel layer must therefore treat the return rate as an assumption, anchored on the sourced US figure (C11, 24.4%) and labeled as not Israeli data.
+- **Cross-border vs. local share of fashion:** no source. IL20 gives all-category personal imports only.
+- **Israeli fashion e-tailers with sizes:** no sourced online sales. IL21 shows only foreign sites. The DUNS 100 2025 fashion-chain ranking (Fox, Retailors, Castro, Golf & Co, Renuar by total revenue) appeared in search results but the page returned HTTP 403 to my tools, so it is not verified and not in the bib.
+- **Platform mix of Israeli fashion e-tailers:** only IL22–IL24 (qualitative plus one weak tracker). A WooCommerce 72.1% figure appears in a tracker I could not open (HTTP 403): not used.
+- **Official CBS figure on online purchasing in 2024:** none found. The CBS social survey exists, but I did not locate a 2024 table.
+- **Privacy Protection Authority guidance on Amendment 13 or on biometric data:** the gov.il pages I tried (the notice-obligation service page and the workplace-biometrics position) returned HTTP 403 to my tools. What I have is the law itself (IL01–IL08) and two general PPA documents (IL09, IL10). A dedicated PPA guidance document on biometrics or on Amendment 13 is therefore still missing.
+- **Current consolidated text of Consumer Protection Law section 14C:** not retrieved (see G2).

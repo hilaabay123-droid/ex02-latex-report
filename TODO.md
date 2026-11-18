@@ -92,8 +92,8 @@ Check for every chapter: it compiles, it is within ±1 page of budget, every cla
 ## v2.0: tasks from the user's answers (PRD rows UD-1…UD-8)
 | ID | Task | Owner | Check | Status |
 |---|---|---|---|---|
-| T20.1 | IL-R1: official Amendment 13 sources, Israeli e-commerce/apparel size, the Consumer Protection cancellation right, the Israeli platform mix, MySize origin → bib + claim-trace | writer-se | Every entry opened and verified; official texts for the law | ◐ |
-| T20.2 | IL-O1: outline for Israel → Europe; changed assumption rows sent to master-se | writer-se | Outline matches PRD v2.0 §6 | ☐ |
+| T20.1 | IL-R1: official Amendment 13 sources, Israeli e-commerce/apparel size, the Consumer Protection cancellation right, the Israeli platform mix, MySize origin → bib + claim-trace | writer-se | Every entry opened and verified; official texts for the law | ☑ |
+| T20.2 | IL-O1: outline for Israel → Europe; changed assumption rows sent to master-se | writer-se | Outline matches PRD v2.0 §6 | ◐ |
 | T20.3 | IL-M1: apply the Israel rows to `assumptions.csv`; rerun `model.py`; funnel check green; new ask | art-se | exit 0, deterministic, deltas reported | ☐ |
 | T20.4 | JetBrains Mono (official static, OFL) into `fonts/` + SHA-256 in SOURCES.md | fix-se | Hash recorded; `pdffonts` on the code page | ◐ |
 | T20.5 | `pythonbox` env in the CLS (reads the real file, LTR, ivory, line numbers) | fix-se | Test page PNG | ☐ |
@@ -102,3 +102,4 @@ Check for every chapter: it compiles, it is within ±1 page of budget, every cla
 | T20.8 | Acceptance criteria v1.3 (code box, fonts whitelist, cover/no-ID, legal, Israel numbers) | qa-se | Version bump | ☑ |
 | T20.9 | QS1: `qa/skill-specs.md`, a spec for each of the 8 skills → input to T3.x | qa-se | 8 specs with commands and criteria IDs | ☑ |
 | T20.10 | QS2: 12 helper scripts in `qa/scripts/` (tested on t5 + planted defects) → fix-se copies them into the skills | qa-se | Each catches its planted defect | ◐ |
+| T20.11 | Re-check the Hebrew quotes in claim-trace §G (IL01–IL25) against the PDFs (they were transcribed from page images) and, if possible, open the gov.il PPA pages on Amendment 13/biometrics in a browser (the agents got HTTP 403) | user | Quotes confirmed | ☐ |

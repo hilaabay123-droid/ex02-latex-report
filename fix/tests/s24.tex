@@ -1,0 +1,45 @@
+\newcommand*{\ctfontdir}{../../fonts/}
+\documentclass{closettwin}
+\begin{document}
+\mainmatter
+\chapter{Demo of devices}
+\section{Statistics and quotes}
+Return rates are high: about \assumed{24\%} of online apparel \sourced{(Coresight)} and \derived{1.2\,M} orders.\par\ctlegend
+\statcard{24.4\%}{of online apparel purchases are returned}{Source: Coresight Research, 2023 [1]}
+\pullquote{Fewer returns start with the right size.}{ClosetTwin thesis}
+\section{Table}
+\begin{table}[ht]
+\caption{Pricing tiers (assumptions)}
+\begin{tabularx}{\textwidth}{@{}lRR@{}}
+\toprule
+\ctheaderrow\cthead{Tier} & \cthead{Orders / month} & \cthead{Price (USD)}\\
+\midrule
+Starter & 1,000 & 99\\
+Growth & 10,000 & 799\\
+Enterprise & 100,000 & 4,500\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\begin{equation}\label{eq:roi}
+\mathrm{ROI}=\frac{G-C}{C}\times 100\%
+\end{equation}
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\node[ct key] (a) {ClosetTwin};
+\node[ct node ivory,right=of a] (b) {Scan};
+\node[ct node pink,right=of b] (c) {Size};
+\node[ct decision,right=of c] (d) {Buy};
+\draw[ct arrow] (a)--(b) node[midway,above,ct label]{data};
+\draw[ct arrow] (b)--(c); \draw[ct arrow] (c)--(d);
+\foreach \i in {1,...,5}{\node[ct cell \i,minimum width=14mm,minimum height=7mm] at (\i*1.5,-1.6) {\i};}
+\draw[ct guide] (0,-2.3)--(8,-2.3);
+\node[ct bar,minimum width=30mm,anchor=west] at (0,-2.8) {};
+\node[ct bar milestone] at (4,-2.8) {};
+\end{tikzpicture}
+\caption{A TikZ diagram using the closettwin keys}
+\end{figure}
+\section{Code}
+\pythonbox{ex.py}
+\ctchapterend
+\end{document}
