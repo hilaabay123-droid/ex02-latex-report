@@ -1,0 +1,19 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{fontspec}
+\defaultfontfeatures{Path=../../fonts/,Extension=.ttf}
+\setmainfont{Rubik-Regular}[BoldFont=Rubik-Bold,ItalicFont=Rubik-Italic,BoldItalicFont=Rubik-BoldItalic]
+\newfontfamily\headfont{PlayfairDisplay-Regular}[BoldFont=PlayfairDisplay-Bold]
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguage{hebrew}
+\newfontfamily\hebrewfont{Rubik-Regular}[Path=../../fonts/,Extension=.ttf,Script=Hebrew,BoldFont=Rubik-Bold,ItalicFont=Rubik-Italic,BoldItalicFont=Rubik-BoldItalic]
+\begin{document}
+{\headfont\Large English Heading 30\%}\par
+Body English text, 2026. Total $\approx$ 1,200 \textbf{bold}.\par
+\begin{hebrew}
+\textbf{תקציר מנהלים}\par
+ClosetTwin מפחיתה החזרות ב-30\% (ראו [3]) בשנת 2026, עלות 49.90 ש"ח. עוד טקסט ארוך כדי לבדוק שבירת שורות ופיסוק: הנתונים הם הנחות (Assumptions), ו-Rubik ו-Playfair בלבד.
+\end{hebrew}
+\end{document}
+
+

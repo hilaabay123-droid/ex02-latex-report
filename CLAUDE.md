@@ -36,7 +36,8 @@ with the path, the line, and the change they want. Do not edit it yourself, even
 | `references.bib` | writer-se |
 | `python/` | art-se |
 | `figures/` (generated images and TikZ `.tex` figures) | art-se |
-| `<cls file>`: the project class file in the root (master-se fixes its name in `PLAN.md`) | fix-se |
+| `closettwin.cls`: the project class file in the root | fix-se |
+| `fonts/` (OFL font files and their licenses) | fix-se |
 | `.claude/skills/` (project skills) and `fix/CHANGELOG.md` | fix-se |
 | `<agent>/` folder and its `CLAUDE.md` | that agent (master-se may update any agent's `CLAUDE.md`) |
 | `prompts/NN-*.md` | created only by the agent told "Save this prompt to prompts/NN-..."; never edited afterwards |
@@ -45,7 +46,7 @@ with the path, the line, and the change they want. Do not edit it yourself, even
 
 ## Where things live
 - **Deliverables live in the root only:** `main.tex`, `chapters/`, `figures/`, `python/`,
-  `<cls file>`, `references.bib`, `PRD.md`, `PLAN.md`, `TODO.md`, `README.md`.
+  `closettwin.cls`, `fonts/`, `references.bib`, `PRD.md`, `PLAN.md`, `TODO.md`, `README.md`.
 - **Each agent's own folder** (`writer/`, `art/`, `qa/`, `fix/`) holds only that agent's notes, drafts
   and reports. Nothing in an agent folder is part of the deliverable, and `main.tex` never `\input`s from one.
 
@@ -62,11 +63,14 @@ A one-off content error, such as a typo or a wrong number in one sentence, is no
 ## Build
 From the root `C:\biu\02`, always this sequence:
 ```
-lualatex main
+lualatex --disable-installer main
 biber main
-lualatex main
-lualatex main
+lualatex --disable-installer main
+lualatex --disable-installer main
 ```
+- Always build **from the root**, because the CLS loads the fonts by relative path from `fonts/`.
+- `--disable-installer` makes a missing MiKTeX package fail with an error instead of hanging on the GUI install prompt.
+  Report a missing package to master-se, who installs it with `mpm` and adds it to the package list in the README.
 - The Python command is **`python`** (not `python3` or `py`).
 - Graph scripts in `python/` write their output to `figures/`.
 - A build is "clean" only if it ends with no errors, no undefined references or citations, and no overfull boxes over 1pt.
