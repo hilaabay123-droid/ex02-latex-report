@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Version** | **1.3** (v1.1 = red team, 32 findings; v1.2 = claim-trace corrections; v1.3 = outline decisions; see §10) |
+| **Version** | **1.4** (v1.1 = red team, 32 findings; v1.2 = claim-trace corrections; v1.3 = outline decisions; v1.4 = model check; see §10) |
 | **Owner** | master-se |
 | **Date** | 2026-11-18 |
 | **Inputs** | `prompts/03-expert-committee.md` (user decisions) · `ref/BIU26-27-A-ex02-pdf-via-LaTex-print.pdf` (binding) · `ref/preparation-report-book.pdf` Part B ch. 13–19 · `ref/Multi-Agent-With-Claude.pdf` · committee reports `writer/sources-notes.md` (R1+R2), `art/chart-style-guide.md` (A1), `fix/cls-feasibility.md` (F1, F1b), `qa/acceptance-criteria.md` **v1.2** (112 criteria), `qa/reports/01-RT1-prd-redteam.md` |
@@ -117,8 +117,8 @@ Python figures `import ct_style`:
 | F2 | Positioning map. **Axes defined from verified vendor-table columns**: x = questionnaire/size chart ↔ body scan; y = consumer app ↔ B2B plug-in. The caption says "positions are our reading of vendor pages" | 3 | Python | RT-A7, RT-W5, qa I14 |
 | F3 | Scan → body model **+ garment specs + fit preference** → size → retailer data flow | 4 | TikZ | RT-W4 (peng2023) |
 | F4 | Roadmap: a 6-row Gantt strip | 7 | TikZ | RT-A4 |
-| F5 | 5-year projection **and** break-even as **one figure with two small-multiple panels** | 8 | Python | RT-A4 |
-| F6 | Sensitivity: break-even month against the return-reduction effect (0 → base case) | 8 | Python | RT-W3 |
+| F5 | 5-year projection as **one figure with two small-multiple panels**: (a) annual revenue vs. cost, with the **first profitable year (Y5)** marked; (b) the cumulative result, with the **peak deficit −$1.48M** marked and the end of Y5 (−$0.58M) labeled "cumulative payback beyond the plan horizon". No extrapolation past Y5 | 8 | Python | RT-A4, MC-1 |
+| F6 | **Retailer economics vs. the return-reduction effect ρ** (0–40%): the retailer's net saving per order at the Growth and Enterprise prices, with the **retailer break-even ρ = 6.03% / 4.52%** marked and the assumed base case (15%) shown. This shows that a null pilot (patel2025) costs the retailer only the pilot fee | 8 | Python | RT-W3, MC-2 |
 | F7 | Risk heat matrix (likelihood × impact, each score labeled as assumed) | 9 | TikZ | |
 
 - **Chapter 1** uses **stat cards** instead of a chart (RT-A5). A chart is allowed only if writer-se finds 4 or more sourced, comparable values.
@@ -138,7 +138,7 @@ Python figures `import ct_style`:
 | 7 | Operations, Team & Roadmap | 2 | Roles (Q-E decides on names) and F4. Every cost and date tagged assumed | – (assumed) |
 | 8 | Financial Plan | 3 | **Formula (1): the break-even tool cost per order = the avoided returns × the cost per return**. The formula is **our own**, written "following the logic of [gustafsson2021, §6]". Gustafsson prints no equation, only a step-by-step calculation: €1.1, €1.6 and €2.1 per pair at 40%, 60% and 80% fit verification. It is numbered, with every symbol defined. F5, F6. An **assumptions table: value / class (sourced, derived, assumed) / source**. LTV/CAC is optional and comes only after the break-even (RT-W6) | gustafsson2021, patel2025 (CLV +7.51% as a second lever) |
 | 9 | Risks | 2 | F7. A mitigation for each risk: GDPR Art. 9 biometric data, a null pilot effect (patel2025), accuracy at edge sizes (alhassawi2025), platform risk (google2023tryon), **scan unit cost**: in-house scanning at about $0.03 per scan (assumed) is a precondition, because at 3DLOOK's list price of about $2 per scan the margin fails [threedlook_pricing] (OL-2) | gdpr2016, patel2025, alhassawi2025, google2023tryon |
-| 10 | Conclusion | 1 | The ask, **about $1.8M, derived from the model and tagged as an assumption** (OL-4), and the next steps (the pilot first) | – |
+| 10 | Conclusion | 1 | The ask, **about $1.78M (1.2 × the peak deficit of $1.48M), derived from the model and tagged** (OL-4, MC-0), and the next steps (the pilot first) | – |
 | | **Content total** | **27** | **R-01 prevails:** content ≥ 25 pages is a hard requirement | |
 | | References (IEEE) | ≤ 2 | Every entry cited, none unused. Set in a smaller size | |
 
@@ -254,3 +254,12 @@ Four reviewers, 32 findings. **29 adopted, 2 adopted in part, 1 rejected in part
 | OL-5 | 53% is not the fit share of returns | **Adopted**: the fit-related share of returns is **assumed at 40%**, deliberately below the survey's 53%, and it is a sensitivity variable | `assumptions.csv`; ch. 8 sensitivity |
 | OL-6 | Our fee-pool TAM (about $0.33B) is far below IMARC's $8.5B | **Adopted**: ch. 2 explains the definition difference and uses IMARC as context only | §6 ch. 2 |
 | OL-7 | Pilot fallback when the client can't randomize | **Adopted**: ch. 6 names a before-and-after design as the fallback, explicitly labeled **weaker evidence** | §6 ch. 6 |
+
+### v1.4: decisions from the model check (`python/model.py`, T5.2)
+The model reproduces writer-se's hand numbers within 1%, except for the ask.
+| ID | Point raised by art-se | Decision | Applied |
+|---|---|---|---|
+| MC-0 | The ask is $1,775,400 (1.2 × $1,479,500), so "$1.8M" is 1.4% off | **Adopted**: write "about $1.78M" | §6 ch. 10 |
+| MC-1 | Cumulative break-even falls outside the 5 years. Y5 is the first profitable year (+$0.9M), but the cumulative result is still −$0.58M at the end of Y5 | **Adopted**: F5 marks the first profitable year and the peak deficit. **No chapter may say "break-even within five years"**. The text says "operating profit in year 5; cumulative payback beyond the plan horizon". No extrapolation | F5; qa adds a grep for "break-even within" |
+| MC-2 | F6 was undefined, because our revenue doesn't depend on ρ | **Adopted**: F6 shows the **retailer's** economics against ρ, with the retailer break-even at 6.03% / 4.52%. This is the value proposition and the answer to the Patel risk | F5/F6 rows above |
+| MC-3 | The pilot-to-paid funnel (A15–A17) isn't tied to the number of paying clients per year (A26) | **Adopted**: `model.py` adds a **consistency check** (paying clients per year ≤ what the funnel implies) and fails loudly if it is broken. Ch. 6 shows funnel numbers consistent with A26 | `model.py` |
