@@ -20,11 +20,11 @@ D16,SAM share by region,0.573,fraction
 D17,SAM fee pool,74884797,USD
 D18,Sample per arm for base case,6011.341185,orders
 D19,Minimum detectable relative effect in the pilot window,0.06058823774,fraction
-D20_1,Revenue year 1,10000,USD
-D20_2,Revenue year 2,288000,USD
-D20_3,Revenue year 3,900000,USD
-D20_4,Revenue year 4,2160000,USD
-D20_5,Revenue year 5,4320000,USD
+D20_1,Revenue year 1,20000,USD
+D20_2,Revenue year 2,333000,USD
+D20_3,Revenue year 3,993750,USD
+D20_4,Revenue year 4,2325000,USD
+D20_5,Revenue year 5,4485000,USD
 D21_1,Cost of goods year 1,0,USD
 D21_2,Cost of goods year 2,60000,USD
 D21_3,Cost of goods year 3,187500,USD
@@ -35,17 +35,22 @@ D22_2,Operating cost year 2,720000,USD
 D22_3,Operating cost year 3,1260000,USD
 D22_4,Operating cost year 4,1800000,USD
 D22_5,Operating cost year 5,2520000,USD
-D23_1,Operating result year 1,-350000,USD
-D23_2,Operating result year 2,-492000,USD
-D23_3,Operating result year 3,-547500,USD
-D23_4,Operating result year 4,-90000,USD
-D23_5,Operating result year 5,900000,USD
-D24,Peak cumulative deficit,-1479500,USD
-D25,Funding ask,1775400,USD
-D26,SOM (year-5 revenue),4320000,USD
-D27,SOM as share of SAM,0.05768861202,fraction
-CUM_1,Cumulative operating result year 1,-350000,USD
-CUM_2,Cumulative operating result year 2,-842000,USD
-CUM_3,Cumulative operating result year 3,-1389500,USD
-CUM_4,Cumulative operating result year 4,-1479500,USD
-CUM_5,Cumulative operating result year 5,-579500,USD
+D23_1,Operating result year 1,-358000,USD
+D23_2,Operating result year 2,-487500,USD
+D23_3,Operating result year 3,-538125,USD
+D23_4,Operating result year 4,-73500,USD
+D23_5,Operating result year 5,916500,USD
+D24,Peak cumulative deficit,-1457125,USD
+D25,Funding ask,1748550,USD
+D26,SOM (year-5 revenue),4485000,USD
+D27,SOM as share of SAM,0.0598919965,fraction
+D28_1,Pilot cash cost year 1,18000,USD
+D28_2,Pilot cash cost year 2,40500,USD
+D28_3,Pilot cash cost year 3,84375,USD
+D28_4,Pilot cash cost year 4,148500,USD
+D28_5,Pilot cash cost year 5,148500,USD
+CUM_1,Cumulative operating result year 1,-358000,USD
+CUM_2,Cumulative operating result year 2,-845500,USD
+CUM_3,Cumulative operating result year 3,-1383625,USD
+CUM_4,Cumulative operating result year 4,-1457125,USD
+CUM_5,Cumulative operating result year 5,-540625,USD

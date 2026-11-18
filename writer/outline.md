@@ -130,8 +130,8 @@ Formula (1), F5 (two panels: 5-year projection and break-even), F6 (sensitivity)
 | § | Section | It must prove | Keys · claim rows | Words |
 |---|---|---|---|---|
 | 8.1 | The break-even logic and formula (1) | The break-even tool cost per order is the fit-related return cost avoided per order, written "following the logic of [gustafsson2021, §6]" and defined symbol by symbol (§ 10 gives my symbols). | gustafsson2021 C20, C21; formula is ours | 150 |
-| 8.2 | Five-year projection | Under the assumptions, the yearly result turns positive in year 5 and the plan needs about $1.5 M of funding until then (derived, to be recomputed by the model). | F5; T6 | 120 |
-| 8.3 | Sensitivity to the pilot result | The plan is viable only if the real return reduction is above about 4.5–6% (D07); at zero effect, the client would pay for nothing and the pilot gate must stop the rollout. | F6; patel2025 C22 | 100 |
+| 8.2 | Five-year projection | Under the assumptions, the operating result is positive in year 5 (+$0.9 M) and the cumulative result is still −$0.58 M at the end of year 5. Write "operating profit in year 5; cumulative payback beyond the plan horizon", never "break-even within five years". The peak cumulative deficit is −$1.48 M (end of year 4). Source: `python/data/model_out.csv` (D23, D24, CUM_5). | F5; T6 | 120 |
+| 8.3 | Sensitivity to the pilot result | F6 shows the retailer's economics against ρ: the retailer breaks even at ρ = 6.03% (Growth) and 4.52% (Enterprise) (D07a, D07b). At zero effect the client would pay for nothing, so the pilot gate must stop the rollout. This is also the answer to the Patel 2025 risk in ch. 9. | F6; patel2025 C22 | 100 |
 | 8.4 | A second lever | In one study, size-finder use went with higher customer lifetime value, which we mention but do not put in the base case. | patel2025 C23–C24 | 40 |
 | 8.5 | The assumptions table | Every number in this chapter appears in T6 with its class. | T6 | 40 |
 
@@ -154,7 +154,7 @@ F7: heat matrix (likelihood × impact, scores labeled assumed). Table T7: risk |
 | § | Section | It must prove | Keys | Words |
 |---|---|---|---|---|
 | 10.1 | The case | The problem is large and fit-driven, and a fit tool is a hypothesis with a cheap test. | – | 100 |
-| 10.2 | The ask | A seed of about $1.8 M (derived need ≈ $1.5 M plus 20% buffer, both to be recomputed) funds the pilot and the first three years. | T6 | 120 |
+| 10.2 | The ask | A seed of about $1.78 M (derived: peak cumulative deficit $1.48 M plus a 20% buffer, D24 and D25 in `model_out.csv`) funds the pilot and the first four years, until the operating result turns positive in year 5. | T6 | 120 |
 | 10.3 | Next steps | The pilot comes first, and nothing else is funded until it passes. | – | 95 |
 
 ---
@@ -175,7 +175,7 @@ About 230 Hebrew words, one page. Every claim has a row in the claim-trace. The 
 | H8 | A shopper-level pilot of about 4 weeks tests the claim. | T5 | – | 4 weeks; about 6,000 orders per arm |
 | H9 | The privacy rule is GDPR Art. 9 (explicit consent). | L01–L02 | GDPR | – |
 | H10 | The first sales channel is Shopify (the App Store), then direct sales. | V14 | Shopify | – |
-| H11 | The document is dated 2026 and the funding ask is about 1.8 million dollars. | T6 | – | 2026; 1.8 M$ |
+| H11 | The document is dated 2026 and the funding ask is about 1.78 million dollars. | T6 | – | 2026; 1.78 M$ |
 
 R-03 corpus check: Latin runs = ClosetTwin, B2B, AI, Appriss, NRF, Coresight, IMARC, GDPR, Shopify (9, need ≥ 6). Numbers with units = 685–890 B$, 24.4%, 53%, 17%, 8.5 B$, 0.04 $, 4 weeks, 6,000 orders (8, need ≥ 5). Parenthesis: H9 and H10 (need 1). Sentence ending in a Latin run: H10 is written to end with "Shopify" (need 1). The page text contains "ClosetTwin" and "2026" for the machine check.
 The Hebrew text is written only after master-se approves the English chapters, so that the numbers cannot drift.
@@ -225,7 +225,7 @@ Columns for the CSV: `id, name, value, unit, class, basis, chapters`. Class: sou
 | A20 | Significance and power | α = 0.05 (two-sided), power 80% | Textbook convention | 6 |
 | A21 | Return window for follow-up | 30 days | Typical policy; no source | 6 |
 | A22 | Pilot sales window | 4 weeks | no source | 6 |
-| A23 | Pass line | observed relative reduction ≥ 10% and 95% interval above 0 | Margin above the break-even effect (about 5%) | 6 |
+| A23 | Pass line | observed relative reduction ≥ 10% and 95% interval above 0 | Margin above the break-even effect (4.52% to 6.03%, D07) | 6 |
 | A24 | Planned orders per arm | 12,000 minimum (2× the derived minimum) | Margin for noise | 6 |
 | A25 | Headcount, years 1–5 | 4, 8, 14, 20, 28 | no source | 7, 8 |
 | A26 | Paying clients, years 1–5 (year average) | 0, 8, 25, 60, 120 (year 1: 2 pilots) | no source; year 1 has pilots only | 8 |
@@ -261,8 +261,11 @@ Columns for the CSV: `id, name, value, unit, class, basis, chapters`. Class: sou
 | D21 | Cost of goods, years 2–5 | A26 × A11 × D11 | $0.06 M; $0.19 M; $0.45 M; $0.90 M |
 | D22 | Operating cost, years 1–5 | A25 × A14 | $0.36 M; $0.72 M; $1.26 M; $1.80 M; $2.52 M |
 | D23 | Operating result, years 1–5 | D20 − D21 − D22 | −$0.35 M; −$0.49 M; −$0.55 M; −$0.09 M; +$0.90 M |
-| D24 | Peak cumulative deficit | running sum of D23 | about −$1.48 M (end of year 4) |
-| D25 | Funding ask | D24 × (1 + A30) | about $1.8 M |
+| D24 | Peak cumulative deficit | running sum of D23 | −$1.4795 M (end of year 4) |
+| D25 | Funding ask | D24 × (1 + A30) | $1.7754 M, written "about $1.78 M" |
+| CUM_5 | Cumulative result at the end of year 5 | running sum of D23 | −$0.5795 M. Never write "break-even within five years" |
+
+Values checked against `python/data/model_out.csv` (authoritative). It matches my hand figures, with these refinements: D07a 6.03% and D07b 4.52%; D13 66.6×; D17 $74.9 M; D19 6.06%; D27 SOM share of SAM 5.77%.
 
 Consistency rule: ch. 2 uses the blended price (D08) for both TAM and SAM, so TAM ≈ $0.33 B, SAM ≈ $75 M, and the year-5 SOM (revenue $4.32 M) is about 5.8% of the SAM (D20 ÷ D17). Ch. 5 and 8 may quote the tier prices separately (A07, A08).
 
@@ -280,6 +283,6 @@ Formula (1) is ours, written "following the logic of [gustafsson2021, §6]".
 
 1. Fifth risk "scan unit cost" in ch. 9 (see above).
 2. The chapters should use the blended price for TAM and SAM. PRD v1.2 does not state the price.
-3. The funding ask in ch. 10 (about $1.8 M) comes from the model and is not in the PRD. The ask is an assumption and will be written so.
+3. The funding ask in ch. 10 is about $1.78 M, from the model (D25), derived and tagged. (Closed by master-se, PRD v1.4.)
 4. The pilot design assumes shopper-level randomization on a retailer's site. If the first client cannot randomize, the fallback is a matched before-and-after comparison, which is weaker. Do you want it named in ch. 6?
 5. Calibration build: I need one chapter compiled early to measure words per page before I write the rest.

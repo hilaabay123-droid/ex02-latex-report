@@ -19,7 +19,7 @@ A05b,Sensitivity range for rho: high,0.4,fraction,assumed,,Gustafsson's lowest s
 A06,Retailers addressed as share of orders (SAM size filter),0.4,fraction,assumed,,Excludes marketplaces and small shops
 A07,Price Growth tier,0.04,USD per order,assumed,,40% of break-even
 A08,Price Enterprise tier,0.03,USD per order,assumed,,30% of break-even; volume discount
-A09,Price Pilot fixed fee,5000,USD,assumed,,Covers integration
+A09,Price Pilot fixed fee (direct pilots only),5000,USD,assumed,,Covers integration
 A10a,Mix of paying clients: Growth,0.6,fraction,assumed,,
 A10b,Mix of paying clients: Enterprise,0.4,fraction,assumed,,
 A11,Average orders per paying client per year,1000000,orders,assumed,,Mid-to-large online retailer
@@ -47,7 +47,20 @@ A26_2,Paying clients year 2 (year average),8,clients,assumed,,
 A26_3,Paying clients year 3 (year average),25,clients,assumed,,
 A26_4,Paying clients year 4 (year average),60,clients,assumed,,
 A26_5,Paying clients year 5 (year average),120,clients,assumed,,
-A26p,Pilots in year 1,2,pilots,assumed,,Number of paid pilots (writer-se D20: 2 x A09)
+A26p,Pilots in year 1,16,pilots,assumed,,4 direct (>=1M orders/yr) + 12 low-touch Shopify App Store (MC-3c; was 2)
+A26q_2,Pilots in year 2,36,pilots,assumed,,Funnel check Y3 need rounded up
+A26q_3,Pilots in year 3,75,pilots,assumed,,Funnel check Y4 need
+A26q_4,Pilots in year 4,132,pilots,assumed,,Funnel check Y5 need
+A26q_5,Pilots in year 5,132,pilots,assumed,,Steady state = year 4
+A31,Share of pilots that are direct,0.25,fraction,assumed,,
+A32,Low-touch pilot fee,0,USD,assumed,,Free App Store trial
+A33a,Pilot cash cost direct,3000,USD,assumed,,About 2400 integration support + 600 scan cost (76900 orders x A13 x A12)
+A33b,Pilot cash cost low-touch,500,USD,assumed,,
+A34a,Staff effort per direct pilot,1.0,FTE-months,assumed,,Capacity check only; staff already in A25 x A14
+A34b,Staff effort per low-touch pilot,0.25,FTE-months,assumed,,Capacity check only
+A35,Sales share of headcount,0.25,fraction,assumed,,
+A36,Outbound contacts per sales FTE per week,12,contacts,assumed,,
+A37,Selling weeks per year,46,weeks,assumed,,
 A27,Annual client churn,0.1,fraction,assumed,,Optional LTV
 A28,Customer acquisition cost,25000,USD,assumed,,Optional LTV/CAC
 A29a,Risk score: null effect,3/5,likelihood/impact (1-5),assumed,,Labeled assumed on F7
@@ -77,11 +90,11 @@ D16,SAM share by region,,fraction,derived,1 - S05,
 D17,SAM fee pool,,USD,derived,D15 * D16 * A06,
 D18,Sample per arm for base case,,orders,derived,"(z(1-a/2)+z(power))^2 * (p1(1-p1)+p2(1-p2)) / (p1-p2)^2",p1 = D03; p2 = D03*(1-A04)
 D19,Minimum detectable relative effect in the pilot window,,fraction,derived,same formula solved for the effect at n = A11*A22/52/2,
-D20_1,Revenue year 1,,USD,derived,A26p * A09,
-D20_2,Revenue year 2,,USD,derived,A26_2 * A11 * D08,
-D20_3,Revenue year 3,,USD,derived,A26_3 * A11 * D08,
-D20_4,Revenue year 4,,USD,derived,A26_4 * A11 * D08,
-D20_5,Revenue year 5,,USD,derived,A26_5 * A11 * D08,
+D20_1,Revenue year 1,,USD,derived,pilots_1 * A31 * A09 (no paying clients),
+D20_2,Revenue year 2,,USD,derived,A26_2 * A11 * D08 + pilots_2 * A31 * A09,
+D20_3,Revenue year 3,,USD,derived,A26_3 * A11 * D08 + pilots_3 * A31 * A09,
+D20_4,Revenue year 4,,USD,derived,A26_4 * A11 * D08 + pilots_4 * A31 * A09,
+D20_5,Revenue year 5,,USD,derived,A26_5 * A11 * D08 + pilots_5 * A31 * A09,
 D21_1,Cost of goods year 1,,USD,derived,0 (pilots only),
 D21_2,Cost of goods year 2,,USD,derived,A26_2 * A11 * D11,
 D21_3,Cost of goods year 3,,USD,derived,A26_3 * A11 * D11,
@@ -92,12 +105,17 @@ D22_2,Operating cost year 2,,USD,derived,A25_2 * A14,
 D22_3,Operating cost year 3,,USD,derived,A25_3 * A14,
 D22_4,Operating cost year 4,,USD,derived,A25_4 * A14,
 D22_5,Operating cost year 5,,USD,derived,A25_5 * A14,
-D23_1,Operating result year 1,,USD,derived,D20 - D21 - D22,
-D23_2,Operating result year 2,,USD,derived,D20 - D21 - D22,
-D23_3,Operating result year 3,,USD,derived,D20 - D21 - D22,
-D23_4,Operating result year 4,,USD,derived,D20 - D21 - D22,
-D23_5,Operating result year 5,,USD,derived,D20 - D21 - D22,
+D23_1,Operating result year 1,,USD,derived,D20 - D21 - D22 - D28,
+D23_2,Operating result year 2,,USD,derived,D20 - D21 - D22 - D28,
+D23_3,Operating result year 3,,USD,derived,D20 - D21 - D22 - D28,
+D23_4,Operating result year 4,,USD,derived,D20 - D21 - D22 - D28,
+D23_5,Operating result year 5,,USD,derived,D20 - D21 - D22 - D28,
 D24,Peak cumulative deficit,,USD,derived,min of running sum of D23,
 D25,Funding ask,,USD,derived,-D24 * (1 + A30),
 D26,SOM (year-5 revenue),,USD,derived,D20_5,Added by art-se; outline calls year-5 revenue the SOM
 D27,SOM as share of SAM,,fraction,derived,D20_5 / D17,Added by art-se
+D28_1,Pilot cash cost year 1,,USD,derived,pilots_1 * (A31 * A33a + (1 - A31) * A33b),
+D28_2,Pilot cash cost year 2,,USD,derived,pilots_2 * (A31 * A33a + (1 - A31) * A33b),
+D28_3,Pilot cash cost year 3,,USD,derived,pilots_3 * (A31 * A33a + (1 - A31) * A33b),
+D28_4,Pilot cash cost year 4,,USD,derived,pilots_4 * (A31 * A33a + (1 - A31) * A33b),
+D28_5,Pilot cash cost year 5,,USD,derived,pilots_5 * (A31 * A33a + (1 - A31) * A33b),

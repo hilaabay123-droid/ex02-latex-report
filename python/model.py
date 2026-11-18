@@ -44,6 +44,10 @@ def mde_relative(p1, n, alpha, power):
     return (lo + hi) / 2
 
 
+def pilots(a, y):
+    return a["A26p"] if y == 1 else a[f"A26q_{y}"]
+
+
 def compute(a):
     d = {}
     d["D01"] = a["A02"] * a["A01"]
@@ -70,11 +74,15 @@ def compute(a):
     d["D19"] = mde_relative(d["D03"], n_window, a["A20a"], a["A20b"])
     cum, peak = 0.0, 0.0
     for y in YEARS:
-        rev = a["A26p"] * a["A09"] if y == 1 else a[f"A26_{y}"] * a["A11"] * d["D08"]
-        cogs = 0.0 if y == 1 else a[f"A26_{y}"] * a["A11"] * d["D11"]
+        n_pilots = pilots(a, y)
+        pilot_rev = n_pilots * a["A31"] * a["A09"] + n_pilots * (1 - a["A31"]) * a["A32"]
+        pilot_cost = n_pilots * (a["A31"] * a["A33a"] + (1 - a["A31"]) * a["A33b"])
+        clients = 0.0 if y == 1 else a[f"A26_{y}"]
+        rev = clients * a["A11"] * d["D08"] + pilot_rev
+        cogs = clients * a["A11"] * d["D11"]
         opex = a[f"A25_{y}"] * a["A14"]
-        d[f"D20_{y}"], d[f"D21_{y}"], d[f"D22_{y}"] = rev, cogs, opex
-        d[f"D23_{y}"] = rev - cogs - opex
+        d[f"D20_{y}"], d[f"D21_{y}"], d[f"D22_{y}"], d[f"D28_{y}"] = rev, cogs, opex, pilot_cost
+        d[f"D23_{y}"] = rev - cogs - opex - pilot_cost
         cum += d[f"D23_{y}"]
         d[f"CUM_{y}"] = cum
         peak = min(peak, cum)
@@ -104,6 +112,40 @@ def sensitivity(a, d, steps=41):
     return out
 
 
+def funnel_check(a):
+    """MC-3 / MC-3c: the client path must be reachable through the funnel, and sales capacity must cover it.
+    1. Reach: new clients in year y = A26_y - A26_(y-1)*(1-churn) (churn A27); each needs 1/A17 pilots, run in
+       year y-1 (sales cycle A18 = 9 months), so pilots(y-1) * A17 >= new_y.
+    2. Capacity: contacts needed for the pilots started in year y (pilots / A16 / A15) must not exceed
+       sales FTE (A35 * A25_y) * A36 contacts/week * A37 weeks.
+    3. Pilot effort (A34a/b FTE-months) must not exceed the headcount's FTE-months (A25_y * 12).
+    Returns (rows, failures)."""
+    rows, fails = [], []
+    for y in range(1, 6):
+        n_p = pilots(a, y)
+        contacts = n_p / a["A16"] / a["A15"]
+        sales_fte = a["A35"] * a[f"A25_{y}"]
+        cap = sales_fte * a["A36"] * a["A37"]
+        effort = n_p * (a["A31"] * a["A34a"] + (1 - a["A31"]) * a["A34b"])
+        fte_months = a[f"A25_{y}"] * 12
+        new = ""
+        if y >= 2:
+            new = max(0.0, a[f"A26_{y}"] - (a[f"A26_{y-1}"] if y > 2 else 0.0) * (1 - a["A27"]))
+            reach = pilots(a, y - 1) * a["A17"]
+            if new > reach + 1e-9:
+                fails.append(f"Year {y} needs {new:.1f} new paying clients but the {pilots(a, y-1):.0f} pilots of year {y-1} "
+                             f"give only {reach:.1f} at {a['A17']:.0%}.")
+        if contacts > cap + 1e-9:
+            fails.append(f"Year {y}: {contacts:.0f} outbound contacts needed > sales capacity {cap:.0f}.")
+        if effort > fte_months + 1e-9:
+            fails.append(f"Year {y}: pilot effort {effort:.1f} FTE-months > headcount {fte_months:.0f}.")
+        rows.append({"year": y, "pilots": n_p, "new_clients_in_year": new,
+                     "contacts_needed": contacts, "sales_contact_capacity": cap,
+                     "contact_utilisation": contacts / cap, "pilot_effort_fte_months": effort,
+                     "headcount_fte_months": fte_months})
+    return rows, fails
+
+
 def write_csv(path, rows, fields):
     with open(path, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
@@ -124,6 +166,9 @@ def main():
     sens = sensitivity(a, d)
     write_csv(DATA / "sensitivity_out.csv", [{k: format(v, ".10g") if v != "" else "" for k, v in r.items()} for r in sens], list(sens[0]))
 
+    frows, fails = funnel_check(a)
+    write_csv(DATA / "funnel_check_out.csv", [{k: (format(v, ".10g") if v != "" else "") for k, v in r.items()} for r in frows], list(frows[0]))
+
     # --- check against writer-se's hand numbers (outline section 10.3) ---
     hand = [
         ("D02 cost per return", d["D02"], 6.80),
@@ -131,13 +176,18 @@ def main():
         ("D08 blended price", d["D08"], 0.036),
         ("D15 TAM fee pool", d["D15"], 0.33e9),
         ("D17 SAM fee pool", d["D17"], 75e6),
-        ("D20_1 revenue Y1", d["D20_1"], 10e3),
-        ("D20_2 revenue Y2", d["D20_2"], 0.29e6),
-        ("D20_3 revenue Y3", d["D20_3"], 0.90e6),
-        ("D20_4 revenue Y4", d["D20_4"], 2.16e6),
-        ("D20_5 revenue Y5", d["D20_5"], 4.32e6),
-        ("D24 peak deficit", d["D24"], -1.48e6),
-        ("D25 ask", d["D25"], 1.8e6),
+        ("D23_1 op result Y1", d["D23_1"], -358e3),
+        ("D23_2 op result Y2", d["D23_2"], -487.5e3),
+        ("D23_3 op result Y3", d["D23_3"], -538.1e3),
+        ("D23_4 op result Y4", d["D23_4"], -73.5e3),
+        ("D23_5 op result Y5", d["D23_5"], 916.5e3),
+        ("CUM_1", d["CUM_1"], -358e3),
+        ("CUM_2", d["CUM_2"], -845.5e3),
+        ("CUM_3", d["CUM_3"], -1383.6e3),
+        ("CUM_4", d["CUM_4"], -1457.1e3),
+        ("CUM_5", d["CUM_5"], -540.6e3),
+        ("D24 peak deficit", d["D24"], -1.457e6),
+        ("D25 ask", d["D25"], 1.75e6),
         ("D18 sample per arm", d["D18"], 6000),
     ]
     print(f"{'value':28s} {'model':>16s} {'hand':>14s} {'delta %':>9s}")
@@ -148,5 +198,17 @@ def main():
     print("cumulative:", [round(d[f"CUM_{y}"]) for y in YEARS], "| op result:", [round(d[f"D23_{y}"]) for y in YEARS])
 
 
-if __name__ == "__main__":
+def _main_with_exit():
+    import sys
     main()
+    _, fails = funnel_check(load_inputs()[1])
+    if fails:
+        print("\n*** FUNNEL CONSISTENCY CHECK FAILED (MC-3) ***", file=sys.stderr)
+        for f in fails:
+            print(" -", f, file=sys.stderr)
+        sys.exit(1)
+    print("\nfunnel consistency check: OK")
+
+
+if __name__ == "__main__":
+    _main_with_exit()
