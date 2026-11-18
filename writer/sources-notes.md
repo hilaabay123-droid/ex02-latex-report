@@ -16,7 +16,7 @@ Section numbers come from my text extraction, not the print pagination; check th
 
 **appriss2024** (Appriss Retail + Deloitte; read the PDF)
 - Total 2024 returns **$685 B = 13.21% of sales**; fraud and abuse **$103 B = 15.14%** of returns (Executive Summary, p. 1).
-- Return rate from online sales (BORO+BORIS) **24.52%**, about $215 B (summary table); returns from online sales are $362 B (p. 2).
+- Return rate from online sales (BORO+BORIS) **24.52%**; returns from online sales are **$362 B** = BORO $146.8 B + BORIS $215.3 B (summary table p. 3, chart p. 4). CORRECTED 2026-11-18: an earlier version of this line gave "about $215 B" for online returns, which is the BORIS part only. The 24.52% covers all online sales, not apparel.
 - BORIS+BORO account for over 52% of all return dollars.
 - Basis: surveys of 150 North American retail executives and 1,000 consumers, plus U.S. Census data.
 - Chapters: Intro & Problem, Market (the SAM argument), Financials (return rate).

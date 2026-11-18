@@ -76,7 +76,7 @@ def apply():
 
 
 def figure(width_frac=1.0, aspect=0.55, **kw):
-    """Fixed canvas of exactly width_frac * \textwidth; the PDF page size is that width,
+    r"""Fixed canvas of exactly width_frac * \textwidth; the PDF page size is that width,
     so \includegraphics[width=<same fraction>\textwidth] scales by 1.0 and type stays 8pt."""
     w = TEXTWIDTH_IN * width_frac
     return plt.subplots(figsize=(w, w * aspect), **kw)

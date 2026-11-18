@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Version** | **1.1** (after the red team: 32 findings; see §10) |
+| **Version** | **1.2** (v1.1 = after the red team, 32 findings; v1.2 = claim-trace corrections; see §10) |
 | **Owner** | master-se |
 | **Date** | 2026-11-18 |
 | **Inputs** | `prompts/03-expert-committee.md` (user decisions) · `ref/BIU26-27-A-ex02-pdf-via-LaTex-print.pdf` (binding) · `ref/preparation-report-book.pdf` Part B ch. 13–19 · `ref/Multi-Agent-With-Claude.pdf` · committee reports `writer/sources-notes.md` (R1+R2), `art/chart-style-guide.md` (A1), `fix/cls-feasibility.md` (F1, F1b), `qa/acceptance-criteria.md` **v1.2** (112 criteria), `qa/reports/01-RT1-prd-redteam.md` |
@@ -136,7 +136,7 @@ Python figures `import ct_style`:
 | 5 | Business Model & Pricing | 3 | **Value-based pricing**: the price is a share of the return cost avoided, using Gustafsson's break-even rule. A tier table (assumed). The statement that enterprise vendors publish no pricing, so our numbers are **not benchmarked**. 3DLOOK and Popsize appear only as non-comparable reference points (RT-W6) | gustafsson2021, threedlook_pricing, popsize_shopify |
 | 6 | Go-to-Market | 2 | Segments and channels (Shopify App Store first). A funnel table. **The pilot design: metric = fit-related return rate, a control group, a minimum sample and a pass/fail threshold** (RT-W3) | shopify_dev_build, patel2025 |
 | 7 | Operations, Team & Roadmap | 2 | Roles (Q-E decides on names) and F4. Every cost and date tagged assumed | – (assumed) |
-| 8 | Financial Plan | 3 | **Formula (1): the break-even tool cost per order = the avoided returns × the cost per return** [gustafsson2021 §6], numbered, with every symbol defined. F5, F6. An **assumptions table: value / class (sourced, derived, assumed) / source**. LTV/CAC is optional and comes only after the break-even (RT-W6) | gustafsson2021, patel2025 (CLV +7.51% as a second lever) |
+| 8 | Financial Plan | 3 | **Formula (1): the break-even tool cost per order = the avoided returns × the cost per return**. The formula is **our own**, written "following the logic of [gustafsson2021, §6]". Gustafsson prints no equation, only a step-by-step calculation: €1.1, €1.6 and €2.1 per pair at 40%, 60% and 80% fit verification. It is numbered, with every symbol defined. F5, F6. An **assumptions table: value / class (sourced, derived, assumed) / source**. LTV/CAC is optional and comes only after the break-even (RT-W6) | gustafsson2021, patel2025 (CLV +7.51% as a second lever) |
 | 9 | Risks | 2 | F7. A mitigation for each risk: GDPR Art. 9 biometric data, a null pilot effect (patel2025), accuracy at edge sizes (alhassawi2025), platform risk (google2023tryon) | gdpr2016, patel2025, alhassawi2025, google2023tryon |
 | 10 | Conclusion | 1 | The ask and the next steps (the pilot first) | – |
 | | **Content total** | **27** | **R-01 prevails:** content ≥ 25 pages is a hard requirement | |
@@ -233,3 +233,13 @@ Four reviewers, 32 findings. **29 adopted, 2 adopted in part, 1 rejected in part
 | RT-F6 | fix-se | Ivory banner invisible; "N of M" ambiguous; TikZ overlay needs extra passes | **Adopted (partly)** | Shipout hook and page-number-only footer adopted. The **mocha filled band is rejected** in favor of RT-A2's inset rule-and-wordmark banner, which is airier and print-safe and still gets color from the pink accent bar |
 | RT-F7 | fix-se | Float drift; exact 1-page conclusion | **Adopted except one point** | `\FloatBarrier`, `\raggedbottom` adopted. **Rejected:** "accept ±1 for the conclusion". "Conclusion 1" is the user's fixed decision, so writer-se fits the content to one page; the layout is not bent to fit |
 | RT-F8 | fix-se | Font provenance and integrity | **Adopted** | `fonts/SOURCES.md` exists; hash check in R-07 |
+
+### v1.2: corrections from the claim-trace table (`writer/claim-trace.md`, T5.0)
+| ID | Finding | Decision | Applied |
+|---|---|---|---|
+| CT-1 | Formula (1) is ours. Gustafsson has no equation, only a step-by-step calculation (€1.1/€1.6/€2.1 per pair) | **Adopted** | §6 ch. 8 now says "following the logic of" |
+| CT-2 | Appriss online returns are $362 B (BORO $146.8 B + BORIS $215.3 B), not "$215 B online" | **Adopted** | Not repeated in the PRD; fixed in the sources notes |
+| CT-3 | Coresight 24.4% (apparel) and Appriss 24.52% (all online) must never be merged | **Adopted** | §1 already keeps them separate; qa checks this in R10 |
+| CT-4 | Use peng2023's "20–40% return rate" and NRF's $890 B only as "reported by", because one is an uncited abstract sentence and the other comes from the landing page only | **Adopted** | The rule on vendor facts under §6 extends to these |
+| CT-5 | Don't use 3DLOOK's "96–97% accuracy" as evidence (a health/fitness claim with no method) | **Adopted** | Ch. 4 uses alhassawi2025 for accuracy |
+| CT-6 | RT-W2's "range across publishers" can't be supported, because the other publishers' pages were never opened | **Adopted: no range** | Ch. 2 states IMARC alone, with its definition and method as a stated limit |

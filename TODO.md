@@ -27,7 +27,7 @@ Stages and dependencies are in `PLAN.md`.
 | T2.5 | TikZ style-key list → fix-se | art-se | REQUEST sent with the key names + values | ☐ |
 | T2.6 | Cover, inset banner (shipout hook), footer with page number, `\frontmatter`/`\mainmatter`, `\FloatBarrier`, palette-only hyperref (v0.5) | fix-se | 3-page demo: cover with no footer, banner elsewhere | ☐ |
 | T2.7 | biblatex IEEE + `\urlstyle{same}` + command list + full example (v1.0) | fix-se | Example builds clean with the 4 commands | ☐ |
-| T2.8 | `TEXTWIDTH_IN = 5.906` (15.0 cm) + a fixed canvas, no `bbox tight`, fonttype 42, no fallback (RT-A8, RT-Q4) | art-se | Every figure PDF is exactly 15.0 cm wide; `pdffonts` clean | ☐ |
+| T2.8 | `TEXTWIDTH_IN = 5.906` (15.0 cm) + a fixed canvas, no `bbox tight`, fonttype 42, no fallback (RT-A8, RT-Q4) | art-se | Every figure PDF is exactly 15.0 cm wide; `pdffonts` clean | ☑ |
 
 ## S3: QA skills (fix-se writes, qa-se supplies the criteria)
 | ID | Task | Owner | Check | Status |
@@ -42,8 +42,8 @@ Stages and dependencies are in `PLAN.md`.
 |---|---|---|---|---|
 | T4.1 | `main.tex` (cover fields, front matter, `\input` of 10 chapters, bibliography) | master-se | Compiles | ☐ |
 | T4.2 | Chapter stubs `chapters/01-intro … 10-conclusion.tex` + `00-exec-summary-he.tex` | writer-se | Compiles to 10 titled chapters + the Hebrew stub | ☐ |
-| T5.0 | Claim-trace table: every statistic with its quote and page (R-13) | writer-se | qa-se spot-checks 5 | ☐ |
-| T5.1 | `writer/outline.md`: sections, the claim each proves, its sources, page budget | writer-se | master-se approves against PRD §6 | ☐ |
+| T5.0 | Claim-trace table: every statistic with its quote and page (R-13) | writer-se | qa-se spot-checks 5 | ☑ |
+| T5.1 | `writer/outline.md`: sections, the claim each proves, its sources, page budget | writer-se | master-se approves against PRD §6 | ◐ |
 | T5.2 | `python/data/assumptions.csv`: every financial assumption (prices, CAC, churn, costs), one source of truth | writer-se proposes → art-se owns the file | Every number in ch. 5 and 8 traces to a row | ☐ |
 
 ## S6: Figures (art-se)

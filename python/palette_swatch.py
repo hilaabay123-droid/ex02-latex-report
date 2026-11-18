@@ -10,11 +10,11 @@ OUT = ct.ROOT / "docs" / "screenshots" / "palette-swatch.png"
 core = [("Ink", ct.INK), ("Ivory", ct.IVORY), ("Mocha", ct.MOCHA), ("Powder pink", ct.PINK)]
 tints = [("Mocha deep", ct.MOCHA_DEEP), ("Mocha pale", ct.MOCHA_PALE)]
 
-fig = plt.figure(figsize=(8, 4.2), facecolor=ct.IVORY)
+fig = plt.figure(figsize=(8, 4.2), facecolor=ct.IVORY, layout=None)
 ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, 8); ax.set_ylim(0, 4.2); ax.axis("off"); ax.grid(False)
 ax.text(0.4, 3.85, "ClosetTwin palette", fontfamily=ct.HEAD_FONT, fontsize=20, color=ct.INK, va="center")
 ax.text(0.4, 3.5, "Playfair Display headings  ·  Rubik body"
-        + ("" if ct.USING_BRAND_FONTS else "  (fallback fonts in use)"),
+        ,
         fontfamily=ct.BODY_FONT, fontsize=8, color=ct.MUTED, va="center")
 
 def dark(h):
@@ -30,6 +30,7 @@ for i, (n, h) in enumerate(tints):
     x = 2.55 + i * 2.2
     ax.add_patch(Rectangle((x, 0.3), 0.35, 0.3, fc=h, ec=ct.INK, lw=0.6))
     ax.text(x + 0.45, 0.45, f"{n}  {h}", fontfamily=ct.BODY_FONT, fontsize=7.5, color=ct.INK, va="center")
+fig.set_layout_engine("none")
 OUT.parent.mkdir(parents=True, exist_ok=True)
 fig.savefig(OUT, dpi=200, bbox_inches=None)
 print(OUT)
