@@ -1,6 +1,6 @@
 # Acceptance criteria: ClosetTwin business plan (qa-se, task Q1)
 
-Version 1.2, 2026-11-18 (v1.1 applied master-se's answers Q-1..Q-5; v1.2 applies red-team RT-Q1..Q8 and the other reviewers' additions; see "Decisions" at the end). Owner: qa-se. Not a deliverable. master-se merges it into `PRD.md`.
+Version 1.3, 2026-11-18 (v1.1 applied master-se's answers Q-1..Q-5; v1.2 applied red-team RT-Q1..Q8 and the other reviewers' additions; v1.3 applies the user's answers UD-1..UD-8 of PRD v2.0; see "Decisions" at the end). Owner: qa-se. Not a deliverable. master-se merges it into `PRD.md`.
 
 Sources (binding order): (1) assignment PDF `ref/BIU26-27-A-ex02-pdf-via-LaTex-print.pdf` ("Assignment", pages A1-A5);
 (2) fixed decisions in `prompts/03-expert-committee.md`; (3) course book `ref/preparation-report-book.pdf`, Part B, ch. 19
@@ -34,11 +34,12 @@ iron rule (A3).
 ## Family 2: Cover page (דף שער) - book p. 77: "no page number, direction, without a number"
 | ID | Criterion | Target | Check | Sev |
 |----|-----------|--------|-------|-----|
-| C1 | Cover page exists and is page 1 of the PDF (PRD R-22) | title "ClosetTwin", subtitle, course/assignment, author(s), date as decided in Q-E; palette-only colors | PDFPAGE 1 | blocker |
+| C1 | **Ivory cover** is page 1 of the PDF (PRD R-22, UD-2, UD-5) | ivory #F7F3EE background; title "ClosetTwin", subtitle, **Hila Abay, Shirel Giladi**, group code **sg00ha11**, course **Generative AI for Management (875523402)**, lecturer **Dr. Yoram Segal**, date; palette-only colors; no footer or page number | PDFPAGE 1 | blocker |
 | C2 | Cover carries no page number and no running footer number | no digit in the footer area of PDF page 1 | PDFPAGE 1; `pdftotext -f 1 -l 1 -layout main.pdf -` shows no stray number | minor, recurring |
 | C3 | Front matter numbering is separate from the content | front matter (cover, TOC, Hebrew executive summary) in roman or unnumbered; content starts at arabic 1 | PDFPAGE of first content page; `grep -n "frontmatter\|mainmatter" main.tex` | major |
 | C4 | Cover direction is right for its language | English cover is LTR; the title is not reversed | PDFPAGE 1 | major |
 | C5 | Cover contains no overfull line and no text outside the margins | LOG has no overfull on page 1; visual margin check | PDFPAGE 1 | minor |
+| C6 | **No personal ID number anywhere** (UD-5, R-22; the repo is public) | 0 nine-digit numbers in the repo files, in the **git history**, and in the PDF text, except the course code **875523402**. Also 0 hits for the grouped form `ddd-ddd-ddd` or `ddd ddd ddd` | `grep -rnIE "\b[0-9]{9}\b" --exclude-dir=.git . \| grep -v 875523402`; `grep -rnIE "[0-9]{3}[- ][0-9]{3}[- ][0-9]{3}" --exclude-dir=.git .`; `git log --all -p \| grep -E "\b[0-9]{9}\b" \| grep -v 875523402`; `pdftotext main.pdf - \| grep -E "\b[0-9]{9}\b" \| grep -v 875523402`; also check `main.pdf` metadata with `pdfinfo` (Author/Title/Keywords hold no ID) | blocker |
 
 ## Family 3: Directionality (כיווניות) - book p. 77: "mixed line", ch. 14 (printed pp. 44-50)
 The book's three levels of direction (ch. 14.2-14.3) and "four hints that break without being read" (14.5).
@@ -92,14 +93,15 @@ Book: figure width up to **12.5 cm**, no overlapping labels, Hebrew caption/`\la
 | I14 | Positioning-map axes come from the verified vendor-table columns | each axis of the ch. 3 map is a column of the ch. 3 vendor comparison table (for example "scan: yes/no", "B2B: yes/no"), the vendor positions equal the table cells, and the caption says the axes are qualitative | compare the figure with the table, vendor by vendor | major |
 
 ## Family 6: Code (קוד) - book p. 77: "background, direction, indentation"; failure: "unclear background"; assignment `qa-code` = "background and pythonbox"
-The report has no required code. If a listing or `pythonbox` appears (for example a formula's Python check), these apply.
+PRD R-25 / UD-4: the report has **one** code box, the `pythonbox` in **Appendix A** ("How our charts are made"). K1-K4 cover it. JetBrains Mono is allowed **only** there.
 
 | ID | Criterion | Target | Check | Sev |
 |----|-----------|--------|-------|-----|
-| K1 | Code block has a clear background and fits the margins | shaded box with a palette tint; no line passes the margin | PDFPAGE; overfull in LOG | major |
-| K2 | Code is LTR, monospace, indented | direction LTR even inside the Hebrew page (we have no code there) | PDFPAGE | minor |
-| K3 | No monospace font anywhere (decision Q-2) | `pdffonts` shows no mono font (Courier, Latin Modern Mono, NimbusMono, DejaVu Sans Mono, Consolas...). URLs use Rubik (`\urlstyle{same}`); code listings, if any, use Rubik | `pdffonts main.pdf`; `grep -n "urlstyle" *.cls` | blocker, recurring |
-| K4 | The Python scripts run | `python python/<each>.py` exits 0 and writes its figure to `figures/` | run each script | blocker |
+| K1 | `pythonbox` has an **ivory fill with a hairline**, **line numbers**, and **nothing past the margin** | Appendix A contains exactly **1** `pythonbox`; ivory #F7F3EE fill with a 0.4 pt mocha-pale hairline; line numbers visible; every line ends inside the text block (15.0 cm); no overfull `hbox` on its lines | PDFPAGE of the Appendix A page(s); `grep -c "begin{pythonbox\|pythonbox{" chapters/*.tex main.tex` = 1; overfull lines in LOG on those pages; `pdftotext -bbox` max xMax <= right margin | major |
+| K2 | Code is **LTR**, monospace, and keeps its indentation | the code reads left to right, indentation preserved, no reversed punctuation (`)` `:` `#`), no Hebrew inside | PDFPAGE zoom; `pdftotext -layout` of the page | major |
+| K3 | **JetBrains Mono only on the code-box page(s)** (UD-4; reverses the v1.1 "no monospace" rule) | `pdffonts -f N -l N` on each page: JetBrains Mono appears **only** on the Appendix A page(s) and on no other page; any other monospace font (Courier, Latin Modern Mono, NimbusMono, DejaVu Sans Mono, Consolas...) anywhere = failure. URLs stay in Rubik (`\urlstyle{same}`); figure PDFs have no mono font | per-page `pdffonts` loop (script `fonts_by_page.py`); `grep -n "urlstyle" *.cls` | blocker, recurring |
+| K4 | The box shows a **real script, read from its file** (PRD R-25), and the script runs | the code in the box is read from a `python/*.py` file by the CLS (`pythonbox` takes a path; no pasted code in the chapter), and the PDF text equals the file's lines (modulo the shown range); running that script reproduces the chart it claims | `grep -n "pythonbox" chapters/*.tex` shows a path argument; extract the box text with `pdftotext -layout` and diff against the file; run the script and compare its output with the figure it names | blocker |
+| K5 | Every Python script runs (formerly K4) | `python python/<each>.py` exits 0 and writes its figure to `figures/` | run each script | blocker |
 
 ## Family 7: Layout / pagination (עימוד), the four rules of ch. 19.4 (book p. 78)
 Rule text: "the table of contents, the summary, every chapter and the bibliography start on a new page; a heading is not left alone at the bottom; no box/table/figure is cut between pages; no almost-empty pages; `\needspace` is used."
@@ -132,6 +134,8 @@ Rule from the table on p. 78: cite a source only from the list; "a key instead o
 | R9 | Source dates are credible for a 2026 report | no source after Nov 2026; prefer 2018+ except classics | read | minor |
 | R10 | **Claim-trace table** (RT-Q7) | every statistic in PRD §1 and in ch. 1-2 (24%, 53%, up to 80%, the market sizes, the $685 B-$890 B range) is traced: claim, cite key, **quoted source sentence, page**, "number found: yes/no". A statistic with only a vendor or paywalled source is worded "reported by <source>" in the text. Table lives in `qa/reports/` | qa-se opens each source and records one row per claim | blocker (a number not in its source) |
 | R11 | No unused bib entry; every `@online` has `urldate` | every key in `references.bib` is cited at least once (biber warns nothing; qa diffs `main.bcf` cited keys vs bib keys); each web entry has `urldate` (and an archive link where possible) | script: bib keys minus cited keys = empty; `grep -L urldate` on web entries | major |
+| R12 | **Legal sources are official** (PRD R-26, UD-7) | Israel's Privacy Protection Law **Amendment 13** (primary) and **GDPR Art. 9** (secondary) are cited from official texts (Knesset/Nevo-official gazette or the Privacy Protection Authority for Israel; EUR-Lex for GDPR). A law blog, a law firm page or a news article is not an official source. Every legal claim in the text (biometric data = "data of special sensitivity", the in-force date 14 Aug 2025) has a `\cite` to the official text; **no legal claim without a source**; BIPA appears nowhere (`grep -rni "BIPA\|Illinois" chapters/ references.bib` = 0). The text argues "fit, not identification" + privacy-by-design as an advantage | open each legal source, check the publisher and that the quoted provision exists; grep | blocker (legal claim with no official source), major (non-official source) |
+| R13 | **Israeli numbers are sourced or tagged** (PRD R-27, UD-6, UD-8) | every Israeli market number (online apparel sales, number of e-tailers, platform mix, prices in ILS) is `\cite`d to an official or reputable Israeli source, or tagged `\derived`/`\assumed`; Europe is the expansion stage and is not in the Y1-Y3 base case; ILS amounts use `\ils{}` and a single assumed exchange rate that matches the `assumptions.csv` row; the reporting currency is USD | list every number in ch. 2, 6, 8 with ILS or "Israel"; compare to its class and source; grep the rate | blocker (an Israeli number with no class), major (wrong or mixed rate) |
 
 ## Family 9: File structure (מבנה קבצים) - book p. 77: "folders, paths, limits"; assignment §3.3
 | ID | Criterion | Target | Check | Sev |
@@ -140,7 +144,7 @@ Rule from the table on p. 78: cite a source only from the list; "a key instead o
 | FS2 | **One `.tex` per chapter** (PRD R-24; assignment: "additional .tex files (for example one per chapter)") | 10 chapter files in `chapters/*.tex` (+ the Hebrew page file), each `\input` from `main.tex`, no chapter inside another | `grep -n "input\|include" main.tex` | major |
 | FS3 | No deliverable `\input`s from an agent folder | 0 hits for `writer/`, `art/`, `qa/`, `fix/` in `main.tex` and chapters | grep | major |
 | FS4 | Paths are relative and portable; no `C:\` in sources | 0 hits for `C:\\` or `\\Users` in `.tex`, `.cls`, `.py` | `grep -rnE "C:\\\\|Users" --include=*.tex --include=*.cls --include=*.py .` | major |
-| FS5 | Fonts are in `fonts/` (OFL) and loaded by relative path | `fonts/` contains Playfair Display and Rubik files plus their OFL license; CLS uses `Path=` | `ls fonts`; `grep -n "Path" *.cls` | major |
+| FS5 | Fonts are in `fonts/` (OFL) and loaded by relative path; **provenance** (PRD R-07) | `fonts/` contains Playfair Display, Rubik and **JetBrains Mono** files plus their OFL texts and `fonts/SOURCES.md`; the Playfair Display and JetBrains Mono files are byte-identical to the official releases (`sha256sum` equals the hashes in `SOURCES.md`); CLS uses `Path=` | `ls fonts`; `grep -n "Path" *.cls` | major |
 | FS6 | Reproducibility | a fresh clone builds with the 4-command sequence and gives the same page count | clone to a temp folder, build (this is the assignment's "proof of repro-ducibility") | blocker |
 | FS7 | `.gitignore` excludes build junk but not the final PDF, `.bib`, `.cls`, `.tex`, `figures/` | `git ls-files` shows `main.pdf` (assignment requires the PDF in the repo) | `git ls-files` | major |
 | FS8 | README states the build command and the list of skills used | README has the 4 commands and the skills list | read | minor |
@@ -170,21 +174,22 @@ Our threshold is **stricter than the book**: the book allows "overfull wider tha
 | D1 | 25 or more **content** pages (front matter excluded; hard requirement; PRD R-01 **prevails** over the per-chapter tolerance of R-02) | content pages >= 25. Content = from the first page of chapter 1 to the **last page of chapter 10 (Conclusion)**. Excluded: cover, TOC, lists, the Hebrew executive-summary page (front matter, Q-3) **and the references** (RT-Q1) | `pdfinfo main.pdf` (total) minus the number of front-matter pages (read from the roman-numbered pages on `main.toc` or `\pageref`) | blocker |
 | D2 | Body language is English LTR | all content pages except the Hebrew page: LTR and English | `pdftotext` per page | major |
 | D3 | One Hebrew RTL executive-summary page with perfect BiDi | exactly 1 page; see B1-B10 | see family 3 | blocker |
-| D4 | **Only Playfair Display and Rubik are embedded** | `pdffonts main.pdf` lists only fonts whose name starts with `PlayfairDisplay` or `Rubik` (any weight/style subset), all with `emb = yes`. Any other name (LatinModern, DejaVu, Cambria Math, NimbusMono, TeX Gyre, STIX...) = defect; a monospace font is always a failure (K3). If a math font appears, it is judged under D11 (Q-1 still open). Also check PDFs inside figures | `pdffonts main.pdf` ; compare names | blocker, recurring |
+| D4 | **Font whitelist: Playfair Display, Rubik, Latin Modern Math (formula pages only), JetBrains Mono (code-box page(s) only)** (PRD R-06; UD-3, UD-4) | `pdffonts main.pdf` lists only fonts whose name starts with `PlayfairDisplay`, `Rubik`, `LatinModernMath`/`LMMath` or `JetBrainsMono` (any weight/style subset), all with `emb = yes`; **per page**: LM Math appears only on pages that hold a formula (pages of the `eq:` labels in `main.aux`), JetBrains Mono only on the Appendix A page(s) (K3); **figure PDFs** contain only Playfair and Rubik (I8). Any other name (LatinModern, DejaVu, Cambria Math, NimbusMono, TeX Gyre, STIX...) = defect; any other monospace font is a failure (K3); any other math font is a failure (D11). Also check PDFs inside figures | `pdffonts main.pdf` ; compare names | blocker, recurring |
 | D5 | Heading fonts and body fonts are assigned right | English headings Playfair Display; English body Rubik; all Hebrew text, including Hebrew headings, Rubik | PDFPAGE + `pdffonts`; `pdftotext -bbox` not needed | major, recurring |
-| D6 | **Palette only** | colors in PDF are ink #111111, ivory #F7F3EE, mocha #A47864, powder pink #E8C6C0, and white/black/tints of those. No other hue. Methods: (a) `grep -noE "#?[0-9A-Fa-f]{6}" *.cls chapters/*.tex python/*.py figures/*.tex` -> only the four values; (b) render pages to PNG and count dominant colors (Python script in `qa/`) | grep + image check | major, recurring |
+| D6 | **Palette only** | colors in PDF are ink #111111, ivory #F7F3EE, mocha #A47864, powder pink #E8C6C0, the approved tints mocha-deep #6B4B3D and mocha-pale #D3BBAE, the figure-only neutrals grid #E3DCD4 and muted #6F6862, and white. No other hue. No other hue. Methods: (a) `grep -noE "#?[0-9A-Fa-f]{6}" *.cls chapters/*.tex python/*.py figures/*.tex` -> only the four values; (b) render pages to PNG and count dominant colors (Python script in `qa/`) | grep + image check | major, recurring |
 | D7 | Hyperlink colors, table rules, code backgrounds, `\hypersetup` colors also follow the palette (the default hyperref blue/red boxes would break D6) | 0 default blue/red link boxes in PDF | PDFPAGE; `grep -n hypersetup *.cls` | major, recurring |
 | D8 | Banner and footer on every content page | see L7 | PDFPAGE | major |
 | D9 | At least 1 figure, 1 table and 1 formula | figures >= 1, tables >= 1, numbered formula (`equation`) >= 1; target 6 / 5 / 2 | `grep -c` for `begin{figure`, `begin{table`, `begin{equation` (and `align`) | blocker |
 | D10 | Formula is in the Financial Plan chapter, numbered, introduced in the text, with each symbol defined | `\label{eq:...}` + `\eqref`; symbols listed after the formula | read; PDFPAGE | major |
-| D11 | Formula font fits D4 (Q-1 **still open**: fix-se is checking whether Rubik alone can set the formula; the user decides if not) | until decided: a third (math) font in `pdffonts` is reported as `major`, flagged "pending Q-1", not as a blocker | `pdffonts` | major |
+| D11 | **Latin Modern Math only inside formulas** (UD-3; Q-1 closed) | Formula (1) in ch. 8 and any other equation: letters and digits in Rubik, symbols in LM Math; LM Math appears on no page without a formula; no other math font (STIX, Cambria Math, Libertinus Math...) | per-page `pdffonts` against the pages of the `eq:` labels | `pdffonts` | major |
 | D12 | Graphs from Python, diagrams in TikZ, **no internet images** | see I6 | `ls`; no `http` in `\includegraphics` | blocker |
 | D13 | IEEE references, **all real** | see R1-R6 | see family 8 | blocker |
 | D14 | **Financial figures are labeled** (RT-Q6; PRD R-14). Scope: ch. **2, 5, 6, 7, 8, 9** and every figure/table caption in them | every number with `$`, USD, ILS, `%`, a multiplier ("x") or "years" is in exactly one of 3 classes: **sourced** (`\cite{}` in the same sentence), **derived** (computed from sourced/assumed numbers, with the formula or inputs named), **assumed** (inside `\assumption{}` or under a caption that starts "Assumption:"). Ch. 8 opens with a statement that all projections are illustrative assumptions | grep the numbers in the scoped chapters; qa lists every number in none of the 3 classes | blocker |
 | D15 | Real-company claims are factual or labeled | competitor names, funding, features: sourced or "as of <date>"; no invented customers/partners | read vs source | major |
 | D16 | Style: fashion-editorial, clean, airy, made **measurable** (RT-Q5) | margins >= 2.5 cm; <= 4 series per chart; <= 1 figure and <= 1 table per page unless a pair is intended; no content page more than half figure (I13); devices of PRD §5.3 used consistently | measure margins on a rendered page; count; PDFPAGE | minor |
 | D17 | **Page budget per chapter** (see table below) | each chapter's page count within the tolerance | `pdftotext` per page + `main.toc` | major |
-| D18 | **Contrast** (RT-Q5) | text under 14 pt bold / 18 pt regular: contrast >= **4.5:1** with its background; large text and graphics >= **3:1**. Mocha #A47864 is 3.85:1 on white and 3.5:1 on ivory, so **small mocha text (caption labels, links) uses mocha-deep #6B4B3D (about 7.8:1), pending Q-A; if Q-A is rejected, ink.** Large mocha text (chapter numbers) is allowed | compute the WCAG ratio of every text color against its background (script in `qa/`); PDFPAGE | major, recurring |
+| D18 | **Contrast** (RT-Q5) | text under 14 pt bold / 18 pt regular: contrast >= **4.5:1** with its background; large text and graphics >= **3:1**. Mocha #A47864 is 3.85:1 on white and 3.5:1 on ivory, so **small mocha text (caption labels, links) uses mocha-deep #6B4B3D (about 7.8:1); the tints mocha-deep and mocha-pale are **approved (UD-1)**. Powder pink never carries text (1.4:1).** Large mocha text (chapter numbers) is allowed | compute the WCAG ratio of every text color against its background (script in `qa/`); PDFPAGE | major, recurring |
+| D19 | **White page; ivory only on the cover and inside boxes** (UD-2) | the page background is white (#FFFFFF); ivory appears on the cover and inside stat cards, pull quotes, table header rows and the code box, each with a 0.4 pt mocha-pale hairline; no ivory page | render pages and sample the page-corner pixel (script `contrast_colors.py`); PDFPAGE | major, recurring |
 
 ### D17 page budget (from `03-expert-committee.md`)
 Pages are counted from the chapter's first page to the page before the next chapter's first page. Tolerance (approved by master-se, Q-5): **+/- 1 page** per chapter, **exactly 1** for the conclusion; total content >= 25 is a **hard requirement** (D1), and <= 32.
@@ -235,19 +240,19 @@ The book's warning (p. 79): do not accept "the model said it checked"; qa-se ask
 | Family | Criteria |
 |--------|---------:|
 | 1 Template | 6 |
-| 2 Cover page | 5 |
+| 2 Cover page | 6 |
 | 3 Directionality | 11 |
 | 4 Tables | 7 |
 | 5 Images | 14 |
-| 6 Code | 4 |
+| 6 Code | 5 |
 | 7 Layout (pagination) | 9 |
-| 8 Sources | 11 |
+| 8 Sources | 13 |
 | 9 File structure | 8 |
-| **Book families total** | **75** |
+| **Book families total** | **79** |
 | B Build | 10 |
-| D Fixed decisions | 18 (+ the D17 budget table) |
+| D Fixed decisions | 19 (+ the D17 budget table) |
 | S Submission/process | 9 |
-| **Grand total** | **112** |
+| **Grand total** | **117** |
 
 ## Assignment requirements that are NOT in our fixed decisions
 Source: assignment PDF pages A1-A5. The assignment is binding, so each item needs a PRD row (master-se) and an owner.
@@ -270,6 +275,13 @@ Source: assignment PDF pages A1-A5. The assignment is binding, so each item need
 16. **Date and author block** on the cover: the assignment is dated "Nov 2026" and credits the lecturer; our cover should carry the group, the course and the date. -> C1 (qa-se asks master-se whether names are wanted).
 
 Items 1, 2, 5-12 and 13 are the "not in our fixed decisions" set (**11 items**); items 3, 4, 14-16 are partial overlaps listed for completeness.
+
+## Decisions applied in v1.3 (the user's answers, PRD v2.0)
+UD-4 K1-K5 rewritten for the Appendix A `pythonbox` (ivory fill, hairline, line numbers, LTR, nothing past the margin, reads a real `python/` file; K4 old "scripts run" is now K5); K3 **reversed**: JetBrains Mono allowed only on the code-box page(s) ·
+UD-3 D4/D11: LM Math allowed only on formula pages (whitelist is per page) · UD-1 D18/D6: the tints are approved; mocha-deep for small text · UD-2 D19 (white page, ivory only on the cover and in boxes) ·
+UD-5 C1 (ivory cover with names, sg00ha11, 875523402, lecturer) and **C6 (no personal ID number: 9-digit grep over files, git history and PDF, excluding 875523402)** ·
+UD-7 R12 (official legal sources, no BIPA) · UD-6/UD-8 R13 (Israeli numbers sourced or tagged, one assumed ILS rate, USD reporting) · FS5 now checks JetBrains Mono and the SHA-256 hashes (R-07).
+Closed: Q-A, Q-1/Q-C. Count: 117 criteria.
 
 ## Decisions applied in v1.2 (red team RT1, all 8 adopted by master-se)
 RT-Q1 D1/D17 (ch. 1-10, refs excluded, R-01 prevails) · RT-Q2 S8 (sign-off lines) · RT-Q3 B11 (BiDi corpus + bbox check) · RT-Q4 I8 (fonttype 42, no fallback) ·

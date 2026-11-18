@@ -24,7 +24,7 @@ Stages and dependencies are in `PLAN.md`.
 | T2.2 | `hebrewpage`, Hebrew heading → Rubik, `\pct`, `\usd`, `\ils` (v0.2) | fix-se | The ch. 14 check page renders correctly (viewed as an image) | ☐ |
 | T2.3 | Headings in Playfair (lining numerals), chapter opener, TOC, lists (v0.3) | fix-se | TOC page image | ☐ |
 | T2.4 | Tables (booktabs, ivory header), captions, stat card, pull quote, `\assumption`, TikZ keys (v0.4) | fix-se | Demo page image | ☐ |
-| T2.5 | TikZ style-key list → fix-se | art-se | REQUEST sent with the key names + values | ☐ |
+| T2.5 | TikZ style-key list → fix-se | art-se | REQUEST sent with the key names + values | ☑ |
 | T2.6 | Cover, inset banner (shipout hook), footer with page number, `\frontmatter`/`\mainmatter`, `\FloatBarrier`, palette-only hyperref (v0.5) | fix-se | 3-page demo: cover with no footer, banner elsewhere | ☐ |
 | T2.7 | biblatex IEEE + `\urlstyle{same}` + command list + full example (v1.0) | fix-se | Example builds clean with the 4 commands | ☐ |
 | T2.8 | `TEXTWIDTH_IN = 5.906` (15.0 cm) + a fixed canvas, no `bbox tight`, fonttype 42, no fallback (RT-A8, RT-Q4) | art-se | Every figure PDF is exactly 15.0 cm wide; `pdffonts` clean | ☑ |
@@ -97,7 +97,8 @@ Check for every chapter: it compiles, it is within ±1 page of budget, every cla
 | T20.3 | IL-M1: apply the Israel rows to `assumptions.csv`; rerun `model.py`; funnel check green; new ask | art-se | exit 0, deterministic, deltas reported | ☐ |
 | T20.4 | JetBrains Mono (official static, OFL) into `fonts/` + SHA-256 in SOURCES.md | fix-se | Hash recorded; `pdffonts` on the code page | ◐ |
 | T20.5 | `pythonbox` env in the CLS (reads the real file, LTR, ivory, line numbers) | fix-se | Test page PNG | ☐ |
-| T20.6 | Appendix A script: one chart script, ≤ 50 lines, readable, runnable | art-se | `python python\<script>.py` writes its figure | ◐ |
+| T20.6 | Appendix A script: one chart script, ≤ 50 lines, readable, runnable | art-se | `python python\<script>.py` writes its figure | ☑ |
 | T20.7 | The cover via `main.tex` fields (names, sg00ha11, course 875523402, lecturer, date, **no IDs**) | master-se | qa C1 + the ID grep | ☐ |
-| T20.8 | Acceptance criteria v1.3 (code box, fonts whitelist, cover/no-ID, legal, Israel numbers) | qa-se | Version bump | ◐ |
-| T20.9 | QS1: `qa/skill-specs.md`, a spec for each of the 8 skills → input to T3.x | qa-se | 8 specs with commands and criteria IDs | ◐ |
+| T20.8 | Acceptance criteria v1.3 (code box, fonts whitelist, cover/no-ID, legal, Israel numbers) | qa-se | Version bump | ☑ |
+| T20.9 | QS1: `qa/skill-specs.md`, a spec for each of the 8 skills → input to T3.x | qa-se | 8 specs with commands and criteria IDs | ☑ |
+| T20.10 | QS2: 12 helper scripts in `qa/scripts/` (tested on t5 + planted defects) → fix-se copies them into the skills | qa-se | Each catches its planted defect | ◐ |
