@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Version** | **1.2** (v1.1 = after the red team, 32 findings; v1.2 = claim-trace corrections; see §10) |
+| **Version** | **1.3** (v1.1 = red team, 32 findings; v1.2 = claim-trace corrections; v1.3 = outline decisions; see §10) |
 | **Owner** | master-se |
 | **Date** | 2026-11-18 |
 | **Inputs** | `prompts/03-expert-committee.md` (user decisions) · `ref/BIU26-27-A-ex02-pdf-via-LaTex-print.pdf` (binding) · `ref/preparation-report-book.pdf` Part B ch. 13–19 · `ref/Multi-Agent-With-Claude.pdf` · committee reports `writer/sources-notes.md` (R1+R2), `art/chart-style-guide.md` (A1), `fix/cls-feasibility.md` (F1, F1b), `qa/acceptance-criteria.md` **v1.2** (112 criteria), `qa/reports/01-RT1-prd-redteam.md` |
@@ -137,8 +137,8 @@ Python figures `import ct_style`:
 | 6 | Go-to-Market | 2 | Segments and channels (Shopify App Store first). A funnel table. **The pilot design: metric = fit-related return rate, a control group, a minimum sample and a pass/fail threshold** (RT-W3) | shopify_dev_build, patel2025 |
 | 7 | Operations, Team & Roadmap | 2 | Roles (Q-E decides on names) and F4. Every cost and date tagged assumed | – (assumed) |
 | 8 | Financial Plan | 3 | **Formula (1): the break-even tool cost per order = the avoided returns × the cost per return**. The formula is **our own**, written "following the logic of [gustafsson2021, §6]". Gustafsson prints no equation, only a step-by-step calculation: €1.1, €1.6 and €2.1 per pair at 40%, 60% and 80% fit verification. It is numbered, with every symbol defined. F5, F6. An **assumptions table: value / class (sourced, derived, assumed) / source**. LTV/CAC is optional and comes only after the break-even (RT-W6) | gustafsson2021, patel2025 (CLV +7.51% as a second lever) |
-| 9 | Risks | 2 | F7. A mitigation for each risk: GDPR Art. 9 biometric data, a null pilot effect (patel2025), accuracy at edge sizes (alhassawi2025), platform risk (google2023tryon) | gdpr2016, patel2025, alhassawi2025, google2023tryon |
-| 10 | Conclusion | 1 | The ask and the next steps (the pilot first) | – |
+| 9 | Risks | 2 | F7. A mitigation for each risk: GDPR Art. 9 biometric data, a null pilot effect (patel2025), accuracy at edge sizes (alhassawi2025), platform risk (google2023tryon), **scan unit cost**: in-house scanning at about $0.03 per scan (assumed) is a precondition, because at 3DLOOK's list price of about $2 per scan the margin fails [threedlook_pricing] (OL-2) | gdpr2016, patel2025, alhassawi2025, google2023tryon |
+| 10 | Conclusion | 1 | The ask, **about $1.8M, derived from the model and tagged as an assumption** (OL-4), and the next steps (the pilot first) | – |
 | | **Content total** | **27** | **R-01 prevails:** content ≥ 25 pages is a hard requirement | |
 | | References (IEEE) | ≤ 2 | Every entry cited, none unused. Set in a smaller size | |
 
@@ -243,3 +243,14 @@ Four reviewers, 32 findings. **29 adopted, 2 adopted in part, 1 rejected in part
 | CT-4 | Use peng2023's "20–40% return rate" and NRF's $890 B only as "reported by", because one is an uncited abstract sentence and the other comes from the landing page only | **Adopted** | The rule on vendor facts under §6 extends to these |
 | CT-5 | Don't use 3DLOOK's "96–97% accuracy" as evidence (a health/fitness claim with no method) | **Adopted** | Ch. 4 uses alhassawi2025 for accuracy |
 | CT-6 | RT-W2's "range across publishers" can't be supported, because the other publishers' pages were never opened | **Adopted: no range** | Ch. 2 states IMARC alone, with its definition and method as a stated limit |
+
+### v1.3: decisions from the outline (`writer/outline.md`, T5.1)
+| ID | Point raised by writer-se | Decision | Applied |
+|---|---|---|---|
+| OL-1 | Floats and openers take about 40% of the 27 pages, so chapters 6, 8 and 9 have little text and the page count is at risk | **Adopted**: one chapter (ch. 1) is built first as a **calibration build** to measure words per page. The 800-word reserve sections are approved for use if the content falls under 26.5 pages. Margins are never shrunk | PLAN S7 starts with a calibration build of ch. 1 |
+| OL-2 | Scan unit cost is a fifth risk | **Adopted** | §6 ch. 9; F7 now has 5 risks |
+| OL-3 | Use one price everywhere | **Adopted**: TAM and SAM use the **blended price, $0.036 per order (assumed)**, the same value as in ch. 5 and 8 | `assumptions.csv` is the single source |
+| OL-4 | The funding ask comes from the model | **Adopted**: about $1.8M, derived and tagged | §6 ch. 10 |
+| OL-5 | 53% is not the fit share of returns | **Adopted**: the fit-related share of returns is **assumed at 40%**, deliberately below the survey's 53%, and it is a sensitivity variable | `assumptions.csv`; ch. 8 sensitivity |
+| OL-6 | Our fee-pool TAM (about $0.33B) is far below IMARC's $8.5B | **Adopted**: ch. 2 explains the definition difference and uses IMARC as context only | §6 ch. 2 |
+| OL-7 | Pilot fallback when the client can't randomize | **Adopted**: ch. 6 names a before-and-after design as the fallback, explicitly labeled **weaker evidence** | §6 ch. 6 |
