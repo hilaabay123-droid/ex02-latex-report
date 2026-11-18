@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Version** | **1.5** (v1.1 = red team, 32 findings; v1.2 = claim-trace corrections; v1.3 = outline decisions; v1.4 = model check; v1.5 = coherent funnel; see §10) |
+| **Version** | **2.0** (v1.1 = red team, 32 findings; v1.2 = claim-trace corrections; v1.3 = outline decisions; v1.4 = model check; v1.5 = coherent funnel; **v2.0 = the user's answers Q-A…Q-F: Israel beachhead, code appendix**; see §10) |
 | **Owner** | master-se |
 | **Date** | 2026-11-18 |
 | **Inputs** | `prompts/03-expert-committee.md` (user decisions) · `ref/BIU26-27-A-ex02-pdf-via-LaTex-print.pdf` (binding) · `ref/preparation-report-book.pdf` Part B ch. 13–19 · `ref/Multi-Agent-With-Claude.pdf` · committee reports `writer/sources-notes.md` (R1+R2), `art/chart-style-guide.md` (A1), `fix/cls-feasibility.md` (F1, F1b), `qa/acceptance-criteria.md` **v1.2** (112 criteria), `qa/reports/01-RT1-prd-redteam.md` |
@@ -10,8 +10,13 @@
 
 ## 1. Vision
 An investor-grade **business plan for ClosetTwin**, a B2B AI virtual fitting room. Fashion e-commerce sites embed it.
+**The beachhead market is Israel**, and **Europe is the expansion stage** (UD-6).
 The shopper scans their body with a phone camera and gets a size recommendation that also takes in the garment's specs
 and the shopper's fit preference. The **hypothesis** the plan sets out to prove is that this cuts fit-related returns.
+**Privacy is part of the product:** ClosetTwin scans **for fit, not for identification**. It is built privacy-by-design for
+Israel's Privacy Protection Law, Amendment 13 (in force since 14 Aug 2025), which classes biometric data as "data of special
+sensitivity". The plan argues this is a **competitive advantage**, not just a compliance cost (UD-7).
+
 The document is also the proof of the course's skills:
 - a reproducible LuaLaTeX build from one custom CLS
 - perfect Hebrew/English BiDi
@@ -35,7 +40,7 @@ plus our assumption) or **assumed**, and is labeled that way.*
 | Reader | Needs from the document |
 |---|---|
 | Dr. Segal (the grader) | Every binding requirement met and easy to find, a clean build, and the CLS and skills used instead of hand patches |
-| Investor persona (the implied reader) | The problem in numbers, an honest market size, a defensible product, the revenue logic, survivable financials and the risks with mitigations |
+| Investor persona (the implied reader: an Israeli seed investor) | The problem in numbers, an honest **Israeli** market size with a credible path to Europe, a defensible product, the revenue logic, survivable financials, and the risks with mitigations, including Amendment 13 |
 | Hebrew-speaking stakeholder | A one-page Hebrew executive summary that reads naturally in RTL |
 
 ## 3. Fixed decisions (the user's; not open to change)
@@ -48,18 +53,31 @@ plus our assumption) or **assumed**, and is labeled that way.*
   diagrams from TikZ, and there are no internet images.
 - Only real, verifiable sources are used. Financial figures are labeled as assumptions.
 
+**The user's answers, 2026-11-18 (Q-A…Q-F; also fixed):**
+- **Q-A:** the tints mocha-deep `#6B4B3D` and mocha-pale `#D3BBAE` are **approved**.
+- **Q-B:** the **page is white**. Ivory appears **only on the cover and inside boxes**.
+- **Q-C:** **Latin Modern Math is allowed inside formulas only**.
+- **Q-D:** there is **one code box**: an appendix with the Python code that generates one of our charts, in **JetBrains Mono (OFL, in
+  `fonts/`), for code only**. The reason: `qa-code` is a required skill.
+- **Q-E:** the cover lists **Hila Abay, Shirel Giladi**, group code **sg00ha11**, the course **Generative AI for Management (875523402)**,
+  the lecturer **Dr. Yoram Segal**, and the date. **No ID numbers anywhere: the repo is public.** The team chapter lists **roles only**.
+- **Q-F:** the target market is **Israel (beachhead) → Europe (expansion)**. **BIPA is dropped.** The primary legal framework is **Israel's
+  Privacy Protection Law, Amendment 13** (in force since 14 Aug 2025; biometric data is "data of special sensitivity"). **GDPR Art. 9
+  is a secondary risk** (Israeli sites selling to EU customers). The text argues that scanning for fit, not identification, plus
+  privacy-by-design, is a competitive advantage.
+
 ## 4. Technical architecture (proved by compiling `fix/tests/t5`)
 | Topic | Decision |
 |---|---|
 | Template | **`closettwin.cls` based on `book` (oneside)** (RT-F1). This gives `\frontmatter` (roman) / `\mainmatter` (arabic 1), `\chapter`, a new page per chapter and `\chaptermark` for the banner |
 | Engine | LuaLaTeX (MiKTeX 25.12) + biber 2.21 + biblatex 3.21. The CLS states the minimum package dates (`\NeedsTeXFormat`, `\RequirePackage[date]`) (RT-F2) |
 | BiDi | **babel `[english,bidi=basic]`** + `\babelprovide[import,onchar=ids fonts]{hebrew}`, in a `hebrewpage` environment. *Rejected:* polyglossia and babel `bidi=default`. Both reverse Latin text and digits inside Hebrew (proved in t1/t2) |
-| Fonts | `fontspec` loads the fonts by relative path from `fonts/` as static TTFs. **Playfair Display v1.200 is the official unmodified static release** (its Reserved Font Name requires this). Rubik instances are generated (it has no Reserved Font Name). Provenance and SHA-256 are in `fonts/SOURCES.md` (RT-F8). Playfair has no Hebrew, so Hebrew headings switch to Rubik automatically |
+| Fonts | `fontspec` loads the fonts by relative path from `fonts/` as static TTFs. **Playfair Display v1.200 is the official unmodified static release** (its Reserved Font Name requires this). Rubik instances are generated (it has no Reserved Font Name). Provenance and SHA-256 are in `fonts/SOURCES.md` (RT-F8). Playfair has no Hebrew, so Hebrew headings switch to Rubik automatically. **JetBrains Mono (OFL, official static release) is used for the code box only** (UD-4) |
 | Missing glyphs | `\tracinglostchars=3`, so any missing glyph is a build **error**, not a silent warning (RT-F4) |
 | Banner / footer | Drawn with the kernel `shipout/background` hook. No TikZ `remember picture`, so no extra pass is needed (RT-F6). Design in §5.3 |
 | Floats | `\FloatBarrier` at each chapter's end, `\raggedbottom`, and tuned float parameters (RT-F7) |
 | Bibliography | `biblatex` `style=ieee`, `backend=biber`, `csquotes`. URLs in Rubik (`\urlstyle{same}`). The bibliography is set in a smaller size so it fits 2 pages |
-| Public macros | `\pct{}`, `\usd{}`, `\ils{}`, `\sourced`/`\derived`/`\assumed` tags (3 classes, RT-W8/RT-Q6), `hebrewpage`, the Hebrew heading, the color names, the TikZ style keys (from art-se), `statcard`, `pullquote` |
+| Public macros | `\pct{}`, `\usd{}`, `\ils{}`, `\sourced`/`\derived`/`\assumed` tags (3 classes, RT-W8/RT-Q6), `hebrewpage`, the Hebrew heading, the color names, the TikZ style keys (from art-se), `statcard`, `pullquote`, **`pythonbox`** (the code box: an ivory background with a hairline, JetBrains Mono, LTR, line numbers, reading the real script file so the code shown is the code that ran) |
 | Page geometry | A4, left/right margins 3.0 cm → **text width 15.0 cm** (`TEXTWIDTH_IN = 5.906`). Top 3.6 cm, bottom 3.0 cm. Rubik 11/15.5 pt, paragraph skip 0.6 em, no indent. About 430–480 words per page, so 27 pages need about 7–8k words. **Never shrink the margins to reach the page count** |
 | Build | From the root only: `lualatex --disable-installer main` → `biber main` → `lualatex …` ×2. The README lists the MiKTeX packages and their versions (RT-F2) |
 
@@ -70,13 +88,13 @@ plus our assumption) or **assumed**, and is labeled that way.*
 | ink | `#111111` | 18.9:1 | All small text, rules, axes, ClosetTwin's own series |
 | mocha | `#A47864` | 3.85:1 | **Only large type (≥ 18 pt)**: chapter numbers, the stat-card number, rules, fills, the market/baseline series. *Never small text* |
 | powder pink | `#E8C6C0` | 1.4:1 | Fills and bars only (the pull-quote bar, highlight bands, series 3 with an ink hairline). **It never carries text** |
-| ivory | `#F7F3EE` | 1.1:1 | Box and table-header fills, **always with a 0.4 pt mocha-pale hairline**. Never a surface without an edge |
-| *mocha-deep* | `#6B4B3D` | 7.8:1 | **Pending Q-A**: caption labels, links, the banner chapter name and series 4. If Q-A is *no*, these use ink (links: ink + mocha underline) |
-| *mocha-pale* | `#D3BBAE` | – | **Pending Q-A**: hairlines and a step in the sequential ramp |
+| ivory | `#F7F3EE` | 1.1:1 | **The cover background** and the fills **inside boxes** (stat card, pull quote, code box, table header), always with a 0.4 pt mocha-pale hairline inside the body. Never the page (UD-2) |
+| mocha-deep | `#6B4B3D` | 7.8:1 | **Approved (UD-1)**: caption labels, links, the banner chapter name, series 4 |
+| mocha-pale | `#D3BBAE` | – | **Approved (UD-1)**: hairlines and a step in the sequential ramp |
 | grid / muted | `#E3DCD4` / `#6F6862` | – / 4.96:1 | Figure gridlines and tick labels only |
 
 - **Contrast rule:** text ≥ 4.5:1, large text and graphics ≥ 3:1 (qa D18).
-- **Page color: white** (recommended, Q-B). Figures are transparent.
+- **Page color: white** (UD-2). The cover is ivory. Figures are transparent.
 - hyperref's default colors and boxes are forbidden.
 
 ### 5.2 Type
@@ -88,7 +106,8 @@ plus our assumption) or **assumed**, and is labeled that way.*
 | Captions | Rubik, small | Label in mocha-deep (or ink bold), text in ink |
 | Hebrew (all) | Rubik | The Hebrew page is set ragged (no Hebrew hyphenation) |
 | Figure text | Rubik 8 pt at exactly 1:1 | Python figures have a fixed canvas = text width, so they are never scaled (RT-A8) |
-| Math | Rubik for letters and digits; **Latin Modern Math for symbols only, pending Q-C** (recommended yes, RT-F3). Greek is kept rare | |
+| Math | Rubik for letters and digits; **Latin Modern Math for symbols, inside formulas only (UD-3)**. Greek is kept rare | |
+| Code | **JetBrains Mono**, small, in `pythonbox` only (UD-4) | Never in the body text, URLs or figures |
 
 ### 5.3 Layout and editorial devices (RT-A2, RT-F6)
 - **Banner** (every page except the cover): inset to the text block, *not* full-bleed (office printers clip the edge).
@@ -117,7 +136,7 @@ Python figures `import ct_style`:
 | F2 | Positioning map. **Axes defined from verified vendor-table columns**: x = questionnaire/size chart ↔ body scan; y = consumer app ↔ B2B plug-in. The caption says "positions are our reading of vendor pages" | 3 | Python | RT-A7, RT-W5, qa I14 |
 | F3 | Scan → body model **+ garment specs + fit preference** → size → retailer data flow | 4 | TikZ | RT-W4 (peng2023) |
 | F4 | Roadmap: a 6-row Gantt strip | 7 | TikZ | RT-A4 |
-| F5 | 5-year projection as **one figure with two small-multiple panels**: (a) annual revenue vs. cost, with the **first profitable year (Y5)** marked; (b) the cumulative result, with the **peak deficit −$1.46M** marked and the end of Y5 (−$0.54M) labeled "cumulative payback beyond the plan horizon". No extrapolation past Y5 | 8 | Python | RT-A4, MC-1 |
+| F5 | 5-year projection as **one figure with two small-multiple panels**: (a) annual revenue vs. cost, with the **first profitable year (Y5)** marked; (b) the cumulative result, with the **peak deficit** marked (value from the Israel model, IL-M1) and the end of Y5 labeled "cumulative payback beyond the plan horizon". No extrapolation past Y5 | 8 | Python | RT-A4, MC-1 |
 | F6 | **Retailer economics vs. the return-reduction effect ρ** (0–40%): the retailer's net saving per order at the Growth and Enterprise prices, with the **retailer break-even ρ = 6.03% / 4.52%** marked and the assumed base case (15%) shown. This shows that a null pilot (patel2025) costs the retailer only the pilot fee | 8 | Python | RT-W3, MC-2 |
 | F7 | Risk heat matrix (likelihood × impact, each score labeled as assumed) | 9 | TikZ | |
 
@@ -125,20 +144,23 @@ Python figures `import ct_style`:
 - **Chapter 6** uses a table for the funnel and the pilot design. There is no funnel figure.
 
 ## 6. Document structure and page budget
-**Front matter (not counted):** the cover, the **Hebrew executive summary (exactly 1 page)**, the TOC, and the lists of figures and tables.
+**Front matter (not counted):** the **cover** (ivory; names, group code, course, lecturer, date, **no IDs**), the **Hebrew executive summary
+(exactly 1 page)**, the TOC, and the lists of figures and tables.
+**Back matter (not counted):** the references, then **Appendix A: "How our charts are made"**, which holds one `pythonbox` with
+the script for one chart (art-se picks a short, readable one, probably F6) plus one paragraph on reproducibility (UD-4).
 
 | # | Chapter | Pages | Must contain | Sources (all 29 bib keys assigned; RT-W8) |
 |---|---|---|---|---|
 | 1 | Introduction & Problem | 3 | Stat cards. The cost of returns as a **range** ($685 B [appriss2024] – $890 B [nrf2024]) with the method difference noted. The problem framed exactly as in §1 | appriss2024, coresight2023, nrf2024, gustafsson2021, pfaff2025 |
-| 2 | Market: TAM / SAM / SOM | 4 | F1. A **bottom-up SAM** with each input tagged sourced, derived or assumed (online apparel sales × share of retailers above a size threshold × our price) (RT-W2). The publisher's definition and method stated as a limit. SOM tagged *assumed* | imarc2026, kings2026, coresight2023, appriss2024 |
-| 3 | Competition | 3 | A table titled **"Vendor claims"** in two parts: *direct* (True Fit, Fit Analytics, 3DLOOK, Bold Metrics, MySize) and *platform/in-house threats* (Google, Walmart/Zeekit). Blank cells read "not stated". F2. A moat section where every advantage is tagged **proven, plausible or hypothesis** (RT-W5) | truefit_web, fitanalytics_web, threedlook_web, boldmetrics_web, mysize_web, google2023tryon, walmart2021zeekit |
+| 2 | Market: TAM / SAM / SOM | 4 | **Israel first (beachhead), with Europe as the expansion layer (UD-6).** F1. A **bottom-up SAM for Israel** with each input tagged sourced, derived or assumed (online apparel sales × share of retailers above a size threshold × our price) (RT-W2). The publisher's definition and method stated as a limit. SOM tagged *assumed* | imarc2026, kings2026, coresight2023, appriss2024, **+ Israeli e-commerce sources (IL-R1, pending)** |
+| 3 | Competition | 3 | Note that MySize is Israeli-founded (if its page says so). A table titled **"Vendor claims"** in two parts: *direct* (True Fit, Fit Analytics, 3DLOOK, Bold Metrics, MySize) and *platform/in-house threats* (Google, Walmart/Zeekit). Blank cells read "not stated". F2. A moat section where every advantage is tagged **proven, plausible or hypothesis** (RT-W5) | truefit_web, fitanalytics_web, threedlook_web, boldmetrics_web, mysize_web, google2023tryon, walmart2021zeekit |
 | 4 | Product & Technology | 4 | F3. The pipeline with garment and preference inputs. **Accuracy limits** (alhassawi2025: 89.66% SVM accuracy, failure at edge sizes). Platform integration. Privacy-by-design | alemany2013, peng2023, alhassawi2025, sembium2017, abdulla2019, chen2024, islam2024, ghodhbani2022, song2023 (labeled a preprint), zhang2024, shopify_dev_build |
 | 5 | Business Model & Pricing | 3 | **Value-based pricing**: the price is a share of the return cost avoided, using Gustafsson's break-even rule. A tier table (assumed). The statement that enterprise vendors publish no pricing, so our numbers are **not benchmarked**. 3DLOOK and Popsize appear only as non-comparable reference points (RT-W6) | gustafsson2021, threedlook_pricing, popsize_shopify |
-| 6 | Go-to-Market | 2 | Segments and channels (Shopify App Store first). A funnel table. **The pilot design: metric = fit-related return rate, a control group, a minimum sample and a pass/fail threshold** (RT-W3) | shopify_dev_build, patel2025 |
-| 7 | Operations, Team & Roadmap | 2 | Roles (Q-E decides on names) and F4. Every cost and date tagged assumed | – (assumed) |
+| 6 | Go-to-Market | 2 | **Israeli fashion e-tailers first** (named only from verified sources), with the channels the Israeli platform mix supports (Shopify only if a source shows its share). **Europe as the expansion stage**, entered through Israeli retailers that sell to the EU. A funnel table. **The pilot design: metric = fit-related return rate, a control group, a minimum sample and a pass/fail threshold** (RT-W3) | shopify_dev_build, patel2025 |
+| 7 | Operations, Team & Roadmap | 2 | **Roles only, no names (UD-5)** and F4 (it includes an Amendment 13 compliance milestone before pilot data collection). Every cost and date tagged assumed | – (assumed) |
 | 8 | Financial Plan | 3 | **Formula (1): the break-even tool cost per order = the avoided returns × the cost per return**. The formula is **our own**, written "following the logic of [gustafsson2021, §6]". Gustafsson prints no equation, only a step-by-step calculation: €1.1, €1.6 and €2.1 per pair at 40%, 60% and 80% fit verification. It is numbered, with every symbol defined. F5, F6. An **assumptions table: value / class (sourced, derived, assumed) / source**. LTV/CAC is optional and comes only after the break-even (RT-W6) | gustafsson2021, patel2025 (CLV +7.51% as a second lever) |
-| 9 | Risks | 2 | F7. A mitigation for each risk: GDPR Art. 9 biometric data, a null pilot effect (patel2025), accuracy at edge sizes (alhassawi2025), platform risk (google2023tryon), **scan unit cost**: in-house scanning at about $0.03 per scan (assumed) is a precondition, because at 3DLOOK's list price of about $2 per scan the margin fails [threedlook_pricing] (OL-2) | gdpr2016, patel2025, alhassawi2025, google2023tryon |
-| 10 | Conclusion | 1 | The ask, **about $1.75M (1.2 × the peak deficit of $1.457M), derived from the model and tagged** (OL-4, MC-0, MC-4), and the next steps (the pilot first) | – |
+| 9 | Risks | 2 | F7. A mitigation for each risk: **Israel's Privacy Protection Law, Amendment 13 (biometric data = special sensitivity) as the primary legal risk**; **GDPR Art. 9 as a secondary risk** (Israeli sites selling to EU customers; the expansion stage); a null pilot effect (patel2025), accuracy at edge sizes (alhassawi2025), platform risk (google2023tryon), **scan unit cost**: in-house scanning at about $0.03 per scan (assumed) is a precondition, because at 3DLOOK's list price of about $2 per scan the margin fails [threedlook_pricing] (OL-2) | **ppl_amend13 (pending, IL-R1)**, gdpr2016, patel2025, alhassawi2025, google2023tryon |
+| 10 | Conclusion | 1 | The ask, **derived from the Israel model (IL-M1; the $1.75M figure of v1.5 is superseded until it is recomputed)**, tagged as an assumption, and the next steps (Israeli pilots first) | – |
 | | **Content total** | **27** | **R-01 prevails:** content ≥ 25 pages is a hard requirement | |
 | | References (IEEE) | ≤ 2 | Every entry cited, none unused. Set in a smaller size | |
 
@@ -146,7 +168,7 @@ Python figures `import ct_style`:
 only the abstract's wording (RT-W4). Vendor-page facts are written as "reported by <vendor>" (RT-Q7).
 
 ## 7. Requirements
-Each requirement maps to criteria in `qa/acceptance-criteria.md` **v1.2**.
+Each requirement maps to criteria in `qa/acceptance-criteria.md` **v1.3** (being updated for v2.0).
 
 | ID | Requirement | Target | How verified (qa IDs) |
 |---|---|---|---|
@@ -155,8 +177,8 @@ Each requirement maps to criteria in `qa/acceptance-criteria.md` **v1.2**.
 | R-03 | Hebrew executive summary | Exactly 1 front-matter page, RTL. The test corpus has ≥ 6 Latin runs, ≥ 5 numbers with units, 1 parenthesis and 1 sentence ending in a Latin run. A machine check: `pdftotext -bbox` contains "ClosetTwin" and "2026" and **not** "niwTtesolC" or "6202". A visual check of the rendered PNG (RT-Q3) | B1–B11 |
 | R-04 | Structure | Chapters, a TOC, lists of figures and tables, an IEEE bibliography. The TOC, each chapter and the references start on a new page | L1, L6 |
 | R-05 | Template | One custom `closettwin.cls` (book-based). No local formatting in the chapters | T1–T6 |
-| R-06 | Fonts | `pdffonts` shows only Playfair Display + Rubik + **Latin Modern Math (if Q-C = yes)**. No monospace. The same holds for every figure PDF | D4, D11, K3, I8 |
-| R-07 | Font licensing | Playfair Display files are byte-identical to `fonts/SOURCES.md` SHA-256. OFL texts are present | FS5 + the qa-infra hash check |
+| R-06 | Fonts | `pdffonts` shows only Playfair Display + Rubik + Latin Modern Math + **JetBrains Mono**. LM Math appears only on pages with formulas, and JetBrains Mono only on the code-box page(s). Figure PDFs contain only Playfair and Rubik | D4, D11, K3, I8 |
+| R-07 | Font licensing | The Playfair Display and JetBrains Mono files are byte-identical to the official releases (SHA-256 in `fonts/SOURCES.md`). OFL texts are present | FS5 + the qa-infra hash check |
 | R-08 | Palette and contrast | Only the §5.1 tokens. Text ≥ 4.5:1, large/graphics ≥ 3:1. No default hyperref colors | D6, D7, D18, I7 |
 | R-09 | Banner + footer | §5.3, on every page except the cover, including chapter-first pages and the Hebrew page | L7, D8 |
 | R-10 | Figures | The 7 figures of §5.4 (minimum: 1 Python + 1 TikZ). No internet images. Each has a caption, a number and a mention in the text, sits at 1:1 within the text width, and is grayscale-safe | I1–I14, D12 |
@@ -171,9 +193,12 @@ Each requirement maps to criteria in `qa/acceptance-criteria.md` **v1.2**.
 | R-19 | Iron rule | Every recurring problem is fixed in the CLS or a skill, with a version bump and a CHANGELOG row | T6, S6 |
 | R-20 | Pagination | No heading at the bottom of a page, no split figure, table or box, no nearly empty page, and the airy rule of §5.3 | L2–L5, I13 |
 | R-21 | Editorial look | Margins 3.0 cm; at most 1 figure + 1 table per page; at most 4 series per figure; the §5.3 devices used consistently | D16 |
-| R-22 | Cover | Page 1: title, subtitle, course, lecturer, authors, date. No footer, no number (RT-Q8) | C1–C5 |
+| R-22 | Cover | Page 1, ivory: title, subtitle, **Hila Abay, Shirel Giladi**, group code **sg00ha11**, **Generative AI for Management (875523402)**, **Dr. Yoram Segal**, date. No footer, no number. **No ID number anywhere in the repo or the PDF** (a grep for 9-digit numbers outside the course code) | C1–C5 |
 | R-23 | Prompts | The agent prompts carry all the requirements (assignment §4 step 6). Saved in `prompts/` | S5 |
 | R-24 | One file per chapter | `chapters/NN-*.tex`, each `\input` by `main.tex` | FS2 |
+| R-25 | Code box | Appendix A has exactly one `pythonbox` showing a **real script from `python/`**, read from its file (not pasted). It is LTR, with an ivory background and a hairline, JetBrains Mono, line numbers, and no line past the margin. Running the script reproduces the chart it claims to produce | K1–K4 (qa-code) |
+| R-26 | Legal framing | Amendment 13 is the primary framework and GDPR Art. 9 is secondary. Both are cited from **official** texts. "Fit, not identification" + privacy-by-design is argued as an advantage. The plan makes no legal claim without a source | R5, D15 |
+| R-27 | Market framing | Every Israeli market number is sourced (an official or reputable Israeli source) or tagged derived or assumed. Europe appears as the expansion stage, not counted in the Y1–Y3 base case | D14, R8 |
 
 ## 8. Definition of Done (RT-Q2)
 The report is done only when **all** of the following hold:
@@ -186,15 +211,9 @@ The report is done only when **all** of the following hold:
 5. Every recurring fix has a `fix/CHANGELOG.md` row that matches the CLS or skill version.
 6. `main.pdf`, all sources, the docs and the skills are committed and pushed, and `TODO.md` has no open item.
 
-## 9. Open questions (asked of the user in one round)
-| Q | Question | Recommendation |
-|---|---|---|
-| Q-A | Approve the derived tints mocha-deep `#6B4B3D` and mocha-pale `#D3BBAE`? | **Yes**. Without them, small colored text fails the contrast rule, and links and captions fall back to ink |
-| Q-B | Page color: white or ivory? | **White**: print-safe, and ivory boxes get a hairline edge |
-| Q-C | May Latin Modern Math appear inside formulas only? | **Yes**. Rubik has no math table and no Greek, so formula (1) is impossible without it |
-| Q-D | Code box? | **None**. `qa-code` then verifies that no code and no monospace font appear (a code box would need a monospace font) |
-| Q-E | Cover and team: student names and IDs, course name and number, lecturer. Team chapter: roles only or real names? | Your details on the cover. **Roles only** in ch. 7 |
-| Q-F | Check the GDPR Art. 9 wording on EUR-Lex in a browser? BIPA (Illinois)? | Check GDPR (5 min). **Drop BIPA** (the EU focus is enough) |
+## 9. Open questions
+All six (Q-A…Q-F) were **answered by the user on 2026-11-18**. See §3 and the review log rows UD-1…UD-7.
+Still open (team tasks, not user questions): **IL-R1**, the Israeli sources, and **IL-M1**, the Israel model.
 
 ## 10. Review log: red team RT1 on v1.0
 Four reviewers, 32 findings. **29 adopted, 2 adopted in part, 1 rejected in part.**
@@ -270,3 +289,15 @@ The model reproduces writer-se's hand numbers within 1%, except for the ask.
 | MC-4 | The funnel check failed: year 2 needed 8 paying clients, but year 1 had only 2 pilots (at most 1 client at 50% pilot→paid) | **Adopted option (b)**: 16 Y1 pilots (4 direct at $5,000 each, 12 low-touch Shopify App Store pilots at $0), then 36 / 75 / 132 / 132. Each pilot has an explicit cash cost ($3,000 direct, $500 low-touch). There is a contact-capacity check and a pilot-effort check. *Rejected:* relabeling the client numbers as an aspiration | `assumptions.csv` (A26p, A26q, A31–A37); `model.py` funnel check green (3 parts) |
 | MC-5 | New results: revenue Y1–Y5 $20k / $333k / $994k / $2.33M / $4.49M; operating result −$358k … +$916.5k; cumulative at Y5 −$0.54M; **peak deficit −$1,457,125; ask $1,748,550 ("about $1.75M")**; SOM ≈ 6.0% of SAM | **Adopted** | F5 labels; ch. 8, ch. 10 |
 | MC-6 | writer-se's caveats: (1) Y1 timing depends on the MVP in H1, so pilots run Q3–Q4 with design partners; (2) the low-touch pilots are pooled evidence, 4 weeks only at 1M orders/yr; (3) A11 = 1M orders is a blended average; (4) A17 = 50% is the weakest link | **Adopted as text requirements** | Ch. 5, 6, 7, 8, 9 |
+
+### v2.0: the user's answers (Q-A…Q-F), 2026-11-18
+| ID | User decision | Effect | Applied / owner |
+|---|---|---|---|
+| UD-1 | Q-A: the tints mocha-deep and mocha-pale are approved | Small colored text uses mocha-deep. Contrast passes | §5.1; fix-se (CLS colors), art-se (`ct_style`) |
+| UD-2 | Q-B: a white page; ivory only on the cover and inside boxes | The cover background is ivory | §5.1; fix-se |
+| UD-3 | Q-C: Latin Modern Math inside formulas only | R-06 whitelist | §5.2, R-06; qa D11 |
+| UD-4 | Q-D: one code box (Appendix A) in JetBrains Mono, code only | A new `pythonbox` env, a new font, R-25. This reverses the PRD's earlier "no monospace" (K3) | fix-se (font + env), art-se (choose and clean the script), qa-se (K1–K4) |
+| UD-5 | Q-E: the cover details; **no ID numbers**; the team chapter lists roles only | R-22 + an ID grep | master-se (`main.tex` cover fields), writer-se (ch. 7) |
+| UD-6 | Q-F: **Israel is the beachhead and Europe the expansion** | Market, GTM, model and outline change: Israeli market size, retailer sizes, platform mix, prices and currency | writer-se (IL-R1 sources, IL-O1 outline), art-se (IL-M1 model) |
+| UD-7 | Q-F: the primary legal framework is Israel's Privacy Protection Law, Amendment 13. GDPR Art. 9 is secondary. BIPA is dropped. Privacy is argued as an advantage | New bib entries from official sources, R-26 | writer-se (IL-R1) |
+| UD-8 | *master-se decision:* the reporting currency stays **USD** (investor convention; most sources are in USD). Israeli figures in ILS are converted at **one assumed rate** (a row in `assumptions.csv`), and `\ils{}` is used where an ILS amount is quoted | Consistency | art-se (row), writer-se |

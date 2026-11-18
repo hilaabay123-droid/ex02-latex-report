@@ -14,8 +14,8 @@ Stages and dependencies are in `PLAN.md`.
 | T1.6 | Merge into PRD v1.0 | master-se | PRD has §1–§10 | ☑ |
 | T1.7 | Red team the PRD (4 reviews) → review log → PRD v1.1 | master-se | 32 findings logged in PRD §10 | ☑ |
 | T1.7b | Acceptance criteria v1.2 (red-team items) | qa-se | 112 criteria | ☑ |
-| T1.8 | The user answers Q-A…Q-F | user | Answers recorded in PRD §9 | ☐ |
-| T1.9 | Verify the GDPR Art. 9 wording on EUR-Lex (+ BIPA if Q-F = yes) in a browser | user | Confirmed, or entry adjusted | ☐ |
+| T1.8 | The user answers Q-A…Q-F | user | Answers recorded in PRD v2.0 §3 + UD-1…UD-8 | ☑ |
+| T1.9 | ~~BIPA~~ dropped (UD-7). GDPR Art. 9 wording on EUR-Lex: verify in a browser before the final build (now a secondary risk) | user | Confirmed, or entry adjusted | ☐ |
 
 ## S2: CLS (fix-se)
 | ID | Task | Owner | Check | Status |
@@ -88,3 +88,16 @@ Check for every chapter: it compiles, it is within ±1 page of budget, every cla
 | T10.2 | Fresh-clone reproducibility build | qa-se | Same page count (FS6) | ☐ |
 | T10.3 | Commit the final `main.pdf` + tag | master-se | `git ls-files main.pdf` | ☐ |
 | T10.4 | The user's own page-by-page look (book §19.5 #5–6) | user | Sign-off | ☐ |
+
+## v2.0: tasks from the user's answers (PRD rows UD-1…UD-8)
+| ID | Task | Owner | Check | Status |
+|---|---|---|---|---|
+| T20.1 | IL-R1: official Amendment 13 sources, Israeli e-commerce/apparel size, the Consumer Protection cancellation right, the Israeli platform mix, MySize origin → bib + claim-trace | writer-se | Every entry opened and verified; official texts for the law | ◐ |
+| T20.2 | IL-O1: outline for Israel → Europe; changed assumption rows sent to master-se | writer-se | Outline matches PRD v2.0 §6 | ☐ |
+| T20.3 | IL-M1: apply the Israel rows to `assumptions.csv`; rerun `model.py`; funnel check green; new ask | art-se | exit 0, deterministic, deltas reported | ☐ |
+| T20.4 | JetBrains Mono (official static, OFL) into `fonts/` + SHA-256 in SOURCES.md | fix-se | Hash recorded; `pdffonts` on the code page | ◐ |
+| T20.5 | `pythonbox` env in the CLS (reads the real file, LTR, ivory, line numbers) | fix-se | Test page PNG | ☐ |
+| T20.6 | Appendix A script: one chart script, ≤ 50 lines, readable, runnable | art-se | `python python\<script>.py` writes its figure | ◐ |
+| T20.7 | The cover via `main.tex` fields (names, sg00ha11, course 875523402, lecturer, date, **no IDs**) | master-se | qa C1 + the ID grep | ☐ |
+| T20.8 | Acceptance criteria v1.3 (code box, fonts whitelist, cover/no-ID, legal, Israel numbers) | qa-se | Version bump | ◐ |
+| T20.9 | QS1: `qa/skill-specs.md`, a spec for each of the 8 skills → input to T3.x | qa-se | 8 specs with commands and criteria IDs | ◐ |
