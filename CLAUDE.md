@@ -39,7 +39,9 @@ with the path, the line, and the change they want. Do not edit it yourself, even
 | `<cls file>`: the project class file in the root (master-se fixes its name in `PLAN.md`) | fix-se |
 | `.claude/skills/` (project skills) and `fix/CHANGELOG.md` | fix-se |
 | `<agent>/` folder and its `CLAUDE.md` | that agent (master-se may update any agent's `CLAUDE.md`) |
-| `prompts/` | shared and append-only. Each agent creates new files only and never edits another agent's prompt file |
+| `prompts/NN-*.md` | created only by the agent told "Save this prompt to prompts/NN-..."; never edited afterwards |
+| `prompts/log/` | written only by the hook `tools/log_prompt.py`; agents never edit it |
+| `prompts/sessions/`, `prompts/README.md`, `tools/` | master-se |
 
 ## Where things live
 - **Deliverables live in the root only:** `main.tex`, `chapters/`, `figures/`, `python/`,
@@ -70,11 +72,14 @@ lualatex main
 - A build is "clean" only if it ends with no errors, no undefined references or citations, and no overfull boxes over 1pt.
 
 ## Prompt log
-**Every prompt the user gives an agent is saved first**, before any other action, to
-`prompts/NN-<slug>.md` (the exact text, unedited).
-- `NN` is the next free two-digit number in `prompts/`. Check the folder right before you write the file.
-- `<slug>` starts with the agent name, for example `03-writer-se-intro-chapter.md`, so files from different agents
-  never collide. (`00-team-setup.md` is the one exception.)
+**Every user prompt is logged automatically.** The `UserPromptSubmit` hook `tools/log_prompt.py` (in the user settings)
+appends each prompt, with its time and agent, to `prompts/log/YYYY-MM-DD.md`. No agent has to do anything for this.
+
+**Curated prompt files**: create one **only** when the prompt itself starts with
+`Save this prompt to prompts/NN-...`.
+- Save it first, before any other action, to **exactly the path the user gives** (number and name as given, never renumbered).
+- Save the exact text, unedited.
+- Every other message is **not** saved as a curated file. Its record is `prompts/log/`. Do not create `prompts/NN-*.md` on your own.
 
 ## Git
 Only **master-se** commits and pushes. Other agents never run `git commit`, `git push`, `git reset` or
@@ -91,4 +96,4 @@ Only **master-se** commits and pushes. Other agents never run `git commit`, `git
   recurring goes to fix-se under the iron rule.
 - Reviews every `DONE` report before accepting it, updates `TODO.md`, then commits with a clear message and pushes.
 - Settles ownership disputes and decides when to make an exception, and records the decision in `PLAN.md`.
-- Saves its own user prompts to `prompts/` like everyone else.
+- Follows the prompt-log rule like everyone else: a curated file only when told "Save this prompt to prompts/NN-...".
