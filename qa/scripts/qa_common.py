@@ -29,11 +29,12 @@ MIKTEX_BIN = r"C:\Program Files\MiKTeX\miktex\bin\x64"
 # --------------------------------------------------------------------------- tools
 def tool(name):
     """Path of a poppler tool, or None."""
-    found = shutil.which(name)
-    if found:
-        return found
+    # MiKTeX's poppler first: on this machine `pdftotext` on PATH is Git's Xpdf 4.00,
+    # which has no -bbox and lays text out differently.
     cand = os.path.join(MIKTEX_BIN, name + ".exe")
-    return cand if os.path.exists(cand) else None
+    if os.path.exists(cand):
+        return cand
+    return shutil.which(name)
 
 
 def run(args, timeout=120):

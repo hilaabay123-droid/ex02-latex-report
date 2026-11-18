@@ -110,9 +110,19 @@ def main():
         lines = {}
         for x0, y0, x1, y1, t in words:
             lines.setdefault(round(y0 / 3), []).append((x1, t))
-        rep.note("reading order (right to left per line):")
+        rep.note("reading order, line by line, right to left; Latin/number runs are shown left to right as they read (approximate, for the by-eye check):")
         for key in sorted(lines):
-            rep.note("  " + " ".join(t for _, t in sorted(lines[key], reverse=True)))
+            toks = [t for _, t in sorted(lines[key], reverse=True)]
+            out, run = [], []
+            for t in toks + [None]:
+                if t is not None and re.search(r"[A-Za-z0-9%$]", t) and not HEBREW.search(t):
+                    run.append(t)
+                else:
+                    out += run[::-1]
+                    run = []
+                    if t is not None:
+                        out.append(t)
+            rep.note("  " + " ".join(out))
     sys.exit(rep.emit())
 
 

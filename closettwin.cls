@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/18 v0.4 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/18 v0.5 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -166,7 +166,7 @@
 \captionsetup[table]{position=above}
 \captionsetup[figure]{position=below}
 % floats must never drift past a chapter end
-\RequirePackage[section]{placeins}
+\RequirePackage{placeins}
 \newcommand*{\ctchapterend}{\FloatBarrier}
 \renewcommand*{\topfraction}{0.85}
 \renewcommand*{\bottomfraction}{0.7}
@@ -238,5 +238,67 @@
   \tcbinputlisting{listing file={#1},listing only,enhanced,breakable,colback=ivory,
     colframe=mochapale,boxrule=0.4pt,arc=0pt,left=22pt,right=6pt,top=6pt,bottom=6pt,
     listing options={style=ctpython},before skip=10pt,after skip=10pt}}
+
+%%% ================= v0.5: cover, banner, footer, matter ===================
+% Cover fields: main.tex sets these macros (NO ID numbers anywhere).
+\newcommand*{\cttitle}[1]{\gdef\ct@title{#1}}
+\newcommand*{\ctsubtitle}[1]{\gdef\ct@subtitle{#1}}
+\newcommand*{\ctauthors}[1]{\gdef\ct@authors{#1}}
+\newcommand*{\ctgroup}[1]{\gdef\ct@group{#1}}
+\newcommand*{\ctcourse}[1]{\gdef\ct@course{#1}}
+\newcommand*{\ctlecturer}[1]{\gdef\ct@lecturer{#1}}
+\newcommand*{\ctdate}[1]{\gdef\ct@date{#1}}
+\cttitle{ClosetTwin}\ctsubtitle{}\ctauthors{}\ctgroup{}\ctcourse{}\ctlecturer{}\ctdate{\today}
+\newcommand*{\ct@coverline}[2]{\ifx\relax#2\relax\else{\color{mochadeep}\fontsize{8}{10}\selectfont\MakeUppercase{#1}}\\[1pt]
+  {\fontsize{11}{15}\selectfont #2}\\[9pt]\fi}
+\newcommand*{\ctmakecover}{%
+  \begingroup
+  \pagecolor{ivory}\thispagestyle{empty}
+  \noindent{\ctheadfont\bfseries\fontsize{15}{18}\selectfont ClosetTwin}\hspace{8pt}%
+  \raisebox{0.3ex}{\color{powderpink}\rule{1.4cm}{4pt}}\par
+  \vspace*{3.2cm}
+  {\color{mocha}\rule{3cm}{0.8pt}\par}\vspace{1.2em}
+  {\ctheadfont\bfseries\fontsize{44}{50}\selectfont\raggedright\ct@title\par}\vspace{1em}
+  {\ctheadfont\itshape\fontsize{18}{25}\selectfont\raggedright\ct@subtitle\par}
+  \vfill
+  \begin{minipage}{0.7\textwidth}\raggedright\setlength{\parskip}{0pt}
+  \ct@coverline{Authors}{\ct@authors}%
+  \ct@coverline{Group}{\ct@group}%
+  \ct@coverline{Course}{\ct@course}%
+  \ct@coverline{Lecturer}{\ct@lecturer}%
+  \ct@coverline{Date}{\ct@date}%
+  \end{minipage}
+  \clearpage
+  \endgroup
+  \nopagecolor
+  \setcounter{page}{1}}
+% banner (inset to the text block, no fill) and footer (hairline + page number), via the page style
+\setlength{\headheight}{18pt}
+\newcommand*{\ctbanner}{%
+  \vbox to 18pt{\vss
+    \hbox to \textwidth{{\ctheadfont\bfseries\fontsize{13}{14}\selectfont\color{ink}ClosetTwin}%
+      \hspace{8pt}\raisebox{0.4ex}{\color{powderpink}\rule{1.1cm}{3pt}}\hfill
+      {\color{mochadeep}\fontsize{7.5}{9}\selectfont\MakeUppercase{\leftmark}}}%
+    \vskip 4pt
+    {\color{ink}\hrule width\textwidth height 0.5pt}\vss}}
+\newcommand*{\ctfooter}{%
+  \vbox{\hbox to \textwidth{\color{mochapale}\leaders\hrule height 0.4pt\hfill}\vskip 6pt
+    \hbox to \textwidth{\hfil\fontsize{9}{11}\selectfont\color{ink}\thepage\hfil}}}
+\def\ps@closettwin{%
+  \let\@mkboth\markboth
+  \def\@oddhead{\ctbanner}\let\@evenhead\@oddhead
+  \def\@oddfoot{\ctfooter}\let\@evenfoot\@oddfoot}
+\let\ps@plain\ps@closettwin
+\pagestyle{closettwin}
+% the Hebrew page sets the banner's chapter-name slot to its Hebrew title
+\renewenvironment{hebrewpage}[1][]
+  {\clearpage\markboth{#1}{#1}\begin{otherlanguage}{hebrew}\raggedleft\setlength{\parskip}{0.7em}}
+  {\end{otherlanguage}\clearpage}
+% every chapter flushes its floats first
+\preto\chapter{\FloatBarrier}
+% hyperref last: palette colours only, no boxes
+\RequirePackage[colorlinks=true,linkcolor=mochadeep,citecolor=mochadeep,urlcolor=mochadeep,
+  bookmarksnumbered=true,unicode=true,pdfusetitle=false]{hyperref}
+\urlstyle{same}
 
 \endinput
