@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| **Version** | **2.0** (v1.1 = red team, 32 findings; v1.2 = claim-trace corrections; v1.3 = outline decisions; v1.4 = model check; v1.5 = coherent funnel; **v2.0 = the user's answers Q-A…Q-F: Israel beachhead, code appendix**; see §10) |
+| **Version** | **2.1** (**v2.1 = IL-M1: the financial model is the Israel → Europe model; ask about $2.8 M, no operating profit inside five years**; v1.1 = red team, 32 findings; v1.2 = claim-trace corrections; v1.3 = outline decisions; v1.4 = model check; v1.5 = coherent funnel; **v2.0 = the user's answers Q-A…Q-F: Israel beachhead, code appendix**; see §10) |
 | **Owner** | master-se |
-| **Date** | 2026-11-18 |
+| **Date** | 2026-11-19 |
 | **Inputs** | `prompts/03-expert-committee.md` (user decisions) · `ref/BIU26-27-A-ex02-pdf-via-LaTex-print.pdf` (binding) · `ref/preparation-report-book.pdf` Part B ch. 13–19 · `ref/Multi-Agent-With-Claude.pdf` · committee reports `writer/sources-notes.md` (R1+R2), `art/chart-style-guide.md` (A1), `fix/cls-feasibility.md` (F1, F1b), `qa/acceptance-criteria.md` **v1.2** (112 criteria), `qa/reports/01-RT1-prd-redteam.md` |
 | **Topic approval** | The assignment lists a "business plan" among its recommended topics (§2 box), so no special approval is needed |
 
@@ -213,7 +213,7 @@ The report is done only when **all** of the following hold:
 
 ## 9. Open questions
 All six (Q-A…Q-F) were **answered by the user on 2026-11-18**. See §3 and the review log rows UD-1…UD-7.
-Still open (team tasks, not user questions): **IL-R1**, the Israeli sources, and **IL-M1**, the Israel model.
+Team tasks: **IL-R1** (Israeli sources, 10 verified, bib 39 entries) and **IL-O1** (outline) are done. **IL-M1** (the Israel model) was done by master-se on 2026-11-19 under the exception in `PLAN.md` (art-se offline): `model.py` reproduces the outline §10.5 hand numbers, and the funnel check is green. Still open: fix-se's `pythonbox` env (T20.4/T20.5).
 
 ## 10. Review log: red team RT1 on v1.0
 Four reviewers, 32 findings. **29 adopted, 2 adopted in part, 1 rejected in part.**
@@ -301,3 +301,4 @@ The model reproduces writer-se's hand numbers within 1%, except for the ask.
 | UD-6 | Q-F: **Israel is the beachhead and Europe the expansion** | Market, GTM, model and outline change: Israeli market size, retailer sizes, platform mix, prices and currency | writer-se (IL-R1 sources, IL-O1 outline), art-se (IL-M1 model) |
 | UD-7 | Q-F: the primary legal framework is Israel's Privacy Protection Law, Amendment 13. GDPR Art. 9 is secondary. BIPA is dropped. Privacy is argued as an advantage | New bib entries from official sources, R-26 | writer-se (IL-R1) |
 | UD-8 | *master-se decision:* the reporting currency stays **USD** (investor convention; most sources are in USD). Israeli figures in ILS are converted at **one assumed rate** (a row in `assumptions.csv`), and `\ils{}` is used where an ILS amount is quoted | Consistency | art-se (row), writer-se |
+| UD-9 | *master-se, 2026-11-19, after the usage-limit interruption:* IL-M1 closed. `python/model.py` now models Israel (beachhead) and Europe (entry year 4) separately; the funnel check covers both markets, the Israeli pool caps and one shared sales team. Result: revenue $10 k → $782 k, **no operating profit inside five years**, cumulative deficit $2.33 M, **ask about $2.8 M** (supersedes $1.75 M). Year-average client counts are whole numbers, so the reach check allows 0.5 client of rounding (year 3: 2.2 needed vs 2.0) | F5 must not mark a profitable year; ch. 8 and 10 use the new numbers | writer-se (ch. 8, 10), art-se (F5, F6 on return) |

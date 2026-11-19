@@ -19,38 +19,55 @@ D15,TAM fee pool,326722500,USD
 D16,SAM share by region,0.573,fraction
 D17,SAM fee pool,74884797,USD
 D18,Sample per arm for base case,6011.341185,orders
-D19,Minimum detectable relative effect in the pilot window,0.06058823774,fraction
-D20_1,Revenue year 1,20000,USD
-D20_2,Revenue year 2,333000,USD
-D20_3,Revenue year 3,993750,USD
-D20_4,Revenue year 4,2325000,USD
-D20_5,Revenue year 5,4485000,USD
+D20_1,Revenue year 1,10000,USD
+D20_2,Revenue year 2,28000,USD
+D20_3,Revenue year 3,46000,USD
+D20_4,Revenue year 4,97500,USD
+D20_5,Revenue year 5,782000,USD
 D21_1,Cost of goods year 1,0,USD
-D21_2,Cost of goods year 2,60000,USD
-D21_3,Cost of goods year 3,187500,USD
-D21_4,Cost of goods year 4,450000,USD
-D21_5,Cost of goods year 5,900000,USD
-D22_1,Operating cost year 1,360000,USD
-D22_2,Operating cost year 2,720000,USD
-D22_3,Operating cost year 3,1260000,USD
-D22_4,Operating cost year 4,1800000,USD
-D22_5,Operating cost year 5,2520000,USD
-D23_1,Operating result year 1,-358000,USD
-D23_2,Operating result year 2,-487500,USD
-D23_3,Operating result year 3,-538125,USD
-D23_4,Operating result year 4,-73500,USD
-D23_5,Operating result year 5,916500,USD
-D24,Peak cumulative deficit,-1457125,USD
-D25,Funding ask,1748550,USD
-D26,SOM (year-5 revenue),4485000,USD
-D27,SOM as share of SAM,0.0598919965,fraction
-D28_1,Pilot cash cost year 1,18000,USD
-D28_2,Pilot cash cost year 2,40500,USD
-D28_3,Pilot cash cost year 3,84375,USD
-D28_4,Pilot cash cost year 4,148500,USD
-D28_5,Pilot cash cost year 5,148500,USD
-CUM_1,Cumulative operating result year 1,-358000,USD
-CUM_2,Cumulative operating result year 2,-845500,USD
-CUM_3,Cumulative operating result year 3,-1383625,USD
-CUM_4,Cumulative operating result year 4,-1457125,USD
-CUM_5,Cumulative operating result year 5,-540625,USD
+D21_2,Cost of goods year 2,3750,USD
+D21_3,Cost of goods year 3,7500,USD
+D21_4,Cost of goods year 4,9375,USD
+D21_5,Cost of goods year 5,146250,USD
+D22_1,Operating cost year 1,270000,USD
+D22_2,Operating cost year 2,360000,USD
+D22_3,Operating cost year 3,450000,USD
+D22_4,Operating cost year 4,810000,USD
+D22_5,Operating cost year 5,1080000,USD
+D23_1,Operating result year 1,-272000,USD
+D23_2,Operating result year 2,-347750,USD
+D23_3,Operating result year 3,-423500,USD
+D23_4,Operating result year 4,-771375,USD
+D23_5,Operating result year 5,-517750,USD
+D24,Peak cumulative deficit,-2332375,USD
+D25,Funding ask,2798850,USD
+D26,SOM (year-5 revenue),782000,USD
+D27,Year-5 subscription revenue as share of the combined Israel + Europe SAM,0.02135669793,fraction
+D28_1,Pilot cash cost year 1,12000,USD
+D28_2,Pilot cash cost year 2,12000,USD
+D28_3,Pilot cash cost year 3,12000,USD
+D28_4,Pilot cash cost year 4,49500,USD
+D28_5,Pilot cash cost year 5,73500,USD
+X01,ILS per USD,3.7,NIS per USD
+A11i,"Orders per paying client per year, Israel",250000,orders
+D19e,"MDE in 4 weeks, European retailer 1M orders/yr",0.06058823774,fraction
+D19i,"MDE in 4 weeks, large Israeli retailer (A41a)",0.0779028148,fraction
+D19i2,"MDE in 4 weeks, mid Israeli retailer (A41b)",0.185845601,fraction
+D29,Israeli online fashion fee base (USD),1490400000,USD
+D30,Israeli online fashion orders,18630000,orders
+D31,Orders going to local e-tailers,8383500,orders
+D32,Orders implied by the bands,8500000,orders
+D33,Israeli SAM orders (large + mid bands),5500000,orders
+D34,Israeli SAM fee pool,198000,USD
+D34b_tam,Israeli TAM fee pool,670680,USD
+D34b_local,Israeli local-only fee pool,301806,USD
+D35,Europe TAM orders,2268906250,orders
+D36,Europe TAM fee pool,81680625,USD
+D37,Europe SAM fee pool,32672250,USD
+D38,Average orders per Israeli paying client,250000,orders
+D39,Israeli candidate pool (large + mid),30,retailers
+CUM_1,Cumulative operating result year 1,-272000,USD
+CUM_2,Cumulative operating result year 2,-619750,USD
+CUM_3,Cumulative operating result year 3,-1043250,USD
+CUM_4,Cumulative operating result year 4,-1814625,USD
+CUM_5,Cumulative operating result year 5,-2332375,USD

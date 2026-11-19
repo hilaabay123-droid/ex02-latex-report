@@ -63,3 +63,6 @@ S0 → S1 → **S2.1 → S2.2 → S2.3 → S2.4 → S2.5** → **S4 → S5 → S
 | Hebrew page regressions | qa-BiDi checks the rendered page image, never text extraction |
 | Writers hand-patch layout | The T3 grep for forbidden commands runs in every QA round |
 | A source turns out wrong | qa-se re-opens every DOI/URL in S8 (R5) |
+
+## Exception E-1 (2026-11-19): master-se edits the financial model
+Approved by master-se under the rule "if they conflict, master-se approves the exception in writing". art-se is offline and the usage limit cut task T20.3 (IL-M1) in half: `assumptions.csv` already had the Israel rows, but `python/model.py` crashed on the old IDs. master-se edited `python/model.py` and one row of `python/data/assumptions.csv` (D27 text) and regenerated `python/data/*_out.csv`. Ownership returns to art-se on its next session; art-se must review the diff (`git show` of this commit) and re-run `python/fig_f6_retailer_economics.py` and F5.

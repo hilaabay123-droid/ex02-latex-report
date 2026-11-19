@@ -94,7 +94,7 @@ Check for every chapter: it compiles, it is within ±1 page of budget, every cla
 |---|---|---|---|---|
 | T20.1 | IL-R1: official Amendment 13 sources, Israeli e-commerce/apparel size, the Consumer Protection cancellation right, the Israeli platform mix, MySize origin → bib + claim-trace | writer-se | Every entry opened and verified; official texts for the law | ☑ |
 | T20.2 | IL-O1: outline for Israel → Europe; changed assumption rows sent to master-se | writer-se | Outline matches PRD v2.0 §6 | ☑ |
-| T20.3 | IL-M1: apply the Israel rows to `assumptions.csv`; rerun `model.py`; funnel check green; new ask | art-se | exit 0, deterministic, deltas reported | ◐ |
+| T20.3 | IL-M1: apply the Israel rows to `assumptions.csv`; rerun `model.py`; funnel check green; new ask | art-se | exit 0, deterministic, deltas reported | ☑ (master-se, exception E-1; art-se to review) |
 | T20.4 | JetBrains Mono (official static, OFL) into `fonts/` + SHA-256 in SOURCES.md | fix-se | Hash recorded; `pdffonts` on the code page | ◐ |
 | T20.5 | `pythonbox` env in the CLS (reads the real file, LTR, ivory, line numbers) | fix-se | Test page PNG | ☐ |
 | T20.6 | Appendix A script: one chart script, ≤ 50 lines, readable, runnable | art-se | `python python\<script>.py` writes its figure | ☑ |

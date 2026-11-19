@@ -1,6 +1,6 @@
-year,pilots,new_clients_in_year,contacts_needed,sales_contact_capacity,contact_utilisation,pilot_effort_fte_months,headcount_fte_months
-1,16,,177.7777778,552,0.3220611916,7,48
-2,36,8,400,1104,0.3623188406,15.75,96
-3,75,17.8,833.3333333,1932,0.4313319531,32.8125,168
-4,132,37.5,1466.666667,2760,0.5314009662,57.75,240
-5,132,66,1466.666667,3864,0.3795721187,57.75,336
+year,pilots_israel,pilots_europe,new_clients_israel,new_clients_europe,contacts_needed,sales_contact_capacity,contact_utilisation,pilot_effort_fte_months,headcount_fte_months
+1,4,0,,,22.22222222,414,0.05367686527,4,36
+2,4,0,2,0,22.22222222,552,0.04025764895,4,48
+3,4,0,2.2,0,22.22222222,690,0.03220611916,4,60
+4,3,36,1.4,0,416.6666667,1242,0.3354804079,18.75,108
+5,2,60,1.5,18,677.7777778,1656,0.4092860977,28.25,144
