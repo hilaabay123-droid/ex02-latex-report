@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/19 v0.7 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/19 v0.9 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -87,10 +87,12 @@
   {\mbox{#1\,{\char"05E9}{\char"05F4}{\char"05D7}}}{\mbox{{\char"20AA}\,#1}}}
 % The one Hebrew page: RTL, ragged (no Hebrew hyphenation), Rubik everywhere.
 \newenvironment{hebrewpage}
-  {\clearpage\begin{otherlanguage}{hebrew}\raggedleft\setlength{\parskip}{0.7em}}
+  {\clearpage\begin{otherlanguage}{hebrew}\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
   {\end{otherlanguage}\clearpage}
 % Hebrew headings (Rubik Bold, never Playfair): use inside hebrewpage
-\newcommand*{\hebtitle}[1]{{\normalfont\ctmediumfont\fontsize{26}{32}\selectfont #1\par}\vspace{0.6em}}
+% v0.8: Hebrew opener = same language as the English chapter opener (mocha rule, large title, same rhythm)
+\newcommand*{\hebtitle}[1]{\vspace*{108.7pt}{\noindent\color{mocha}\rule{3cm}{0.6pt}\par}\vspace{0.45em}%
+  {\normalfont\ctmediumfont\fontsize{30}{38}\selectfont #1\par}\vspace{1.1cm}}
 \newcommand*{\hebsubtitle}[1]{{\normalfont\bfseries\fontsize{13}{18}\selectfont #1\par}\vspace{0.2em}}
 
 %%% ================= v0.3: headings, numbering, TOC, lists ================
@@ -142,8 +144,8 @@
 \newcommand*{\ctunnumberednotoc}[1]{\chapter*{#1}\markboth{#1}{#1}}
 % lists
 \RequirePackage{enumitem}
-\setlist[itemize]{label=\textcolor{mocha}{\textbullet},leftmargin=1.4em,itemsep=0.2em,topsep=0.3em,parsep=0pt}
-\setlist[enumerate]{label=\textcolor{mochadeep}{\arabic*.},leftmargin=1.6em,itemsep=0.2em,topsep=0.3em,parsep=0pt}
+\setlist[itemize]{label=\textcolor{mocha}{\textbullet},leftmargin=1.6em,labelwidth=1.1em,labelsep=0.5em,align=left,itemsep=0.2em,topsep=0.3em,parsep=0pt}
+\setlist[enumerate]{label=\textcolor{mochadeep}{\arabic*.},leftmargin=1.6em,labelwidth=1.1em,labelsep=0.5em,align=left,itemsep=0.2em,topsep=0.3em,parsep=0pt}
 
 %%% ================= v0.4: tables, captions, devices, TikZ keys ===========
 \definecolor{pink}{HTML}{E8C6C0}   % alias used by art-se
@@ -300,8 +302,10 @@
 \pagestyle{closettwin}
 % the Hebrew page sets the banner's chapter-name slot to its Hebrew title
 \renewenvironment{hebrewpage}[1][]
-  {\clearpage\markboth{\fontsize{9.5}{9.5}\selectfont #1}{\fontsize{9.5}{9.5}\selectfont #1}\begin{otherlanguage}{hebrew}\raggedleft\setlength{\parskip}{0.7em}}
+  {\clearpage\markboth{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}\begin{otherlanguage}{hebrew}\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
   {\end{otherlanguage}\clearpage}
+% RTL lists: the physical indent is on the left, so mirror it to the right
+\newcommand*{\ct@hebrewlists}{\setlist[itemize]{label=\makebox[1.1em][l]{\textcolor{mocha}{\textbullet}},leftmargin=0pt,rightmargin=1.6em,labelsep=0.5em}\setlist[enumerate]{label=\makebox[1.1em][l]{\textcolor{mochadeep}{\arabic*.}},leftmargin=0pt,rightmargin=1.6em,labelsep=0.5em}}
 % every chapter flushes its floats first
 \preto\chapter{\FloatBarrier}
 % hyperref last: palette colours only, no boxes
