@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/19 v0.9 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/19 v0.12 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -87,8 +87,8 @@
   {\mbox{#1\,{\char"05E9}{\char"05F4}{\char"05D7}}}{\mbox{{\char"20AA}\,#1}}}
 % The one Hebrew page: RTL, ragged (no Hebrew hyphenation), Rubik everywhere.
 \newenvironment{hebrewpage}
-  {\clearpage\begin{otherlanguage}{hebrew}\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
-  {\end{otherlanguage}\clearpage}
+  {\clearpage\begin{otherlanguage}{hebrew}\ct@hebfoottrue\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
+  {\clearpage\end{otherlanguage}\clearpage}
 % Hebrew headings (Rubik Bold, never Playfair): use inside hebrewpage
 % v0.8: Hebrew opener = same language as the English chapter opener (mocha rule, large title, same rhythm)
 \newcommand*{\hebtitle}[1]{\vspace*{108.7pt}{\noindent\color{mocha}\rule{3cm}{0.6pt}\par}\vspace{0.45em}%
@@ -148,8 +148,8 @@
 \setlist[enumerate]{label=\textcolor{mochadeep}{\arabic*.},leftmargin=1.6em,labelwidth=1.1em,labelsep=0.5em,align=left,itemsep=0.2em,topsep=0.3em,parsep=0pt}
 
 %%% ================= v0.4: tables, captions, devices, TikZ keys ===========
-\definecolor{pink}{HTML}{E8C6C0}   % alias used by art-se
-\definecolor{muted}{HTML}{6F6862}  % alias used by art-se
+\colorlet{pink}{powderpink}   % alias used by art-se: ONE definition, powderpink
+\colorlet{muted}{mutedgray}  % alias used by art-se
 \RequirePackage{array,colortbl,booktabs,tabularx}
 \setlength{\heavyrulewidth}{0.8pt}
 \setlength{\lightrulewidth}{0.4pt}
@@ -158,7 +158,7 @@
 \setlength{\tabcolsep}{6pt}
 % right-aligned numeric column and header row (ivory fill)
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
-\newcommand*{\ctheaderrow}{\rowcolor{ivory}}
+\newcommand*{\ctheaderrow}{\rowcolor{ivory}}% band overhangs by \tabcolsep: write columns WITHOUT @{} and it ends exactly at the rules
 \newcommand*{\cthead}[1]{\textbf{#1}}
 % captions: label in mocha-deep bold, text ink; table caption above, figure caption below
 \RequirePackage[font=small,labelfont={bf,color=mochadeep},labelsep=period,
@@ -212,8 +212,18 @@
 \RequirePackage{xkeyval}
 \RequirePackage[most]{tcolorbox}
 \tcbuselibrary{listings,skins,breakable}
+% code size from the measure: 80 characters = text width minus box padding and the number column (31.6pt)
+\newdimen\ct@measure \AtBeginDocument{\ct@measure=\textwidth}% tcolorbox shrinks \textwidth inside the box
+\newcommand*{\ct@codesize}{\fontsize{\strip@pt\dimexpr(\ct@measure-31.6pt)*25/1030\relax}{12.5}\selectfont}
+\newcommand*{\ct@numsize}{\fontsize{\strip@pt\dimexpr(\ct@measure-31.6pt)*20/1030\relax}{12.5}\selectfont}
+% Keep a box with the line(s) before it, so a box is never alone at the top of a page
+% (the preceding line moves with it; a stat card / quote is never split).
+% minimal \Needspace (the needspace package is not installed): break the page if less than #1 is left
+\newcommand*{\Needspace}[1]{\par\begingroup\dimen@=#1\relax
+  \ifdim\pagegoal<\maxdimen\ifdim\dimexpr\pagegoal-\pagetotal\relax<\dimen@\endgroup\pagebreak[4]\else\endgroup\fi\else\endgroup\fi}
+\newcommand*{\ctkeepprev}{\par\nopagebreak[4]}
 % \statcard{big number}{one-line claim}{source}
-\newcommand*{\statcard}[3]{%
+\newcommand*{\statcard}[3]{\ctkeepprev
   \begin{tcolorbox}[enhanced,breakable=false,colback=ivory,colframe=mochapale,boxrule=0.4pt,
     arc=0pt,left=14pt,right=14pt,top=10pt,bottom=10pt,before skip=12pt,after skip=12pt]
   {\color{mocha}\ctheadfont\bfseries\fontsize{34}{38}\selectfont #1\par}\vspace{2pt}
@@ -221,30 +231,45 @@
   {\color{mutedgray}\footnotesize #3\par}
   \end{tcolorbox}}
 % \pullquote{text}{attribution}
-\newcommand*{\pullquote}[2]{%
+\newcommand*{\pullquote}[2]{\ctkeepprev
   \begin{tcolorbox}[enhanced,breakable=false,colback=white,frame hidden,boxrule=0pt,arc=0pt,
     borderline west={3pt}{0pt}{powderpink},left=16pt,right=6pt,top=6pt,bottom=6pt,
     before skip=12pt,after skip=12pt]
   {\ctheadfont\itshape\fontsize{14}{20}\selectfont #1\par}\vspace{4pt}
   {\color{mutedgray}\footnotesize #2\par}
   \end{tcolorbox}}
+% insight box (ivory, hairline, small mocha-deep label); never split: keep it shorter than half a page
+\NewDocumentEnvironment{insightbox}{O{Insight}}
+  {\ctkeepprev\begin{tcolorbox}[enhanced,breakable=false,colback=ivory,colframe=mochapale,boxrule=0.4pt,
+    arc=0pt,left=14pt,right=14pt,top=9pt,bottom=9pt,before skip=12pt,after skip=12pt,
+    before upper={{\color{mochadeep}\bfseries\fontsize{8}{10}\selectfont\MakeUppercase{#1}\par}\vspace{4pt}},
+    parskip=0.5em]}
+  {\end{tcolorbox}}
 % \pythonbox[first=N,last=M]{python/file.py}: shows the REAL file (never pasted code), LTR,
 % ivory fill + 0.4pt hairline, JetBrains Mono, line numbers = file line numbers, long lines wrap
-% inside the box.  The only place the code font is used.
-\lstdefinestyle{ctpython}{language=Python,basicstyle=\ctcodefont\fontsize{8.5}{11}\selectfont,
-  numbers=left,numberstyle=\ctcodefont\fontsize{7}{11}\selectfont\color{mocha!70},
+% inside the box.  The only place the code font is used.  (the font family is scaled 0.85,
+% so 9.5pt below is 8.1pt real: about 82 characters per line at the text width)
+\lstdefinestyle{ctpython}{language=Python,basicstyle=\ctcodefont\ct@codesize,
+  numbers=left,numberstyle=\ctcodefont\ct@numsize\color{mocha!80},
   numbersep=8pt,breaklines=true,breakatwhitespace=false,columns=fullflexible,keepspaces=true,
   showstringspaces=false,tabsize=4,frame=none,extendedchars=true,
   keywordstyle=\color{mochadeep}\bfseries,commentstyle=\color{mutedgray},
   stringstyle=\color{ink}}
 \define@key{ctpy}{first}{\def\ct@pyfirst{#1}}
 \define@key{ctpy}{last}{\def\ct@pylast{#1}}
+% number of lines of the box = min(last, file length) - first + 1; a box of at most
+% \ct@pysplitmax lines is never split across pages, a longer one (Appendix A) may break.
+\newcommand*{\ct@pysplitmax}{15}
 \newcommand*{\pythonbox}[2][]{%
   \begingroup
   \def\ct@pyfirst{1}\def\ct@pylast{100000}\setkeys{ctpy}{#1}%
+  \edef\ct@pytotal{\directlua{local n=0 for _ in io.lines("\luaescapestring{#2}") do n=n+1 end tex.sprint(n)}}%
+  \ifnum\ct@pylast>\ct@pytotal\relax\edef\ct@pylast{\ct@pytotal}\fi
+  \ifnum\numexpr\ct@pylast-\ct@pyfirst+1\relax>\ct@pysplitmax\relax
+    \def\ct@pybreak{breakable}\else\def\ct@pybreak{unbreakable}\fi
   \begin{otherlanguage}{english}% always left-to-right, even if called inside hebrewpage
-  \tcbinputlisting{listing file={#2},listing only,enhanced,breakable,colback=ivory,
-    colframe=mochapale,boxrule=0.4pt,arc=0pt,left=26pt,right=6pt,top=6pt,bottom=6pt,
+  \ctkeepprev\tcbinputlisting{listing file={#2},listing only,enhanced,\ct@pybreak,colback=ivory,
+    colframe=mochapale,boxrule=0.4pt,arc=0pt,left=24pt,right=4pt,top=6pt,bottom=6pt,
     listing options={style=ctpython,firstline=\ct@pyfirst,lastline=\ct@pylast,firstnumber=\ct@pyfirst},
     before skip=10pt,after skip=10pt}%
   \end{otherlanguage}%
@@ -259,13 +284,18 @@
 \newcommand*{\ctcourse}[1]{\gdef\ct@course{#1}}
 \newcommand*{\ctlecturer}[1]{\gdef\ct@lecturer{#1}}
 \newcommand*{\ctdate}[1]{\gdef\ct@date{#1}}
+\newcommand*{\ctbrand}[1]{\gdef\ct@brand{#1}}\ctbrand{ClosetTwin}% brand name (banner/footer/cover)
+\newcommand*{\ctbrandline}[1]{\gdef\ct@brandline{#1}}\ctbrandline{}% optional footer tagline
+% footer wording per language (override in main.tex if needed)
+\newcommand*{\ctpageword}{Page}\newcommand*{\ctofword}{of}
+\newcommand*{\cthebpageword}{עמוד}\newcommand*{\cthebofword}{מתוך}
 \cttitle{ClosetTwin}\ctsubtitle{}\ctauthors{}\ctgroup{}\ctcourse{}\ctlecturer{}\ctdate{\today}
 \newcommand*{\ct@coverline}[2]{\ifx\relax#2\relax\else{\color{mochadeep}\fontsize{8}{10}\selectfont\MakeUppercase{#1}}\\[1pt]
   {\fontsize{11}{15}\selectfont #2}\\[9pt]\fi}
 \newcommand*{\ctmakecover}{%
   \begingroup
   \pagecolor{ivory}\thispagestyle{empty}
-  \noindent{\ctheadfont\bfseries\fontsize{15}{18}\selectfont ClosetTwin}\hspace{8pt}%
+  \noindent{\ctheadfont\bfseries\fontsize{15}{18}\selectfont\ct@brand}\hspace{8pt}%
   \raisebox{0.3ex}{\color{powderpink}\rule{1.4cm}{4pt}}\par
   \vspace*{3.2cm}
   {\color{mocha}\rule{3cm}{0.8pt}\par}\vspace{1.2em}
@@ -286,26 +316,44 @@
 \setlength{\headheight}{18pt}
 \newcommand*{\ctbanner}{%
   \vbox to 18pt{\vss
-    \hbox to \textwidth{{\ctheadfont\bfseries\fontsize{13}{14}\selectfont\color{ink}ClosetTwin}%
+    \hbox to \textwidth{\foreignlanguage{english}{{\ctheadfont\bfseries\fontsize{13}{14}\selectfont\color{ink}\ct@brand}%
       \hspace{8pt}\raisebox{0.4ex}{\color{powderpink}\rule{1.1cm}{3pt}}\hfill
-      {\color{mochadeep}\fontsize{7.5}{9}\selectfont\MakeUppercase{\leftmark}}}%
+      {\color{mochadeep}\fontsize{7.5}{9}\selectfont\MakeUppercase{\leftmark}}}}%
     \vskip 4pt
     {\color{mochadeep}\hrule width\textwidth height 0.5pt}\vss}}
+% label LastPage (the lastpage package is not installed): written after the final page is shipped
+\AtEndDocument{\clearpage\addtocounter{page}{-1}%
+  \immediate\write\@auxout{\string\newlabel{LastPage}{{}{\thepage}{}{}{}}}\addtocounter{page}{1}}
+\newif\ifct@hebfoot
+% "Page N of M" (M = last page, no hard-coded total); Hebrew wording and direction on hebrewpage
+\newcommand*{\ct@pageof}{%
+  \ifct@hebfoot
+    \foreignlanguage{hebrew}{\color{mutedgray}\cthebpageword\ {\color{ink}\bfseries\thepage}\ \cthebofword\ \pageref*{LastPage}}%
+  \else
+    {\color{mutedgray}\ctpageword}\ {\color{ink}\bfseries\thepage}\ {\color{mutedgray}\ctofword}\ \pageref*{LastPage}%
+  \fi}
+
 \newcommand*{\ctfooter}{%
-  \vbox{\hbox to \textwidth{\color{mochadeep}\leaders\hrule height 0.4pt\hfill}\vskip 6pt
-    \hbox to \textwidth{\hfil\fontsize{9}{11}\selectfont\color{ink}\thepage\hfil}}}
+  \vtop{\hbox to \textwidth{\color{mochadeep}\leaders\hrule height 0.4pt\hfill}\vskip 6pt
+    \hbox to \textwidth{\foreignlanguage{english}{{\ctheadfont\bfseries\fontsize{9}{11}\selectfont\color{ink}\ct@brand}%
+      \ifx\ct@brandline\@empty\else\hspace{6pt}{\color{mutedgray}\fontsize{8}{11}\selectfont\ct@brandline}\fi
+      }\hfill\fontsize{9}{11}\selectfont\ct@pageof}}}
 \def\ps@closettwin{%
   \let\@mkboth\markboth
   \def\@oddhead{\ctbanner}\let\@evenhead\@oddhead
   \def\@oddfoot{\ctfooter}\let\@evenfoot\@oddfoot}
 \let\ps@plain\ps@closettwin
 \pagestyle{closettwin}
+\setlength{\footskip}{18pt}% the footer is a \vtop: its rule sits 18pt under the text block
 % the Hebrew page sets the banner's chapter-name slot to its Hebrew title
 \renewenvironment{hebrewpage}[1][]
-  {\clearpage\markboth{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}\begin{otherlanguage}{hebrew}\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
-  {\end{otherlanguage}\clearpage}
+  {\clearpage\markboth{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}\begin{otherlanguage}{hebrew}\ct@hebfoottrue\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
+  {\clearpage\end{otherlanguage}\clearpage}
 % RTL lists: the physical indent is on the left, so mirror it to the right
 \newcommand*{\ct@hebrewlists}{\setlist[itemize]{label=\makebox[1.1em][l]{\textcolor{mocha}{\textbullet}},leftmargin=0pt,rightmargin=1.6em,labelsep=0.5em}\setlist[enumerate]{label=\makebox[1.1em][l]{\textcolor{mochadeep}{\arabic*.}},leftmargin=0pt,rightmargin=1.6em,labelsep=0.5em}}
+% no widows/orphans; floats never take a page of their own unless nearly full
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000
+\renewcommand*{\fps@figure}{tbp}\renewcommand*{\fps@table}{tbp}
 % every chapter flushes its floats first
 \preto\chapter{\FloatBarrier}
 % hyperref last: palette colours only, no boxes
