@@ -180,7 +180,7 @@ Each requirement maps to criteria in `qa/acceptance-criteria.md` **v1.3** (being
 | R-06 | Fonts | `pdffonts` shows only Playfair Display + Rubik + Latin Modern Math + **JetBrains Mono**. LM Math appears only on pages with formulas, and JetBrains Mono only on the code-box page(s). Figure PDFs contain only Playfair and Rubik | D4, D11, K3, I8 |
 | R-07 | Font licensing | The Playfair Display and JetBrains Mono files are byte-identical to the official releases (SHA-256 in `fonts/SOURCES.md`). OFL texts are present | FS5 + the qa-infra hash check |
 | R-08 | Palette and contrast | Only the §5.1 tokens. Text ≥ 4.5:1, large/graphics ≥ 3:1. No default hyperref colors | D6, D7, D18, I7 |
-| R-09 | Banner + footer | §5.3, on every page except the cover, including chapter-first pages and the Hebrew page | L7, D8 |
+| R-09 | Banner + footer | §5.3, on every page except the cover and the chapter-opener pages (magazine style, user decision 2026-11-19, PLAN D-1); the footer stays on openers; Hebrew page included | L7, D8 |
 | R-10 | Figures | The 7 figures of §5.4 (minimum: 1 Python + 1 TikZ). No internet images. Each has a caption, a number and a mention in the text, sits at 1:1 within the text width, and is grayscale-safe | I1–I14, D12 |
 | R-11 | Tables | ≥ 1 (target 5: vendor claims, pricing tiers, the funnel/pilot, assumptions, risk mitigations). Caption above, numbers right-aligned, within the text width | TB1–TB7 |
 | R-12 | Formula | Formula (1) in ch. 8: numbered, introduced in the text, every symbol defined | D9, D10 |

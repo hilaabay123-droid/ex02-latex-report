@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/19 v0.12 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/19 v0.15 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -73,6 +73,18 @@
 \RequirePackage{microtype}
 \RequirePackage{csquotes}
 
+\AtBeginDocument{\frenchspacing}% equal word spaces: no extra space after a period ("Dr. Yoram")
+%%% ---------- no-break space after abbreviations: "Dr. X" never stretches ----
+\directlua{
+  local nb = "\string\u{A0}"
+  local abbr = {"Dr","Prof","Mr","Mrs","Ms","Fig","Eq","Sec","Ch","Tab","No"}
+  luatexbase.add_to_callback("process_input_buffer", function(line)
+    for _, a in ipairs(abbr) do
+      line = line:gsub("%f[%a]" .. a .. "%. (%S)", a .. "." .. nb .. "%1")
+    end
+    return line
+  end, "closettwin.abbreviation.tie")
+}
 %%% ---------- a missing glyph is an ERROR, not a warning (RT-F4) ----------
 \AtBeginDocument{\tracinglostchars=3 }
 
@@ -106,7 +118,7 @@
   {\color{mocha}\ctheadfont\fontsize{54}{54}\selectfont\thechapter\par}\vspace{0.35em}%
   {\color{mocha}\rule{3cm}{0.6pt}\par}\vspace{0.9em}%
   {\ctheadfont\bfseries\fontsize{28}{34}\selectfont\raggedright #1\par}}
-\newcommand*{\ctchapterheadstar}[1]{%
+\newcommand*{\ctchapterheadstar}[1]{{\color{mocha}\ctheadfont\fontsize{54}{54}\selectfont\phantom{0}\par}\vspace{0.35em}%
   {\color{mocha}\rule{3cm}{0.6pt}\par}\vspace{0.9em}%
   {\ctheadfont\bfseries\fontsize{28}{34}\selectfont\raggedright #1\par}}
 \titleformat{\chapter}[block]{}{}{0pt}{\ctchapterhead}
@@ -215,7 +227,7 @@
 % code size from the measure: 80 characters = text width minus box padding and the number column (31.6pt)
 \newdimen\ct@measure \AtBeginDocument{\ct@measure=\textwidth}% tcolorbox shrinks \textwidth inside the box
 \newcommand*{\ct@codesize}{\fontsize{\strip@pt\dimexpr(\ct@measure-31.6pt)*25/1030\relax}{12.5}\selectfont}
-\newcommand*{\ct@numsize}{\fontsize{\strip@pt\dimexpr(\ct@measure-31.6pt)*20/1030\relax}{12.5}\selectfont}
+\newcommand*{\ct@numsize}{\fontsize{\strip@pt\dimexpr(\ct@measure-31.6pt)*45/2060\relax}{12.5}\selectfont}
 % Keep a box with the line(s) before it, so a box is never alone at the top of a page
 % (the preceding line moves with it; a stat card / quote is never split).
 % minimal \Needspace (the needspace package is not installed): break the page if less than #1 is left
@@ -250,9 +262,9 @@
 % inside the box.  The only place the code font is used.  (the font family is scaled 0.85,
 % so 9.5pt below is 8.1pt real: about 82 characters per line at the text width)
 \lstdefinestyle{ctpython}{language=Python,basicstyle=\ctcodefont\ct@codesize,
-  numbers=left,numberstyle=\ctcodefont\ct@numsize\color{mocha!80},
+  numbers=left,numberstyle=\ctcodefont\ct@numsize\color{mochadeep!70},
   numbersep=8pt,breaklines=true,breakatwhitespace=false,columns=fullflexible,keepspaces=true,
-  showstringspaces=false,tabsize=4,frame=none,extendedchars=true,
+  showstringspaces=false,tabsize=4,frame=none,extendedchars=true,breakindent=1.5em,postbreak=\mbox{\textcolor{mocha}{\textbackslash}\space},
   keywordstyle=\color{mochadeep}\bfseries,commentstyle=\color{mutedgray},
   stringstyle=\color{ink}}
 \define@key{ctpy}{first}{\def\ct@pyfirst{#1}}
@@ -265,6 +277,8 @@
   \def\ct@pyfirst{1}\def\ct@pylast{100000}\setkeys{ctpy}{#1}%
   \edef\ct@pytotal{\directlua{local n=0 for _ in io.lines("\luaescapestring{#2}") do n=n+1 end tex.sprint(n)}}%
   \ifnum\ct@pylast>\ct@pytotal\relax\edef\ct@pylast{\ct@pytotal}\fi
+  \edef\ct@pylong{\directlua{local n=0 local i=0 for l in io.lines("\luaescapestring{#2}") do i=i+1 if i>=\ct@pyfirst\space and i<=\ct@pylast\space and utf8.len(l)>80 then n=n+1 end end tex.sprint(n)}}%
+  \ifnum\ct@pylong>0\ClassWarningNoLine{closettwin}{pythonbox: \ct@pylong\space line(s) of #2 are longer than 80 characters and will wrap (marked with a backslash)}\fi
   \ifnum\numexpr\ct@pylast-\ct@pyfirst+1\relax>\ct@pysplitmax\relax
     \def\ct@pybreak{breakable}\else\def\ct@pybreak{unbreakable}\fi
   \begin{otherlanguage}{english}% always left-to-right, even if called inside hebrewpage
@@ -290,28 +304,48 @@
 \newcommand*{\ctpageword}{Page}\newcommand*{\ctofword}{of}
 \newcommand*{\cthebpageword}{עמוד}\newcommand*{\cthebofword}{מתוך}
 \cttitle{ClosetTwin}\ctsubtitle{}\ctauthors{}\ctgroup{}\ctcourse{}\ctlecturer{}\ctdate{\today}
-\newcommand*{\ct@coverline}[2]{\ifx\relax#2\relax\else{\color{mochadeep}\fontsize{8}{10}\selectfont\MakeUppercase{#1}}\\[1pt]
-  {\fontsize{11}{15}\selectfont #2}\\[9pt]\fi}
+% ---- cover (stage 5): fashion-magazine style, TikZ only, all text from the \ct... fields ----
+\newcommand*{\ctlabelauthors}{Authors}\newcommand*{\ctlabelgroup}{Group}
+\newcommand*{\ctlabelcourse}{Course}\newcommand*{\ctlabellecturer}{Lecturer}
+% the "twin": a dress on a hanger, drawn once filled and once as a dashed outline
+\newcommand*{\ct@dresspath}{(-1.9,1.9) -- (-1.35,0.2) -- (-0.95,-0.9) -- (-3.1,-6.0)
+  .. controls (-1.5,-6.6) and (1.5,-6.6) .. (3.1,-6.0) -- (0.95,-0.9) -- (1.35,0.2) -- (1.9,1.9)
+  .. controls (1.1,1.35) and (-1.1,1.35) .. cycle}
+\newcommand*{\ct@coverlabel}[2]{\ifx\relax#2\relax\else
+  {\color{mochadeep}\fontsize{7.5}{9}\selectfont\MakeUppercase{#1}}\par\vspace{1pt}%
+  {\fontsize{10.5}{13}\selectfont #2}\par\vspace{7pt}\fi}
 \newcommand*{\ctmakecover}{%
-  \begingroup
-  \pagecolor{ivory}\thispagestyle{empty}
-  \noindent{\ctheadfont\bfseries\fontsize{15}{18}\selectfont\ct@brand}\hspace{8pt}%
-  \raisebox{0.3ex}{\color{powderpink}\rule{1.4cm}{4pt}}\par
-  \vspace*{3.2cm}
-  {\color{mocha}\rule{3cm}{0.8pt}\par}\vspace{1.2em}
-  {\ctheadfont\bfseries\fontsize{44}{50}\selectfont\raggedright\ct@title\par}\vspace{1em}
-  {\ctheadfont\itshape\fontsize{18}{25}\selectfont\raggedright\ct@subtitle\par}
-  \vfill
-  \begin{minipage}{0.7\textwidth}\raggedright\setlength{\parskip}{0pt}
-  \ct@coverline{Authors}{\ct@authors}%
-  \ct@coverline{Group}{\ct@group}%
-  \ct@coverline{Course}{\ct@course}%
-  \ct@coverline{Lecturer}{\ct@lecturer}%
-  \ct@coverline{Date}{\ct@date}%
-  \end{minipage}
-  \clearpage
-  \endgroup
-  \nopagecolor}
+  \begingroup\pagecolor{ivory}\thispagestyle{empty}\noindent
+  \begin{tikzpicture}[overlay,x=1cm,y=1cm]
+    % top strip
+    \node[anchor=south west,inner sep=0,text=mochadeep] at (0,1.55) {\fontsize{7.5}{9}\selectfont\MakeUppercase{\ct@date}};
+    \draw[line width=0.5pt,ink] (0,1.4) -- (15,1.4);
+    % masthead: the title spans the full measure
+    \node[anchor=north west,inner sep=0,text=ink] at (0,1.15) {\ctheadfont\bfseries\resizebox{15cm}{!}{\ct@title}};
+    \draw[line width=1.4pt,ink] (0,-2.3) -- (15,-2.3);
+    \draw[line width=0.4pt,ink] (0,-2.45) -- (15,-2.45);
+    \node[anchor=north,inner sep=0,text=mochadeep,align=center,text width=13cm] at (7.5,-2.95) {\ctheadfont\itshape\fontsize{14}{18}\selectfont\ct@subtitle};
+    % illustration: powder-pink arch, the hanger, the dress and its dashed digital twin
+    \fill[powderpink] (2.2,-20.0) -- (2.2,-11.4) arc[start angle=180,end angle=0,radius=5.3] -- (12.8,-20.0) -- cycle;
+    \begin{scope}[shift={(7.5,-12.9)}]
+      \draw[line width=1.5pt,ink,line cap=round] (0,2.95) -- (0,3.35) arc[start angle=180,end angle=-60,radius=0.38];
+      \draw[line width=1.5pt,ink,line cap=round,line join=round] (-3.0,1.65) -- (0,2.95) -- (3.0,1.65) -- cycle;
+      \fill[mocha] \ct@dresspath;
+      \draw[line width=0.9pt,ink,line join=round] \ct@dresspath;
+      \begin{scope}[shift={(0.55,-0.25)}]
+        \draw[line width=0.7pt,mochadeep,dash pattern=on 3pt off 2.4pt] \ct@dresspath;
+      \end{scope}
+      \fill[mochadeep] (-0.95,-0.9) -- (0.95,-0.9) -- (0.8,-1.25) -- (-0.8,-1.25) -- cycle;
+      \foreach \p in {(-1.35,0.2),(1.35,0.2),(-0.95,-0.9),(0.95,-0.9),(-3.1,-6.0),(3.1,-6.0)}
+        \fill[ivory,draw=ink,line width=0.5pt] \p circle (0.09);
+    \end{scope}
+    % cover lines
+    \draw[line width=0.4pt,ink] (0,-20.9) -- (15,-20.9);
+    \node[anchor=north west,inner sep=0,text width=5.2cm,align=left] at (0,-21.3) {\setlength{\parskip}{0pt}\ct@coverlabel{\ctlabelauthors}{\ct@authors}};
+    \node[anchor=north west,inner sep=0,text width=4.6cm,align=left] at (5.6,-21.3) {\setlength{\parskip}{0pt}\ct@coverlabel{\ctlabelgroup}{\ct@group}};
+    \node[anchor=north west,inner sep=0,text width=4.0cm,align=left] at (10.9,-21.3) {\setlength{\parskip}{0pt}\ct@coverlabel{\ctlabellecturer}{\ct@lecturer}};
+    \node[anchor=north west,inner sep=0,text width=15cm,align=left] at (0,-22.7) {\setlength{\parskip}{0pt}\ct@coverlabel{\ctlabelcourse}{\ct@course}};
+  \end{tikzpicture}\clearpage\endgroup\nopagecolor}
 % banner (inset to the text block, no fill) and footer (hairline + page number), via the page style
 \setlength{\headheight}{18pt}
 \newcommand*{\ctbanner}{%
@@ -342,12 +376,16 @@
   \let\@mkboth\markboth
   \def\@oddhead{\ctbanner}\let\@evenhead\@oddhead
   \def\@oddfoot{\ctfooter}\let\@evenfoot\@oddfoot}
-\let\ps@plain\ps@closettwin
+% chapter openers (and the Hebrew opener) use "plain": NO banner, footer kept (magazine style)
+\def\ps@plain{%
+  \let\@mkboth\markboth
+  \def\@oddhead{}\let\@evenhead\@oddhead
+  \def\@oddfoot{\ctfooter}\let\@evenfoot\@oddfoot}
 \pagestyle{closettwin}
 \setlength{\footskip}{18pt}% the footer is a \vtop: its rule sits 18pt under the text block
 % the Hebrew page sets the banner's chapter-name slot to its Hebrew title
 \renewenvironment{hebrewpage}[1][]
-  {\clearpage\markboth{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}\begin{otherlanguage}{hebrew}\ct@hebfoottrue\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
+  {\clearpage\thispagestyle{plain}\markboth{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}{\ctmediumfont\fontsize{9.5}{9.5}\selectfont #1}\begin{otherlanguage}{hebrew}\ct@hebfoottrue\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
   {\clearpage\end{otherlanguage}\clearpage}
 % RTL lists: the physical indent is on the left, so mirror it to the right
 \newcommand*{\ct@hebrewlists}{\setlist[itemize]{label=\makebox[1.1em][l]{\textcolor{mocha}{\textbullet}},leftmargin=0pt,rightmargin=1.6em,labelsep=0.5em}\setlist[enumerate]{label=\makebox[1.1em][l]{\textcolor{mochadeep}{\arabic*.}},leftmargin=0pt,rightmargin=1.6em,labelsep=0.5em}}
@@ -356,6 +394,34 @@
 \renewcommand*{\fps@figure}{tbp}\renewcommand*{\fps@table}{tbp}
 % every chapter flushes its floats first
 \preto\chapter{\FloatBarrier}
+%%% ================= v0.14: references (biblatex, IEEE, biber) ============
+\RequirePackage[backend=biber,style=ieee,sorting=none,maxbibnames=6,minbibnames=3,
+  giveninits=true,doi=true,url=true,isbn=false,eprint=false]{biblatex}
+\renewcommand*{\bibfont}{\small}
+\renewcommand*{\mkonepagegrouped}[1]{#1}% IEEE style groups digits (100 779): switch it off
+\renewcommand*{\bibrangedash}{\nobreak\textendash\nobreak}% a page range never breaks
+% Hebrew runs are isolated (their own direction), so "and", commas and quotes stay outside the run
+\newcommand*{\ct@ifhebrew}[3]{\edef\ct@hebtmp{\directlua{local s=[==[\detokenize{#1}]==] local f=0 for _,c in utf8.codes(s) do if c>=0x590 and c<=0x5FF then f=1 break end end tex.sprint(f)}}%
+  \ifnum\ct@hebtmp=1 #2\else #3\fi}
+\newcommand*{\ctbidi}[1]{\ct@ifhebrew{#1}{\foreignlanguage{hebrew}{#1}}{#1}}
+\renewcommand*{\mkbibnamefamily}[1]{\ctbidi{#1}}
+\renewcommand*{\mkbibnamegiven}[1]{\ctbidi{#1}}
+\renewcommand*{\mkbibnameprefix}[1]{\ctbidi{#1}}
+\renewcommand*{\mkbibnamesuffix}[1]{\ctbidi{#1}}
+\DeclareSourcemap{\maps[datatype=bibtex]{\map[overwrite]{%
+  \step[fieldsource=title,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
+  \step[fieldsource=journaltitle,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
+  \step[fieldsource=booktitle,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
+  \step[fieldsource=publisher,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
+  \step[fieldsource=institution,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
+}}}
+\setlength{\bibitemsep}{0.45em}\setlength{\bibhang}{1.9em}
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+\renewcommand*{\bibnamedash}{\rule[0.5ex]{3em}{0.4pt}\space}
+% \ctbibresource{references.bib} in the preamble, \ctreferences where the list goes
+\newcommand*{\ctbibresource}[1]{\addbibresource{#1}}
+\defbibheading{ctbib}[\bibname]{\ctunnumbered{#1}}
+\newcommand*{\ctreferences}{\printbibliography[heading=ctbib,title={References}]}
 % hyperref last: palette colours only, no boxes
 \RequirePackage[colorlinks=true,linkcolor=mochadeep,citecolor=mochadeep,urlcolor=mochadeep,
   bookmarksnumbered=true,unicode=true,pdfusetitle=false]{hyperref}
