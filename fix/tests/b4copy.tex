@@ -1,0 +1,44 @@
+\newcommand*{\ctfontdir}{../../fonts/}
+\documentclass{closettwin}
+\begin{document}
+\mainmatter
+\section{Stress test: mixed English and Hebrew}
+The ClosetTwin pilot (\foreignlanguage{hebrew}{ארון בגדים וירטואלי}) cut returns from 24.4\% to \pct{30} less over 2024--2026, at \usd{49.90} or \ils{49.90} per order.
+
+\begin{otherlanguage}{hebrew}
+ClosetTwin מפחיתה החזרות ב-\pct{30} בשנים \range{2024}{2026} (בערך 24.4 אחוז מהמכירות), במחיר \ils{49.90} להזמנה, או \usd{49.90} בחו״ל, באמצעות AI ו-API.
+\end{otherlanguage}
+
+\begin{equation}\mathrm{ROI}=\frac{G-C}{C}\times 100\%\end{equation}
+
+\begin{table}[tbp]
+\caption{Pricing tiers (assumptions)}
+\begin{tabularx}{\textwidth}{lRR}
+\toprule
+\ctheaderrow\cthead{Tier} & \cthead{Orders / month} & \cthead{Price (USD)}\\
+\midrule
+Starter & 1,000 & 49.90\\
+Growth & 5,000 & 199.00\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}
+\node[ct key] (a) {Photo};
+\node[ct node, right=1.2cm of a] (b) {Avatar};
+\node[ct node ivory, right=1.2cm of b] (c) {Fit};
+\draw[ct arrow] (a)--(b); \draw[ct arrow] (b)--(c);
+\end{tikzpicture}
+\caption{Pipeline}
+\end{figure}
+
+\pythonbox[first=1,last=8]{../../python/model.py}
+
+\statcard{24.4\%}{of apparel is returned}{Source: Coresight 2023}
+
+\begin{insightbox}[Key insight]
+Fit, not style, drives returns: \pct{30} fewer in 2024--2026.
+\end{insightbox}
+\end{document}

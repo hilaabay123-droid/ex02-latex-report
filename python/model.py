@@ -1,7 +1,9 @@
-"""ClosetTwin financial model. Single source of truth: python/data/assumptions.csv.
+"""ClosetTwin financial model.
+Single source of truth: python/data/assumptions.csv.
 
 Run from the root:  python python/model.py
-Writes python/data/model_out.csv (every derived value) and python/data/sensitivity_out.csv (for F6).
+Writes python/data/model_out.csv (every derived value)
+and python/data/sensitivity_out.csv (for F6).
 Deterministic: no randomness, no network, no clock.
 """
 import csv

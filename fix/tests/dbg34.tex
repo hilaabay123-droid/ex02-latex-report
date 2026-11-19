@@ -1,0 +1,66 @@
+\newcommand*{\ctfontdir}{../../fonts/}
+\documentclass{closettwin}
+\makeatletter
+\let\ctoldkeep\ctkeepprev
+\renewcommand*{\ctkeepprev}{\par\typeout{KEEP flag=\directlua{tex.sprint(ct_afterbox)} page=\thepage}\ctoldkeep}
+\makeatother
+\ctbrandline{Virtual fitting room}
+\newcommand*{\filler}[1]{\foreach \i in {1,...,#1}{Line \i{} of filler text that fills exactly one line of the measure here ok go.\par}}
+\begin{document}
+\mainmatter
+\chapter{Components}
+Introductory paragraph for the components page: a table, a figure, a key number, a pull quote, an insight box and a code box.
+\begin{table}[tbp]
+\caption{Pricing tiers (assumptions)}
+\begin{tabularx}{\textwidth}{lRR}
+\toprule
+\ctheaderrow\cthead{Tier} & \cthead{Orders / month} & \cthead{Price (USD)}\\
+\midrule
+Starter & 1,000 & 99\\
+Growth & 10,000 & 799\\
+Enterprise & 100,000 & 4,500\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\statcard{24.4\%}{of online apparel purchases are returned}{Source: Coresight Research, 2023}
+\pullquote{Fewer returns start with the right size.}{ClosetTwin thesis}
+\begin{insightbox}[Key insight]
+Retailers lose most on returns that a better size choice would have prevented. This box is ivory with a hairline and a small label.
+\end{insightbox}
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[node distance=23.5mm]
+\node[ct key,minimum width=34mm] (a) {ClosetTwin};\node[ct node ivory,minimum width=34mm,right=of a] (b) {Scan};\node[ct node pink,minimum width=34mm,right=of b] (c) {Size};
+\draw[ct arrow] (a)--(b) node[midway,above,ct label]{photo};\draw[ct arrow] (b)--(c);
+\end{tikzpicture}
+\caption{A figure caption below the figure}
+\end{figure}
+\begin{equation}
+\mathrm{ROI}=\frac{G-C}{C}\times 100\%
+\end{equation}
+\pythonbox{code80.py}
+\pythonbox{code_long.py}
+\pythonbox[first=1,last=11]{ex_ascii.py}
+\foreach \n in {30,35,40,43}{%
+\chapter{Stress \n}
+\filler{\n}
+\statcard{\n\%}{a key number that must not sit alone on a page}{Source: stress test}
+\filler{6}
+\pythonbox[first=1,last=7]{ex_ascii.py}
+}
+\newcommand*{\para}{Realistic paragraph text that runs over several lines of the measure so that widow and orphan control and the keep rule can act on it, which is how the report text will look.\par}
+\foreach \k in {7,8,9,10,11,12}{%
+\chapter{Para \k}
+\foreach \j in {1,...,\k}{\para\para}
+\statcard{\k\%}{key number after paragraphs}{Source: stress}
+\para
+\pythonbox[first=1,last=7]{ex_ascii.py}
+}
+\chapter{Long script}
+\para
+\pythonbox{long.py}
+\begin{hebrewpage}[תקציר מנהלים]
+\hebtitle{תקציר מנהלים}
+ClosetTwin מפחיתה החזרות ב-\pct{30} בשנת 2026. הטקסט כולו ברוביק, מימין לשמאל.
+\end{hebrewpage}
+\end{document}

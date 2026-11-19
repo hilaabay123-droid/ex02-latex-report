@@ -1,0 +1,17 @@
+\newcommand*{\ctfontdir}{../../fonts/}
+\documentclass{closettwin}
+\directlua{
+ luatexbase.add_to_callback("pre_output_filter", function(head)
+   local out='PAGELIST:'
+   for n in node.traverse(head) do
+     if n.id==node.id('glue') then out=out..' G('..string.format('%.1f',n.width/65536)..')'
+     elseif n.id==node.id('penalty') then out=out..' P('..n.penalty..')'
+     elseif n.id==node.id('hlist') or n.id==node.id('vlist') then out=out..' B('..string.format('%.1f',(n.height+n.depth)/65536)..')'
+     else out=out..' '..node.type(n.id) end end
+   texio.write_nl(out) return true end, "dbg")}
+\begin{document}
+\mainmatter
+\chapter{G}
+\statcard{1\%}{a}{s}
+\statcard{2\%}{b}{s}
+\end{document}

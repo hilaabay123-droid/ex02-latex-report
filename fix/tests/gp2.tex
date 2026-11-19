@@ -1,0 +1,14 @@
+\newcommand*{\ctfontdir}{../../fonts/}
+\documentclass{closettwin}
+\makeatletter
+\let\ctoldkeep\ctkeepprev
+\renewcommand*{\ctkeepprev}{\typeout{FLAG=\ifct@afterbox 1\else 0\fi\space MODE=\ifvmode v\else h\fi\space LS=\the\lastskip}\ctoldkeep}
+\makeatother
+\begin{document}
+\mainmatter
+\chapter{G}
+Text before.
+\statcard{1\%}{a}{s}
+\statcard{2\%}{b}{s}
+\begin{insightbox}[L]x\end{insightbox}
+\end{document}

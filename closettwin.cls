@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/19 v0.16 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/19 v0.18 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -70,7 +70,9 @@
 \AddToHook{begindocument/end}{\let\mathrm\symup \let\mathbf\symbfup \let\mathit\symit}
 
 %%% ---------- typography --------------------------------------------------
+\DeclareTextComposite{\c}{TU}{T}{"0162}\DeclareTextComposite{\c}{TU}{t}{"0163}
 \RequirePackage{microtype}
+% microtype.cfg lists \c T and \c t for TU, but TU has no such composites (warning on the first font): declare them
 \RequirePackage{csquotes}
 
 \AtBeginDocument{\frenchspacing}% equal word spaces: no extra space after a period ("Dr. Yoram")
@@ -94,9 +96,11 @@
 \newcommand*{\ctheadingfont}{\ifdefstring{\languagename}{hebrew}{\normalfont\bfseries}{\ctheadfont\bfseries}}
 % Numbers + units kept in one unbreakable run
 \newcommand*{\pct}[1]{\mbox{#1\%}}
+% \range{2024}{2026}: always 2024-2026 left to right, also inside a Hebrew (RTL) paragraph
+\newcommand*{\range}[2]{\mbox{\foreignlanguage{english}{#1\textendash #2}}}
 \newcommand*{\usd}[1]{\mbox{\textdollar #1}}
 \newcommand*{\ils}[1]{\ifdefstring{\languagename}{hebrew}%
-  {\mbox{#1\,{\char"05E9}{\char"05F4}{\char"05D7}}}{\mbox{{\char"20AA}\,#1}}}
+  {\mbox{#1\,{\char"05E9}{\char"05F4}{\char"05D7}}}{\mbox{{\char"20AA}#1}}}
 % The one Hebrew page: RTL, ragged (no Hebrew hyphenation), Rubik everywhere.
 \newenvironment{hebrewpage}
   {\clearpage\begin{otherlanguage}{hebrew}\ct@hebfoottrue\raggedright\setlength{\parskip}{0.7em}\ct@hebrewlists}
@@ -185,8 +189,9 @@
 \renewcommand*{\textfraction}{0.15}
 \renewcommand*{\floatpagefraction}{0.7}
 \setcounter{topnumber}{2}\setcounter{bottomnumber}{1}\setcounter{totalnumber}{3}
-\setlength{\textfloatsep}{16pt plus 4pt minus 4pt}
-\setlength{\intextsep}{16pt plus 4pt minus 4pt}
+\newdimen\ctboxsep \ctboxsep=14pt% ONE gap token: floats and boxes
+\setlength{\textfloatsep}{\ctboxsep plus 2pt minus 2pt}\setlength{\floatsep}{\ctboxsep plus 2pt minus 2pt}
+\setlength{\intextsep}{\ctboxsep plus 2pt minus 2pt}
 % assumption tags: S = sourced, D = derived, A = assumed (PRD RT-W8/RT-Q6)
 \newcommand*{\ct@tag}[1]{\textsuperscript{\color{mochadeep}\bfseries\scriptsize #1}}
 \newcommand*{\sourced}[1]{#1\ct@tag{S}}
@@ -233,30 +238,49 @@
 % minimal \Needspace (the needspace package is not installed): break the page if less than #1 is left
 \newcommand*{\Needspace}[1]{\par\begingroup\dimen@=#1\relax
   \ifdim\pagegoal<\maxdimen\ifdim\dimexpr\pagegoal-\pagetotal\relax<\dimen@\endgroup\pagebreak[4]\else\endgroup\fi\else\endgroup\fi}
-\newcommand*{\ctkeepprev}{\par\nopagebreak[4]}
+% ONE gap mechanism for boxes (every gap = \ctboxsep).  \lastskip and \addvspace are unreliable here
+% (LuaTeX vertical list, \if@minipage left true by boxes), so a flag does the work: a box sets
+% "a box was the last thing"; any paragraph resets it (callback at line breaking, so nothing the
+% kernel does with \everypar can disturb it).
+% * after a box: an explicit gap \ctboxsep (text that follows an explicit \vskip adds no \parskip)
+% * before a box: nothing if a box was just before (its gap is already there), otherwise
+%   \ctboxsep with a no-break penalty before it, so the box stays with the line above and is
+%   never alone at the top of a page
+\directlua{
+  ct_afterbox = 0
+  luatexbase.add_to_callback("pre_linebreak_filter", function(head) ct_afterbox = 0 return head end,
+    "closettwin.afterbox.reset")}
+\newcommand*{\ctkeepprev}{\par
+  \ifnum\directlua{tex.sprint(ct_afterbox)}=1 \vskip\dimexpr\parskip\relax% tcolorbox cancels one \parskip at its start
+  \else\nopagebreak[4]\vskip\ctboxsep\relax\fi
+  \directlua{ct_afterbox = 0}}
+\newcommand*{\ct@boxafter}{\par\vskip\ctboxsep\relax\directlua{ct_afterbox = 1}}
 % \statcard{big number}{one-line claim}{source}
 \newcommand*{\statcard}[3]{\ctkeepprev
   \begin{tcolorbox}[enhanced,breakable=false,colback=ivory,colframe=mochapale,boxrule=0.4pt,
-    arc=0pt,left=14pt,right=14pt,top=10pt,bottom=10pt,before skip=12pt,after skip=12pt]
+    arc=0pt,left=14pt,right=14pt,top=10pt,bottom=10pt,before skip=0pt,after skip=0pt]
   {\color{mocha}\ctheadfont\bfseries\fontsize{34}{38}\selectfont #1\par}\vspace{2pt}
   {\color{ink}\fontsize{11}{15}\selectfont #2\par}\vspace{3pt}
   {\color{mutedgray}\footnotesize #3\par}
-  \end{tcolorbox}}
+  \end{tcolorbox}\ct@boxafter}
 % \pullquote{text}{attribution}
 \newcommand*{\pullquote}[2]{\ctkeepprev
   \begin{tcolorbox}[enhanced,breakable=false,colback=white,frame hidden,boxrule=0pt,arc=0pt,
     borderline west={3pt}{0pt}{powderpink},left=16pt,right=6pt,top=6pt,bottom=6pt,
-    before skip=12pt,after skip=12pt]
+    before skip=0pt,after skip=0pt]
   {\ctheadfont\itshape\fontsize{14}{20}\selectfont #1\par}\vspace{4pt}
   {\color{mutedgray}\footnotesize #2\par}
-  \end{tcolorbox}}
+  \end{tcolorbox}\ct@boxafter}
 % insight box (ivory, hairline, small mocha-deep label); never split: keep it shorter than half a page
-\NewDocumentEnvironment{insightbox}{O{Insight}}
+% the body is collected first (+b), so the box is typeset by ordinary macro code like \statcard:
+% an environment start/end would add a hidden \parskip to the gaps
+\NewDocumentEnvironment{insightbox}{O{Insight} +b}
   {\ctkeepprev\begin{tcolorbox}[enhanced,breakable=false,colback=ivory,colframe=mochapale,boxrule=0.4pt,
-    arc=0pt,left=14pt,right=14pt,top=9pt,bottom=9pt,before skip=12pt,after skip=12pt,
-    before upper={{\color{mochadeep}\bfseries\fontsize{8}{10}\selectfont\MakeUppercase{#1}\par}\vspace{4pt}},
-    parskip=0.5em]}
-  {\end{tcolorbox}}
+    arc=0pt,left=14pt,right=14pt,top=9pt,bottom=9pt,before skip=0pt,after skip=0pt]
+    {\color{mochadeep}\bfseries\fontsize{8}{10}\selectfont\MakeUppercase{#1}\par}\vspace{4pt}
+    \setlength{\parskip}{0.5em}#2
+  \end{tcolorbox}\ct@boxafter}
+  {}
 % \pythonbox[first=N,last=M]{python/file.py}: shows the REAL file (never pasted code), LTR,
 % ivory fill + 0.4pt hairline, JetBrains Mono, line numbers = file line numbers, long lines wrap
 % inside the box.  The only place the code font is used.  (the font family is scaled 0.85,
@@ -281,13 +305,13 @@
   \ifnum\ct@pylong>0\ClassWarningNoLine{closettwin}{pythonbox: \ct@pylong\space line(s) of #2 are longer than 80 characters and will wrap (marked with a backslash)}\fi
   \ifnum\numexpr\ct@pylast-\ct@pyfirst+1\relax>\ct@pysplitmax\relax
     \def\ct@pybreak{breakable}\else\def\ct@pybreak{unbreakable}\fi
-  \begin{otherlanguage}{english}% always left-to-right, even if called inside hebrewpage
-  \ctkeepprev\tcbinputlisting{listing file={#2},listing only,enhanced,\ct@pybreak,colback=ivory,
+  \selectlanguage{english}% always left-to-right, even if called inside hebrewpage
+  \ctkeepprev% after the language switch: a whatsit between the penalty and the box would allow a break
+  \tcbinputlisting{listing file={#2},listing only,enhanced,\ct@pybreak,colback=ivory,
     colframe=mochapale,boxrule=0.4pt,arc=0pt,left=24pt,right=4pt,top=6pt,bottom=6pt,
     listing options={style=ctpython,firstline=\ct@pyfirst,lastline=\ct@pylast,firstnumber=\ct@pyfirst},
-    before skip=10pt,after skip=10pt}%
-  \end{otherlanguage}%
-  \endgroup}
+    before skip=0pt,after skip=0pt}%
+  \endgroup\ct@boxafter}
 
 %%% ================= v0.5: cover, banner, footer, matter ===================
 % Cover fields: main.tex sets these macros (NO ID numbers anywhere).
@@ -395,12 +419,23 @@
 \newcommand*{\ct@hebrewlists}{\setlist[itemize]{label=\makebox[1.1em][l]{\textcolor{mocha}{\textbullet}},leftmargin=0pt,rightmargin=1.6em,labelsep=0.5em}\setlist[enumerate]{label=\makebox[1.1em][l]{\textcolor{mochadeep}{\arabic*.}},leftmargin=0pt,rightmargin=1.6em,labelsep=0.5em}}
 % no widows/orphans; floats never take a page of their own unless nearly full
 \clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000
-\renewcommand*{\fps@figure}{tbp}\renewcommand*{\fps@table}{tbp}
+% floats go here (h), else to the top of the next page (t) or a page of their own (p): never to the
+% bottom (b), which left a hole above a table pushed to the foot of the page. A float page starts at
+% the top (not vertically centred), with the free space below.
+\renewcommand*{\fps@figure}{htp}\renewcommand*{\fps@table}{htp}
+\setlength{\@fptop}{0pt}\setlength{\@fpsep}{\ctboxsep}\setlength{\@fpbot}{0pt plus 1fil}
+% the class decides where floats go: an author's placement ([tbp], [t] ...) is ignored, so no
+% chapter can create a hole or push a float above its heading
+\let\ct@xfloat\@xfloat
+\def\@xfloat#1[#2]{\edef\reserved@a{\noexpand\ct@xfloat{#1}[\csname fps@#1\endcsname]}\reserved@a}
+% a heading forbids a top float on its own page, so a float never lands above the heading it follows
+\renewcommand*{\sectionmark}[1]{\suppressfloats[t]}\renewcommand*{\subsectionmark}[1]{\suppressfloats[t]}
 % every chapter flushes its floats first
 \preto\chapter{\FloatBarrier}
 %%% ================= v0.14: references (biblatex, IEEE, biber) ============
 \RequirePackage[backend=biber,style=ieee,sorting=none,maxbibnames=6,minbibnames=3,
   giveninits=true,doi=true,url=true,isbn=false,eprint=false]{biblatex}
+\DeclareLanguageMapping{hebrew}{english}% no biblatex module for Hebrew: no warning
 \renewcommand*{\bibfont}{\small}
 \renewcommand*{\mkonepagegrouped}[1]{#1}% IEEE style groups digits (100 779): switch it off
 \renewcommand*{\bibrangedash}{\nobreak\textendash\nobreak}% a page range never breaks

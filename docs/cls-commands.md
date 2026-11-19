@@ -53,7 +53,8 @@ Lists inside `hebrewpage` are mirrored automatically. A short Hebrew phrase in a
 |---|---|---|
 | `\pct{30}` | 30% (unbreakable) | `\pct{30}` |
 | `\usd{49.90}` | $49.90 | `\usd{49.90}` |
-| `\ils{49.90}` | ₪ 49.90 in English, 49.90 ש״ח on the Hebrew page | `\ils{49.90}` |
+| `\ils{49.90}` | ₪49.90 in English (glued like `$49.90`), 49.90 ש״ח on the Hebrew page | `\ils{49.90}` |
+| `\range{2024}{2026}` | A range that always reads 2024–2026 left to right, also inside a Hebrew paragraph. In Hebrew text write ranges this way (a bare `2024--2026` reverses there); in English text `2024--2026` is fine | `בשנים \range{2024}{2026}` |
 
 ## 5. Structure
 
@@ -150,5 +151,7 @@ Cite with `\cite{key}`. Build: lualatex, biber, lualatex, lualatex.
 ## 11. Page behaviour
 
 * Banner (brand + chapter title) on every page except cover and openers; footer = brand + "Page N of M" on all pages except the cover.
-* Widows and orphans are forbidden; floats default to `tbp`; boxes travel with the line before them.
+* Widows and orphans are forbidden; boxes travel with the line before them and are never alone at the top of a page.
+* Floats: write plain `\begin{table}` / `\begin{figure}` (no placement argument: the class ignores it). They go here, else to the top of the next page, else to a page of their own (never the foot of a page, never above the heading they follow).
+* ONE gap, `\ctboxsep` = 14pt, separates boxes from boxes, text and floats; every box-to-box gap is the same.
 * A missing glyph is a compile error (`\tracinglostchars=3`).
