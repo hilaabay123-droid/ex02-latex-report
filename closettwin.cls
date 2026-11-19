@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/18 v0.5 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/19 v0.7 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -62,14 +62,12 @@
 \newfontfamily\ctcodefont{JetBrainsMono-Regular}[BoldFont=JetBrainsMono-Bold,
   ItalicFont=JetBrainsMono-Italic,BoldItalicFont=JetBrainsMono-BoldItalic,Scale=0.85]
 
-%%% ---------- maths: LM Math for symbols only, Rubik for letters/digits ---
+%%% ---------- maths: Latin Modern Math only inside formulas ---
 \RequirePackage{amsmath}
 \RequirePackage{unicode-math}
 \setmathfont{latinmodern-math.otf}[Path={},Extension={}]
-\setmathfont{Rubik-Regular}[Path=\ctfontdir,Extension=.ttf,
-  range={up/{Latin,latin,num}},Scale=MatchLowercase]
-\setmathfont{Rubik-Bold}[Path=\ctfontdir,Extension=.ttf,
-  range={bfup/{Latin,latin,num}},Scale=MatchLowercase]
+% (v0.7) math is uniformly Latin Modern Math (letters, digits, \mathrm). Text-mode \pct etc. stay Rubik.
+\AddToHook{begindocument/end}{\let\mathrm\symup \let\mathbf\symbfup \let\mathit\symit}
 
 %%% ---------- typography --------------------------------------------------
 \RequirePackage{microtype}
@@ -92,7 +90,7 @@
   {\clearpage\begin{otherlanguage}{hebrew}\raggedleft\setlength{\parskip}{0.7em}}
   {\end{otherlanguage}\clearpage}
 % Hebrew headings (Rubik Bold, never Playfair): use inside hebrewpage
-\newcommand*{\hebtitle}[1]{{\normalfont\bfseries\fontsize{26}{32}\selectfont #1\par}\vspace{0.6em}}
+\newcommand*{\hebtitle}[1]{{\normalfont\ctmediumfont\fontsize{26}{32}\selectfont #1\par}\vspace{0.6em}}
 \newcommand*{\hebsubtitle}[1]{{\normalfont\bfseries\fontsize{13}{18}\selectfont #1\par}\vspace{0.2em}}
 
 %%% ================= v0.3: headings, numbering, TOC, lists ================
@@ -209,6 +207,7 @@
   ct cell 5/.style={rectangle,draw=ink,line width=0.4pt,fill=ink,text=ivory,align=center},
 }
 % boxes: stat card, pull quote, code box
+\RequirePackage{xkeyval}
 \RequirePackage[most]{tcolorbox}
 \tcbuselibrary{listings,skins,breakable}
 % \statcard{big number}{one-line claim}{source}
@@ -227,17 +226,27 @@
   {\ctheadfont\itshape\fontsize{14}{20}\selectfont #1\par}\vspace{4pt}
   {\color{mutedgray}\footnotesize #2\par}
   \end{tcolorbox}}
-% \pythonbox[first line]{last line}? no: \pythonbox{python/file.py}  (reads the real file)
-\lstdefinestyle{ctpython}{language=Python,basicstyle=\ctcodefont\fontsize{7.5}{9.5}\selectfont,
-  numbers=left,numberstyle=\ctcodefont\fontsize{6.5}{9.5}\selectfont\color{mutedgray},
+% \pythonbox[first=N,last=M]{python/file.py}: shows the REAL file (never pasted code), LTR,
+% ivory fill + 0.4pt hairline, JetBrains Mono, line numbers = file line numbers, long lines wrap
+% inside the box.  The only place the code font is used.
+\lstdefinestyle{ctpython}{language=Python,basicstyle=\ctcodefont\fontsize{8.5}{11}\selectfont,
+  numbers=left,numberstyle=\ctcodefont\fontsize{7}{11}\selectfont\color{mocha!70},
   numbersep=8pt,breaklines=true,breakatwhitespace=false,columns=fullflexible,keepspaces=true,
   showstringspaces=false,tabsize=4,frame=none,extendedchars=true,
   keywordstyle=\color{mochadeep}\bfseries,commentstyle=\color{mutedgray},
   stringstyle=\color{ink}}
-\newcommand*{\pythonbox}[1]{%
-  \tcbinputlisting{listing file={#1},listing only,enhanced,breakable,colback=ivory,
-    colframe=mochapale,boxrule=0.4pt,arc=0pt,left=22pt,right=6pt,top=6pt,bottom=6pt,
-    listing options={style=ctpython},before skip=10pt,after skip=10pt}}
+\define@key{ctpy}{first}{\def\ct@pyfirst{#1}}
+\define@key{ctpy}{last}{\def\ct@pylast{#1}}
+\newcommand*{\pythonbox}[2][]{%
+  \begingroup
+  \def\ct@pyfirst{1}\def\ct@pylast{100000}\setkeys{ctpy}{#1}%
+  \begin{otherlanguage}{english}% always left-to-right, even if called inside hebrewpage
+  \tcbinputlisting{listing file={#2},listing only,enhanced,breakable,colback=ivory,
+    colframe=mochapale,boxrule=0.4pt,arc=0pt,left=26pt,right=6pt,top=6pt,bottom=6pt,
+    listing options={style=ctpython,firstline=\ct@pyfirst,lastline=\ct@pylast,firstnumber=\ct@pyfirst},
+    before skip=10pt,after skip=10pt}%
+  \end{otherlanguage}%
+  \endgroup}
 
 %%% ================= v0.5: cover, banner, footer, matter ===================
 % Cover fields: main.tex sets these macros (NO ID numbers anywhere).
@@ -270,8 +279,7 @@
   \end{minipage}
   \clearpage
   \endgroup
-  \nopagecolor
-  \setcounter{page}{1}}
+  \nopagecolor}
 % banner (inset to the text block, no fill) and footer (hairline + page number), via the page style
 \setlength{\headheight}{18pt}
 \newcommand*{\ctbanner}{%
@@ -280,9 +288,9 @@
       \hspace{8pt}\raisebox{0.4ex}{\color{powderpink}\rule{1.1cm}{3pt}}\hfill
       {\color{mochadeep}\fontsize{7.5}{9}\selectfont\MakeUppercase{\leftmark}}}%
     \vskip 4pt
-    {\color{ink}\hrule width\textwidth height 0.5pt}\vss}}
+    {\color{mochadeep}\hrule width\textwidth height 0.5pt}\vss}}
 \newcommand*{\ctfooter}{%
-  \vbox{\hbox to \textwidth{\color{mochapale}\leaders\hrule height 0.4pt\hfill}\vskip 6pt
+  \vbox{\hbox to \textwidth{\color{mochadeep}\leaders\hrule height 0.4pt\hfill}\vskip 6pt
     \hbox to \textwidth{\hfil\fontsize{9}{11}\selectfont\color{ink}\thepage\hfil}}}
 \def\ps@closettwin{%
   \let\@mkboth\markboth
@@ -292,7 +300,7 @@
 \pagestyle{closettwin}
 % the Hebrew page sets the banner's chapter-name slot to its Hebrew title
 \renewenvironment{hebrewpage}[1][]
-  {\clearpage\markboth{#1}{#1}\begin{otherlanguage}{hebrew}\raggedleft\setlength{\parskip}{0.7em}}
+  {\clearpage\markboth{\fontsize{9.5}{9.5}\selectfont #1}{\fontsize{9.5}{9.5}\selectfont #1}\begin{otherlanguage}{hebrew}\raggedleft\setlength{\parskip}{0.7em}}
   {\end{otherlanguage}\clearpage}
 % every chapter flushes its floats first
 \preto\chapter{\FloatBarrier}

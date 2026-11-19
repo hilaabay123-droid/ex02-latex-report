@@ -106,7 +106,7 @@ plus our assumption) or **assumed**, and is labeled that way.*
 | Captions | Rubik, small | Label in mocha-deep (or ink bold), text in ink |
 | Hebrew (all) | Rubik | The Hebrew page is set ragged (no Hebrew hyphenation) |
 | Figure text | Rubik 8 pt at exactly 1:1 | Python figures have a fixed canvas = text width, so they are never scaled (RT-A8) |
-| Math | Rubik for letters and digits; **Latin Modern Math for symbols, inside formulas only (UD-3)**. Greek is kept rare | |
+| Math | **Latin Modern Math for everything inside a formula (letters, digits, symbols), formulas only (UD-3; uniform look, changed in CLS v0.7)**; `\text{}` words inside math stay Rubik. Greek is kept rare | |
 | Code | **JetBrains Mono**, small, in `pythonbox` only (UD-4) | Never in the body text, URLs or figures |
 
 ### 5.3 Layout and editorial devices (RT-A2, RT-F6)

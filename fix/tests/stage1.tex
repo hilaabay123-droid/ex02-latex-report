@@ -1,0 +1,20 @@
+\newcommand*{\ctfontdir}{../../fonts/}
+\documentclass{closettwin}
+\begin{document}
+\mainmatter
+\chapter{Stage 1: Skeleton}
+\section{English body and headings}
+Body text is Rubik, left-to-right, on a white page. Inline units stay together: \pct{30}, \usd{49.90}, \ils{49.90}. A formula uses Latin Modern Math for symbols only:
+\begin{equation}
+\mathrm{ROI}=\frac{G-C}{C}\times 100\%,\qquad \sum_{i=1}^{n} x_i^2 \le \alpha\beta
+\end{equation}
+\subsection{Safe language switching}
+English sentence, then a short Hebrew phrase \foreignlanguage{hebrew}{ארון בגדים וירטואלי} inside it, then English again.
+\section{Code font in the code box only}
+\pythonbox[first=1,last=4]{ex_ascii.py}
+\begin{hebrewpage}[תקציר מנהלים]
+\hebtitle{תקציר מנהלים}
+\hebsubtitle{ClosetTwin: חדר הלבשה וירטואלי}
+ClosetTwin מפחיתה החזרות ב-\pct{30} בשנת 2026, בעלות של \ils{49.90} להזמנה. הטקסט כולו ברוביק, מימין לשמאל.
+\end{hebrewpage}
+\end{document}

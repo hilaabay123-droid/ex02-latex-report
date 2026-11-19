@@ -1,0 +1,17 @@
+\newcommand*{\ctfontdir}{../../fonts/}
+\documentclass{closettwin}
+\begin{document}
+\mainmatter
+\chapter{Code box}
+Whole file:
+\pythonbox{ex.py}
+ASCII lines 2-5:
+\pythonbox[first=2,last=5]{ex_ascii.py}
+Non-ASCII file, lines 3-6:
+\pythonbox[first=3,last=6]{ex.py}
+\begin{hebrewpage}[בדיקה]
+\hebtitle{בדיקה}
+טקסט עברי ואחריו קוד:
+\pythonbox[first=4,last=5]{ex_ascii.py}
+\end{hebrewpage}
+\end{document}
