@@ -103,3 +103,5 @@ Check for every chapter: it compiles, it is within ±1 page of budget, every cla
 | T20.9 | QS1: `qa/skill-specs.md`, a spec for each of the 8 skills → input to T3.x | qa-se | 8 specs with commands and criteria IDs | ☑ |
 | T20.10 | QS2: 12 helper scripts in `qa/scripts/` (tested on t5 + planted defects) → fix-se copies them into the skills | qa-se | Each catches its planted defect | ◐ |
 | T20.11 | Re-check the Hebrew quotes in claim-trace §G (IL01–IL25) against the PDFs (they were transcribed from page images) and, if possible, open the gov.il PPA pages on Amendment 13/biometrics in a browser (the agents got HTTP 403) | user | Quotes confirmed | ☐ |
+
+- [ ] writer-se (when online): references.bib line ~393 has "(in Hebrew)" typed inside title: delete it and add `language = {hebrew}` (rule: PRD 5.x Bibliography, docs/cls-commands.md section 9). Check every other Hebrew-language source the same way (e.g. Amendment 13).

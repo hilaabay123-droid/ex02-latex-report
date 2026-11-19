@@ -20,7 +20,7 @@ Build from the project root (the fonts are loaded from `fonts/`).
 ## 2. Cover (`\ctmakecover`, stage 5)
 
 Fields (all optional, no ID-number field exists):
-`\cttitle` `\ctsubtitle` `\ctauthors` `\ctgroup` `\ctcourse` `\ctlecturer` `\ctdate`.
+`\cttitle` `\ctsubtitle` `\ctauthors` `\ctgroup` `\ctcourse` `\ctlecturer` `\ctdate`, plus `\ctdoctype{Business plan · 2026}` (small bold label at the top right of the cover; empty by default = no label).
 Labels: `\ctlabelauthors` `\ctlabelgroup` `\ctlabelcourse` `\ctlabellecturer` (English defaults, redefinable).
 
 ```latex
@@ -115,12 +115,32 @@ Formulas are Latin Modern Math only (letters, digits, `\mathrm`). Text-mode numb
 ...
 \ctreferences                       % where the list goes (unnumbered chapter "References")
 ```
+### Non-English (Hebrew) sources: no Hebrew script in the .bib
+
+IEEE practice: give the **English translation of the title** and mark the source as Hebrew with the `language` field.
+The class prints `(in Hebrew)` inside the closing quote of the title. Protect proper nouns with braces (the style lowercases the title).
+
+```bibtex
+@article{cohen2024,
+  author       = {Cohen, Dana and Levi, Yossi},
+  title        = {A test of a translated title for a {Hebrew}-language source},
+  journaltitle = {Journal of Examples},
+  year         = {2024},
+  volume       = {3},
+  number       = {2},
+  pages        = {10--20},
+  language     = {hebrew},   % prints: ... source (in Hebrew),"
+}
+```
+Result: `D. Cohen and Y. Levi, "A test of a translated title for a Hebrew-language source (in Hebrew)," Journal of Examples, vol. 3, no. 2, pp. 10-20, 2024.`
+Do NOT also write "(in Hebrew)" in the title text and never put Hebrew letters in any field. Transliterate author names and keep the original title only in the `note` field if you need it, in Latin letters.
+
 Cite with `\cite{key}`. Build: lualatex, biber, lualatex, lualatex.
 
 ### Typographic rules done by the class
 
 * After `Dr.`, `Prof.`, `Mr.`, `Mrs.`, `Ms.`, `Fig.`, `Eq.`, `Sec.`, `Ch.`, `Tab.`, `No.` the space is a no-break space (`Dr. Yoram` never stretches), in every `.tex` file.
-* References: digits are not grouped (`p. 100779`), page ranges never break, and Hebrew name parts and Hebrew titles are isolated runs (`\ctbidi{..}`), so punctuation and "and" keep the English order.
+* References: digits are not grouped (`p. 100779`) and page ranges never break. No Hebrew script is ever put in `references.bib` (see section 9).
 
 ## 10. Colours (single definitions, PRD 5.1)
 

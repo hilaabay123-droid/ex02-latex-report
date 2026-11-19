@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/19 v0.15 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/19 v0.16 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -298,6 +298,7 @@
 \newcommand*{\ctcourse}[1]{\gdef\ct@course{#1}}
 \newcommand*{\ctlecturer}[1]{\gdef\ct@lecturer{#1}}
 \newcommand*{\ctdate}[1]{\gdef\ct@date{#1}}
+\newcommand*{\ctdoctype}[1]{\gdef\ct@doctype{#1}}\ctdoctype{}% small label on the cover, e.g. "Business plan"
 \newcommand*{\ctbrand}[1]{\gdef\ct@brand{#1}}\ctbrand{ClosetTwin}% brand name (banner/footer/cover)
 \newcommand*{\ctbrandline}[1]{\gdef\ct@brandline{#1}}\ctbrandline{}% optional footer tagline
 % footer wording per language (override in main.tex if needed)
@@ -319,6 +320,9 @@
   \begin{tikzpicture}[overlay,x=1cm,y=1cm]
     % top strip
     \node[anchor=south west,inner sep=0,text=mochadeep] at (0,1.55) {\fontsize{7.5}{9}\selectfont\MakeUppercase{\ct@date}};
+    \ifx\ct@doctype\@empty\else
+      \node[anchor=south east,inner sep=0,text=mochadeep] at (15,1.55) {\fontsize{7.5}{9}\selectfont\bfseries\MakeUppercase{\ct@doctype}};
+    \fi
     \draw[line width=0.5pt,ink] (0,1.4) -- (15,1.4);
     % masthead: the title spans the full measure
     \node[anchor=north west,inner sep=0,text=ink] at (0,1.15) {\ctheadfont\bfseries\resizebox{15cm}{!}{\ct@title}};
@@ -400,24 +404,15 @@
 \renewcommand*{\bibfont}{\small}
 \renewcommand*{\mkonepagegrouped}[1]{#1}% IEEE style groups digits (100 779): switch it off
 \renewcommand*{\bibrangedash}{\nobreak\textendash\nobreak}% a page range never breaks
-% Hebrew runs are isolated (their own direction), so "and", commas and quotes stay outside the run
-\newcommand*{\ct@ifhebrew}[3]{\edef\ct@hebtmp{\directlua{local s=[==[\detokenize{#1}]==] local f=0 for _,c in utf8.codes(s) do if c>=0x590 and c<=0x5FF then f=1 break end end tex.sprint(f)}}%
-  \ifnum\ct@hebtmp=1 #2\else #3\fi}
-\newcommand*{\ctbidi}[1]{\ct@ifhebrew{#1}{\foreignlanguage{hebrew}{#1}}{#1}}
-\renewcommand*{\mkbibnamefamily}[1]{\ctbidi{#1}}
-\renewcommand*{\mkbibnamegiven}[1]{\ctbidi{#1}}
-\renewcommand*{\mkbibnameprefix}[1]{\ctbidi{#1}}
-\renewcommand*{\mkbibnamesuffix}[1]{\ctbidi{#1}}
-\DeclareSourcemap{\maps[datatype=bibtex]{\map[overwrite]{%
-  \step[fieldsource=title,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
-  \step[fieldsource=journaltitle,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
-  \step[fieldsource=booktitle,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
-  \step[fieldsource=publisher,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
-  \step[fieldsource=institution,match=\regexp{^(.*\p{Hebrew}.*)$},replace=\regexp{\\ctbidi\{$1\}}]
-}}}
-\setlength{\bibitemsep}{0.45em}\setlength{\bibhang}{1.9em}
-\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
-\renewcommand*{\bibnamedash}{\rule[0.5ex]{3em}{0.4pt}\space}
+% A non-English source: `language = {hebrew}` in the .bib prints "(in Hebrew)" inside the closing
+% quote of the translated English title (IEEE practice). No Hebrew script is ever in the .bib.
+\newcommand*{\ct@inlang}{}
+\newcommand*{\ct@uc}[1]{\MakeUppercase{#1}}
+\newcommand*{\ct@langitem}[1]{\ifstrequal{#1}{english}{}{\ifdefempty{\ct@inlang}{\gdef\ct@inlang{(in \expandafter\ct@uc#1)}}{}}}
+\DeclareListFormat{language}{\ct@langitem{#1}}% records the language, prints nothing
+\AtEveryBibitem{\gdef\ct@inlang{}\setbox0\hbox{\printlist{language}}\clearlist{language}}
+\DeclareFieldFormat[article,inproceedings,incollection,book,report,online,misc]{title}{%
+  \mkbibquote{#1\ifdefempty{\ct@inlang}{}{\space\ct@inlang}\isdot}}
 % \ctbibresource{references.bib} in the preamble, \ctreferences where the list goes
 \newcommand*{\ctbibresource}[1]{\addbibresource{#1}}
 \defbibheading{ctbib}[\bibname]{\ctunnumbered{#1}}
