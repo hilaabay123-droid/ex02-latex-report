@@ -75,3 +75,6 @@ Approved by master-se under the user's SPEED MODE instruction (`prompts/05-skill
 - **qa-se writes chapters 6-10** (`chapters/06-*.tex` … `10-*.tex`) under the same rules as writer-se (prose, `\cite{}` from `references.bib` only, money figures from `python/model.py`). Ownership of those files returns to writer-se afterwards. qa-se's detector role resumes in PART 3 (next session).
 - **fix-se creates and maintains `main.tex`** for the assembly (normally master-se). Ownership returns to master-se after the green build.
 - Max 1 review round per chapter; only real errors are fixed, not style. PART 3 (qa-super pass + qa-fixer) is postponed to the next session.
+
+## Decision D-2 (2026-11-20): chapter 8 may run 5 pages
+The red-team fixes (company sensitivity table, extrapolation disclosure, limits) lengthen ch. 8 to 5 pages against a budget of 3 (±1). Accepted by master-se: the total body is far above the 25-page minimum and the added content answers red-team points 1, 4 and 6. Condition: the Table 8.1 caption is shortened to 3 lines and no new white gaps are created. E-2 ended 2026-11-20: chapters 06-10 are writer-se's again.
