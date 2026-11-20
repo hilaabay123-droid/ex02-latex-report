@@ -69,3 +69,9 @@ Approved by master-se under the rule "if they conflict, master-se approves the e
 
 ## Decision D-1 (2026-11-19): no banner on chapter openers
 User decision during CLS stage 4: the top banner is hidden on chapter-opener pages (and the Hebrew opener) for a magazine look; the footer stays. PRD R-09 updated accordingly. Implemented in closettwin v0.13 (`plain` page style is footer-only).
+
+## Exception E-2 (2026-11-20): speed mode for prompt 05 (full draft)
+Approved by master-se under the user's SPEED MODE instruction (`prompts/05-skills-and-full-draft.md`), for this session only:
+- **qa-se writes chapters 6-10** (`chapters/06-*.tex` … `10-*.tex`) under the same rules as writer-se (prose, `\cite{}` from `references.bib` only, money figures from `python/model.py`). Ownership of those files returns to writer-se afterwards. qa-se's detector role resumes in PART 3 (next session).
+- **fix-se creates and maintains `main.tex`** for the assembly (normally master-se). Ownership returns to master-se after the green build.
+- Max 1 review round per chapter; only real errors are fixed, not style. PART 3 (qa-super pass + qa-fixer) is postponed to the next session.
