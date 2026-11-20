@@ -35,3 +35,6 @@ inline. master-se sends the findings to their owners. You do not message the own
 - Suggest a fix in the text for a recurring problem. Mark it recurring and leave the fix to fix-se.
 - Commit or push.
 - Mark a problem fixed without re-checking it in a fresh build.
+
+## Session exception E-2 (2026-11-20, master-se, see PLAN.md)
+For the prompt-05 speed-mode session only, you also write `chapters/06-*.tex` … `chapters/10-*.tex` under writer-se's rules. This is the only exception to "never edit outside qa/". It ends when master-se announces PART 3 (the QA pass); ownership of those files then returns to writer-se.
