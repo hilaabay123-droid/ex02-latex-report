@@ -1,0 +1,46 @@
+% main.tex -- ClosetTwin business plan (assignment 02). Build from the root:
+%   lualatex --disable-installer main ; biber main ; lualatex --disable-installer main (twice)
+% Assembled by fix-se under the exception recorded in PLAN.md (owner: master-se).
+\documentclass{closettwin}
+
+\ctbrand{ClosetTwin}
+\ctbibresource{references.bib}
+
+\cttitle{ClosetTwin}
+\ctsubtitle{An AI virtual fitting room for fashion e-commerce}
+\ctdoctype{Business plan · 2026}
+\ctauthors{Hila Abay, Shirel Giladi}
+\ctgroup{sg00ha11}
+\ctcourse{Generative AI for Management}
+\ctlecturer{Dr. Yoram Segal}
+\ctdate{November 2026}
+
+\begin{document}
+
+\frontmatter
+\ctmakecover
+\input{chapters/00-summary-he}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+\input{chapters/01-intro}
+\input{chapters/02-market}
+\input{chapters/03-competition}
+\input{chapters/04-product}
+\input{chapters/05-business-model}
+\input{chapters/06-gtm}
+\input{chapters/07-operations}
+\input{chapters/08-finance}
+\input{chapters/09-risks}
+\input{chapters/10-conclusion}
+
+\ctreferences
+
+\ctunnumbered{Appendix A: Code of the retailer-economics chart}
+\label{app:code}
+This appendix reproduces the Python script that draws Figure~\ref{fig:f6}, so the chart can be regenerated from the model outputs.
+\pythonbox{python/appendix_f6_code.py}
+
+\end{document}

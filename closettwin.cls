@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/19 v0.18 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/20 v0.19 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -77,12 +77,16 @@
 
 \AtBeginDocument{\frenchspacing}% equal word spaces: no extra space after a period ("Dr. Yoram")
 %%% ---------- no-break space after abbreviations: "Dr. X" never stretches ----
+% (v0.19) NO percent sign inside \directlua: TeX reads it as a comment and cuts the Lua code off
+% (the rule was silently dead before). The Lua pattern characters are built from string.char(37).
 \directlua{
+  local pc = string.char(37)
   local nb = "\string\u{A0}"
   local abbr = {"Dr","Prof","Mr","Mrs","Ms","Fig","Eq","Sec","Ch","Tab","No"}
   luatexbase.add_to_callback("process_input_buffer", function(line)
     for _, a in ipairs(abbr) do
-      line = line:gsub("%f[%a]" .. a .. "%. (%S)", a .. "." .. nb .. "%1")
+      local pat = pc .. "f[" .. pc .. "a]" .. a .. pc .. ". (" .. pc .. "S)"
+      line = line:gsub(pat, a .. "." .. nb .. pc .. "1")
     end
     return line
   end, "closettwin.abbreviation.tie")

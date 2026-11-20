@@ -1,0 +1,39 @@
+\chapter{Risks}\label{ch:risks}
+
+\section{The register}\label{sec:register}
+Six risks are rated for likelihood and impact on a scale of 1 to 5, and each has a mitigation (Figure~\ref{fig:f7}, Table~\ref{tab:risks}). All scores are \assumed{assumed} judgements.
+
+\begin{figure}[tbp]
+\centering
+\input{figures/f7-risk-matrix.tex}
+\caption{Risk matrix: likelihood against impact (scores assumed)}\label{fig:f7}
+\end{figure}
+
+\section{Israeli privacy law, with GDPR secondary}\label{sec:legal-risk}
+The primary legal risk is Israel's Privacy Protection Law as amended by Amendment 13, in force since 14 August 2025~\cite{il_amend13_2024}. A biometric identifier is data of special sensitivity when it is used or intended to identify a person~\cite{il_ppl_en}, and a database holding such data about more than 100,000 people triggers a duty to notify the Authority. The mitigation is design: ClosetTwin scans for fit and never for identification, collects the minimum, and runs a consent flow and a compliance milestone before any pilot data are collected. Three limits apply. Explicit consent is our design choice, since the law defines consent as explicit or implied. Whether body measurements count as health data is an open legal question, so we treat it as a design risk and draw no conclusion. And the Authority's data-minimization opinion is a 2021 draft~\cite{ppa_data_minimization2021}. Article 9 of the GDPR~\cite{gdpr2016} is secondary: it applies when Israeli sites sell to EU customers and in the Europe stage.
+
+\section{Null pilot effect and weak conversion}\label{sec:null-effect}
+A size tool can fail to cut returns. The largest study in our sources found users slightly more likely to return an item~\cite{patel2025}. The pilot gate of Chapter~\ref{ch:gtm} is the mitigation: no rollout without a pass. The assumed 50\% conversion of pilots to paying clients is the weakest link of the plan, and it is named here with this risk.
+
+\section{Accuracy at edge sizes}\label{sec:edge-sizes}
+A supervised size model reached 89.66\% accuracy on scan data but failed at edge sizes~\cite{alhassawi2025}. Rare-size shoppers therefore get a fallback to the retailer's size chart.
+
+\section{Platform risk, scan cost and slower Europe entry}\label{sec:platform-risk}
+Google offers free try-on~\cite{google2023tryon}, so a retailer may rely on the platform. Our answer, the combination of garment data and preference, is still a hypothesis. If a scan costs more than about \usd{0.1} to serve, the model fails, and one vendor's list price of about \usd{2.00} per scan~\cite{threedlook_pricing} is 67 times our assumed \usd{0.03}, so we need an in-house scan. Last, nearly all revenue depends on Europe entry, because Israel's fee pool is about \usd{198,000} a year. If entry is slower than planned, the funding ask rises.
+
+\begin{table}[tbp]
+\caption{Mitigations (likelihood, impact; assumed)}\label{tab:risks}
+\begin{tabularx}{\textwidth}{lRX}
+\toprule
+\ctheaderrow\cthead{Risk} & \cthead{L, I} & \cthead{Mitigation and trigger}\\
+\midrule
+Israeli privacy law (GDPR secondary) & 3, 4 & Scan for fit only; compliance milestone before pilot data\\
+Null pilot effect, weak conversion & 3, 5 & Pilot gate; stop if the pass line is missed\\
+Accuracy at edge sizes & 3, 3 & Fallback to size chart\\
+Platform risk (Google) & 3, 4 & Garment data and preference integration\\
+Scan unit cost above model & 2, 4 & In-house scan; stop above \usd{0.1} per scan\\
+Europe entry slower than plan & 3, 5 & Stage gate at the Israeli pilot result\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\ctchapterend

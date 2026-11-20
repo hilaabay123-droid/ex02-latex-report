@@ -1,0 +1,18 @@
+% F3: scan -> body model + garment specs + fit preference -> size -> retailer data flow.
+% No caption/label here: the chapter owns them (fig:f3).
+\begin{tikzpicture}[node distance=6mm and 9mm]
+  \node[ct node ivory,minimum width=30mm] (scan) {Shopper scan\\(phone photos)};
+  \node[ct node ivory,minimum width=30mm,below=of scan] (pref) {Fit preference\\(snug / loose)};
+  \node[ct node ivory,minimum width=30mm,below=of pref] (spec) {Garment specs\\(from retailer)};
+  \node[ct key,minimum width=26mm,right=14mm of pref] (model) {Body model\\+ fit engine};
+  \node[ct node pink,minimum width=22mm,right=10mm of model] (size) {Recommended\\size};
+  \node[ct node,minimum width=22mm,right=10mm of size] (shop) {Product page\\widget};
+  \node[ct node ivory,minimum width=30mm,below=12mm of size] (feed) {Retailer data feed\\(sizes, returns)};
+  \draw[ct arrow] (scan.east) -- ++(5mm,0) |- ([yshift=3mm]model.west);
+  \draw[ct arrow] (pref.east) -- (model.west);
+  \draw[ct arrow] (spec.east) -- ++(5mm,0) |- ([yshift=-3mm]model.west);
+  \draw[ct arrow] (model) -- (size);
+  \draw[ct arrow] (size) -- (shop);
+  \draw[ct arrow] (shop.south) |- (feed.east);
+  \draw[ct arrow,dashed] (feed.west) -| (spec.south);
+\end{tikzpicture}

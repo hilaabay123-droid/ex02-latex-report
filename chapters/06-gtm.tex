@@ -1,0 +1,44 @@
+\chapter{Go-to-Market}\label{ch:gtm}
+
+\section{Segments and channels}\label{sec:segments}
+ClosetTwin enters Israel first and sells directly to the 30 large and mid-size local fashion e-tailers (5 large and 25 mid-size, both counts \assumed{assumed}). The plan names no Israeli retailer, because we found no verified source that gives the online size of any Israeli fashion e-tailer. The low-touch route through an app store is weak in Israel. One third-party tracker counts about 4\% of \texttt{.il} shops on Shopify and flags its own page as low confidence~\cite{aguko_shopify_il}, and a Shopify Plus agency opened locally only in 2024~\cite{globes2024shopify}. We therefore reserve the Shopify App Store route~\cite{shopify_dev_build} for the Europe stage, which starts in year 4 and is entered first through Israeli retailers that already sell to the EU. The largest Israeli fashion sites are foreign~\cite{knesset_ric2025} and sit outside our addressable market.
+
+\section{The funnel}\label{sec:funnel}
+Table~\ref{tab:funnel} turns the assumptions into a year-by-year path. In Israel, 17 of the 30 candidates become pilots over five years (57\%), and about 6 are paying clients in year 5. Every conversion rate is \assumed{assumed}. Because the pool is small and the market is warm, we use contact-to-meeting 60\% and meeting-to-pilot 30\%, so 18\% of contacts become pilots. In Europe we use 30\% and 30\% (9\%). The sales team is never the bottleneck: contacts needed use at most 41\% of capacity, where capacity is 25\% of headcount times 12 contacts a week over 46 weeks. The weak link is not capacity but the pilot-to-paying conversion of 50\%, which stays untested until the first pilots finish.
+
+\begin{table}[tbp]
+\caption{Pilot and contact funnel, years 1--5 (all values derived from assumed rates; model output \texttt{funnel\_check\_out.csv})}\label{tab:funnel}
+\begin{tabularx}{\textwidth}{lRRRRR}
+\toprule
+\ctheaderrow\cthead{Year} & \cthead{Israeli pilots} & \cthead{European pilots} & \cthead{Contacts needed} & \cthead{Contact capacity} & \cthead{Capacity used}\\
+\midrule
+1 & 4 & 0 & 22 & 414 & \pct{5}\\
+2 & 4 & 0 & 22 & 552 & \pct{4}\\
+3 & 4 & 0 & 22 & 690 & \pct{3}\\
+4 & 3 & 36 & 417 & 1,242 & \pct{34}\\
+5 & 2 & 60 & 678 & 1,656 & \pct{41}\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{The pilot design}\label{sec:pilot-design}
+The claim to be tested is that a fit tool lowers the fit-related return rate, defined as orders with a size or fit return reason divided by orders. We randomize at shopper level, 50/50, and analyse by intention to treat (Table~\ref{tab:pilot}). With a significance level of 0.05 (two-sided) and 80\% power, a four-week pilot at a large Israeli retailer of 600,000 orders a year detects a relative reduction of about \derived{7.8\%}. At a European retailer of one million orders a year the figure is \derived{6.1\%}. The pass line is a 10\% reduction with a 95\% interval above zero, set above the retailer's break-even effect of 4.5\% to 6.0\% (Chapter~\ref{ch:finance}). A mid-size Israeli retailer of 100,000 orders a year could detect only about \derived{19\%}. Mid-size pilots therefore count as pooled evidence, and only large-retailer pilots are individual tests. The need for such a test is real: the largest study in our sources found that shoppers using a size finder were slightly more likely to return an item~\cite{patel2025}. If a retailer cannot randomize, a matched before-and-after comparison is the fallback, and we label it weaker evidence. Israeli pilots come from warm design-partner contacts and start only after the privacy compliance milestone of Chapter~\ref{ch:ops}.
+
+\begin{table}[tbp]
+\caption{Pilot design (all design choices are assumed; sample sizes are derived)}\label{tab:pilot}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\ctheaderrow\cthead{Item} & \cthead{Choice}\\
+\midrule
+Metric & Fit-related return rate: orders with a size or fit return reason $\div$ orders\\
+Design & Shopper-level 50/50 randomization, intention to treat\\
+Duration & 4 weeks of sales plus a 30-day return window\\
+Sample & At least 12,000 orders per arm (twice the derived minimum)\\
+Pass line & Relative reduction $\geq$ \pct{10}, 95\% interval above zero\\
+Fail rule & Stop and do not scale\\
+Evidence class & Large retailers: individual tests; mid-size: pooled only\\
+Fallback & Matched before-and-after comparison, labeled weaker evidence\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\ctchapterend
