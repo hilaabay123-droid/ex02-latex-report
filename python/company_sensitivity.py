@@ -64,7 +64,7 @@ def scenario(name):
 
 
 SCEN = [("base", "Base case"),
-        ("pilot", r"Pilot-to-paying 35\%"),
+        ("pilot", r"Pilot conv. 35\%"),
         ("orders", r"Orders 500\,k"),
         ("lowtouch", r"Low-touch 250\,k"),
         ("late", "Europe +1 yr"),

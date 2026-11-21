@@ -18,3 +18,11 @@ fix/tests/*.pdf
 fix/tests/o*.txt
 __pycache__/
 writer/tmp/
+# Agent scratch folders
+qa/tmp/
+qa/build/
+qa/b4out*/
+fix/bld/
+art/test/
+fix/tests/*.png
+fix/tests/*.pn
