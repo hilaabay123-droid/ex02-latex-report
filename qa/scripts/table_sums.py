@@ -72,9 +72,9 @@ def main():
                     rows.append((rule, cells))
             start = 1  # skip header row
             for ri, (rule, cells) in enumerate(rows):
-                if rule:
-                    start = ri
                 first = clean(cells[0]).strip().lower()
+                if rule and not re.match(r"^(sub)?total\b|^sum\b", first):
+                    start = ri
                 if re.match(r"^(sub)?total\b|^sum\b", first):
                     ntotal += 1
                     for ci in range(1, len(cells)):

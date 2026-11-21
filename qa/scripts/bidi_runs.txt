@@ -1,10 +1,14 @@
 # bidi_runs.txt: the Latin/number runs that the Hebrew executive-summary page must contain (criterion B11).
 # Format:  run | reverse1,reverse2      (the page must contain `run` as a whole word, and none of the reverses)
 # Lines starting with # are comments. Edit this list when the Hebrew text is final.
+# Updated 2026-11-20 (qa-se) to the rewritten page: TAM/SAM/SOM are no longer on it.
 ClosetTwin | niwTtesolC
-TAM | MAT
-SAM | MAS
-SOM | MOS
 B2B | B2B
 AI | IA
+Appriss | ssirppA
+NRF | FRN
+Coresight | thgisoreC
+IMARC | CRAMI
+GDPR | RPDG
+Shopify | yfipohS
 2026 | 6202

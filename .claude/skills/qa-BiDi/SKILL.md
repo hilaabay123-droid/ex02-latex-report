@@ -1,7 +1,7 @@
 ---
 name: qa-BiDi
 description: Detector (report-only) for Hebrew/English direction: reversed runs, bullets/numbers on the wrong side, punctuation and parentheses at run boundaries, missing glyphs, wrong fonts on the Hebrew page. Use after a build, or when asked to check Hebrew/RTL.
-version: 1.0
+version: 1.1
 ---
 
 # qa-BiDi
@@ -47,3 +47,7 @@ Recurring-prone: B2-B5, B7, B9 (direction/spacing/glyph classes belong to the CL
 
 ## Success check
 Criteria B1-B11, C4, D2, D3, D5 each pass, fail or are skipped with a reason; one summary line `checked n, pass p, fail f, skipped s`.
+
+## New checks (v1.1, from incident 02)
+7. **Margins on every page:** scan all pages (not only the Hebrew page) for words outside the text block; digit-only words at x below the left margin are "stray numbers" (the TOC chapter-number case). Report page, x and text.
+8. **Hebrew ranges:** a range like `2024-2024` (same value twice) or `2024-2026` read right to left on the Hebrew page is a finding (content: writer-se; the `\range` macro is the CLS tool).

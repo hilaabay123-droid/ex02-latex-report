@@ -19,6 +19,8 @@ import textwrap
 
 ROOT = os.getcwd()
 SCRIPTS = os.path.join("qa", "scripts")
+FAKE9 = "".join(["000", "000", "000"])  # fake ID pattern built at run time: no nine-digit literal in the repository
+FAKEG = "-".join(["000"] * 3)
 PL = os.path.join("qa", "tmp", "planted")
 
 PRE = r"""\documentclass[a4paper,11pt]{article}
@@ -104,7 +106,7 @@ def main():
               + "Almost nothing.\\newpage\n"
               + "\\noindent\\mbox{" + "W" * 70 + "}\\par\\noindent\\hbox to 10cm{a b}\\par\n\\newpage\n"
               + "{\\codefont print('hello')}\\par " + FILL)
-        build("idpdf", FILL + "\\par Reference number 123456780 appears here.")
+        build("idpdf", FILL + "\\par Reference number " + FAKE9 + " appears here.")
         build("chap30", "\n".join("{\\headfont\\bfseries\\Large Chapter page %d}\\par\\medskip\n%s\n%s\n%s\\newpage" % (i, FILL, FILL, FILL) for i in range(1, 31)))
 
     # ---------------------------------------------------------------- hebrew_pages / bidi_bbox_check
@@ -271,26 +273,26 @@ def main():
         fh.write("Course: Generative AI for Management (875523402)\nlecturer: Dr. Yoram Segal\nsha256 123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0\nprice USD 320000000\n")
     expect("id_scan: sound tree (course code, hash, money) -> no finding", script("id_scan.py", "--root", tree), must=[r"findings=0"], rc=0)
     with open(os.path.join(tree, "team.md"), "w", encoding="utf-8") as fh:
-        fh.write("Hila ID: 123456780\nbackup 987-654-321\n")
+        fh.write("Hila ID: " + FAKE9 + "\nbackup " + FAKEG + "\n")
     expect("id_scan: planted 9-digit and grouped ID in a file -> C6, digits masked", script("id_scan.py", "--root", tree),
-           must=[r"C6\b", r"team\.md:1\s+12\*{7}", r"team\.md:2\s+98\*{7}"], must_not=[r"123456780", r"987654321"], rc=1)
+           must=[r"C6\b", r"team\.md:1\s+00\*{7}", r"team\.md:2\s+00\*{7}"], must_not=[FAKE9], rc=1)
     os.makedirs(tree + "_none", exist_ok=True)
     expect("id_scan: planted 9-digit number in the PDF text -> C6", script("id_scan.py", "--root", tree + "_none", "--pdf", os.path.join(PL, "idpdf.pdf")),
-           must=[r"PDF page 1", r"12\*{7}"], must_not=[r"123456780"], rc=1)
+           must=[r"PDF page 1", r"00\*{7}"], must_not=[FAKE9], rc=1)
     repo = os.path.join(a.scratch, "qa_idscan_history_repo")
     shutil.rmtree(repo, ignore_errors=True)
     os.makedirs(repo)
     g = lambda *args: sh(["git", "-C", repo, "-c", "user.name=qa-selftest", "-c", "user.email=qa@example.invalid", *args])
     g("init", "-q")
     with open(os.path.join(repo, "notes.md"), "w", encoding="utf-8") as fh:
-        fh.write("student 123456780\n")
+        fh.write("student " + FAKE9 + "\n")
     g("add", "notes.md")
     g("commit", "-q", "-m", "add")
     with open(os.path.join(repo, "notes.md"), "w", encoding="utf-8") as fh:
         fh.write("cleaned\n")
     g("commit", "-q", "-am", "remove")
     expect("id_scan: ID deleted from the tree but still in git history -> clean tree, C6 from --history",
-           script("id_scan.py", "--root", repo, "--history"), must=[r"git HISTORY", r"commit [0-9a-f]+ notes\.md\s+12\*{7}"], must_not=[r"repository files", r"123456780"], rc=1)
+           script("id_scan.py", "--root", repo, "--history"), must=[r"git HISTORY", r"commit [0-9a-f]+ notes\.md\s+00\*{7}"], must_not=[r"repository files", FAKE9], rc=1)
     shutil.rmtree(repo, ignore_errors=True)
 
     # ---------------------------------------------------------------- summary

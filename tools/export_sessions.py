@@ -11,6 +11,7 @@ addresses are redacted. Run from anywhere:  python tools/export_sessions.py
 import json
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,6 +36,14 @@ def redact(s: str) -> str:
     return s
 
 
+def local_ts(z: str) -> str:
+    """ISO UTC timestamp -> local time 'YYYY-MM-DD HH:MM:SS'."""
+    try:
+        return datetime.fromisoformat(z.replace("Z", "+00:00")).astimezone().strftime("%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        return z[:19].replace("T", " ")
+
+
 def texts(content):
     """Yield text parts of a message content (str or list of blocks)."""
     if isinstance(content, str):
@@ -57,7 +66,7 @@ def export(path: Path):
             agent = r.get("agentName") or r.get("customTitle")
         if t not in ("user", "assistant") or r.get("isSidechain") or r.get("isMeta"):
             continue
-        ts = (r.get("timestamp") or "")[:19].replace("T", " ")
+        ts = local_ts(r.get("timestamp") or "")
         msg = r.get("message", {})
         for tx in texts(msg.get("content", "")):
             tx = SYS_TAG.sub("", tx).strip()

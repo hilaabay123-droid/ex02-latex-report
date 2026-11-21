@@ -207,3 +207,7 @@ I did not use a secondary summary as a primary legal text. Request: someone open
 - Salesforce Commerce Cloud integration source: not checked.
 - SOM, team, roadmap, cloud/GPU cost: our own assumptions (no source).
 - McKinsey State of Fashion, Statista: still excluded.
+
+## Undated web pages (master-se decision, 2026-11-20)
+
+Live vendor and official web pages that carry no publication date (truefit_web, fitanalytics_web, threedlook_web, boldmetrics_web, mysize_web, threedlook_pricing, popsize_shopify, shopify_dev_build, il_ppl_en, il_cpfta_guide) stay without a year or date field in references.bib. The IEEE accessed-date-only form ("Accessed: Nov. 18, 2026", from urldate) is accepted for them, and qa-infra R6 treats it as passing. Never invent a year. Where a page states its own date (for example aguko_shopify_il, 2026-11-15) the date field is filled.

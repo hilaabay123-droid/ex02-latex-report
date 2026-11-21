@@ -150,7 +150,7 @@ def main():
                   recurring="yes", owner="fix-se", places=[label])
         # D6 palette
         frac, worst = unexplained_fraction(img)
-        rep.check("D6", frac <= 0.002, sev="major", where=label,
+        rep.check("D6", frac <= 0.0001, sev="major", where=label,
                   what="%.2f%% of the pixels are not palette colours or blends of two palette colours" % (frac * 100),
                   evidence="most common off-palette colours: %s" % ", ".join(worst), recurring="yes",
                   owner="fix-se (CLS colours, hyperref) / art-se (figures)", places=[label])

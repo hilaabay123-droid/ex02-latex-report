@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/20 v0.19 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/20 v0.23 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -55,12 +55,12 @@
   BoldItalicFont=Rubik-BoldItalic,Numbers=Lining]
 % Playfair Display (English headings only; it has NO Hebrew glyphs)
 \newfontfamily\ctheadfont{PlayfairDisplay-Regular}[BoldFont=PlayfairDisplay-Bold,
-  ItalicFont=PlayfairDisplay-Italic,BoldItalicFont=PlayfairDisplay-BoldItalic,Numbers=Lining]
+  ItalicFont=PlayfairDisplay-Italic,BoldItalicFont=PlayfairDisplay-BoldItalic,Numbers=Lining,Ligatures=TeX]
 % Rubik Medium for emphasis
-\newfontfamily\ctmediumfont{Rubik-Medium}
+\newfontfamily\ctmediumfont{Rubik-Medium}[Ligatures=TeX]
 % Code font: only inside pythonbox (see S2.4)
 \newfontfamily\ctcodefont{JetBrainsMono-Regular}[BoldFont=JetBrainsMono-Bold,
-  ItalicFont=JetBrainsMono-Italic,BoldItalicFont=JetBrainsMono-BoldItalic,Scale=0.85]
+  ItalicFont=JetBrainsMono-Italic,BoldItalicFont=JetBrainsMono-BoldItalic,Scale=0.85,RawFeature={-tlig;-liga;-calt}]
 
 %%% ---------- maths: Latin Modern Math only inside formulas ---
 \RequirePackage{amsmath}
@@ -68,6 +68,17 @@
 \setmathfont{latinmodern-math.otf}[Path={},Extension={}]
 % (v0.7) math is uniformly Latin Modern Math (letters, digits, \mathrm). Text-mode \pct etc. stay Rubik.
 \AddToHook{begindocument/end}{\let\mathrm\symup \let\mathbf\symbfup \let\mathit\symit}
+
+% (v0.20) digits inside INLINE math ($r=24.4\%$ in a sentence) are set in the text font (Rubik) like every
+% other number in the prose; displayed equations stay Latin Modern Math (v0.7). Each digit is an active
+% math character that sets itself with \text. \everymath is not used by displays.
+\newcommand*{\ct@mdig}[1]{{\text{#1}}}% a braced group: valid after _ and ^ too
+\begingroup\catcode`\~=13
+\def\ct@defdig#1{\lccode`\~=`#1 \lowercase{\gdef~}{\ct@mdig{#1}}}
+\ct@defdig0\ct@defdig1\ct@defdig2\ct@defdig3\ct@defdig4\ct@defdig5\ct@defdig6\ct@defdig7\ct@defdig8\ct@defdig9
+\endgroup
+\def\ct@digsactive{\@tempcnta=48 \@whilenum\@tempcnta<58 \do{\mathcode\@tempcnta="8000 \advance\@tempcnta\@ne}}
+\AtBeginDocument{\everymath\expandafter{\the\everymath\ct@digsactive}}
 
 %%% ---------- typography --------------------------------------------------
 \DeclareTextComposite{\c}{TU}{T}{"0162}\DeclareTextComposite{\c}{TU}{t}{"0163}
@@ -125,10 +136,10 @@
 \newcommand*{\ctchapterhead}[1]{%
   {\color{mocha}\ctheadfont\fontsize{54}{54}\selectfont\thechapter\par}\vspace{0.35em}%
   {\color{mocha}\rule{3cm}{0.6pt}\par}\vspace{0.9em}%
-  {\ctheadfont\bfseries\fontsize{28}{34}\selectfont\raggedright #1\par}}
+  {\noindent\ctheadfont\bfseries\fontsize{28}{34}\selectfont\raggedright #1\par}}% \noindent: the title starts exactly under the rule (v0.20)
 \newcommand*{\ctchapterheadstar}[1]{{\color{mocha}\ctheadfont\fontsize{54}{54}\selectfont\phantom{0}\par}\vspace{0.35em}%
   {\color{mocha}\rule{3cm}{0.6pt}\par}\vspace{0.9em}%
-  {\ctheadfont\bfseries\fontsize{28}{34}\selectfont\raggedright #1\par}}
+  {\noindent\ctheadfont\bfseries\fontsize{28}{34}\selectfont\raggedright #1\par}}
 \titleformat{\chapter}[block]{}{}{0pt}{\ctchapterhead}
 \titleformat{name=\chapter,numberless}[block]{}{}{0pt}{\ctchapterheadstar}
 \titlespacing*{\chapter}{0pt}{1.6cm}{1.4cm}
@@ -140,17 +151,24 @@
 \titlespacing*{\subsection}{0pt}{1.6ex plus 0.4ex minus 0.2ex}{0.5ex plus 0.1ex}
 % banner/running-head chapter name (also for unnumbered chapters)
 \renewcommand*{\chaptermark}[1]{\markboth{#1}{#1}}
+% (v0.23) compact heading for an appendix that must share its page with its content (no 54pt number line,
+% 22pt title, short top space): rule + title + intro + code fit on ONE page. In the contents like \ctunnumbered.
+\newcommand*{\ctappendix}[1]{\clearpage\FloatBarrier\phantomsection\markboth{#1}{#1}%
+  \addcontentsline{toc}{chapter}{#1}\thispagestyle{plain}%
+  \vspace*{1.2cm}{\color{mocha}\rule{3cm}{0.6pt}\par}\vspace{0.7em}%
+  {\noindent\ctheadfont\bfseries\fontsize{22}{26}\selectfont\raggedright #1\par}\vspace{1em}}
 \newcommand*{\ctunnumbered}[1]{\chapter*{#1}\markboth{#1}{#1}%
   \addcontentsline{toc}{chapter}{#1}}
 % table of contents and lists
 \renewcommand*{\contentsname}{Contents}
 \renewcommand*{\listfigurename}{List of figures}
 \renewcommand*{\listtablename}{List of tables}
-\titlecontents{chapter}[0pt]{\addvspace{0.9em}\bfseries}
+% (v0.20) chapter numbers of the contents sit INSIDE the text block (they hung 24pt into the left margin: the 'stray 1,2,3')
+\titlecontents{chapter}[2.2em]{\addvspace{0.9em}\bfseries}
   {\color{mochadeep}\contentslabel{2.2em}}{\hspace*{-2.2em}}
   {\hfill\contentspage}[\addvspace{0.1em}]
 \titlecontents{section}[2.2em]{\small}
-  {\contentslabel{2.4em}}{\hspace*{-2.4em}}
+  {\contentslabel{2.2em}}{\hspace*{-2.2em}}
   {\titlerule*[5pt]{\color{mochapale}.}\contentspage}
 \titlecontents{figure}[0pt]{\small}
   {\makebox[2.6em][l]{\thecontentslabel}}{\hspace*{-2.6em}}
@@ -158,9 +176,10 @@
 \titlecontents{table}[0pt]{\small}
   {\makebox[2.6em][l]{\thecontentslabel}}{\hspace*{-2.6em}}
   {\titlerule*[5pt]{\color{mochapale}.}\contentspage}
-\renewcommand*{\tableofcontents}{\ctunnumberednotoc{\contentsname}\@starttoc{toc}\clearpage}
-\renewcommand*{\listoffigures}{\ctunnumberednotoc{\listfigurename}\@starttoc{lof}\clearpage}
-\renewcommand*{\listoftables}{\ctunnumberednotoc{\listtablename}\@starttoc{lot}\clearpage}
+% (v0.20) the plain babel-english names: \contentsname is wrapped by babel's ensure and shifted the title 6.5pt right
+\renewcommand*{\tableofcontents}{\ctunnumberednotoc{\englishcontentsname}\@starttoc{toc}\clearpage}
+\renewcommand*{\listoffigures}{\ctunnumberednotoc{\englishlistfigurename}\@starttoc{lof}\clearpage}
+\renewcommand*{\listoftables}{\ctunnumberednotoc{\englishlisttablename}\@starttoc{lot}\clearpage}
 \newcommand*{\ctunnumberednotoc}[1]{\chapter*{#1}\markboth{#1}{#1}}
 % lists
 \RequirePackage{enumitem}
@@ -178,6 +197,36 @@
 \setlength{\tabcolsep}{6pt}
 % right-aligned numeric column and header row (ivory fill)
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+% (v0.23) a table with ONE wide label column and n numeric columns: \ctnumcols{n}, then columns W (label,
+% weight 1.6) and V (numbers, right-aligned, weight (n+1-1.6)/n so the weights add up to n+1 as tabularx needs):
+%   \ctnumcols{4}\begin{tabularx}{\textwidth}{WVVVV} ... \end{tabularx}
+\newcommand*{\ct@v}{0.85}
+\newcommand*{\ctnumcols}[1]{\edef\ct@v{\strip@pt\dimexpr(#1pt+1pt-1.6pt)/#1\relax}}
+\newcolumntype{W}{>{\hsize=1.6\hsize\raggedright\arraybackslash}X}
+\newcolumntype{V}{>{\hsize=\ct@v\hsize\raggedleft\arraybackslash}X}
+% (v0.20) text columns of a tabularx are ragged right: never justified, so no stretched spaces in a narrow cell
+\renewcommand*{\tabularxcolumn}[1]{>{\raggedright\arraybackslash}p{#1}}
+% (v0.20) the list-of-tables/figures entry of a caption without a short form stops before the first "(":
+% remarks in brackets (file names, model notes) never reach the lists. \caption[short]{long} still wins.
+% (v0.23) cut in Lua (no percent sign, hash or backslash-backslash inside \directlua): the entry stops before the first
+% '(' or ':' or '$', so brackets, sub-titles and formulas never reach the lists
+\directlua{
+  function ct_capcut(s)
+    local cut = string.len(s) + 1
+    for _, d in ipairs({"(", ":", "$"}) do
+      local i = string.find(s, d, 1, true)
+      if i and i > 1 and i < cut then cut = i end
+    end
+    local r = string.sub(s, 1, cut - 1)
+    while string.sub(r, -1) == " " do r = string.sub(r, 1, -2) end
+    tex.sprint(r)
+  end
+}
+\newcommand*{\ct@capcut}[1]{\directlua{ct_capcut("\luaescapestring{\detokenize{#1}}")}}
+\AddToHook{begindocument/end}{\let\ct@origcaption\caption
+\RenewDocumentCommand{\caption}{s o m}{%
+  \IfBooleanTF{#1}{\ct@origcaption*{#3}}{%
+    \IfNoValueTF{#2}{\ct@origcaption[\ct@capcut{#3}]{#3}}{\ct@origcaption[#2]{#3}}}}}
 \newcommand*{\ctheaderrow}{\rowcolor{ivory}}% band overhangs by \tabcolsep: write columns WITHOUT @{} and it ends exactly at the rules
 \newcommand*{\cthead}[1]{\textbf{#1}}
 % captions: label in mocha-deep bold, text ink; table caption above, figure caption below
@@ -196,11 +245,24 @@
 \newdimen\ctboxsep \ctboxsep=14pt% ONE gap token: floats and boxes
 \setlength{\textfloatsep}{\ctboxsep plus 2pt minus 2pt}\setlength{\floatsep}{\ctboxsep plus 2pt minus 2pt}
 \setlength{\intextsep}{\ctboxsep plus 2pt minus 2pt}
+% (v0.22) figures are centred by the class (authors no longer write \centering)
+\AtBeginEnvironment{figure}{\centering}
+% (v0.22) \texttt prints in Latin Modern Mono, a font outside the palette: it is set in the text font and
+% a class warning "closettwin: \texttt used" is written for every use (qa-code greps the log for it)
+\AddToHook{begindocument/end}{\renewcommand*{\texttt}[1]{\ClassWarning{closettwin}{\string\texttt\space used in the text: set in the text font; remove it}#1}}
 % assumption tags: S = sourced, D = derived, A = assumed (PRD RT-W8/RT-Q6)
 \newcommand*{\ct@tag}[1]{\textsuperscript{\color{mochadeep}\bfseries\scriptsize #1}}
-\newcommand*{\sourced}[1]{#1\ct@tag{S}}
-\newcommand*{\derived}[1]{#1\ct@tag{D}}
-\newcommand*{\assumed}[1]{#1\ct@tag{A}}
+% (v0.20) inside a formula the value is set in the TEXT font (\text), never in math digits; and the
+% first tagged number of the document carries the legend as a footnote (only in running text:
+% a footnote is impossible inside a table, caption, box or formula, so the legend waits for the next use).
+\newif\ifct@legendshown
+\def\ct@docenv{document}
+\newcommand*{\ct@val}[1]{\ifmmode\text{#1}\else#1\fi}
+\newcommand*{\ct@firstlegend}{\ifct@legendshown\else\ifmmode\else\ifx\@currenvir\ct@docenv
+  \global\ct@legendshowntrue\footnote{\ctlegend}\fi\fi\fi}
+\newcommand*{\sourced}[1]{\ct@val{#1}\ct@tag{S}\ct@firstlegend}
+\newcommand*{\derived}[1]{\ct@val{#1}\ct@tag{D}\ct@firstlegend}
+\newcommand*{\assumed}[1]{\ct@val{#1}\ct@tag{A}\ct@firstlegend}
 \newcommand*{\assumption}[1]{\assumed{#1}}
 \newcommand*{\ctlegend}{{\small\color{mutedgray}\textsuperscript{S} sourced \quad
   \textsuperscript{D} derived \quad \textsuperscript{A} assumption}}
@@ -299,7 +361,7 @@
 \define@key{ctpy}{last}{\def\ct@pylast{#1}}
 % number of lines of the box = min(last, file length) - first + 1; a box of at most
 % \ct@pysplitmax lines is never split across pages, a longer one (Appendix A) may break.
-\newcommand*{\ct@pysplitmax}{15}
+\newcommand*{\ct@pysplitmax}{45}% (v0.20) was 15: the 41-line Appendix A box is never split (3 lines alone on a page)
 \newcommand*{\pythonbox}[2][]{%
   \begingroup
   \def\ct@pyfirst{1}\def\ct@pylast{100000}\setkeys{ctpy}{#1}%
@@ -307,15 +369,42 @@
   \ifnum\ct@pylast>\ct@pytotal\relax\edef\ct@pylast{\ct@pytotal}\fi
   \edef\ct@pylong{\directlua{local n=0 local i=0 for l in io.lines("\luaescapestring{#2}") do i=i+1 if i>=\ct@pyfirst\space and i<=\ct@pylast\space and utf8.len(l)>80 then n=n+1 end end tex.sprint(n)}}%
   \ifnum\ct@pylong>0\ClassWarningNoLine{closettwin}{pythonbox: \ct@pylong\space line(s) of #2 are longer than 80 characters and will wrap (marked with a backslash)}\fi
-  \ifnum\numexpr\ct@pylast-\ct@pyfirst+1\relax>\ct@pysplitmax\relax
-    \def\ct@pybreak{breakable}\else\def\ct@pybreak{unbreakable}\fi
   \selectlanguage{english}% always left-to-right, even if called inside hebrewpage
   \ctkeepprev% after the language switch: a whatsit between the penalty and the box would allow a break
-  \tcbinputlisting{listing file={#2},listing only,enhanced,\ct@pybreak,colback=ivory,
-    colframe=mochapale,boxrule=0.4pt,arc=0pt,left=24pt,right=4pt,top=6pt,bottom=6pt,
-    listing options={style=ctpython,firstline=\ct@pyfirst,lastline=\ct@pylast,firstnumber=\ct@pyfirst},
-    before skip=0pt,after skip=0pt}%
+  % (v0.21) split plan: a box that does not fit the rest of the page is cut ONCE, at the last line that
+  % fits, with at least \ct@pyminfrag lines on each side; if that is impossible it moves whole.
+  \ct@pyn=\numexpr\ct@pylast-\ct@pyfirst+1\relax
+  \ct@pysplitat=0
+  \ifdim\pagegoal<\maxdimen
+    \ct@pyfit=\numexpr\dimexpr\pagegoal-\pagetotal-19pt\relax/\dimexpr12.5pt\relax\relax
+    \ifnum\ct@pyfit<\ct@pyn
+      \ifnum\ct@pyn<\numexpr2*\ct@pyminfrag\relax\else
+        \ifnum\ct@pyfit>\numexpr\ct@pyn-\ct@pyminfrag\relax\ct@pyfit=\numexpr\ct@pyn-\ct@pyminfrag\relax\fi
+        \ifnum\ct@pyfit<\ct@pyminfrag\else\ct@pysplitat=\ct@pyfit\fi
+      \fi
+    \fi
+  \fi
+  \ifnum\ct@pysplitat>0
+    \ct@pya=\ct@pyfirst\relax \ct@pyb=\numexpr\ct@pyfirst+\ct@pysplitat-1\relax
+    \ct@pybox{#2}%
+    \par\penalty0
+    \ct@pya=\numexpr\ct@pyfirst+\ct@pysplitat\relax \ct@pyb=\ct@pylast\relax
+    \ct@pybox{#2}%
+  \else
+    \ct@pya=\ct@pyfirst\relax \ct@pyb=\ct@pylast\relax
+    \ct@pybox{#2}%
+  \fi
   \endgroup\ct@boxafter}
+\newcount\ct@pyn \newcount\ct@pyfit \newcount\ct@pysplitat \newcount\ct@pya \newcount\ct@pyb
+\newcommand*{\ct@pyminfrag}{8}
+% one box with lines \ct@pya..\ct@pyb of the file; unbreakable up to \ct@pysplitmax lines
+\newcommand*{\ct@pybox}[1]{%
+  \ifnum\numexpr\ct@pyb-\ct@pya+1\relax>\ct@pysplitmax\relax
+    \def\ct@pybreak{breakable}\else\def\ct@pybreak{unbreakable}\fi
+  \tcbinputlisting{listing file={#1},listing only,enhanced,\ct@pybreak,colback=ivory,
+    colframe=mochapale,boxrule=0.4pt,arc=0pt,left=24pt,right=4pt,top=6pt,bottom=6pt,
+    listing options={style=ctpython,firstline=\the\ct@pya,lastline=\the\ct@pyb,firstnumber=\the\ct@pya},
+    before skip=0pt,after skip=0pt}}
 
 %%% ================= v0.5: cover, banner, footer, matter ===================
 % Cover fields: main.tex sets these macros (NO ID numbers anywhere).
@@ -453,7 +542,10 @@
 \DeclareFieldFormat[article,inproceedings,incollection,book,report,online,misc]{title}{%
   \mkbibquote{#1\ifdefempty{\ct@inlang}{}{\space\ct@inlang}\isdot}}
 % \ctbibresource{references.bib} in the preamble, \ctreferences where the list goes
-\newcommand*{\ctbibresource}[1]{\addbibresource{#1}}
+\newcommand*{\ctbibresource}[1]{\def\ct@bibset{}\addbibresource{#1}}
+% (v0.22) a document that never calls \ctbibresource (scratch/test builds) used to end with the LuaTeX fatal
+% "cannot find file ''" (biblatex without any resource); it now defaults to the project's references.bib
+\AtEndPreamble{\ifdefined\ct@bibset\else\addbibresource{references.bib}\fi}
 \defbibheading{ctbib}[\bibname]{\ctunnumbered{#1}}
 \newcommand*{\ctreferences}{\printbibliography[heading=ctbib,title={References}]}
 % hyperref last: palette colours only, no boxes

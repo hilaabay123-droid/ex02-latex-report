@@ -1,7 +1,7 @@
 ---
 name: qa-typeset
 description: Detector (report-only) for compilation warnings and pagination: overfull/underfull boxes over 1 pt, undefined refs, page count and budget, orphan headings, short pages, margins, banner/footer. Use after a build.
-version: 1.0
+version: 1.2
 ---
 
 # qa-typeset
@@ -49,3 +49,13 @@ Recurring-prone: BU5, L1, L2, L3, L4, L7, L9. Two overfull boxes of one kind (lo
 
 ## Success check
 BU2-BU10, L1-L9, D1, D17, C2, C3, C5 each pass, fail or are skipped with reason; page budget table printed; the overfull table is complete, not only failures.
+
+## New checks (v1.1, from incidents 01, 02, 06, 08, 09, 10)
+9. **Literal hyphens (incident 01):** `pdftotext main.pdf - | grep -n -- '--'` must be empty outside the code-box pages. Also `---`.
+10. **White space per page (incident 08):** with PyMuPDF find the lowest text/figure y on each page; if the gap above the footer is over 25% of the text height and the page is not a chapter's last page or the conclusion, report it, naming the float that starts the next page.
+11. **Words outside the margins / stray numbers (incident 02):** `page.get_text('words')` on every page; any word with xMin below the left margin (3.0 cm) or xMax beyond the right margin is a finding; digit-only words there are reported as "stray numbers" with page and x.
+12. **Number font in running text (incident 06, decision of master-se 2026-11-20 on F-fonts-01):** `page.get_text('dict')` spans: DIGITS in running text and in inline math must always be Rubik. Latin Modern Math is allowed for inline math SYMBOLS (rho, varphi, operators) and for displayed equations; a Latin Modern Math span that contains a digit outside an `eq:` display is a finding.
+13. **Cover text (incident 09):** the cover must contain `Generative AI for Management (875523402)`, `Dr. Yoram Segal` and `BUSINESS PLAN`; any other 9-digit number is a blocker (rule C6).
+14. **Opener alignment (incident 10):** on every chapter-opener and Contents/List page the x of the mocha rule and of the first title glyph differ by at most 2 pt.
+15. **Legend (incident 07):** the first page with a tag superscript must carry the legend words "sourced", "derived", "assumption".
+16. **Page holding only a heading (incident 05):** a page whose only text is a chapter title is reported (a box that did not fit under the opener).

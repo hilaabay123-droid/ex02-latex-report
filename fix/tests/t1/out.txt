@@ -1,0 +1,27 @@
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12)
+ restricted system commands enabled.
+(./a.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+
+! Text line contains an invalid character.
+l.2 ^^H
+     egin{document}
+
+! LaTeX Error: File `closettwin.cls' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: cls)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.2 ^^He
+      gin{document}
+ 301 words of node memory still in use:
+   1 hlist, 1 dir, 3 kern, 1 glyph, 1 attribute, 39 glue_spec, 1 attribute_list
+ nodes
+   avail lists: 2:10,3:3,4:1
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on a.log.

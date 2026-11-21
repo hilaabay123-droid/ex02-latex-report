@@ -1,0 +1,20 @@
+ref/
+# LaTeX build artifacts (main.pdf itself IS committed at submission)
+*.aux
+*.log
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.toc
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+# Throwaway test output
+fix/tests/*.pdf
+fix/tests/o*.txt
+__pycache__/
+writer/tmp/

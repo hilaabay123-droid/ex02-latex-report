@@ -3,8 +3,23 @@
 \section{The register}\label{sec:register}
 Six risks are rated for likelihood and impact on a scale of 1 to 5, and each has a mitigation (Figure~\ref{fig:f7}, Table~\ref{tab:risks}). All scores are \assumed{assumed} judgements.
 
+\begin{table}[tbp]
+\caption{Mitigations (likelihood, impact; assumed)}\label{tab:risks}
+\begin{tabularx}{\textwidth}{XRX}
+\toprule
+\ctheaderrow\cthead{Risk} & \cthead{L, I} & \cthead{Mitigation and trigger}\\
+\midrule
+Israeli privacy law (GDPR secondary) & 3, 4 & Scan for fit only; compliance milestone before pilot data\\
+Null pilot effect, weak conversion & 3, 5 & Pilot gate; stop if the pass line is missed\\
+Accuracy at edge sizes & 3, 3 & Fallback to size chart\\
+Platform risk (Google) & 3, 4 & Garment data and preference integration\\
+Scan unit cost above model & 2, 4 & In-house scan; stop above \usd{0.1} per scan\\
+Europe entry slower than plan & 3, 5 & Stage gate at the Israeli pilot result\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \begin{figure}[tbp]
-\centering
 \input{figures/f7-risk-matrix.tex}
 \caption{Risk matrix: likelihood against impact (scores assumed)}\label{fig:f7}
 \end{figure}
@@ -19,21 +34,9 @@ A size tool can fail to cut returns. The largest study in our sources found user
 A supervised size model reached 89.66\% accuracy on scan data but failed at edge sizes~\cite{alhassawi2025}. Rare-size shoppers therefore get a fallback to the retailer's size chart.
 
 \section{Platform risk, scan cost and slower Europe entry}\label{sec:platform-risk}
-Google offers free try-on~\cite{google2023tryon}, so a retailer may rely on the platform. Our answer, the combination of garment data and preference, is still a hypothesis. If a scan costs more than about \usd{0.1} to serve, the model fails, and one vendor's list price of about \usd{2.00} per scan~\cite{threedlook_pricing} is 67 times our assumed \usd{0.03}, so we need an in-house scan. Last, nearly all revenue depends on Europe entry, because Israel's fee pool is about \usd{198,000} a year. If entry is slower than planned, the funding ask rises.
+Google announced in 2023 a generative try-on model~\cite{google2023tryon}, so a retailer may rely on the platform. Our answer, the combination of garment data and preference, is still a hypothesis. If a scan costs more than about \usd{0.1} to serve, the model fails, and the public price lists of one scan vendor~\cite{threedlook_pricing} range from \usd{1.50} per extra request (FitXpress Pro tier, a health and fitness scan) to about \usd{2.00} per scan (Mobile Tailor Premium tier, \usd{999} for 500 scans, a made-to-measure product). That is \derived{50 to 67 times} our assumed \usd{0.03}, so we need an in-house scan, and the \usd{0.03} itself has no engineering benchmark yet. Last, nearly all revenue depends on Europe entry, because Israel's fee pool is about \usd{198,000} a year. If entry is slower than planned, the funding ask rises.
 
-\begin{table}[tbp]
-\caption{Mitigations (likelihood, impact; assumed)}\label{tab:risks}
-\begin{tabularx}{\textwidth}{lRX}
-\toprule
-\ctheaderrow\cthead{Risk} & \cthead{L, I} & \cthead{Mitigation and trigger}\\
-\midrule
-Israeli privacy law (GDPR secondary) & 3, 4 & Scan for fit only; compliance milestone before pilot data\\
-Null pilot effect, weak conversion & 3, 5 & Pilot gate; stop if the pass line is missed\\
-Accuracy at edge sizes & 3, 3 & Fallback to size chart\\
-Platform risk (Google) & 3, 4 & Garment data and preference integration\\
-Scan unit cost above model & 2, 4 & In-house scan; stop above \usd{0.1} per scan\\
-Europe entry slower than plan & 3, 5 & Stage gate at the Israeli pilot result\\
-\bottomrule
-\end{tabularx}
-\end{table}
+\section{Limits of the register}\label{sec:limits}
+The register covers the risks we could name, but the cost base is incomplete. The model has payroll, cost to serve and pilot costs, and it omits marketing and customer acquisition, cloud base cost, legal and compliance review, travel and general administration. Adding them would raise the funding ask, and we did not add them because we have no sourced numbers. The model also has no churn. The deficit and the ask in Chapter~\ref{ch:finance} are therefore lower bounds.
+
 \ctchapterend

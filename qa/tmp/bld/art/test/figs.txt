@@ -1,0 +1,6 @@
+\begin{figure}\centering\input{figures/f1-market}\end{figure}
+\begin{figure}\centering\input{figures/f3-dataflow}\end{figure}
+\begin{figure}\centering\input{figures/f4-roadmap}\end{figure}
+\begin{figure}\centering\input{figures/f7-risk-matrix}\end{figure}
+\begin{figure}\centering\includegraphics[width=\textwidth]{figures/f2-positioning.pdf}\end{figure}
+\begin{figure}\centering\includegraphics[width=\textwidth]{figures/f5-projection.pdf}\end{figure}

@@ -1,0 +1,21 @@
+% F7: risk heat matrix, likelihood x impact (1-5). Scores are assumed (assumptions.csv A29).
+% No caption/label here: the chapter owns them (fig:f7). Numbers follow the row order of tab:risks:
+% 1 privacy (L3,I4)  2 null effect (3,5)  3 edge sizes (3,3)  4 platform (3,4)  5 scan cost (2,4)  6 Europe (3,5)
+\begin{tikzpicture}[x=1cm,y=0.8cm]
+  \foreach \l in {1,...,5}{ \foreach \i in {1,...,5}{
+    \pgfmathtruncatemacro{\s}{\l*\i}
+    \pgfmathtruncatemacro{\c}{\s<=4 ? 1 : (\s<=8 ? 2 : (\s<=12 ? 3 : (\s<=16 ? 4 : 5)))}
+    \node[ct cell \c,minimum width=1.4cm,minimum height=0.8cm,anchor=south west,inner sep=0pt] at (\i*1.4-1.4,\l*0.8-0.8) {};
+  }}
+  \foreach \i in {1,...,5}{ \node[ct label] at (\i*1.4-0.7,-0.35) {\i}; \node[ct label,anchor=east] at (-0.05,\i*0.8-0.4) {\i}; }
+  \node[ct label] at (3.5,-1) {Impact};
+  \node[ct label,rotate=90] at (-0.8,2) {Likelihood};
+  \tikzset{rk/.style={circle,fill=white,draw=ink,minimum size=5mm,inner sep=0pt,font=\ctsmallfont\bfseries}}
+  % cell centres: impact i at x=1.4 i-0.7, likelihood l at y=0.8 l-0.4
+  \node[rk] at (3.5,2.0) {3};
+  \node[rk] at (4.62,2.0) {1}; \node[rk] at (5.18,2.0) {4};
+  \node[rk] at (6.02,2.0) {2}; \node[rk] at (6.58,2.0) {6};
+  \node[rk] at (4.9,1.2) {5};
+  \node[ct label,anchor=west,align=left] at (8,2)
+    {1~Israeli privacy law\\2~Null pilot effect\\3~Edge sizes\\4~Platform (Google)\\5~Scan unit cost\\6~Europe entry slower};
+\end{tikzpicture}

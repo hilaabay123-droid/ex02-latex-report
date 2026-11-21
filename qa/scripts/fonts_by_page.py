@@ -87,6 +87,24 @@ def main():
     rep.note("JetBrains Mono on PDF pages: %s" % (seen["code"] or "none"))
     if have_formula:
         stray = [p for p in seen["math"] if p not in formula]
+        # amended 2026-11-20 (master-se): inline math SYMBOLS are allowed outside formulas; digits and prose are not.
+        # With PyMuPDF, keep only pages where an LM Math span holds a digit or 4+ letters.
+        try:
+            import fitz
+            doc = fitz.open(a.pdf)
+            bad = []
+            for p in stray:
+                for b in doc[p - 1].get_text("dict")["blocks"]:
+                    for l in b.get("lines", []):
+                        for sp in l["spans"]:
+                            if "Math" in sp["font"] and (re.search(r"\d", sp["text"]) or re.search(r"[A-Za-z]{4,}", sp["text"])):
+                                bad.append(p)
+            ok_pages = [p for p in stray if p not in bad]
+            if ok_pages:
+                rep.note("LM Math on PDF pages %s is inline symbols only (allowed since the R-06 amendment)" % ok_pages)
+            stray = sorted(set(bad))
+        except ImportError:
+            rep.note("PyMuPDF missing: LM Math pages without a formula are reported, symbols not separated")
         rep.check("D11", not stray, sev="major", where=rep.where(page=stray[0] if stray else None, front=a.front),
                   what="Latin Modern Math appears on page(s) without a formula",
                   evidence="LM Math pages %s, formula pages %s" % (seen["math"], sorted(formula)), recurring="yes",

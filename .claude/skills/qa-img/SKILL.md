@@ -1,7 +1,7 @@
 ---
 name: qa-img
 description: Detector (report-only) for figures: file exists, caption/label/reference, 1:1 width, fonts, palette, contrast and grayscale, no overlap, honest against the data. Use after a build or when asked to check figures or graphs.
-version: 1.0
+version: 1.1
 ---
 
 # qa-img
@@ -50,3 +50,6 @@ Recurring-prone: I3, I4, I5, I7, I8, I12, I13. A defect in `ct_style.py` is recu
 
 ## Success check
 I1-I14, D6, D9, D12, D16, D18 (figure parts) each pass, fail or are skipped with a reason; the inventory has one row per figure in the PDF.
+
+## New checks (v1.1)
+10. **Figure and table in the lists:** every figure caption in `main.lof` has no underscore, file name or bracketed note (same rule as qa-table 9).

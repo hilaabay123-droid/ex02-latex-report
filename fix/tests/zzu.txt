@@ -1,0 +1,375 @@
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12)
+ restricted system commands enabled.
+(./zz_u.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+ (./closettwin.cls
+Document Class: closettwin 2026/11/20 v0.22 ClosetTwin report class
+("C:/Program Files/MiKTeX/tex/generic/iftex/iftex.sty")
+("C:/Program Files/MiKTeX/tex/latex/base/book.cls"
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+("C:/Program Files/MiKTeX/tex/latex/base/bk11.clo"))
+("C:/Program Files/MiKTeX/tex/latex/geometry/geometry.sty"
+("C:/Program Files/MiKTeX/tex/latex/graphics/keyval.sty")
+("C:/Program Files/MiKTeX/tex/generic/iftex/ifvtex.sty")
+("C:/Program Files/MiKTeX/tex/latex/geometry/geometry.cfg"))
+("C:/Program Files/MiKTeX/tex/latex/xcolor/xcolor.sty"
+("C:/Program Files/MiKTeX/tex/latex/graphics-cfg/color.cfg")
+("C:/Program Files/MiKTeX/tex/latex/graphics-def/luatex.def")
+("C:/Program Files/MiKTeX/tex/latex/graphics/mathcolor.ltx"))
+("C:/Program Files/MiKTeX/tex/generic/babel/babel.sty"
+("C:/Program Files/MiKTeX/tex/generic/babel/luababel.def")
+("C:/Program Files/MiKTeX/tex/generic/babel/luababel.def"
+("C:/Program Files/MiKTeX/tex/luatex/luatexbase/luatexbase.sty"
+("C:/Program Files/MiKTeX/tex/luatex/ctablestack/ctablestack.sty")))
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:/Program Files/MiKTeX/tex/latex/arabi/bblopts.cfg")
+("C:/Program Files/MiKTeX/tex/generic/babel/locale/en/babel-english.tex")
+("C:/Program Files/MiKTeX/tex/latex/babel-english/english.ldf"))
+("C:/Program Files/MiKTeX/tex/generic/babel/locale/en/babel-english.tex")
+("C:/Program Files/MiKTeX/tex/generic/babel/locale/he/babel-hebrew.tex")
+("C:/Program Files/MiKTeX/tex/generic/babel/locale/he/babel-hebrew.tex")
+("C:/Program Files/MiKTeX/tex/generic/babel/babel-ca-hebrew.tex")
+("C:/Program Files/MiKTeX/tex/latex/fontspec/fontspec.sty"
+("C:/Program Files/MiKTeX/tex/latex/l3packages/xparse/xparse.sty"
+("C:/Program Files/MiKTeX/tex/latex/l3kernel/expl3.sty"
+("C:/Program Files/MiKTeX/tex/latex/l3backend/l3backend-luatex.def")))
+("C:/Program Files/MiKTeX/tex/latex/fontspec/fontspec-luatex.sty"
+("C:/Program Files/MiKTeX/tex/latex/base/fontenc.sty")
+("C:/Program Files/MiKTeX/tex/latex/fontspec/fontspec.cfg")))
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amsmath.sty"
+For additional information on amsmath, use the `?' option.
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amstext.sty"
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amsgen.sty"))
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amsbsy.sty")
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amsopn.sty"))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/unicode-math/unicode-math.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/unicode-math/unicode-math-luat
+ex.sty ("C:/Program Files/MiKTeX/tex/latex/l3packages/l3keys2e/l3keys2e.sty")
+("C:/Program Files/MiKTeX/tex/latex/base/fix-cm.sty"
+("C:/Program Files/MiKTeX/tex/latex/base/ts1enc.def"))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/lualatex/lualatex-math/lualatex-math
+.sty ("C:/Program Files/MiKTeX/tex/latex/etoolbox/etoolbox.sty"))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/unicode-math/unicode-math-tabl
+e.tex)))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/microtype/microtype.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/microtype/microtype-luatex.def
+) (C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/microtype/microtype.cfg))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/csquotes/csquotes.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/csquotes/csquotes.def)
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/csquotes/csquotes.cfg))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/titlesec/titlesec.sty)
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/titlesec/titletoc.sty)
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/enumitem/enumitem.sty)
+("C:/Program Files/MiKTeX/tex/latex/tools/array.sty")
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/colortbl/colortbl.sty)
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/booktabs/booktabs.sty)
+("C:/Program Files/MiKTeX/tex/latex/tools/tabularx.sty")
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/caption/caption.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/caption/caption3.sty))
+("C:/Program Files/MiKTeX/tex/latex/placeins/placeins.sty")
+("C:/Program Files/MiKTeX/tex/latex/pgf/frontendlayer/tikz.sty"
+("C:/Program Files/MiKTeX/tex/latex/pgf/basiclayer/pgf.sty"
+("C:/Program Files/MiKTeX/tex/latex/pgf/utilities/pgfrcs.sty"
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfutil-common.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfutil-latex.def")
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfrcs.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/pgf.revision.tex")))
+("C:/Program Files/MiKTeX/tex/latex/pgf/basiclayer/pgfcore.sty"
+("C:/Program Files/MiKTeX/tex/latex/graphics/graphicx.sty"
+("C:/Program Files/MiKTeX/tex/latex/graphics/graphics.sty"
+("C:/Program Files/MiKTeX/tex/latex/graphics/trig.sty")
+("C:/Program Files/MiKTeX/tex/latex/graphics-cfg/graphics.cfg")))
+("C:/Program Files/MiKTeX/tex/latex/pgf/systemlayer/pgfsys.sty"
+("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsys.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfkeys.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code
+.tex")) ("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgf.cfg")
+("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsys-luatex.def"
+("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def")))
+ ("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex"
+) ("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+")) ("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcore.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmath.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathutil.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathparser.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex"
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.trigonometric.c
+ode.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.random.code.tex
+")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.comparison.code
+.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.base.code.tex")
+ ("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.round.code.tex
+") ("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.misc.code.te
+x")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.integerarithmet
+ics.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathcalc.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfloat.code.tex"))
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfint.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.
+tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex"
+) ("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex")
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.t
+ex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoretransformations.cod
+e.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorequick.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code
+.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex")
+ ("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoretransparency.code.t
+ex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex")
+ ("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex")))
+("C:/Program Files/MiKTeX/tex/generic/pgf/modules/pgfmoduleshapes.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/modules/pgfmoduleplot.code.tex")
+("C:/Program Files/MiKTeX/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty"
+) ("C:/Program Files/MiKTeX/tex/latex/pgf/compatibility/pgfcomp-version-1-18.st
+y")) ("C:/Program Files/MiKTeX/tex/latex/pgf/utilities/pgffor.sty"
+("C:/Program Files/MiKTeX/tex/latex/pgf/utilities/pgfkeys.sty"
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfkeys.code.tex"))
+("C:/Program Files/MiKTeX/tex/latex/pgf/math/pgfmath.sty"
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmath.code.tex"))
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgffor.code.tex"))
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/libraries/pgflibraryplothandlers.code
+.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/modules/pgfmodulematrix.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+arytopaths.code.tex")))
+("C:/Program Files/MiKTeX/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.
+tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+arypositioning.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+arycalc.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+aryshapes.geometric.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geo
+metric.code.tex"))
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+aryfit.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+arybackgrounds.code.tex")
+("C:/Program Files/MiKTeX/tex/latex/xkeyval/xkeyval.sty"
+("C:/Program Files/MiKTeX/tex/generic/xkeyval/xkeyval.tex"
+("C:/Program Files/MiKTeX/tex/generic/xkeyval/xkvutils.tex")))
+("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcolorbox.sty"
+("C:/Program Files/MiKTeX/tex/latex/tools/verbatim.sty")
+("C:/Program Files/MiKTeX/tex/latex/environ/environ.sty"
+("C:/Program Files/MiKTeX/tex/latex/trimspaces/trimspaces.sty"))
+("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbraster.code.tex"
+Library (tcolorbox): 'tcbraster.code.tex' version '6.9.0'
+) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbskins.code.tex"
+Library (tcolorbox): 'tcbskins.code.tex' version '6.9.0'
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/tikzfill/tikzfill.image.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/tikzfill/tikzlibraryfill.image
+.code.tex))
+("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex"
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.9.0'
+)) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbbreakable.code.tex"
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.9.0'
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/pdfcol/pdfcol.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/ltxcmds/ltxcmds.sty)
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/infwarerr/infwarerr.sty))
+("C:/Program Files/MiKTeX/tex/generic/iftex/ifluatex.sty"))
+("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbhooks.code.tex"
+Library (tcolorbox): 'tcbhooks.code.tex' version '6.9.0'
+) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbtheorems.code.tex"
+Library (tcolorbox): 'tcbtheorems.code.tex' version '6.9.0'
+) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbfitting.code.tex"
+Library (tcolorbox): 'tcbfitting.code.tex' version '6.9.0'
+) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcblistingsutf8.code.tex"
+Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.9.0'
+("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcblistings.code.tex"
+Library (tcolorbox): 'tcblistings.code.tex' version '6.9.0'
+("C:/Program Files/MiKTeX/tex/latex/listings/listings.sty"
+("C:/Program Files/MiKTeX/tex/latex/listings/lstpatch.sty")
+("C:/Program Files/MiKTeX/tex/latex/listings/lstmisc.sty")
+("C:/Program Files/MiKTeX/tex/latex/listings/listings.cfg"))
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcblistingscore.code.tex"
+Library (tcolorbox): 'tcblistingscore.code.tex' version '6.9.0'
+("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbprocessing.code.tex"
+Library (tcolorbox): 'tcbprocessing.code.tex' version '6.9.0'
+)))) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbexternal.code.tex"
+Library (tcolorbox): 'tcbexternal.code.tex' version '6.9.0'
+) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbmagazine.code.tex"
+Library (tcolorbox): 'tcbmagazine.code.tex' version '6.9.0'
+) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbvignette.code.tex"
+Library (tcolorbox): 'tcbvignette.code.tex' version '6.9.0'
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+aryfadings.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/libraries/pgflibraryfadings.code.tex"
+))) ("C:/Program Files/MiKTeX/tex/latex/tcolorbox/tcbposter.code.tex"
+Library (tcolorbox): 'tcbposter.code.tex' version '6.9.0'
+)) ("C:/Program Files/MiKTeX/tex/latex/biblatex/biblatex.sty"
+("C:/Program Files/MiKTeX/tex/generic/pdftexcmds/pdftexcmds.sty")
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/kvoptions/kvoptions.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/kvsetkeys/kvsetkeys.sty))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/logreq/logreq.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/logreq/logreq.def))
+("C:/Program Files/MiKTeX/tex/latex/base/ifthen.sty")
+("C:/Program Files/MiKTeX/tex/latex/url/url.sty")
+("C:/Program Files/MiKTeX/tex/latex/biblatex/blx-dm.def")
+("C:/Program Files/MiKTeX/tex/latex/biblatex/blx-unicode.def")
+("C:/Program Files/MiKTeX/tex/latex/biblatex/blx-compat.def")
+("C:/Program Files/MiKTeX/tex/latex/biblatex/biblatex.def")
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/biblatex-ieee/ieee.bbx
+("C:/Program Files/MiKTeX/tex/latex/biblatex/bbx/numeric-comp.bbx"
+("C:/Program Files/MiKTeX/tex/latex/biblatex/bbx/numeric.bbx"
+("C:/Program Files/MiKTeX/tex/latex/biblatex/bbx/standard.bbx"))))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/biblatex-ieee/ieee.cbx
+("C:/Program Files/MiKTeX/tex/latex/biblatex/cbx/numeric-verb.cbx"))
+("C:/Program Files/MiKTeX/tex/latex/biblatex/biblatex.cfg")
+("C:/Program Files/MiKTeX/tex/latex/biblatex/blx-case-expl3.sty"))
+("C:/Program Files/MiKTeX/tex/latex/hyperref/hyperref.sty"
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/kvdefinekeys/kvdefinekeys.st
+y) (C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/pdfescape/pdfescape.sty)
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/hycolor/hycolor.sty)
+("C:/Program Files/MiKTeX/tex/latex/hyperref/nameref.sty"
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/refcount/refcount.sty)
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/gettitlestring/gettitlestrin
+g.sty))
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/stringenc/stringenc.sty)
+("C:/Program Files/MiKTeX/tex/latex/hyperref/pd1enc.def")
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/intcalc/intcalc.sty)
+("C:/Program Files/MiKTeX/tex/latex/hyperref/puenc.def")
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/bitset/bitset.sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/bigintcalc/bigintcalc.sty)))
+("C:/Program Files/MiKTeX/tex/latex/hyperref/hluatex.def"
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.
+sty
+(C:/Users/hilaa/AppData/Roaming/MiKTeX/tex/generic/uniquecounter/uniquecounter.
+sty))))
+No file zz_u.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+("C:/Program Files/MiKTeX/tex/context/base/mkii/supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+) ("C:/Program Files/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty"
+("C:/Program Files/MiKTeX/tex/latex/00miktex/epstopdf-sys.cfg"))
+
+Package babel Info: The following font families will use the default
+(babel)             settings for all or some languages:
+(babel)             * \sffamily = lmss
+(babel)               [lmsans12-regular]:+tlig; at 11.0pt
+(babel)             * \ttfamily = lmtt
+(babel)               [lmmono12-regular]: at 11.0pt
+(babel)             There is nothing intrinsically wrong with it, but
+(babel)             'babel' will no set Script and Language, which could
+(babel)             be relevant in some languages. If your document uses
+(babel)             these families, consider redefining them with \babelfont.
+(babel)             Reported on input line 2.
+
+("C:/Program Files/MiKTeX/tex/latex/biblatex/lbx/english.lbx")
+No file zz_u.bbl.
+\bbl@ensure@english {Chapter} 1.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 15.
+See the caption package documentation for explanation.
+
+! Misplaced \noalign.
+\midrule ->\noalign 
+                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
+
+l.15 \end
+         {table}
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.15 \end
+         {table}
+! Misplaced \noalign.
+\bottomrule ->\noalign 
+                       {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global...
+
+l.15 \end
+         {table}
+! Misplaced \noalign.
+\midrule ->\noalign 
+                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
+
+l.15 \end
+         {table}
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.15 \end
+         {table}
+! Misplaced \noalign.
+\bottomrule ->\noalign 
+                       {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global...
+
+l.15 \end
+         {table}
+! Misplaced \noalign.
+\midrule ->\noalign 
+                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
+
+l.15 \end
+         {table}
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.15 \end
+         {table}
+! Misplaced \noalign.
+\bottomrule ->\noalign 
+                       {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global...
+
+l.15 \end
+         {table}
+
+LaTeX Warning: Reference `LastPage' on page 1 undefined on input line 17.
+
+[1{C:/Users/hilaa/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+(./zz_u.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `zz_u.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                zz_u
+(biblatex)                and rerun LaTeX afterwards.
+
+)
+(see the transcript file for additional information)
+ 1773 words of node memory still in use:
+   30 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 248 attribute, 69 glue_
+spec, 117 attribute_list, 3 write, 24 pdf_literal, 24 pdf_colorstack nodes
+   avail lists: 1:2,2:1133,3:112,4:114,5:93,6:42,7:553,8:3,9:264,10:3,11:12
+<./fonts/Rubik-Bold.ttf><./fonts/Rubik-Regular.ttf><./fonts/PlayfairDisplay-Bol
+d.ttf><./fonts/PlayfairDisplay-Regular.ttf>
+Output written on zz_u.pdf (1 page, 38307 bytes).
+Transcript written on zz_u.log.

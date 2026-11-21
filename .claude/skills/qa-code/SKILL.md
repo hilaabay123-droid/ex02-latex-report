@@ -1,7 +1,7 @@
 ---
 name: qa-code
 description: Detector (report-only) for the code appendix and Python scripts: one pythonbox, margin, LTR, code equals the real file, JetBrains Mono only there, every script runs clean and reproduces its figure. Use after a build or when asked to check code.
-version: 1.0
+version: 1.2
 ---
 
 # qa-code
@@ -49,3 +49,9 @@ Recurring-prone: K3, K1/K2 (the `pythonbox` macro: owner fix-se). The same fallb
 
 ## Success check
 K1-K5, I8, FS4 each pass, fail or are skipped with a reason; the script table lists every file in `python/`.
+
+## New checks (v1.1, from incidents 03, 05)
+9. **Split code box (incident 05):** if the box is on two pages, each fragment must have at least 8 lines; a box under 46 lines must not be split.
+10. **Math font rule (decision 2026-11-20, F-fonts-01):** Latin Modern Math is allowed for inline math symbols and displayed equations; digits are never math font (qa-typeset 12). `fonts_by_page.py` therefore must not flag Latin Modern Math on a page for symbols alone.
+11. **`\texttt` warning (v0.22):** `grep -c "texttt used in the text" main.log` must be 0; each hit is a finding for the chapter owner.
+12. **Any monospace font outside the appendix (incident 03):** `\texttt` in a caption or text prints Latin Modern Mono; `fonts_by_page.py` must show no mono font except JetBrains Mono on appendix pages (a finding names the page and the source line).

@@ -1,0 +1,1249 @@
+NOVEMBER 2026
+
+BUSINESS PLAN · 2026
+
+ClosetTwin
+
+An AI virtual fitting room for fashion e-commerce
+
+AUTHORS
+Hila Abay, Shirel Giladi
+
+GROUP
+sg00ha11
+
+COURSE
+Generative AI for Management (875523402)
+
+LECTURER
+Dr. Yoram Segal
+
+‫תקציר מנהלים‬
+‫‪ :ClosetTwin‬חדר הלבשה וירטואלי מבוסס ‪AI‬‬
+‫‪ ClosetTwin‬היא חברת ‪ B2B‬שמציעה לאתרי אופנה חדר הלבשה וירטואלי מבוסס ‪ :AI‬סריקת גוף‬ ‫מהטלפון‪ ,‬מידות הבגד ונטיית ההתאמה של הקונה מתחברות להמלצה על מידה‪ .‬החזרות עולות‬ ‫לקמעונאים בארצות הברית בין ‪ 685‬ל‪ 890-‬מיליארד דולר ב‪ ,2024-‬לפי שתי הערכות שונות‬ ‫(‪ Appriss‬ו‪ .)NRF-‬בסקר של ‪ Coresight‬הוחזרו ‪ 24.4%‬מההזמנות המקוונות של ביגוד‪ ,‬ו‪53%-‬‬
+‫מהמשיבים ציינו מידה והתאמה כסיבה המרכזית‪ .‬במחקר על קמעונאית נעליים אחת עלות ההחזרות‬ ‫היא כ‪ 17%-‬מעלות הרכישה לכל זוג שנמכר‪ ,‬ולכן עלות החזרה בודדת גבוהה יותר‪ .‬המודל משתמש‬ ‫ב‪ 6.80-‬דולר להחזרה כחסם תחתון שמרני‪.‬‬
+‫המסחר המקוון בישראל מוערך ב‪ 6.9-‬מיליארד דולר ב‪ ,2024-‬ואופנה היא הקטגוריה הגדולה בו‪.‬‬ ‫השוק הישראלי קטן‪ :‬סך דמי השימוש האפשריים אצל קמעונאים מקומיים הוא כ‪ 0.2-‬מיליון דולר בשנה‪,‬‬
+‫ולכן ישראל היא שוק הוכחה ואירופה‪ ,‬מהשנה הרביעית‪ ,‬נושאת את ההכנסות‪ .‬הערכת שוק חדרי‬ ‫ההלבשה הווירטואליים של ‪ IMARC‬היא הקשר בלבד‪ ,‬ללא שיטה פומבית‪.‬‬
+‫המחיר המוערך הוא ‪ 0.036‬דולר להזמנה (כ‪ 0.13-‬ש״ח)‪ .‬הטענה המרכזית היא השערה‪ ,‬ולא עובדה‪.‬‬ ‫פיילוט אקראי של ‪ 4‬שבועות אצל קמעונאי ישראלי גדול מסוגל לזהות הפחתה יחסית של כ‪7.8%-‬‬
+‫בשיעור ההחזרות הקשורות להתאמה‪ ,‬ולא ירידה כזו בהחזרות בכלל‪ .‬כלל הפרטיות העיקרי הוא תיקון‬ ‫‪ 13‬לחוק הגנת הפרטיות (בתוקף מאז ‪ 14‬באוגוסט ‪ :)2025‬מזהה ביומטרי המשמש לזיהוי אדם הוא‬
+‫מידע בעל רגישות מיוחדת‪ ,‬ו‪ ClosetTwin-‬סורקת להתאמת מידה ולא לזיהוי‪ .‬אם מדידות גוף ייחשבו‬ ‫מידע בריאותי היא שאלה משפטית פתוחה‪ .‬תקנות ‪ GDPR‬משניות ורלוונטיות בשלב אירופה‪.‬‬
+‫אין רווח תפעולי בחמש השנים הראשונות‪ :‬ההכנסות בשנה ‪ 5‬הן כ‪ 0.78-‬מיליון דולר והגרעון המצטבר‬ ‫כ‪ 2.33-‬מיליון דולר‪ .‬נקודת איזון בשנה ‪ 6‬היא אקסטרפולציה מחוץ למודל‪ .‬מסמך זה מתוארך ל‪,2026-‬‬ ‫והמימון המבוקש עד סוף שנה ‪ 5‬הוא כ‪ 2.8-‬מיליון דולר (גרעון מצטבר ועוד ‪ 20%‬מרווח)‪ .‬ערוץ המכירה‬
+‫הראשון הוא מכירה ישירה לקמעונאי אופנה מקומיים‪ ,‬ומשנה רביעית באירופה‪ ,‬גם דרך ‪.Shopify‬‬
+
+‫‪ClosetTwin‬‬
+
+‫עמוד ‪ ii‬מתוך ‪39‬‬
+
+Contents
+
+1 Introduction and Problem
+
+1
+
+1.1 The returns bill . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 1.2 Why fit is the core cause . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 1.3 What one return costs. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 1.4 The thesis and how this plan tests it . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+
+2 Market: TAM, SAM and SOM
+
+5
+
+2.1 Method and its limits. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 2.2 Israeli online commerce in context . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 2.3 TAM: Israeli online fashion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 2.4 SAM: local Israeli e-tailers only . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 2.5 Europe layer and SOM . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+
+3 Competition
+
+10
+
+3.1 How to read the table . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10 3.2 Direct vendors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10 3.3 Platform and in-house threats . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11 3.4 Positioning . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12 3.5 The moat: proven, plausible or hypothesis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+
+ClosetTwin
+
+Page iii of 39
+
+ClosetTwin
+
+CONTENTS
+
+4 Product and Technology
+
+13
+
+4.1 What the shopper and the retailer see . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13 4.2 From scan to body model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14 4.3 Why scan alone is not enough . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14 4.4 The size model and its accuracy limits . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14 4.5 Integration with retailer platforms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15 4.6 Privacy by design: scan for fit, not identification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15 4.7 Visualization: an extension, not the core . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+
+5 Business Model and Pricing
+
+17
+
+5.1 Who pays for what . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17 5.2 Value-based price . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17 5.3 The tiers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18 5.4 Reference points, not benchmarks. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18 5.5 Unit economics and the scan-cost condition . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+
+6 Go-to-Market
+
+21
+
+6.1 Segments and channels . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21 6.2 The funnel. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21 6.3 The pilot design . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+
+7 Operations, Team and Roadmap
+
+24
+
+7.1 Operating model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24 7.2 Team and roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24 7.3 Roadmap. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25 7.4 Dependencies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+
+8 Financial Plan
+
+26
+
+8.1 Break-even logic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26 8.2 Five-year projection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27 8.3 Assumptions. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29 8.4 Sensitivity to the pilot result . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+
+9 Risks
+
+31
+
+9.1 The register . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+
+ClosetTwin
+
+Page iv of 39
+
+ClosetTwin
+
+CONTENTS
+
+9.2 Israeli privacy law, with GDPR secondary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32 9.3 Null pilot effect and weak conversion. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32 9.4 Accuracy at edge sizes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32 9.5 Platform risk, scan cost and slower Europe entry . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32 9.6 Limits of the register. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+
+10 Conclusion
+
+34
+
+10.1 The case . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34 10.2 Israel first, the ask and next steps . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+
+References
+
+35
+
+Appendix A: Code of the retailer-economics chart
+
+39
+
+ClosetTwin
+
+Page v of 39
+
+List of Figures
+2.1 Market layers, not to scale . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7 3.1 Positioning of the vendors, our reading of vendor pages . . . . . . . . . . . . . . . . . . . . . . . . . . . 12 4.1 Data flow . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13 7.1 Roadmap, years 1 to 5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25 8.1 Five-year projection and cumulative result . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28 8.2 Retailer’s economics against the achieved reduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30 9.1 Risk matrix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+
+ClosetTwin
+
+Page vi of 39
+
+List of Tables
+2.1 Inputs of the market sizing, with the class of each . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8 3.1 Vendor claims, as stated by the vendors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11 5.1 Pricing tiers. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19 6.1 Pilot and contact funnel, years 1–5. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22 6.2 Pilot design . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23 8.1 Company-level sensitivity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28 8.2 Main inputs of the financial plan . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29 9.1 Mitigations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+
+ClosetTwin
+
+Page vii of 39
+
+1
+Introduction and Problem
+
+$685 B–$890 B
+Returns of the US retail industry in 2024, by two different methods
+Sources: Appriss Retail [1]; NRF [2]
+24.4%
+Online apparel orders returned in the 12 months to March 2023 (US survey of 100 decision-makers)
+Source: Coresight Research [3]
+53%
+Surveyed decision-makers who name size or fit the top reason for apparel returns
+Source: Coresight Research [3]; share of respondents, not of returns
+
+ClosetTwin
+
+Page 1 of 39
+
+ClosetTwin
+
+INTRODUCTION AND PROBLEM
+
+17%
+Return cost per pair sold, as a share of the prime cost (one Scandinavian footwear retailer, 28% return rate)
+Source: Gustafsson et al. [4]
+1.1 The returns bill
+Every order that comes back is a sale that did not finish and a cost that did. The two best estimates of what this costs retailers in the United States are large and differ from each other. Appriss Retail reports that total returns of the retail industry amounted to $685 billion in merchandise in 2024, and the National Retail Federation projects $890 billion for the same year [1], [2]. The gap of $205 billion is a difference of method and not a contradiction. The Appriss figure is built from surveys of 150 North American retail executives and 1,000 consumers together with data of the US Census Bureau, while the NRF figure is a projection published on the federation’s report page [1], [2]. We therefore quote the range and not a single number, and we do not add the two. Appriss also reports that online sales account for $362 billion of the returned value and that fraud and abuse account for 15.14% of all returns [1]. The second figure matters for honesty: not every return is a fit problem, and a fitting tool cannot reduce fraud.
+Two different return rates circulate in the trade press, and they must not be merged. Appriss reports that online returns reached 24.52% of all online sales, which covers every product category [1]. Coresight Research estimates that the average return rate of online apparel orders was 24.4% for the twelve months ended March 2023, from a survey of 100 decision-makers at US apparel brands and retailers [3]. The similarity of the two numbers is a coincidence of two scopes. This plan uses the Coresight figure, because it is the one that is specific to apparel, and it states each time that the base is a small US survey.
+1.2 Why fit is the core cause
+Among the reasons for apparel returns, size and fit come first. In the Coresight survey, 53% of respondents name size or fit as the top reason for online apparel returns, followed by color (16%) and damage (10%) [3]. This is a share of respondents and not a share of returns, and the plan treats it that way: our own model assumes that 40% of returns are fit-related, which is a deliberate step below the survey figure (Chapter 8). The same picture appears in the research literature. Abdulla et al. state that online shopping yields a large percentage of returns due to size and fit [5], and Alemany et al. describe the high number of returns and their management, logistics
+
+ClosetTwin
+
+Page 2 of 39
+
+ClosetTwin
+
+INTRODUCTION AND PROBLEM
+
+and operating costs as an important economic burden for fashion companies [6]. Peng and Duraffourg report that the return rate in the textile industry is in general between 20% and 40%, a secondary claim that they make without a citation in their abstract [7].
+The literature also tells us what kind of problem this is. A shopper who orders online cannot try the garment on, so the decision is made on incomplete information: the shopper knows his or her body only roughly, and the garment is described by a size label that means different things at different brands. Alemany et al. note that earlier fitting technologies did not reach a compromise between cost, efficacy and accuracy that would allow wide market penetration [6], and we treat this as the historical gap that a lower-cost scan and a data-driven model can address. In a different field, Pfaff and Spann report that augmented reality is particularly effective for larger products with higher spatial fit uncertainty [8]. We cite it only as an analogy: the study is about home interiors and not about apparel.
+1.3 What one return costs
+A return is expensive because it is handled twice. In the one study that built the cost of a return from transaction data, 2,229 return transactions of a Scandinavian fashion footwear retailer, the cost of returns is approximately 17% of the prime cost per pair sold, and product handling and transportation together make up 72% of the total cost [4]. The paper states this per pair sold, not per returned pair, and its overall return rate is 28% [4], so the cost of one returned pair is a higher share of the prime cost than 17%. Our model applies the 17% to each return, which gives $6.80 per return at the assumptions of Chapter 5; we treat this as a conservative lower bound, because a higher cost per return would raise the saving a retailer can expect. This is a single retailer and a single product category, so it is an anchor for the model and not a market constant. Coresight estimates, for the United States, that a 24.4% return rate on a $155.8 billion online apparel and footwear market translates to $38 billion in returns and $25.1 billion in processing costs in 2023 [3]. We use the Gustafsson ratio in our model and show the Coresight figures only as a statement of scale.
+For Israel, which is the first market of this plan, the legal setting makes returns structurally material. According to the official guide of the Israeli Consumer Protection and Fair Trade Authority, a consumer may cancel a distance-selling transaction within fourteen days of closing the transaction or of receiving the document with its details, whichever is later; use of the product does not remove the right, and the business must refund the consumer within fourteen days of receiving the cancellation notice [9]. The right goes back to section 14C, which an amendment of 1998 added to the Consumer Protection Law and which already set a period of fourteen days [10]; later amendments changed the regime, so we rely on the Authority’s guide for the current rules. The business may charge a cancellation fee of 5% of the transaction or NIS 100,
+
+ClosetTwin
+
+Page 3 of 39
+
+ClosetTwin
+
+INTRODUCTION AND PROBLEM
+
+whichever is lower, and may not charge it when the product is defective or differs from the details provided [9]. We found no verified Israeli return rate. The plan’s return rate therefore stays at the US figure of 24.4%A1, and it is an assumption anchored on a US survey and not Israeli data.
+1.4 The thesis and how this plan tests it
+ClosetTwin is a business-to-business virtual fitting room for fashion e-commerce. The shopper gives a body scan from a phone, the retailer supplies the garment’s measurements, and the service combines both with the shopper’s stated fit preference to recommend a size. The claim at the center of the plan is a hypothesis and not a fact: a fit tool built on scan, garment data and preference lowers fit-related returns enough to pay for itself. The evidence is mixed. Gustafsson et al. model reductions of fit-related return costs of up to 80% under assumed verification rates, but this is a scenario [4]. The largest field study in our sources, covering 496,365 items ordered by 75,707 customers, found that customers who used a size finder were 0.65% more likely to return an item, although their customer lifetime value was higher [11]. A plan that ignored the second result would be dishonest.
+The plan therefore treats the effect as the quantity to be measured. Chapter 2 sizes the market and finds that Israel alone is too small to carry the company. Chapter 3 places ClosetTwin among the existing vendors. Chapters 4 and 5 describe the product and its pricing, which is set at a fraction of the value a retailer saves if the hypothesis holds. Chapter 6 designs a randomized pilot that can accept or reject the hypothesis, and Chapters 8 to 10 show what the company costs, what it earns and what it asks for if the pilot passes. Where a number is our own, it is marked as derived or assumed, and the legend is S sourced D derived A assumption.
+
+1S sourced D derived A assumption ClosetTwin
+
+Page 4 of 39
+
+2
+Market: TAM, SAM and SOM
+
+2.1 Method and its limits
+We size the market bottom-up, in orders and in the fee that ClosetTwin would earn on them, and we call the result a fee pool and not a market size. A fee pool is the number of orders a segment could send through the service multiplied by our blended price, so it measures what we could earn and not what retailers or shoppers spend. Each input carries one of three marks: sourced, derived by us from other inputs, or assumed by us with a stated basis (S sourced D derived A assumption). Table 2.1 lists them all.
+The Israeli figures need a warning. The market numbers come from Statista estimates that a research report of the Knesset Research and Information Center relays [12]. They are not a release of the Central Bureau of Statistics, the 2024 value is an estimate, and the fashion share is the 2022 value. Publisher estimates of the virtual-fitting-room market are context only and enter no calculation: IMARC Group reports that this global market reached $8.5 billion in 2025 and will reach $52.6 billion by 2034, a compound annual growth rate of 21.80% [13], but the definition and method sit in a paid report that we could not read, and we found no second publisher that we could verify.
+2.2 Israeli online commerce in context
+Israeli online commerce is small next to the markets in which fitting vendors usually operate, but it is growing. The Knesset report, citing Statista, puts total online trade at about $6.1 billion in 2023, or about NIS 22.6 billion, which is about 2.6% of household private consumption; the estimate for 2024 is $6.9 billion and the forecast for 2029 is $11.3 billion [12]. The ratio of the two 2023 figures gives a rate of 3.70 shekels to the dollar, and we use this derived rate whenever a shekel equivalent is shown, for
+
+ClosetTwin
+
+Page 5 of 39
+
+ClosetTwin
+
+MARKET: TAM, SAM AND SOM
+
+example $0.036 per order, which is about ₪0.13. Fashion is the largest online category: in 2022 it was about 21.6% of Israeli online commerce, ahead of electronics at about 20% [12].
+2.3 TAM: Israeli online fashion
+For the total addressable market we take the 2022 fashion share of 21.6% and hold it at its 2022 value for 2024, which gives $1.49 billionD of online fashion sales in Israel, about NIS 5.5 billion. We multiply the share and not the shekel figure for 2022 because the report’s own 2022 figures imply a rate of 3.37 shekels to the dollar, and a 2022 shekel value converted at the 2023 rate would mix two years. At an assumed average order value of $80A this is 18.6 millionD online fashion orders a year. At the blended price of $0.036 per order, the fee pool of the whole Israeli online fashion market is only $0.67 millionD a year.
+2.4 SAM: local Israeli e-tailers only
+The serviceable market is smaller still. Foreign sites are prominent among the sellers that Israeli shoppers use. The 2020 sales ranking in the Knesset report is led by Amazon with $195 million, followed by Shein ($151 million), and it also lists Next ($96 million), ASOS ($57 million) and Zara ($51 million) [12]. The same report adds two charts by share of orders from November 2024, which it takes from Statista. Among global sites, AliExpress leads with 57%, followed by Shein (12%), Amazon and Temu (7% each) and Next (5%); among local sites, Super-Pharm leads with 22%, followed by Shufersal (20%), KSP (15%) and Terminal X (12%) [12]. The charts are two separate rankings and the report does not classify the sites by category, so they do not give a split of fashion orders between local and foreign sites. A foreign site that serves Israeli shoppers will not buy a plug-in from an Israeli start-up for that market. We therefore assume that 45%A of Israeli online fashion orders go to local e-tailers, which is 8.4 millionD orders. The order shares above name individual local sites but give no number of orders for any Israeli fashion e-tailer, so we assume three size bands: 5 large retailers with 600,000 orders a year each, 25 mid-size retailers with 100,000 each and 250 small shops with 12,000 each. The bands add up to 8.5 million orders, within 2% of the 8.4 million above. We address the large and mid-size retailers only, since a shop with
+
+ClosetTwin
+
+Page 6 of 39
+
+ClosetTwin
+
+MARKET: TAM, SAM AND SOM
+
+12,000 orders pays about $430 a year and cannot justify an integration. That leaves 30 candidate retailers and 5.5 millionD orders, a fee pool of $198,000D a year.
+
+ISRAEL IS A REFERENCE MARKET, NOT A REVENUE MARKET
+The Israeli SAM fee pool is about $0.2 million a year. No team can live on that. The Israeli plan is therefore a strategy for reference customers, for pilots that can prove the effect, and for early learning. Revenue must come from Europe.
+
+Why start in a market this small? There are three reasons, and none of them is revenue. First, the plan’s central hypothesis can be tested only with a real retailer, and the five large Israeli retailers of our bands have enough orders for an individual test (Chapter 6). Second, a pilot is cheap: we assume a cash cost of $3,000A for a direct pilot (Chapter 8). Third, Israeli retailers work under a statutory 14-day cancellation right (Chapter 1), so returns are a real cost to them. The price of this choice is stated openly: by the model, the cumulative operating result at the end of year 3, before Europe opens, is a deficit of $1.04 millionD, spent in a market whose whole SAM is about $0.2 million a year. A reference customer in Israel is useful in Europe only if European retailers accept it, and we have no evidence of that. The model does not include a route to Europe through Israeli retailers that sell to EU customers; its European clients are European retailers that the sales team reaches directly.
+
+Israel (beachhead)
+TAM online fashion: 18.6 M orders, fee pool $0.67 M a yearD
+
+Europe layer (from year 4)
+TAM 2.27 B orders, fee pool $81.7 M a yearD
+
+SAM local e-tailers, large and mid: 5.5 M orders, fee pool $0.20 M a yearD
+
+SAM fee pool $32.7 M a yearD
+
+SOM, year 5 Israeli subscription $54 kD
+
+SOM, year 5: subscription $0.65 MD (not in the Y1–Y3 base case)
+
+Figure 2.1. Market layers, not to scale: Israel (nested TAM, SAM, SOM) and the Europe layer; fee pools per year
+
+2.5 Europe layer and SOM
+Because the Israeli SAM cannot fund a team, Israel is the proof market, and Europe, entered in year 4, carries the revenue (Figure 2.1). Kings Research values the global
+
+ClosetTwin
+
+Page 7 of 39
+
+ClosetTwin
+
+MARKET: TAM, SAM AND SOM
+
+Table 2.1. Inputs of the market sizing, with the class of each
+
+Input
+
+Value Class
+
+Source or basis
+
+Online commerce 2024
+
+$6.9 B sourced Knesset report [12]
+
+Fashion share, 2022
+
+21.6% sourced same report
+
+Online fashion sales 2024
+
+$1.49 B derived share × $6.9 B
+
+Average order value
+
+$80 assumed mid-market basket
+
+Online fashion orders
+
+18.6 M derived sales ÷ order value
+
+Share going to local e-tailers
+
+45% assumed largest sites are foreign
+
+Retailers (large / mid / small)
+
+5 / 25 / 250 assumed bands; order shares only in the report
+
+SAM orders (large and mid)
+
+5.5 M derived 5 × 600,000 + 25 × 100,000
+
+Blended price per order
+
+$0.036 derived 60% at $0.04, 40% at $0.03
+
+Israeli SAM fee pool
+
+$198,000 derived SAM orders × price
+
+Europe share of global apparel
+
+25% assumed non-APAC is 57.3%
+
+Global e-commerce apparel 2024
+
+$726 B sourced Kings Research [14]
+
+Europe fee pool (TAM / SAM)
+
+$81.7 M / $32.7 M derived orders × price; SAM at 40%
+
+ClosetTwin
+
+Page 8 of 39
+
+ClosetTwin
+
+MARKET: TAM, SAM AND SOM
+
+e-commerce apparel market at $726.05 billion in 2024, of which Asia-Pacific holds 42.70% [14]. The remaining 57.3% is divided between North America, Europe and the rest of the world in a way that no source we hold gives, so we assume that Europe holds 25%A of the global total. Divided by the same $80 order, this is 2.27 billionD orders and, at the blended price, a Europe fee pool of $81.7 millionD a year. Applying the same 40% size filter that excludes marketplaces and small shops, which we assume for Europe only, leaves a Europe SAM of $32.7 millionD. Together with the Israeli SAM, the combined serviceable pool is $32.9 million a year. Europe is not part of the base case of the first three years, and the plan does not claim revenue there before year 5.
+The serviceable obtainable market (SOM) is the part of that pool the plan expects to win by year 5. Total revenue in year 5 is $782,000D. Of this, Israeli subscription revenue is only $54,000, European subscription revenue is $648,000 and pilot fees make up the rest (Chapter 8). Subscription revenue alone is 2.1% of the combined SAM. This is a modest share, and the plan deliberately asks for a small slice of a pool that is still large enough to support a company. The weak link is not the size of the share but the assumption behind it, that half of the pilots become paying clients; Chapter 6 says how the pilots test it.
+
+ClosetTwin
+
+Page 9 of 39
+
+3
+Competition
+
+3.1 How to read the table
+Table 3.1 lists what each vendor says about itself on its own public pages, which we read on 18 November 2026. Everything in it is a vendor claim, and none of it is independent evidence. A cell that reads “not stated” means that the page we could read does not say; it does not mean that the vendor lacks the feature. Prices are left out of the table because none of these vendors publishes one for its retail product; Chapter 5 discusses the one public price list. Pages change, so the table is a snapshot.
+3.2 Direct vendors
+The direct field splits on one question: does the shopper scan, give a few inputs, or give nothing? True Fit sells to retailers and turns purchase-and-return outcomes into guidance, and its page does not mention body scanning [15]. Fit Analytics states that it combines shopper preferences, sales and returns records with a database of body scans, so scans are reference data and not a shopper step [16]. 3DLOOK states that it embeds phone-based body scanning into a web page or app through an API, and its price list shows the cost of such scans [17], [18]. Bold Metrics takes the opposite position, stating that it needs no scanning, photos or measuring tape and works from four to six simple inputs [19].
+MySize is the one direct competitor at home. According to its annual report for 2022, the company is incorporated in Delaware, lists on the Nasdaq Capital Market and has its principal executive offices in Airport City, Israel [23]. Its public page describes an omnichannel platform with AI-driven apparel sizing and says nothing we could check
+
+ClosetTwin
+
+Page 10 of 39
+
+ClosetTwin
+
+COMPETITION
+
+Table 3.1. Vendor claims, as stated by the vendors (a snapshot)
+
+Vendor
+
+What the vendor states Shopper input
+
+True Fit [15] Fit Analytics [16] 3DLOOK [17] Bold Metrics [19] MySize [20]
+
+fit and sizing intelligence, built on 20 years of purchase and return outcomes
+
+purchase and return history; scanning not mentioned
+
+machine-learning size and preferences, sales and
+
+fit recommendations
+
+returns records, a
+
+database of body scans
+
+body scanning embedded by API or SDK; over 80 measurements in under 45 seconds
+
+two guided smartphone photos [18]
+
+over 50 points of measure matched to the retailer’s garment data
+
+4 to 6 simple inputs; no scanning, photos or tape
+
+omnichannel platform with not stated AI-driven apparel sizing
+
+Google [21]
+
+generative-AI try-on on real models, sizes XXS to 4XL
+
+Walmart and Zeekit [22] shoppers see themselves in a garment
+
+a clothing image
+uploaded photo or chosen model
+
+about scanning or price [20]. We did not check whether the address has changed since 2022.
+
+3.3 Platform and in-house threats
+Large platforms are a different kind of threat. Google announced in 2023 a generative model that takes one clothing image and shows how it would drape on real models in sizes from XXS to 4XL [21], and Walmart announced in 2021 a plan to acquire Zeekit, which lets customers see themselves in a garment from an uploaded picture or a chosen model [22]. These tools visualize a garment, which is different from recommending a size, but a retailer that already has free visualization may feel that it does not need a vendor. We have not verified the later status of the Walmart plan.
+
+ClosetTwin
+
+Page 11 of 39
+
+ClosetTwin
+
+COMPETITION
+
+3.4 Positioning
+Figure 3.1 places the vendors on two axes: whether the size comes from a questionnaire or size chart or from a body scan, and whether the product is a consumer app or a plug-in sold to retailers. ClosetTwin’s chosen corner, a scan combined with garment specifications and fit preference, delivered as a plug-in to retailers, is not occupied by any vendor in the table. This proves only that the vendors do not say they occupy it; 3DLOOK, for one, could add the other inputs.
+
+True Fit Bold Metrics
+
+Fit Analytics
+
+ClosetTwin (target) 3DLOOK
+
+MySize
+
+Consumer app to B2B plug-in
+
+Google try-on
+
+Walmart / Zeekit
+
+Questionnaire or size chart to body scan
+Figure 3.1. Positioning of the vendors, our reading of vendor pages: source of the size input and type of product
+
+3.5 The moat: proven, plausible or hypothesis
+We tag each claimed advantage honestly. That the combined input of scan, garment data and preference is better than any one of them is a hypothesis: Peng and Duraffourg found that fit preference significantly affects the size people choose and that knowing the 3D shape alone is not enough for an efficient size recommendation [7], which supports the combination but does not show that our implementation is better. That ClosetTwin lowers returns is a hypothesis until the pilot. The counterargument is real and we state it: Bold Metrics claims to match a shopper to garment data without a scan [19], so a scan is an advantage only if it measurably improves the recommendation. Our edge in the early years is therefore a position and a test, not a moat.
+
+ClosetTwin
+
+Page 12 of 39
+
+4
+Product and Technology
+
+4.1 What the shopper and the retailer see
+ClosetTwin is a widget on the retailer’s product page and a data feed back to the retailer. The shopper opens the widget, takes two guided photographs with a phone, states how loose or fitted he or she likes the garment to be, and receives a recommended size for the garment on the page. The retailer sees the same process from the other side: it supplies the measurements of each garment, and in return it receives a stream of anonymous fit data, such as which sizes are recommended, which are bought and which come back. Figure 4.1 shows the flow from the scan to the retailer’s data. The shopper never sees a three-dimensional avatar, because the first release is about choosing a size and not about visualization (Section 4.7).
+Shopper scan (phone photos)
+
+Fit preference (snug / loose)
+
+Body model + fit engine
+
+Recommended size
+
+Product page widget
+
+Garment specs (from retailer)
+
+Retailer data feed (sizes, returns)
+
+Figure 4.1. Data flow: scan, garment specifications and fit preference give a size and a retailer data feed
+
+ClosetTwin
+
+Page 13 of 39
+
+ClosetTwin
+
+PRODUCT AND TECHNOLOGY
+
+4.2 From scan to body model
+A body model built from scan data is feasible and well studied, and the studies explain why it is needed. Alhassawi et al. analyzed a dataset of 677 participants and found that only 63 of them (9.15%) kept the same size across bust, waist and hip, that 614 (90.84%) fell into different sizes on different measurements, and that 35.45% were not adequately accommodated by the existing sizing scheme [24]. In other words, a single size label fits a minority of bodies on all dimensions at once. Alemany et al. made the same point earlier, and noted that body-scanning technologies at that time had not achieved a compromise between cost, efficacy and accuracy that would allow wide market penetration [6]. That study is from 2013 and we cite it as history. What has changed is that phone-based capture now exists: 3DLOOK states that a user can complete a scan independently with two guided smartphone photos and no dedicated hardware [18]. This is a vendor statement, and it does not tell us how accurate such a scan is for apparel. We found no independent source for the accuracy of phone scans in apparel sizing, so we state it as an engineering target that the pilot must measure and not as a result.
+4.3 Why scan alone is not enough
+A body measurement does not choose a size, because the same body can want different sizes in different garments. Peng and Duraffourg ran an experiment with 175 female participants of shapes from XS to 4XL on six garment tops. They report that fit preference has a significant impact on the size choice, and that knowing the three-dimensional shape of customers alone is not enough for an efficient size recommendation tool [7]. Two further findings, which we know only from their abstracts, point the same way. Sembium et al. report that latent-factor models that use personas and return codes improve the area under the curve by 17 to 21% against baselines, and that in an online A/B test they raised the percentage of “fit” transactions by 0.49% over the control [25]. Zhang et al. report that thin models dissuade consumers with larger clothing sizes from buying online because of perceived body-size dissimilarity and a heightened perception of fit risk [26]. The product therefore takes three inputs and not one: the scan, the garment’s measurements and the shopper’s stated preference. That the combination beats any single input is a hypothesis of this plan, which the pilot tests (Chapter 6).
+4.4 The size model and its accuracy limits
+The best evidence we hold for the model comes from a study on scan data that used the same kind of measurements. Alhassawi et al. report that a support vector machine that works on the primary measurements reaches an accuracy of 89.66%, outperforming a model that adds further dimensions through principal-component
+
+ClosetTwin
+
+Page 14 of 39
+
+ClosetTwin
+
+PRODUCT AND TECHNOLOGY
+
+analysis, which reaches 68.97% [24]. They also report that sizes 32 and 34 received no correct predictions, which they attribute to overlapping features and too few training samples [24]. We take two lessons from this. First, a simple model on a few good measurements can be accurate enough to be worth testing. Second, the accuracy of such a model is lowest at the edges of the size range, so rare sizes need a fallback, for example a prompt to measure again or a note to the shopper that the recommendation is uncertain. We state the 89.66% as the best evidence in hand and not as ClosetTwin’s measured performance, because the study did not use our scans, our garments or our shoppers, and we have no measurement of our own yet.
+4.5 Integration with retailer platforms
+Integration follows a standard pattern. On Shopify, an app is a set of components that the developer declares in the app configuration, and Shopify runs most of them, so that only the backend is the developer’s to host [27]. A ClosetTwin app on that model needs a widget extension for the product page, a backend for the size model and a feed of the retailer’s garment data. We have checked this pattern only for Shopify, which is a minor channel in Israel (Chapter 6); other platforms are not yet checked, and the plan does not assume that integration there is equally cheap. We assume $0.03A as the cost of one scan in our own infrastructure, an engineering target that we have not measured, and 25%A of orders that include a scan, an adoption guess; together they give a cost to serve of $0.0075 per order (Chapter 5).
+4.6 Privacy by design: scan for fit, not identification
+A body scan is personal data, and the product is designed so that it is not used for identification. Israel’s Privacy Protection Law was amended by Amendment 13, published on 14 August 2024, and the amendment takes effect one year after publication, that is, on 14 August 2025 [28]. Under the law’s definitions, a biometric identifier is data of special sensitivity when it is used, or intended to be used, to identify a person or to verify his or her identity in a digital manner [28], [29]. ClosetTwin scans for fit only. The design therefore never uses body data to identify anyone, collects the minimum that the size model needs, keeps the scan separate from any account identity and, as a design rule, discards the images once the measurements are extracted. We offer explicit consent as our own design choice: the law defines consent as informed consent, explicit or implied [29], so we do not claim that the law requires it. Whether body measurements for sizing could count as health data, which is a separate category of special sensitivity [29], is an open legal question. We treat it as a design risk that the compliance review must answer, not as a conclusion (Chapter 9).
+The regulator’s own documents point the same way. The Privacy Protection Authority’s 2021 draft opinion, published for public hearing, states that collecting excess data beyond what is necessary is in itself an infringement of privacy [30], and its 2025
+
+ClosetTwin
+
+Page 15 of 39
+
+ClosetTwin
+
+PRODUCT AND TECHNOLOGY
+
+guide to privacy-enhancing technologies says that building them into the design of systems supports compliance and serves as a foundation for building trust with users [31]. We report this as the Authority’s view. It is not evidence that retailers or shoppers pay more for privacy. The EU’s General Data Protection Regulation (GDPR) is secondary for this plan; it applies when Israeli sites sell to EU customers and in the Europe stage, and it treats biometric data for the purpose of uniquely identifying a person as a special category [32].
+4.7 Visualization: an extension, not the core
+Image-based try-on is a separate research field that has been surveyed. Chen et al. reviewed 69 research articles on the factors that influence purchasing decisions and the adoption of virtual try-on [33], Islam et al. state that the technology has the potential to reduce returns and to optimize conversion [34], and Song et al. survey methods that synthesize a person image dressed in a given garment [35], and Ghodhbani et al. survey virtual try-on outfits more broadly [36]. The word to keep from this is “potential”: we know these studies only by their abstracts, and none of them shows a measured reduction in returns. The first release of ClosetTwin therefore leaves visualization out. If the pilot succeeds, a try-on image can be added as an extension on the same data, and Google’s try-on model, which we discuss in Chapter 3, shows that this layer is the one most exposed to platform competition.
+
+ClosetTwin
+
+Page 16 of 39
+
+5
+Business Model and Pricing
+
+5.1 Who pays for what
+The retailer pays, and it pays per order served. In the model, an order is served when it is placed in a paying client’s shop, whether or not the shopper used the widget; Table 5.1 states this billing base. If only scanned orders were billed, revenue per client would fall to about a quarterD of the modelled figure at the assumed 25% scan share. The shopper uses the widget for free. This follows from where the benefit lands: the saving that ClosetTwin promises is the cost of the returns that no longer happen, and that saving grows with the number of orders the retailer processes. A fee per order therefore moves with the value delivered, it lets a retailer start small, and it avoids a fixed license that a retailer would have to justify before it has seen any effect. The only other revenue in the model is the fixed fee for the pilot. The data feed described in Chapter 4 earns nothing in this plan.
+5.2 Value-based price
+The price is set against the value, and the value is the return cost that the tool avoids. We follow the logic of Gustafsson et al., who compute what a fitting technology may cost per unit before it stops paying for itself. In their case study of a footwear retailer, with a prime cost assumed at EUR 30, the allowed cost is EUR 1.1 per pair if the technology verifies fit in 40% of cases, EUR 1.6 at 60% and EUR 2.1 at 80% [4]. Those figures belong to one retailer and one category, so we rebuild the calculation with our own inputs; formula (8.1) in Chapter 8 gives it symbol by symbol. The source puts the cost of returns at 17%S of the prime cost per pair sold, at an overall return rate of 28% [4], so the cost of one returned pair is a higher share of the prime cost. We
+
+ClosetTwin
+
+Page 17 of 39
+
+ClosetTwin
+
+BUSINESS MODEL AND PRICING
+
+nevertheless apply the 17% to each return, as a conservative lower bound: a higher cost per return would raise the saving and make the tool easier to justify. With an $80A order and a prime cost that we assume to be 50%A of it, the prime cost is $40D and a return costs $6.80D. The return rate is 24.4%S [3], and we assume that 40%A of returns are fit-related. Together this is $0.66D of fit-related return cost per order. If ClosetTwin cuts these returns by 15%A, the saving is $0.0996D, about $0.10 per order. This is the most the tool could cost and still break even for the retailer.
+The reduction of 15% is a shop-wide figure, and it is not a modest one. We assume that 25%A of orders include a scan, so a 15% cut across all fit-related returns means about 60%D fewer fit-related returns among the scanned orders. This is above the lowest scenario of Gustafsson et al., who test reductions between 40% and 80% [4], and the largest field study that we have found shows size-finder users slightly more likely to return an item [11]. We keep the 15% because it is the effect at which the plan works, not because the evidence supports it, and the pilot must show it. The prices are set as a fraction of this value. The Growth tier charges $0.04A per order, which is 40% of the break-even value, and the Enterprise tier $0.03A, which is 30%. At these prices a retailer breaks even if the true reduction of fit-related returns is at least 6.03%D (Growth) or 4.52%D (Enterprise), and the retailer keeps the rest of the saving. Under our mix of 60% Growth and 40% Enterprise clients, the blended price is $0.036D per order, about ₪0.13 at 3.70 shekels to the dollar.
+5.3 The tiers
+Table 5.1 shows the three tiers. The pilot is a fixed fee that covers integration and a four-week test; the amount depends on the market, because a mid-size Israeli client, as the next section shows, pays about $3,600 a year and cannot be asked for $5,000 before it has seen any result. The Growth and Enterprise tiers charge per order served, and Enterprise carries a volume discount. Low-touch pilots through an app store, which the plan uses only in Europe, are free. All prices are in US dollars.
+5.4 Reference points, not benchmarks
+The direct enterprise vendors publish no prices (Table 3.1), so our prices cannot be benchmarked against them. The only public prices we found are for a scan API and for an app for small merchants, and neither is comparable. 3DLOOK lists its FitXpress API from $1,000 a month with 500 requests included and $2.00 for each additional request, and its Mobile Tailor plans from $499 a month for up to 100 scans and $999 for up to 500 scans [18]. The first is a health and fitness scan API and the second a made-to-measure product, so neither is a size recommendation for retail. Popsize’s listing on the Shopify App Store states a free plan and a free trial and shows no paid tier [37]. We show these as reference points only. They say what a scan costs when
+
+ClosetTwin
+
+Page 18 of 39
+
+ClosetTwin
+
+BUSINESS MODEL AND PRICING
+
+Table 5.1. Pricing tiers (all values are assumptions)
+
+Tier
+
+What it covers
+
+Pilot
+
+integration and a four-week randomized test
+
+Low-touch pilot app-store trial, no direct integration
+
+Billing base
+
+every order of a paying client’s shop, scanned or not
+
+Growth
+
+per order served; 60% of paying clients
+
+Enterprise
+
+per order served; 40% of paying clients
+
+Israel $2,500A fixed
+not offered all orders
+$0.04A $0.03A
+
+Europe $5,000A fixed
+$0A all orders
+$0.04A $0.03A
+
+bought from a vendor and what a small merchant is offered for free, and neither says what a large retailer would pay for a result.
+
+5.5 Unit economics and the scan-cost condition
+Gross margin is high only if a scan is cheap. We assume that a scan costs us $0.03A and that 25%A of orders include one, which gives a cost to serve of $0.0075D per order and a gross margin of 79%D at the blended price. The $0.03 is an engineering target for scans run on our own infrastructure. We have no measurement of it and no benchmark for it, and it is the input on which the margin depends. For comparison, 3DLOOK lists $2.00 for each additional FitXpress request on its Starter plan and $1.50 on its Pro plan, and its Mobile Tailor Premium plan costs $999 for 500 scans, about $2.00 a scan [18]. Those are plans for health and fitness scanning and for made-to-measure clothing, not for retail size recommendation, but they show that a scan bought from a vendor costs between 50 and 67 timesD our assumption, and at that price every scan would cost far more than the order pays. The business model therefore depends on in-house scan capacity, and Chapter 9 treats a scan cost above the model as a risk of its own.
+The cost base of the model is also incomplete, and this is a limitation of the plan. Staff cost is the headcount multiplied by an $90,000A fully loaded cost per person-year, a round blended figure for which we have no salary benchmark. The model contains no
+
+ClosetTwin
+
+Page 19 of 39
+
+ClosetTwin
+
+BUSINESS MODEL AND PRICING
+
+lines for marketing or customer acquisition, for cloud capacity beyond the scan cost, for legal and compliance work or for travel to European retailers. Adding them would raise the deficit and the funding ask of Chapter 8, and the plan does not yet say by how much.
+Israel adds a second honest limit. The largest Israeli fashion retailer in our bands has 600,000 orders a year, so the average Israeli paying client, with 30% large and 70% mid-size retailers, sends about 250,000D orders a year and pays about $9,000D a year at the blended price. The price per order is right for the client, but the ticket is small, and the whole Israeli SAM is worth about $198,000 a year (Chapter 2). A European client with the assumed 1,000,000 orders a year pays $36,000D, which is why the plan depends on Europe. For comparison, the saving of such a European client at the base case is about $99,600 a year against a Growth fee of $40,000, and it is real only if the pilot confirms the effect.
+
+ClosetTwin
+
+Page 20 of 39
+
+6
+Go-to-Market
+
+6.1 Segments and channels
+ClosetTwin enters Israel first and sells directly to the 30 large and mid-size local fashion e-tailers (5 large and 25 mid-size, both counts assumedA). The plan names no Israeli retailer as a client. The only retailer-level sizes we found are order shares for all categories, not fashion: the 2020 ranking of the largest Israeli online retailers is led by Amazon, followed by Shein, KSP and Next, and a November 2024 chart in the same report shows order shares of several local sites, among them Terminal X at 12% [12]. Neither gives the online fashion sales of a local fashion e-tailer, so the counts of 5 large and 25 mid-size retailers and their order volumes stay assumptions. The low-touch route through an app store is weak in Israel. One third-party tracker counts about 4% of .il shops on Shopify and flags its own page as low confidence [38], and a Shopify Plus agency opened locally only in 2024 [39]. We therefore reserve the Shopify App Store route [27] for the Europe stage, which starts in year 4. A route into Europe through Israeli retailers that already sell to the EU is a plausible way to use Israeli references, but the model does not include it: its European clients are reached by direct contacts (Table 6.1). The largest Israeli fashion sites are foreign [12] and sit outside our addressable market.
+6.2 The funnel
+Table 6.1 turns the assumptions into a year-by-year path. In Israel, 17 of the 30 candidates become pilots over five years (57%), and about 6 are paying clients in year 5. Every conversion rate is assumedA. Because the pool is small and the market is warm, we use contact-to-meeting 60% and meeting-to-pilot 30%, so 18% of con-
+
+ClosetTwin
+
+Page 21 of 39
+
+ClosetTwin
+
+GO-TO-MARKET
+
+tacts become pilots. In Europe we use 30% and 30% (9%). The sales team is never the bottleneck: contacts needed use at most 41% of capacity, where capacity is 25% of headcount times 12 contacts a week over 46 weeks. The weak link is not capacity but the pilot-to-paying conversion. We assume 50% for Europe, with no source and no published benchmark behind it. The conversion has two parts, the chance that a pilot passes the gate and the chance that a passing client buys, and neither can be known before the first pilots finish. The Israeli path is lower: 17 pilots lead to about 6 paying clients, roughly 35%D, because we set those client counts by hand and capped them. The same rule is not applied to both markets, and the company sensitivity of Chapter 8 shows the plan at 35% for Europe as well.
+Table 6.1. Pilot and contact funnel, years 1–5 (all values derived from assumed rates; model funnel check)
+
+Year Israeli pilots
+
+European pilots
+
+Contacts needed
+
+Contact capacity
+
+Capacity used
+
+1
+
+4
+
+0
+
+22
+
+414
+
+5%
+
+2
+
+4
+
+0
+
+22
+
+552
+
+4%
+
+3
+
+4
+
+0
+
+22
+
+690
+
+3%
+
+4
+
+3
+
+36
+
+417
+
+1,242
+
+34%
+
+5
+
+2
+
+60
+
+678
+
+1,656
+
+41%
+
+6.3 The pilot design
+The claim to be tested is that a fit tool lowers the fit-related return rate, defined as orders with a size or fit return reason divided by orders. We randomize at shopper level, 50/50, and analyse by intention to treat (Table 6.2). With a significance level of 0.05 (two-sided) and 80% power, a four-week pilot at a large Israeli retailer of 600,000 orders a year detects a relative reduction of about 7.8%D. At a European retailer of one million orders a year the figure is 6.1%D. The pass line is a 10% reduction with a 95% interval above zero, set above the retailer’s break-even effect of 4.5% to 6.0% (Chapter 8). A mid-size Israeli retailer of 100,000 orders a year could detect only about 19%D. A mid-size retailer also produces only about 3,850 orders per arm in four weeks, so the planned minimum of 12,000 orders per arm is met by large retailers only. Mid-size pilots therefore either run longer or count as pooled evidence, and only large-retailer pilots are individual tests. Pooled evidence needs its own design, with the pilots analysed together and the differences between retailers reported, and we have not yet fixed it. Of the 30 Israeli candidates, only the 5 large ones can run an individual test. In Europe, most pilots are free app-store installs that have no control group. We call their results non-causal, and we do not count them toward the pass line. The need for such a test is real: the largest study in our sources found that shoppers
+
+ClosetTwin
+
+Page 22 of 39
+
+ClosetTwin
+
+GO-TO-MARKET
+
+using a size finder were slightly more likely to return an item [11]. If a retailer cannot randomize, a matched before-and-after comparison is the fallback, and we label it weaker evidence. Israeli pilots come from warm design-partner contacts and start only after the privacy compliance milestone of Chapter 7.
+
+Table 6.2. Pilot design (all design choices are assumed; sample sizes are derived)
+
+Item
+
+Choice
+
+Metric
+
+Fit-related return rate: orders with a size or fit return reason ÷ orders
+
+Design
+
+Shopper-level 50/50 randomization, intention to treat
+
+Duration
+
+4 weeks of sales plus a 30-day return window
+
+Sample
+
+Large retailers: at least 12,000 orders per arm (twice the derived minimum). Mid-size: about 3,850 per arm in 4 weeks, so longer or pooled
+
+Pass line
+
+Relative reduction ≥ 10%, 95% interval above zero
+
+Fail rule
+
+Stop and do not scale
+
+Evidence class Large retailers: individual tests; mid-size: pooled (detectable effect about 19%); free app-store pilots without a control group: non-causal
+
+Fallback
+
+Matched before-and-after comparison, labeled weaker evidence
+
+ClosetTwin
+
+Page 23 of 39
+
+7
+Operations, Team and Roadmap
+7.1 Operating model
+ClosetTwin runs as three parts: a capture widget on the retailer’s product page, an inference backend that turns the scan, the garment data and the stated fit preference into a size, and a data feed that returns size and return signals to the retailer. The backend runs on rented cloud capacity, so cost grows with scans and not with fixed equipment. We assume a cost to serve of $0.0075 per order, which is a scan cost of $0.03 on the 25% of orders that include a scan (both assumedA).
+7.2 Team and roles
+The team grows from 3 people in year 1 to 4, 5, 9 and 12 in years 2 to 5 (assumedA, at a fully loaded cost of $90,000 per person-year). The first three roles are engineering, data science and partnerships with a compliance duty attached. The ninth to twelfth positions arrive in year 4 with the Europe entry and add sales, integration support and privacy compliance. The cost of $90,000 per person-year is a blended assumption with no benchmark behind it, for Israeli engineers and European salespeople alike. The model’s operating cost is this payroll only, and it omits marketing, cloud base cost, legal review and travel (Section 9.6). We describe roles only and name no individuals. The size is deliberately lean: Israeli revenue cannot carry a larger team, as Chapter 8 shows.
+
+ClosetTwin
+
+Page 24 of 39
+
+ClosetTwin
+
+OPERATIONS, TEAM AND ROADMAP
+
+7.3 Roadmap
+
+Figure 7.1 shows six workstreams with relative quarters, all assumedA. The minimum viable product is built in year 1, quarters 1 and 2. The compliance milestone for Israel’s Privacy Protection Law as amended by Amendment 13 [28] (privacy review, consent flow and a check of the database-notification duty) falls in year 1, quarter 2, before any pilot data are collected. The first Israeli pilots run in year 1, quarters 3 and 4, from warm design-partner contacts, because a nine-month sales cycle leaves no room for cold starts. The first paying Israeli clients arrive in year 2. A review under Article 9 of the GDPR [32] follows in year 3, quarter 3. Europe entry, meaning pilots, starts in year 4, and the first paying European clients arrive in year 5.
+
+Y1
+
+Y2
+
+Y3
+
+Y4
+
+Y5
+
+MVP Amendment 13 compliance
+Israeli pilots Israeli paying clients
+
+GDPR Art. 9 review Europe: pilots, paying
+
+Figure 7.1. Roadmap, years 1 to 5 (relative quarters, all assumed)
+
+7.4 Dependencies
+Three dependencies matter. The first is the pilot result (Section 6.3). The second is a consent flow that holds up legally under Amendment 13. The third is the 50% conversion of pilots to paying clients, which stays untested until the first pilots finish. Europe’s revenue depends on all three, and Chapter 9 rates the matching risks.
+
+ClosetTwin
+
+Page 25 of 39
+
+8
+Financial Plan
+
+8.1 Break-even logic
+
+Following the logic of Gustafsson et al. [4], a fit tool pays for itself when it costs the
+
+retailer less per order than the fit-related return cost it avoids. Our version of that logic
+
+is
+
+������be = ������ × ������ × ������ × ������,
+
+(8.1)
+
+where ������ is the relative reduction of fit-related returns, ������ the return rate of online apparel orders, ������ the fit-related share of returns and ������ the cost of one return. We use ������ = 24.4% from a US survey [3], ������ = $6.80 (17% of an assumed prime cost of $40), ������ = 40% and ������ = 15%, the last three assumedA inputs. The 17% comes from one footwear retailer, where it is the return cost per pair sold, not per return [4]. Because only a share of pairs is returned, the cost of one return in that study is higher than 17% of prime cost. Using $6.80 per return is therefore a conservative lower bound: a higher cost per return would raise the retailer’s saving. Prime cost is also our own assumption of 50% of the order value, not the retailer’s purchase price as in the source. These inputs give ������be = $0.0996D per order. The blended price of $0.036 (about ₪0.13) is 36% of that value.
+
+The reduction ������ = 15% applies to the whole shop. Only 25% of orders include a scan (an assumedA share), so a 15% shop-wide reduction means about a 60% reduction of fit-related returns among scanned orders, if the tool acts only on those orders. That is above the 40% low scenario of Gustafsson et al. and cannot be called modest. The pilot has to show it. The model also bills every order of a client, not only scanned orders. If billing covered scanned orders only, revenue would fall in proportion, and we flag that the billing base must be fixed in the contract.
+
+ClosetTwin
+
+Page 26 of 39
+
+ClosetTwin
+
+FINANCIAL PLAN
+
+8.2 Five-year projection
+Figure 8.1 shows the model output. Revenue grows from $10,000 in year 1 to $782,000D in year 5, of which Israeli subscriptions are only $54,000. The operating result is negative in every year: $-272,000, $-347,750, $-423,500, $-771,375 and $-517,750. The cumulative deficit is $2,332,375D at the end of year 5. There is no operating profit within the five-year horizon. The funding ask is the cumulative deficit plus a 20% buffer (assumedA), which is $2,798,850D, or about $2.8 million. It funds the plan through year 5 only.
+Year 6 is an extrapolation outside the model, not a result. A hand calculation shows that run-rate break-even needs about 37 European paying clients, and that the plan could reach that number in year 6, but only if the team stays at 12, no client leaves and payroll and pilot costs are the only costs. None of these holds by construction. The model has no churn, and it leaves out cost lines a real company would carry, among them marketing and customer acquisition, cloud base cost, legal and compliance review, travel and general administration. We list them as a limitation rather than add numbers we cannot source. The scan cost of $0.03 and the person-year cost of $90,000 are assumptions with no benchmark behind them.
+Three limits are stated openly. First, Israel’s addressable fee pool is only about $198,000 a year (Chapter 2), so Europe carries the revenue. Of the $782,000 in year 5, $648,000 comes from one chain of assumptions: 18 European clients, each averaging one million orders a year, each paying for its whole first year. The one million orders per client has no source. Billing for the whole first year is a simplification, since a nine-month sales cycle and a pilot would delay the first invoice. Second, the 50% conversion of pilots to paying clients is assumed, and the Israeli path converts at only about 35% (Chapter 6). Third, Table 8.1 shows how the company’s result changes when conversion, orders per client and the year of Europe entry change, so a reader can see that the plan does not rest on one case.
+The rows of Table 8.1 are defined as follows. Pilot-to-paying 35% scales paying clients by 0.35/0.50. Orders 500 k replaces the one million orders per European client. Europe one year later sets entry to year 5, with 36 European pilots and no paying European clients in year 5. Scan cost doubled doubles the cost per scan and the scan part ($600) of the direct pilot cost. The peak deficit is the end-of-year-5 value, and the ask is the deficit plus 20%. Run-rate break-even stays outside the model horizon in all five rows. The table shows that every change moves the ask up and none brings break-even inside the horizon. Conversion at 35% lifts the ask from $2,798,850 to $3,027,135 and cuts year-5 revenue from $782,000 to $571,400. Half the orders per European client gives $458,000 of revenue and an ask of $3,106,650. A one-year delay of Europe is the worst case: year-5 revenue falls to $104,000 and the ask rises to $3,423,450. Doubling the scan cost raises the ask to $3,028,620 and leaves revenue unchanged.
+
+ClosetTwin
+
+Page 27 of 39
+
+ClosetTwin
+
+FINANCIAL PLAN
+
+US$ thousand per year Cumulative result, US$ M
+
+(a) Revenue and cost
+
+1200 1000
+
+Revenue Total cost
+
+800
+
+600
+
+(b) Cumulative result 0.0 −0.5 −1.0 −1.5
+
+400
+
+−2.0
+
+200
+
+0
+
+Y1
+
+Y2
+
+Y3
+
+Y4
+
+Y5
+
+−2.5 Y1
+
+Peak deficit US$2.33 M
+
+Y2
+
+Y3
+
+Y4
+
+Y5
+
+Figure 8.1. Five-year projection and cumulative result (model output; no operating profit in the horizon)
+
+Table 8.1. Company-level sensitivity (model output; the rows are defined in the text)
+
+Scenario
+
+Year-5 revenue
+
+Peak deficit
+
+Funding Run-rate ask break-even
+
+Base case
+
+$782 000 $2 332 375 $2 798 850
+
+Pilot-to-paying 35% (base 50%)
+Orders per European client 500 k (base 1 M)
+Europe entry one year later (year 5)
+Scan cost doubled
+
+$571 400 $2 522 612 $3 027 135 $458 000 $2 588 875 $3 106 650 $104 000 $2 852 875 $3 423 450 $782 000 $2 523 850 $3 028 620
+
+outside model
+horizon
+outside model
+horizon
+outside model
+horizon
+outside model
+horizon
+outside model
+horizon
+
+ClosetTwin
+
+Page 28 of 39
+
+ClosetTwin
+
+FINANCIAL PLAN
+
+8.3 Assumptions
+
+Table 8.2 lists the inputs of this chapter with their class.
+
+Table 8.2. Main inputs of the financial plan
+
+Input
+
+Value Class
+
+Basis
+
+Return rate ������ Return cost, share of prime cost Order value Fit-related share ������
+Reduction ������
+Price, Growth / Enterprise Cost to serve per order Cost per person-year Orders per client, Israel / Europe Funding buffer
+
+24.4% Sourced 17% Sourced
+
+US survey [3] One retailer [4]
+
+$80 Assumed 40% Assumed 15% Assumed $0.04 / $0.03 Assumed $0.0075 Assumed $90,000 Assumed
+
+Mid-market basket Below the 53% who name fit Below Gustafsson scenarios 40% / 30% of value Scan $0.03 on 25% of orders Blended
+
+250,000 / Derived / Assumed Client bands 1,000,000
+
+20% Assumed
+
+Judgement
+
+Most of the inputs in Table 8.2 are assumed, and only the return rate and the returncost ratio are sourced, both from a single study each. The inputs that move the funding ask most in Table 8.1 are the year of Europe entry and the orders per European client; conversion at 35% and a doubled scan cost each add about $0.23 million. The pilot of Chapter 6 can test the effect ������, but it cannot test the other inputs, which stay open until the first clients have paid for a full year.
+
+8.4 Sensitivity to the pilot result
+Figure 8.2 shows the retailer’s economics against the achieved effect ������. The retailer breaks even at ������ = 6.03%D on the Growth price and 4.52%D on the Enterprise price. At zero effect the client pays for nothing, so the pilot gate must stop the rollout. This answers the risk raised by a large study that found size-finder users slightly more likely to return [11]. The same study reports a customer lifetime value 7.51% higher in
+
+ClosetTwin
+
+Page 29 of 39
+
+ClosetTwin
+
+FINANCIAL PLAN
+
+the next quarter for each unit increase in size-finder use. We mention it as a possible second lever and leave it out of the base case.
+
+Base case 15% 20
+
+Enterprise Growth
+
+Net saving per order (US cents)
+
+15
+
+10
+
+5
+
+0 Enterprise: break-even at 4.5%
+
+Growth: break-even at 6.0% −5
+
+0
+
+10
+
+20
+
+30
+
+40
+
+Reduction of fit-related returns (%)
+
+Figure 8.2. Retailer’s economics against the achieved reduction ������ (derived)
+
+ClosetTwin
+
+Page 30 of 39
+
+9
+Risks
+
+9.1 The register
+
+Six risks are rated for likelihood and impact on a scale of 1 to 5, and each has a mitigation (Figure 9.1, Table 9.1). All scores are assumedA judgements.
+
+Table 9.1. Mitigations (likelihood, impact; assumed)
+
+Risk
+
+L, I Mitigation and trigger
+
+Israeli privacy law (GDPR secondary)
+Null pilot effect, weak conversion Accuracy at edge sizes Platform risk (Google)
+Scan unit cost above model Europe entry slower than plan
+
+3, 4 Scan for fit only; compliance milestone before pilot data
+3, 5 Pilot gate; stop if the pass line is missed
+3, 3 Fallback to size chart
+3, 4 Garment data and preference integration
+2, 4 In-house scan; stop above $0.1 per scan
+3, 5 Stage gate at the Israeli pilot result
+
+ClosetTwin
+
+Page 31 of 39
+
+ClosetTwin
+
+RISKS
+
+Likelihood
+
+5
+
+1 Israeli privacy law
+
+4
+
+2 Null pilot effect
+
+3 Edge sizes
+
+3
+
+3
+
+14 26
+
+4 Platform (Google)
+
+2
+
+5
+
+5 Scan unit cost
+
+6 Europe entry slower
+
+1
+
+1
+
+2
+
+3
+
+4
+
+5
+
+Impact
+
+Figure 9.1. Risk matrix: likelihood against impact (scores assumed)
+
+9.2 Israeli privacy law, with GDPR secondary
+
+The primary legal risk is Israel’s Privacy Protection Law as amended by Amendment 13, in force since 14 August 2025 [28]. A biometric identifier is data of special sensitivity when it is used or intended to identify a person [29], and a database holding such data about more than 100,000 people triggers a duty to notify the Authority. The mitigation is design: ClosetTwin scans for fit and never for identification, collects the minimum, and runs a consent flow and a compliance milestone before any pilot data are collected. Three limits apply. Explicit consent is our design choice, since the law defines consent as explicit or implied. Whether body measurements count as health data is an open legal question, so we treat it as a design risk and draw no conclusion. And the Authority’s data-minimization opinion is a 2021 draft [30]. Article 9 of the GDPR [32] is secondary: it applies when Israeli sites sell to EU customers and in the Europe stage.
+
+9.3 Null pilot effect and weak conversion
+A size tool can fail to cut returns. The largest study in our sources found users slightly more likely to return an item [11]. The pilot gate of Chapter 6 is the mitigation: no rollout without a pass. The assumed 50% conversion of pilots to paying clients is the weakest link of the plan, and it is named here with this risk.
+
+9.4 Accuracy at edge sizes
+A supervised size model reached 89.66% accuracy on scan data but failed at edge sizes [24]. Rare-size shoppers therefore get a fallback to the retailer’s size chart.
+
+9.5 Platform risk, scan cost and slower Europe entry
+Google announced in 2023 a generative try-on model [21], so a retailer may rely on the platform. Our answer, the combination of garment data and preference, is still a hypothesis. If a scan costs more than about $0.1 to serve, the model fails, and the
+
+ClosetTwin
+
+Page 32 of 39
+
+ClosetTwin
+
+RISKS
+
+public price lists of one scan vendor [18] range from $1.50 per extra request (FitXpress Pro tier, a health and fitness scan) to about $2.00 per scan (Mobile Tailor Premium tier, $999 for 500 scans, a made-to-measure product). That is 50 to 67 timesD our assumed $0.03, so we need an in-house scan, and the $0.03 itself has no engineering benchmark yet. Last, nearly all revenue depends on Europe entry, because Israel’s fee pool is about $198,000 a year. If entry is slower than planned, the funding ask rises.
+9.6 Limits of the register
+The register covers the risks we could name, but the cost base is incomplete. The model has payroll, cost to serve and pilot costs, and it omits marketing and customer acquisition, cloud base cost, legal and compliance review, travel and general administration. Adding them would raise the funding ask, and we did not add them because we have no sourced numbers. The model also has no churn. The deficit and the ask in Chapter 8 are therefore lower bounds.
+
+ClosetTwin
+
+Page 33 of 39
+
+10
+Conclusion
+
+10.1 The case
+Returns cost retailers hundreds of billions of dollars a year, with estimates from $685 to $890 billion for 2024 [1], [2], and size and fit uncertainty is a leading cause [3]. ClosetTwin’s answer, a fit tool built on a body scan, garment data and stated preference, is a hypothesis and not a result. A four-week, shopper-level pilot can accept or reject it cheaply, and a retailer breaks even at an effect of 4.5% to 6.0%, below our 10% pass line.
+10.2 Israel first, the ask and next steps
+Israel’s addressable fee pool is only about $198,000 a year, so it cannot pay for the company. We choose it as a reference market because we can reach all 30 candidate retailers directly, pilots there are cheap, and a passed pilot at a large local retailer is the evidence a European buyer would ask for. That is an argument, not a proven fact, and the model does not include selling to Europe through Israeli retailers. Europe carries the revenue and enters in year 4.
+We ask for about $2.8D million: the cumulative deficit of $2.33 million at the end of year 5 plus a 20% buffer. It funds the plan through year 5 only. Break-even in year 6 is an extrapolation outside the model, with a team of 12 and no churn, and Table 8.1 shows how the result moves under other assumptions. We propose to release the money in tranches tied to the pilot gate: the first for the Israeli pilots, the second for Europe only after a large-retailer pilot passes the 10% line. The plan shows no operating profit within five years. The Israeli pilots come first, after the privacy compliance milestone. If no large-retailer pilot passes, we stop and do not scale.
+
+ClosetTwin
+
+Page 34 of 39
+
+References
+
+[1] Appriss Retail and Deloitte, “2024 consumer returns in the retail industry,” Appriss Retail, Industry report, 2024. Accessed: Nov. 18, 2026. [Online]. Available: https://info.apprissretail. com/hubfs/Resource-Center/2024-041-2024-consumer-returns-report.pdf
+[2] National Retail Federation and Happy Returns, “2024 consumer returns in the retail industry,” National Retail Federation, Industry report, Dec. 5, 2024. Accessed: Nov. 18, 2026. [Online]. Available: https://nrf.com/research/2024-consumer-returns-retail-industry
+[3] S. Zheng, “The true cost of apparel returns: Alarming return rates require loss-minimization solutions,” Coresight Research, Insight report, Apr. 4, 2023. Accessed: Nov. 18, 2026. [Online]. Available: https://coresight.com/research/the-true-cost-of-apparel-returns-alarmingreturn-rates-require-loss-minimization-solutions
+[4] E. Gustafsson, P. Jonsson, and J. Holmström, “Reducing retail supply chain costs of product returns using digital product fitting,” International Journal of Physical Distribution & Logistics Management, vol. 51, no. 8, pp. 877–896, 2021, doi: 10.1108/IJPDLM-10-2020-0334.
+[5] G. M. Abdulla, S. Singh, and S. Borar, “Shop your right size: A system for recommending sizes for fashion products,” in Companion Proc. The World Wide Web Conf. (WWW), 2019, pp. 327– 334, doi: 10.1145/3308560.3316599.
+[6] S. Alemany, A. Ballester, E. Parrilla, et al., “Exploitation of 3D body databases to improve size selection on the apparel industry,” in Proc. 4th Int. Conf. 3D Body Scanning Technologies, Long Beach, CA, USA, Nov. 19–20, 2013, pp. 456–466, doi: 10.15221/13.456.
+[7] J. Peng and S. Duraffourg, “How does customers’ fit preference impact apparel size selection for online shopping?” In Proc. 3DBODY.TECH 2023, 14th Int. Conf. Exhib. 3D Body Scanning and Processing Technologies, Lugano, Switzerland, Oct. 17–18, 2023, 60, doi: 10.15221/23.60.
+[8] A. Pfaff and M. Spann, “Augmented reality and spatial fit uncertainty in online retailing,” Journal of Retailing and Consumer Services, vol. 87, p. 104442, 2025, doi: 10.1016/j.jretconser. 2025.104442.
+
+ClosetTwin
+
+Page 35 of 39
+
+ClosetTwin
+
+REFERENCES
+
+[9] Consumer Protection and Fair Trade Authority. “Smart consumerism: Know your rights for consumer protection.” Official guide to the Consumer Protection Law; not the statute text, Ministry of Economy and Industry, State of Israel, Accessed: Nov. 18, 2026. [Online]. Available: https://www.gov.il/BlobFolder/generalpage/information-olim-consumerism/he/smartconsumerism-en.pdf
+[10] State of Israel. “Consumer protection law (amendment no. 7), 5758-1998 (adding section 14c, distance selling).” Sefer HaChukim No. 1679, p. 298. Original wording of 1998; later amendments apply, current consolidated text not retrieved, Knesset, Accessed: Nov. 18, 2026. [Online]. Available: https://fs.knesset.gov.il/14/law/14_lsr_211534.pdf
+[11] P. C. Patel, S. Karlsson, and P. Oghazi, “Fits like a glove? Knowledge and use of size finders and high-end fashion retail returns,” Journal of Innovation & Knowledge, vol. 10, no. 5, p. 100779, 2025, doi: 10.1016/j.jik.2025.100779.
+[12] M. Aznakot, “Analysis of the main effects of online commerce on the israeli economy and on state tax revenue (in hebrew),” Knesset Research and Information Center, Economic overview, Feb. 17, 2025, Market figures in this report are Statista estimates, accessed 19 Nov. 2024. Accessed: Nov. 18, 2026. [Online]. Available: https : / / fs . knesset . gov . il / globaldocs / MMM / 0f237823 - f841 - ef11 - 8162 - 005056aa4246 / 2 _ 0f237823 - f841 - ef11 8162-005056aa4246_11_20878.pdf
+[13] IMARC Group. “Virtual fitting room market size, share, trends and forecast 2026–2034,” IMARC Group, Accessed: Nov. 18, 2026. [Online]. Available: https://www.imarcgroup.com/virtualfitting-room-market
+[14] Kings Research. “E-commerce apparel market size, share and growth report, 2025–2032,” Kings Research, Accessed: Nov. 18, 2026. [Online]. Available: https://www.kingsresearch. com/report/e-commerce-apparel-market-2885
+[15] True Fit. “True fit: Fit & sizing intelligence for retailers, enhanced by AI,” True Fit, Accessed: Nov. 18, 2026. [Online]. Available: https://www.truefit.com/
+[16] Fit Analytics. “Fit analytics: Size & fit solutions for apparel e-commerce,” Fit Analytics, Accessed: Nov. 18, 2026. [Online]. Available: https://www.fitanalytics.com/
+[17] 3DLOOK. “3dlook: AI-powered 3D body scanning solution,” 3DLOOK, Accessed: Nov. 18, 2026. [Online]. Available: https://3dlook.ai/
+[18] 3DLOOK. “3dlook pricing: FitXpress and Mobile Tailor plans,” 3DLOOK, Accessed: Nov. 18, 2026. [Online]. Available: https://3dlook.ai/pricing/
+[19] Bold Metrics. “Bold metrics: AI body data platform,” Bold Metrics, Accessed: Nov. 18, 2026. [Online]. Available: https://boldmetrics.com/
+[20] MySize. “Mysize: AI-driven apparel sizing and digital experience solutions,” MySize, Inc., Accessed: Nov. 18, 2026. [Online]. Available: https://mysizeid.com/
+[21] Google. “Virtually try on clothes with a new AI shopping feature,” Google, The Keyword, Accessed: Nov. 18, 2026. [Online]. Available: https://blog.google/products/shopping/aivirtual-try-on-google-shopping/
+[22] Walmart Inc. “Walmart announces plans to acquire Zeekit, a leading virtual fitting room platform, to enable enhanced and social shopping experience for customers,” Walmart Inc., Accessed: Nov. 18, 2026. [Online]. Available: https://corporate.walmart.com/news/2021/05/ 13/walmart-announces-plans-to-acquire-zeekit-a-leading-virtual-fitting-room-platformto-enable-enhanced-and-social-shopping-experience-for-customer
+
+ClosetTwin
+
+Page 36 of 39
+
+ClosetTwin
+
+REFERENCES
+
+[23] My Size, Inc., “Form 10-k for the fiscal year ended December 31, 2022,” U.S. Securities and Exchange Commission, Annual report, 2023, Copy hosted by the company. Accessed: Nov. 18, 2026. [Online]. Available: https : / / mysizeid . com / wp - content / uploads / 2023 / 04 / 10K 2022.pdf
+[24] R. Alhassawi, S. Gill, S. Hayes, and K. Brubacher, “Evaluating machine learning models for clothing size prediction using anthropometric measurements from 3D body scanning,” Scientific Reports, vol. 15, no. 1, 2025, Art. no. 40781, doi: 10.1038/s41598-025-24584-6.
+[25] V. Sembium, R. Rastogi, A. Saroop, and S. Merugu, “Recommending product sizes to customers,” in Proc. 11th ACM Conf. Recommender Systems (RecSys), 2017, pp. 243–250, doi: 10.1145/3109859.3109891.
+[26] Y. Zhang, I. Ikonen, J. Eelen, and F. Sotgiu, “One size does not fit all: Optimizing size-inclusive model photography mitigates fit risk in online fashion retailing,” Journal of the Academy of Marketing Science, vol. 53, no. 2, pp. 643–672, 2024, doi: 10.1007/s11747-024-01034-9.
+[27] Shopify. “Build: What a Shopify app is made of, what you can build with it, and how you ship it,” Shopify Developer Documentation, Accessed: Nov. 18, 2026. [Online]. Available: https://shopify.dev/docs/apps/build
+[28] State of Israel. “Protection of privacy law (amendment no. 13), 5784-2024.” Sefer HaChukim No. 3287, p. 1430; Hebrew original (Hok Haganat Haprativut, Tikun 13), Sefer HaChukim (Laws of the State of Israel), Accessed: Nov. 18, 2026. [Online]. Available: https://www.gov.il/ BlobFolder/legalinfo/standards_law/he/laws_standards-law_law3287.pdf
+[29] Ministry of Justice, State of Israel. “Privacy protection law, 5741-1981 (unofficial translation, updated after amendment 13).” Unofficial translation; the Hebrew text prevails, gov.il, Accessed: Nov. 18, 2026. [Online]. Available: https://www.gov.il/BlobFolder/legalinfo/ legislation/en/Protection-of-Privacy-Law57411981unofficialtranslatioup.pdf
+[30] Privacy Protection Authority. “Data minimization (opinion published for public hearing, english translation).” Draft published for public hearing; final status not verified, Privacy Protection Authority, State of Israel, Accessed: Nov. 18, 2026. [Online]. Available: https://www.gov.il/ BlobFolder/rfp/data_minimization_public_hearing/en/PPA%20Opinion%20on%20Data% 20Minimization%20-%20English%20Translation.pdf
+[31] Privacy Protection Authority. “Guide to privacy-enhancing technologies (PETs),” Privacy Protection Authority, State of Israel, Accessed: Nov. 18, 2026. [Online]. Available: https : //www.gov.il/BlobFolder/reports/guide_enhancing_technologies/en/PETs-Mongashen.pdf
+[32] European Parliament and Council of the European Union. “Regulation (EU) 2016/679 of 27 april 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data (General Data Protection Regulation).” Official Journal L 119; CELEX 32016R0679, Publications Office of the European Union, Accessed: Nov. 18, 2026. [Online]. Available: https://op.europa.eu/en/publication-detail/-/publication/3e485e1511bd-11e6-ba9a-01aa75ed71a1
+[33] C. Chen, J. Ni, and P. Zhang, “Virtual try-on systems in fashion consumption: A systematic review,” Applied Sciences, vol. 14, no. 24, p. 11839, 2024, doi: 10.3390/app142411839.
+[34] T. Islam, A. Miron, X. Liu, and Y. Li, “Deep learning in virtual try-on: A comprehensive survey,” IEEE Access, vol. 12, pp. 29475–29502, 2024, doi: 10.1109/ACCESS.2024.3368612.
+[35] D. Song, X. Zhang, J. Zhou, et al. “Image-based virtual try-on: A survey.” Preprint, not peer reviewed (v4, Sep. 2024), Accessed: Nov. 18, 2026. [Online]. Available: https://arxiv.org/abs/ 2311.04811
+
+ClosetTwin
+
+Page 37 of 39
+
+ClosetTwin
+
+REFERENCES
+
+[36] H. Ghodhbani, M. Neji, I. Razzak, and A. M. Alimi, “You can try without visiting: A comprehensive survey on virtually try-on outfits,” Multimedia Tools and Applications, vol. 81, no. 14, pp. 19967– 19998, 2022, doi: 10.1007/s11042-022-12802-6.
+[37] Popsize. “Popsize: A powerful AI for size recommendations (shopify app store listing),” Shopify App Store, Accessed: Nov. 18, 2026. [Online]. Available: https://apps.shopify.com/popsize
+[38] Aguko. “Websites using shopify in israel (.il).” Counts .il domains only; method not public; low confidence, Aguko (third-party technology tracker), Accessed: Nov. 18, 2026. [Online]. Available: https://www.aguko.com/tech/shopify/il
+[39] G. Hatan. “Shopify to develop tools for israeli e-commerce market,” Globes, Accessed: Nov. 18, 2026. [Online]. Available: https://en.globes.co.il/en/article-shopify-to-develop-tools-forisraeli-e-commerce-market-1001466601
+
+ClosetTwin
+
+Page 38 of 39
+
+Appendix A: Code of the retailer-economics chart
+This appendix reproduces the Python script that draws Figure 8.2, so the chart can be regenerated from the model outputs.
+
+1 """F6 chart code (Appendix A): the retailer's net saving per order."""
+
+2 import numpy as np
+
+3 import ct_style as ct
+
+4 import model
+
+5
+
+6 rows, inputs, _ = model.load_inputs()
+
+7 derived = model.compute(inputs)
+
+8
+
+9 cost = derived["D04"]
+
+# fit−related return cost per order, USD
+
+10 prices = {"Growth": inputs["A07"], "Enterprise": inputs["A08"]}
+
+11 base = inputs["A04"]
+
+# base−case reduction of fit returns
+
+12 rho = np.linspace(inputs["A05a"], inputs["A05b"], 200)
+
+13
+
+14 fig, ax = ct.figure(1.0, 0.5)
+
+15 for (tier, price), colour in zip(prices.items(), (ct.INK, ct.MOCHA)):
+
+16
+
+net = (cost * rho − price) * 100
+
+# US cents per order
+
+17
+
+ax.plot(rho * 100, net, color=colour)
+
+18
+
+be = price / cost
+
+# break−even reduction
+
+19
+
+ax.plot(be * 100, 0, "o", color=colour, ms=5)
+
+20
+
+ct.label(ax, be * 100, 0, f"{tier}: {be:.1%}", dy=−11)
+
+21
+
+22 ax.axhline(0, color=ct.INK, lw=0.6)
+
+23 ax.axvline(base * 100, color=ct.MOCHA_PALE, lw=1.2, zorder=0)
+24 ax.set_xlabel("Reduction of fit−related returns (%)")
+
+25 ax.set_ylabel("Net saving per order (US cents)")
+
+26 ct.save(fig, "appendix−f6−demo")
+
+ClosetTwin
+
+Page 39 of 39
+
+

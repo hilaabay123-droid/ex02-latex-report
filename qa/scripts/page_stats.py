@@ -44,6 +44,9 @@ def main():
     ap.add_argument("--min-total", type=int, default=25)
     ap.add_argument("--budget", default="")
     ap.add_argument("--pages", action="store_true")
+    ap.add_argument("--gaps", action="store_true",
+                    help="white space check (qa-typeset v1.1 check 10): lowest text y per page")
+    ap.add_argument("--gap-limit", type=float, default=0.25)
     front_arg(ap)
     a = ap.parse_args()
     need_file(a.pdf, "PDF")
@@ -118,6 +121,43 @@ def main():
                             break
                     else:
                         rep.passed.add("L2")
+
+
+    # white space (v1.1 check 10): gap above the footer > limit of the text height, and a float starts the next page
+    if a.gaps:
+        for i, pg in enumerate(boxes):
+            p = i + 1
+            if p <= a.front or p in chapter_last_pages or p in one_page_chapters or p >= n:
+                continue
+            h = pg["height"]
+            top, bottom = 0.09 * h, 0.92 * h          # text block between banner and footer
+            body = [w for w in pg["words"] if top < w[1] and w[3] < bottom]
+            if not body:
+                continue
+            low = max(w[3] for w in body)
+            gap = (bottom - low) / (bottom - top)
+            if a.pages:
+                rep.note("p%-3d lowest text y=%.0f of %.0f, gap %.0f%%" % (p, low, h, gap * 100))
+            if gap <= a.gap_limit:
+                rep.passed.add("L3")
+                continue
+            nxt = [w for w in boxes[i + 1]["words"] if top < w[1] and w[3] < bottom]
+            lines = {}
+            for w in nxt:
+                lines.setdefault(round(w[1] / 4), []).append(w)
+            first = ""
+            for k in sorted(lines)[:12]:
+                txt = " ".join(x[4] for x in sorted(lines[k]))
+                if re.match(r"^(Table|Figure)\s+\d+\.\d+", txt):
+                    first = txt[:50]
+                    break
+            if first:
+                rep.check("L3", False, sev="major", where=rep.where(page=p, front=a.front),
+                          what="white space: %.0f%% of the text height is empty above the footer and a float starts the next page" % (gap * 100),
+                          evidence="lowest text at y=%.0f of %.0f; next page near the top: %r" % (low, h, first),
+                          recurring="yes", owner="fix-se", places=["PDF page %d" % p])
+            else:
+                rep.note("p%d: gap %.0f%% but no float caption near the top of the next page (not reported)" % (p, gap * 100))
 
     # page budget and content total
     if chapter_first and all(c in chapter_first for c in budget):

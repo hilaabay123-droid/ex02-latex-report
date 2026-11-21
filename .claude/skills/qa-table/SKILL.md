@@ -1,7 +1,7 @@
 ---
 name: qa-table
 description: Detector (report-only) for tables: caption above, label and reference, width within the text block, right-aligned numbers, header look, numbers equal to text and CSV, assumption labelling. Use after a build or when asked to check tables.
-version: 1.0
+version: 1.2
 ---
 
 # qa-table
@@ -49,3 +49,9 @@ Recurring-prone: TB2, TB3, TB4, TB7. A width or alignment defect in a table buil
 
 ## Success check
 Criteria TB1-TB7 (and the table parts of D9, D16, D18) each pass, fail or are skipped with a reason; summary line present; the inventory covers every table in the PDF.
+
+## New checks (v1.1, from incidents 03, 04, 07)
+9. **Lists (incident 03, v0.23):** read `main.lot` and `main.lof`; fail on `_`, `.csv`, `.py`, `\texttt`, `table_check`, `(`, `:`, `$`/math, or an entry that wraps to a second line. The class cuts the entry at the first `(`, `:` or `$`; an entry that is still too long needs `\caption[short]{long}` from the owner.
+9b. **Wide label column (v0.23):** a table whose first column holds labels with 5 or more words should use `\ctnumcols{n}` and columns `W` + `V` (label 1.6 weight); report equal-width `XRRRR` tables whose first column is under 3.5 cm.
+10. **Column widths (incident 04):** per table, take each column's width from `pdftotext -bbox`; fail if the first column is under 3 cm while another column holds long text, or if a cell has a word space wider than twice the normal one (a justified narrow cell). Text columns must be ragged right.
+11. **Legend before first tag (incident 07):** the legend (sourced/derived/assumption) must be on the page of the first tag superscript in the document.

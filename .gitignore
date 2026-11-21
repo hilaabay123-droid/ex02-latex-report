@@ -17,3 +17,4 @@ ref/
 fix/tests/*.pdf
 fix/tests/o*.txt
 __pycache__/
+writer/tmp/

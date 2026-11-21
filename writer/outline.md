@@ -110,7 +110,7 @@ Tables T4 (funnel) and T5 (pilot design). No funnel figure.
 |---|---|---|---|---|
 | 6.1 | Segments and channels | **Israel first, by direct sales to the 30 large and mid local fashion e-tailers** (5 large, 25 mid, assumed counts). We name no Israeli retailer, because no verified source gives any Israeli fashion e-tailer's online size (claim-trace G5). Shopify is a minor Israeli channel (about 4% of .il shops in one weak tracker, IL24; an agency launched in 2024, IL22), so the low-touch App Store route is reserved for the Europe stage. **Europe from year 4**, entered through Israeli retailers that sell to the EU and through the Shopify App Store. | globes2024shopify IL22, IL23; aguko_shopify_il IL24 *(low confidence)*; shopify_dev_build V14; knesset_ric2025 IL21 | 120 |
 | 6.2 | The funnel | Israel: of 30 candidates, 17 become pilots over five years (57%) and about 6 paying clients in year 5 (20% of the pool). Europe: from year 4, 36 then 60 pilots a year. All rates assumed. The year-by-year path fits the sales team (T4). | T4; assumptions A15i, A16i, A17, A26i, A26e, A35–A37, A43 (§10.5) | 90 |
-| 6.3 | The pilot design | A shopper-level randomized pilot can detect a relative reduction of about **7.9% at a large Israeli retailer (600,000 orders a year, 4 weeks)** and about 6.1% at a European retailer of 1M orders a year, against a pass line of 10% and a break-even effect of 4.5–6.0%. At a mid-size Israeli retailer (100,000 orders a year) the same pilot detects only about 19%, so mid-size pilots are pooled evidence and **only large-retailer pilots are individual tests**. A before-and-after comparison is the fallback if a retailer cannot randomize, labeled weaker evidence. | patel2025 C22–C24; T5; assumptions A19–A24, D19i, D19e (§10.5) | 150 |
+| 6.3 | The pilot design | A shopper-level randomized pilot can detect a relative reduction of about **7.8% at a large Israeli retailer (600,000 orders a year, 4 weeks)** and about 6.1% at a European retailer of 1M orders a year, against a pass line of 10% and a break-even effect of 4.5–6.0%. At a mid-size Israeli retailer (100,000 orders a year) the same pilot detects only about 19%, so mid-size pilots are pooled evidence and **only large-retailer pilots are individual tests**. A before-and-after comparison is the fallback if a retailer cannot randomize, labeled weaker evidence. | patel2025 C22–C24; T5; assumptions A19–A24, D19i, D19e (§10.5) | 150 |
 
 T4 (funnel; all assumed or derived; check with `funnel_check_out.csv` after art-se updates the model), one row per year 1–5:
 
@@ -187,12 +187,12 @@ About 230 Hebrew words, one page. Every claim has a row in the claim-trace. The 
 | H5 | A return costs about 17% of the prime cost (footwear case). | C15 | – | 17% |
 | H6 | The virtual-fitting-room market is reported at 8.5 billion dollars in 2025. | M01 | IMARC | 8.5 B$ |
 | H7 | The price is assumed at 0.036 dollars per order (blended), about 0.13 NIS. | A07, A08, X01 | – | 0.036 $ per order |
-| H8 | A shopper-level pilot of 4 weeks tests the claim, and a large Israeli retailer's pilot can detect about a 7.9% effect. | T5, D19i | – | 4 weeks; 7.9% |
+| H8 | A shopper-level pilot of 4 weeks tests the claim, and a large Israeli retailer's pilot can detect about a 7.8% effect. | T5, D19i | – | 4 weeks; 7.8% |
 | H9 | The primary privacy rule is Israel's Privacy Protection Law, Amendment 13 (in force since 14 August 2025): a biometric identifier is special-sensitivity data only when it is used to identify a person, and ClosetTwin scans for fit, not identification. GDPR Art. 9 is secondary (the Europe stage). | IL02–IL04, L01 | GDPR | 14 August 2025 |
 | H10 | Israel online commerce is estimated at 6.9 billion dollars in 2024, and fashion is its largest category. The first sales channel is direct sales to local fashion e-tailers (Israeli retailers first, then Europe from year 4 through Shopify). The sentence ends with the Latin word Shopify. | IL17, IL19, V14 | Shopify | 6.9 B$; year 4 |
 | H11 | The document is dated 2026 and the funding ask is about 2.8 million dollars (derived, an assumption; the final value comes from the model). | §10.5 | – | 2026; 2.8 M$ |
 
-R-03 corpus check: Latin runs = ClosetTwin, B2B, AI, Appriss, NRF, Coresight, IMARC, GDPR, Shopify (9, need ≥ 6). Numbers with units = 685–890 B$, 24.4%, 53%, 17%, 8.5 B$, 0.036 $, 4 weeks, 7.9%, 6.9 B$, 2.8 M$ (10, need ≥ 5). Parenthesis: H9 (in force since 14 August 2025) and H10 (need 1). Sentence ending in a Latin run: H10 ends with "Shopify" (need 1). The page text contains "ClosetTwin" and "2026" for the machine check.
+R-03 corpus check: Latin runs = ClosetTwin, B2B, AI, Appriss, NRF, Coresight, IMARC, GDPR, Shopify (9, need ≥ 6). Numbers with units = 685–890 B$, 24.4%, 53%, 17%, 8.5 B$, 0.036 $, 4 weeks, 7.8%, 6.9 B$, 2.8 M$ (10, need ≥ 5). Parenthesis: H9 (in force since 14 August 2025) and H10 (need 1). Sentence ending in a Latin run: H10 ends with "Shopify" (need 1). The page text contains "ClosetTwin" and "2026" for the machine check.
 The Hebrew text is written only after master-se approves the English chapters, so that the numbers cannot drift.
 
 ---
@@ -361,7 +361,7 @@ Changed meaning: A32 (low-touch pilot fee $0), A33b, A34b apply to Europe only.
 
 | id | name | value |
 |---|---|---|
-| D19i | Smallest relative reduction a 4-week pilot detects at a large Israeli retailer (600,000 orders a year, 23,077 per arm) | about 7.9% |
+| D19i | Smallest relative reduction a 4-week pilot detects at a large Israeli retailer (600,000 orders a year, 23,077 per arm) | about 7.8% |
 | D19i2 | The same at a mid-size Israeli retailer (100,000 orders a year, 3,846 per arm) | about 19% (pooled evidence only) |
 | D19e | The same at a European retailer of 1M orders a year | about 6.1% (unchanged) |
 | D20 | Revenue, years 1–5 (Israeli subscription A26i × A11i × D08; European subscription A26e × A11e × D08; pilot fees) | $10,000; $28,000; $46,000; $97,500; $782,000 |

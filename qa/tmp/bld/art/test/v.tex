@@ -1,0 +1,36 @@
+\documentclass[10pt]{article}
+\usepackage[paperwidth=17cm,paperheight=60cm,margin=1cm]{geometry}
+\usepackage{graphicx,tikz}\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,fit,backgrounds}
+\definecolor{ink}{HTML}{111111}\definecolor{ivory}{HTML}{F7F3EE}\definecolor{mocha}{HTML}{A47864}
+\definecolor{pink}{HTML}{E8C6C0}\definecolor{mochadeep}{HTML}{6B4B3D}\definecolor{mochapale}{HTML}{D3BBAE}\definecolor{muted}{HTML}{6F6862}
+\newcommand*{\ctsmallfont}{\fontsize{8}{10}\selectfont}\newcommand*{\ctheadfont}{\bfseries}
+\tikzset{
+  every picture/.append style={font=\ctsmallfont,text=ink,line width=0.6pt,draw=ink,
+    node distance=12mm,rounded corners=0pt},
+  ct node/.style={rectangle,minimum height=8mm,minimum width=20mm,inner sep=5pt,draw=ink,
+    line width=0.6pt,fill=white,text=ink,align=center,rounded corners=2pt},
+  ct node ivory/.style={ct node,fill=ivory,draw=mochapale,line width=0.4pt},
+  ct node pink/.style={ct node,fill=pink},
+  ct key/.style={ct node,fill=ink,text=ivory},
+  ct decision/.style={ct node,draw=mocha},
+  ct arrow/.style={-{Stealth[length=4pt]},line width=0.6pt,draw=ink},
+  ct guide/.style={line width=0.4pt,draw=muted,dashed},
+  ct label/.style={font=\ctsmallfont,text=ink,inner sep=2pt},
+  ct title/.style={font=\ctheadfont\fontsize{11}{13}\selectfont,text=ink},
+  ct bar/.style={rectangle,minimum height=4mm,draw=ink,line width=0.6pt,fill=mocha},
+  ct bar milestone/.style={diamond,minimum height=3mm,minimum width=3mm,inner sep=0pt,draw=ink,fill=ink},
+  ct cell 1/.style={rectangle,draw=ink,line width=0.4pt,fill=pink,text=ink,align=center},
+  ct cell 2/.style={rectangle,draw=ink,line width=0.4pt,fill=mochapale,text=ink,align=center},
+  ct cell 3/.style={rectangle,draw=ink,line width=0.4pt,fill=mocha,text=ink,align=center},
+  ct cell 4/.style={rectangle,draw=ink,line width=0.4pt,fill=mochadeep,text=ivory,align=center},
+  ct cell 5/.style={rectangle,draw=ink,line width=0.4pt,fill=ink,text=ivory,align=center},
+}
+\pagestyle{empty}
+\begin{document}
+\input{../../figures/f1-market}\bigskip\par
+\input{../../figures/f3-dataflow}\bigskip\par
+\input{../../figures/f4-roadmap}\bigskip\par
+\input{../../figures/f7-risk-matrix}\bigskip\par
+\includegraphics[width=15cm]{../../figures/f2-positioning.pdf}\par
+\includegraphics[width=15cm]{../../figures/f5-projection.pdf}\par
+\end{document}

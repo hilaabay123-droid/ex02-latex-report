@@ -1,7 +1,7 @@
 ---
 name: writer
 description: Production skill for chapter writing: continuous professional prose, every claim cited from references.bib, every money figure from python/model.py, assumptions labelled, honest funding ask and break-even year. Use when writing or revising chapters/*.tex.
-version: 1.0
+version: 1.1
 ---
 
 # writer
@@ -31,3 +31,9 @@ Writing or revising any `chapters/NN-*.tex` or the Hebrew summary.
 
 ## Success check
 No uncited claim, no number that differs from the model, no manual formatting command, all labels referenced, chapter within its page budget, build clean.
+
+## Added rules (v1.1, from incidents 03, 06)
+11. A caption has no file names, no `\texttt`, no script or model names; put such facts in the text or use `\caption[short]{long}`.
+12. In prose, no digits inside `$...$`; write numbers in the text font (`\pct{}`, `\usd{}`, `\derived{}` work inside and outside formulas). Formulas with symbols only are fine.
+13. Tables: use `X` for long text columns and `l` only for short ones; the first column must stay readable (at least 3 cm); a table should not be the last element of a chapter when it will not fit the page (put text after it).
+14. A range of years or numbers in Hebrew text uses `\range{a}{b}` with two different values.
