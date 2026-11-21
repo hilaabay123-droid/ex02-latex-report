@@ -16,7 +16,7 @@ One readable record of every message the user typed to any of the five agents (m
 
 Other records: the automatic log of every prompt is in [prompts/log/](log/); full session transcripts (tool output omitted) are in [prompts/sessions/](sessions/); the skills the team uses are in [.claude/skills/](../.claude/skills/); incidents are in [incidents/](../incidents/); QA reports in [qa/reports/](../qa/reports/).
 
-Total: 27 messages.
+Total: 28 messages.
 
 ---
 
@@ -710,4 +710,27 @@ README link and anything that failed.
 
 </details>
 
-**Agent:** fix-se checked the asterisk and it is JetBrains Mono's own glyph design, so no change is needed. The README already carries art-se's R2 and R4–R6 fixes. R1 and R3 are open: the missing agents-working.png, and re-rendering the code-appendix thumbnail, which is only needed if you want it redone.
+**Agent:** qa-se is idle and its release-check report is already filed. Nothing else is pending. The work is pushed, and the open decision for you is whether to rewrite git history to drop the cached vendor pages.
+
+### 20:56 - master-se
+
+> Decisions: 1. Git history: leave it - no history rewrite, no force-push. 2. Code appendix: fix in the CLS so that copying code from the PDF gives plain ASCII hyphens and quotes (the code must run when pasted). Keep the JetBrains Mono asterisk.
+
+<details><summary>full text</summary>
+
+```text
+Decisions:
+1. Git history: leave it - no history rewrite, no force-push.
+2. Code appendix: fix in the CLS so that copying code from the PDF gives
+   plain ASCII hyphens and quotes (the code must run when pasted). Keep
+   the JetBrains Mono asterisk. Bump version + CHANGELOG, rebuild.
+3. README says "29 verified entries in references.bib" - count the
+   entries actually printed in the References chapter and fix the number
+   everywhere (README, PRD if needed).
+Then re-run tools/export_sessions.py, update MY-DIALOGUE file, commit,
+push, and confirm the final commit hash. This is the final release.
+```
+
+</details>
+
+**Agent:** The count is fixed in the README, in two places, and in the PRD with a note that it was 29 at v1.1. I left TODO.md T1.1 alone because it records the count at that earlier stage. I'm waiting on fix-se for the ASCII-copy fix to the CLS.

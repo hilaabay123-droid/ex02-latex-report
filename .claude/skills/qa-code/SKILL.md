@@ -1,7 +1,7 @@
 ---
 name: qa-code
 description: Detector (report-only) for the code appendix and Python scripts: one pythonbox, margin, LTR, code equals the real file, JetBrains Mono only there, every script runs clean and reproduces its figure. Use after a build or when asked to check code.
-version: 1.2
+version: 1.3
 ---
 
 # qa-code
@@ -55,3 +55,4 @@ K1-K5, I8, FS4 each pass, fail or are skipped with a reason; the script table li
 10. **Math font rule (decision 2026-11-20, F-fonts-01):** Latin Modern Math is allowed for inline math symbols and displayed equations; digits are never math font (qa-typeset 12). `fonts_by_page.py` therefore must not flag Latin Modern Math on a page for symbols alone.
 11. **`\texttt` warning (v0.22):** `grep -c "texttt used in the text" main.log` must be 0; each hit is a finding for the chapter owner.
 12. **Any monospace font outside the appendix (incident 03):** `\texttt` in a caption or text prints Latin Modern Mono; `fonts_by_page.py` must show no mono font except JetBrains Mono on appendix pages (a finding names the page and the source line).
+13. **Copy from the code box gives plain ASCII (v0.25, decision 2026-11-21):** extract the text of the code page with PyMuPDF (`python fix/chk_code.py main.pdf`, exit 0): no character in the extraction that is not in `python/appendix_f6_code.py` (hyphen must be U+002D, never U+2212; quotes ' and " straight; backtick as is), and every code segment of the source (code and trailing comment, whitespace collapsed) found in the extraction. Visual look is not part of this check (the JetBrains Mono asterisk is the font's design).

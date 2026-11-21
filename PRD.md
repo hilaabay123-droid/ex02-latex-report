@@ -149,7 +149,7 @@ Python figures `import ct_style`:
 **Back matter (not counted):** the references, then **Appendix A: "How our charts are made"**, which holds one `pythonbox` with
 the script for one chart (art-se picks a short, readable one, probably F6) plus one paragraph on reproducibility (UD-4).
 
-| # | Chapter | Pages | Must contain | Sources (all 29 bib keys assigned; RT-W8) |
+| # | Chapter | Pages | Must contain | Sources (all bib keys assigned (29 at PRD v1.1, 39 in the final report); RT-W8) |
 |---|---|---|---|---|
 | 1 | Introduction & Problem | 3 | Stat cards. The cost of returns as a **range** ($685 B [appriss2024] – $890 B [nrf2024]) with the method difference noted. The problem framed exactly as in §1 | appriss2024, coresight2023, nrf2024, gustafsson2021, pfaff2025 |
 | 2 | Market: TAM / SAM / SOM | 4 | **Israel first (beachhead), with Europe as the expansion layer (UD-6).** F1. A **bottom-up SAM for Israel** with each input tagged sourced, derived or assumed (online apparel sales × share of retailers above a size threshold × our price) (RT-W2). The publisher's definition and method stated as a limit. SOM tagged *assumed* | imarc2026, kings2026, coresight2023, appriss2024, **+ Israeli e-commerce sources (IL-R1, pending)** |

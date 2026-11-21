@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/21 v0.24 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/21 v0.25 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -61,6 +61,20 @@
 % Code font: only inside pythonbox (see S2.4)
 \newfontfamily\ctcodefont{JetBrainsMono-Regular}[BoldFont=JetBrainsMono-Bold,
   ItalicFont=JetBrainsMono-Italic,BoldItalicFont=JetBrainsMono-BoldItalic,Scale=0.85,RawFeature={-tlig;-liga;-calt}]
+% (v0.25) copy/paste from the code box gives plain ASCII: listings hands the hyphen of the source to the font as U+2212 (minus glyph, same look as the hyphen),
+% so a copy from the PDF pasted minus signs.  In this code-only font the ToUnicode of the minus/soft-hyphen/
+% U+2010/U+2011 glyphs is pinned to U+002D (the look is unchanged).  No percent sign inside \directlua.
+\directlua{
+  luatexbase.add_to_callback("luaotfload.patch_font", function(tfmdata)
+    local nm = tostring(tfmdata.psname or tfmdata.fullname or tfmdata.name or "")
+    if string.find(nm, "JetBrains", 1, true) and tfmdata.characters then
+      for _, u in ipairs({0xAD, 0x2010, 0x2011, 0x2212}) do
+        local c = tfmdata.characters[u]
+        if c then c.tounicode = "002D" end
+      end
+    end
+  end, "closettwin.codeascii")
+}
 
 %%% ---------- maths: Latin Modern Math only inside formulas ---
 \RequirePackage{amsmath}

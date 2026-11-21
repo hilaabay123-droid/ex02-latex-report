@@ -19,7 +19,7 @@ ClosetTwin sells online fashion retailers a size-recommendation tool built on a 
 | **Length** | 46 pages including the cover and front matter (the body is 39 numbered pages): cover, one-page Hebrew executive summary, contents and lists (front matter), 10 chapters, references (IEEE), Appendix A (the chart's Python code) |
 | **Chapters** | 1 Introduction and Problem · 2 Market: TAM, SAM and SOM · 3 Competition · 4 Product and Technology · 5 Business Model and Pricing · 6 Go-to-Market · 7 Operations, Team and Roadmap · 8 Financial Plan · 9 Risks · 10 Conclusion |
 | **Figures** | 7 (market nesting, positioning map, data flow, roadmap, 5-year projection, retailer economics, risk matrix); every number comes from `python/model.py` |
-| **Sources** | 29 verified entries in [`references.bib`](references.bib) |
+| **Sources** | 39 verified entries in [`references.bib`](references.bib) |
 | **Languages** | English body; the Hebrew summary is typeset right-to-left, with Latin names and numbers kept left-to-right |
 
 <p align="center">
@@ -101,7 +101,7 @@ The **iron rule** behind all of it: a problem that can recur (spacing, direction
 * **Fonts (all OFL, in [`fonts/`](fonts/), hashes in `fonts/SOURCES.md`):** Playfair Display for English headings, Rubik for body text and all Hebrew, JetBrains Mono for the code box only, Latin Modern Math for formulas.
 * **Palette:** ivory, ink, mocha, powder pink and their deep/muted variants; contrast is checked by a script.
 * **Components:** magazine cover (TikZ), chapter opener, stat card, pull quote, insight box, assumption/derived/sourced tags (`D`, `A`), booktabs tables, captioned figures, code box that reads the real Python file, Hebrew page with RTL lists.
-* **Class:** [`closettwin.cls`](closettwin.cls), currently **v0.24**. Every version, its problem, root cause and reporter: [`fix/CHANGELOG.md`](fix/CHANGELOG.md). Every command with an example: [`docs/cls-commands.md`](docs/cls-commands.md).
+* **Class:** [`closettwin.cls`](closettwin.cls), currently **v0.25**. Every version, its problem, root cause and reporter: [`fix/CHANGELOG.md`](fix/CHANGELOG.md). Every command with an example: [`docs/cls-commands.md`](docs/cls-commands.md).
 
 <img src="docs/screenshots/palette-swatch.png" width="560">
 
@@ -202,7 +202,7 @@ lualatex --disable-installer main
 ├── main.tex, main.pdf         the report
 ├── chapters/                  00-summary-he, 01 … 10
 ├── closettwin.cls, fonts/     the class and its OFL fonts
-├── references.bib             29 IEEE sources
+├── references.bib             39 IEEE sources
 ├── python/                    financial model, graph scripts, data/assumptions.csv
 ├── figures/                   figure PDFs and TikZ figures
 ├── .claude/skills/            14 skills
