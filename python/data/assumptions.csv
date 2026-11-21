@@ -79,16 +79,16 @@ D21_2,Cost of goods year 2,,USD,derived,A26_2 * A11 * D11,
 D21_3,Cost of goods year 3,,USD,derived,A26_3 * A11 * D11,
 D21_4,Cost of goods year 4,,USD,derived,A26_4 * A11 * D11,
 D21_5,Cost of goods year 5,,USD,derived,A26_5 * A11 * D11,
-D22_1,Operating cost year 1,,USD,derived,A25_1 * A14,
-D22_2,Operating cost year 2,,USD,derived,A25_2 * A14,
-D22_3,Operating cost year 3,,USD,derived,A25_3 * A14,
-D22_4,Operating cost year 4,,USD,derived,A25_4 * A14,
-D22_5,Operating cost year 5,,USD,derived,A25_5 * A14,
-D23_1,Operating result year 1,,USD,derived,D20 - D21 - D22 - D28,
-D23_2,Operating result year 2,,USD,derived,D20 - D21 - D22 - D28,
-D23_3,Operating result year 3,,USD,derived,D20 - D21 - D22 - D28,
-D23_4,Operating result year 4,,USD,derived,D20 - D21 - D22 - D28,
-D23_5,Operating result year 5,,USD,derived,D20 - D21 - D22 - D28,
+D22_1,Operating cost year 1 (payroll only),,USD,derived,A25_1 * A14,
+D22_2,Operating cost year 2 (payroll only),,USD,derived,A25_2 * A14,
+D22_3,Operating cost year 3 (payroll only),,USD,derived,A25_3 * A14,
+D22_4,Operating cost year 4 (payroll only),,USD,derived,A25_4 * A14,
+D22_5,Operating cost year 5 (payroll only),,USD,derived,A25_5 * A14,
+D23_1,Operating result year 1,,USD,derived,D20 - D21 - D22 - D28 - D44,
+D23_2,Operating result year 2,,USD,derived,D20 - D21 - D22 - D28 - D44,
+D23_3,Operating result year 3,,USD,derived,D20 - D21 - D22 - D28 - D44,
+D23_4,Operating result year 4,,USD,derived,D20 - D21 - D22 - D28 - D44,
+D23_5,Operating result year 5,,USD,derived,D20 - D21 - D22 - D28 - D44,
 D24,Peak cumulative deficit,,USD,derived,min of running sum of D23,
 D25,Funding ask,,USD,derived,-D24 * (1 + A30),
 D26,SOM (year-5 revenue),,USD,derived,D20_5,Added by art-se; outline calls year-5 revenue the SOM
@@ -98,11 +98,53 @@ D28_2,Pilot cash cost year 2,,USD,derived,pilots_2 * (A31 * A33a + (1 - A31) * A
 D28_3,Pilot cash cost year 3,,USD,derived,pilots_3 * (A31 * A33a + (1 - A31) * A33b),
 D28_4,Pilot cash cost year 4,,USD,derived,pilots_4 * (A31 * A33a + (1 - A31) * A33b),
 D28_5,Pilot cash cost year 5,,USD,derived,pilots_5 * (A31 * A33a + (1 - A31) * A33b),
+D40_1,Sales and marketing non-payroll year 1,,USD,derived,A48 x direct pilots (Israel pilots x A31i + Europe pilots x A31e),
+D40_2,Sales and marketing non-payroll year 2,,USD,derived,A48 x direct pilots (Israel pilots x A31i + Europe pilots x A31e),
+D40_3,Sales and marketing non-payroll year 3,,USD,derived,A48 x direct pilots (Israel pilots x A31i + Europe pilots x A31e),
+D40_4,Sales and marketing non-payroll year 4,,USD,derived,A48 x direct pilots (Israel pilots x A31i + Europe pilots x A31e),
+D40_5,Sales and marketing non-payroll year 5,,USD,derived,A48 x direct pilots (Israel pilots x A31i + Europe pilots x A31e),
+D41_1,Cloud and tooling year 1,,USD,derived,A49,
+D41_2,Cloud and tooling year 2,,USD,derived,A49,
+D41_3,Cloud and tooling year 3,,USD,derived,A49,
+D41_4,Cloud and tooling year 4,,USD,derived,A49,
+D41_5,Cloud and tooling year 5,,USD,derived,A49,
+D42_1,Legal/compliance Israel year 1,,USD,derived,A50a in year 1; A50b from year 2,
+D42_2,Legal/compliance Israel year 2,,USD,derived,A50a in year 1; A50b from year 2,
+D42_3,Legal/compliance Israel year 3,,USD,derived,A50a in year 1; A50b from year 2,
+D42_4,Legal/compliance Israel year 4,,USD,derived,A50a in year 1; A50b from year 2,
+D42_5,Legal/compliance Israel year 5,,USD,derived,A50a in year 1; A50b from year 2,
+D43_1,Legal/compliance Europe year 1,,USD,derived,A50c in year A45; A50d after,
+D43_2,Legal/compliance Europe year 2,,USD,derived,A50c in year A45; A50d after,
+D43_3,Legal/compliance Europe year 3,,USD,derived,A50c in year A45; A50d after,
+D43_4,Legal/compliance Europe year 4,,USD,derived,A50c in year A45; A50d after,
+D43_5,Legal/compliance Europe year 5,,USD,derived,A50c in year A45; A50d after,
+D44_1,Additional operating cost year 1 (D40+D41+D42+D43),,USD,derived,D40 + D41 + D42 + D43,
+D44_2,Additional operating cost year 2 (D40+D41+D42+D43),,USD,derived,D40 + D41 + D42 + D43,
+D44_3,Additional operating cost year 3 (D40+D41+D42+D43),,USD,derived,D40 + D41 + D42 + D43,
+D44_4,Additional operating cost year 4 (D40+D41+D42+D43),,USD,derived,D40 + D41 + D42 + D43,
+D44_5,Additional operating cost year 5 (D40+D41+D42+D43),,USD,derived,D40 + D41 + D42 + D43,
+D45,Implied cost per return if 17% is per pair sold at the paper's 28% return rate,,USD,derived,S02 x D01 / S11,"For the text only; the model keeps D02 = 6.80 as a conservative lower bound per return"
+D46,Run-rate break-even European client count (base mix),,clients,derived,"(Y5 fixed costs - Israel margin Y5 - pilot fees Y5) / contribution per European client","Fixed = payroll + D44_5 + pilot cash D28_5; contribution = A11e x (D08 - D11)"
+D47,Contribution per European client per year (1M orders),,USD,derived,A11e x (D08 - D11),
+D48_1,Billed European clients year 1,,clients,derived,prev_end + (end - prev_end) x A47,
+D48_2,Billed European clients year 2,,clients,derived,prev_end + (end - prev_end) x A47,
+D48_3,Billed European clients year 3,,clients,derived,prev_end + (end - prev_end) x A47,
+D48_4,Billed European clients year 4,,clients,derived,prev_end + (end - prev_end) x A47,
+D48_5,Billed European clients year 5,,clients,derived,prev_end + (end - prev_end) x A47,
 X01,ILS per USD,3.70,NIS per USD,derived,"IL18: NIS 22.6 B / USD 6.1 B = 3.705, rounded",Only for NIS equivalents; model arithmetic stays in USD (UD-8)
 S09a,Israeli online commerce 2022,6000000000,USD,sourced,knesset_ric2025 IL17b,Statista estimate
 S09b,Israeli online commerce 2023,6100000000,USD,sourced,knesset_ric2025 IL18,Statista estimate
 S09c,Israeli online commerce 2024,6900000000,USD,sourced,knesset_ric2025 IL17,Statista estimate for 2024
 S10,Fashion share of Israeli online commerce (2022),0.216,fraction,sourced,knesset_ric2025 IL19,Pie label 21.6%; held at 2024 in D29
+S11,Overall return rate in Gustafsson's footwear case,0.28,fraction,sourced,gustafsson2021 C18,Used only for D45
+A47,European first-year billing factor (half-year convention),0.5,fraction,assumed,,"Billed European clients in year y = prev_end + (end - prev_end) x A47. Israel stays year-average (A26i_y are already year averages)"
+A48,Sales and marketing non-payroll cost per direct pilot,10000,USD,assumed,,"Travel, demos, events; about 40% of A28 CAC (25k); the other 60% is payroll already in A25 x A14. Conservative"
+A49,Cloud and tooling base,24000,USD per year,assumed,,From year 1; conservative
+A50a,Legal/compliance: Israel setup (year 1),30000,USD,assumed,,"Privacy counsel, DPIA, database registration, DPO arrangement under Amendment 13"
+A50b,Legal/compliance: Israel recurring (from year 2),15000,USD per year,assumed,,
+A50c,Legal/compliance: Europe GDPR setup (entry year A45),25000,USD,assumed,,Then A50d per year from the year after
+A50d,Legal/compliance: Europe recurring (from year after entry),15000,USD per year,assumed,,
+A51,Orders per converted low-touch European client (sensitivity only),250000,orders,assumed,,"Anchor = average Israeli client D38. NOT in the base case (used only by scenario 'low-touch size 250k'); low-touch share of European clients = 1 - A31e = 75%"
 A09i,"Pilot fee, Israel (direct)",2500,USD,assumed,,"Mid-size Israeli client pays about 3,600 a year"
 A09e,"Pilot fee, Europe (direct pilots only)",5000,USD,assumed,,
 A11e,"Orders per paying client per year, Europe",1000000,orders,assumed,,Unchanged
@@ -116,11 +158,11 @@ A26i_2,Paying Israeli clients year 2 (year average),2,clients,assumed,,
 A26i_3,Paying Israeli clients year 3 (year average),4,clients,assumed,,
 A26i_4,Paying Israeli clients year 4 (year average),5,clients,assumed,,
 A26i_5,Paying Israeli clients year 5 (year average),6,clients,assumed,,
-A26e_1,Paying European clients year 1 (year average),0,clients,assumed,,
-A26e_2,Paying European clients year 2 (year average),0,clients,assumed,,
-A26e_3,Paying European clients year 3 (year average),0,clients,assumed,,
-A26e_4,Paying European clients year 4 (year average),0,clients,assumed,,
-A26e_5,Paying European clients year 5 (year average),18,clients,assumed,,= 50% of year-4 European pilots; base entry year 4
+A26e_1,Paying European clients under contract at end of year 1,0,clients,assumed,,
+A26e_2,Paying European clients under contract at end of year 2,0,clients,assumed,,
+A26e_3,Paying European clients under contract at end of year 3,0,clients,assumed,,
+A26e_4,Paying European clients under contract at end of year 4,0,clients,assumed,,
+A26e_5,Paying European clients under contract at end of year 5,18,clients,assumed,,= A17 x year-4 European pilots; billed in year 5 at the half-year average A47 (9 clients); base entry year 4
 A26ip_1,Israeli pilots year 1,4,pilots,assumed,,"4 of the 30 candidates, warm design-partner contacts"
 A26iq_2,Israeli pilots year 2,4,pilots,assumed,,
 A26iq_3,Israeli pilots year 3,4,pilots,assumed,,

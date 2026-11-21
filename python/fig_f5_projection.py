@@ -8,7 +8,7 @@ _, inputs, _ = model.load_inputs()
 d = model.compute(inputs)
 Y = np.arange(1, 6)
 rev = np.array([d[f"D20_{y}"] for y in Y]) / 1e3
-cost = np.array([d[f"D21_{y}"] + d[f"D22_{y}"] + d[f"D28_{y}"] for y in Y]) / 1e3
+cost = np.array([d[f"D21_{y}"] + d[f"D22_{y}"] + d[f"D28_{y}"] + d[f"D44_{y}"] for y in Y]) / 1e3
 cum = np.array([d[f"CUM_{y}"] for y in Y]) / 1e6
 
 fig, (a, b) = ct.plt.subplots(1, 2, figsize=(ct.TEXTWIDTH_IN, ct.TEXTWIDTH_IN * 0.45))

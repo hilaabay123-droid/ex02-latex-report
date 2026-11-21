@@ -68,6 +68,33 @@ def pilot_cash(a, y):
             + pilots_e(a, y) * (a["A31e"] * a["A33a"] + (1 - a["A31e"]) * a["A33b"]))
 
 
+def eu_orders(a):
+    """Orders per European paying client. Base: A11e for all. Sensitivity (a['_lowtouch'] = 1): the low-touch share
+    (1 - A31e) of clients converts at A51 orders instead (A51 is NOT in the base case)."""
+    if a.get("_lowtouch"):
+        return a["A31e"] * a["A11e"] + (1 - a["A31e"]) * a["A51"]
+    return a["A11e"]
+
+
+def eu_billed(a, y):
+    """European clients billed in year y: A26e_y is clients under contract at the END of year y; billing uses the
+    half-year convention prev_end + (end - prev_end) x A47. (Israel A26i_y stays a year average.)"""
+    prev = a[f"A26e_{y-1}"] if y > 1 else 0.0
+    end = a[f"A26e_{y}"]
+    return prev + (end - prev) * a["A47"]
+
+
+def extra_cost(a, y):
+    """Additional operating cost lines (A48-A50): returns (sales+marketing non-payroll, cloud, legal Israel, legal Europe)."""
+    direct = pilots_i(a, y) * a["A31i"] + pilots_e(a, y) * a["A31e"]
+    sm = a["A48"] * direct
+    cloud = a["A49"]
+    legal_il = a["A50a"] if y == 1 else a["A50b"]
+    step = y - int(a["A45"])
+    legal_eu = 0.0 if step < 0 else (a["A50c"] if step == 0 else a["A50d"])
+    return sm, cloud, legal_il, legal_eu
+
+
 def compute(a):
     d = {}
     d["D01"] = a["A02"] * a["A01"]
@@ -113,20 +140,32 @@ def compute(a):
     cum, peak = 0.0, 0.0
     for y in YEARS:
         sub_i = a[f"A26i_{y}"] * a_i * d["D08"]
-        sub_e = a[f"A26e_{y}"] * a["A11e"] * d["D08"]
+        eb = d[f"D48_{y}"] = eu_billed(a, y)
+        sub_e = eb * eu_orders(a) * d["D08"]
         rev = sub_i + sub_e + pilot_fee_rev(a, y)
-        cogs = (a[f"A26i_{y}"] * a_i + a[f"A26e_{y}"] * a["A11e"]) * d["D11"]
+        cogs = (a[f"A26i_{y}"] * a_i + eb * eu_orders(a)) * d["D11"]
         opex = a[f"A25_{y}"] * a["A14"]
         pcash = pilot_cash(a, y)
+        sm, cloud, lil, leu = extra_cost(a, y)
+        d[f"D40_{y}"], d[f"D41_{y}"], d[f"D42_{y}"], d[f"D43_{y}"] = sm, cloud, lil, leu
+        d[f"D44_{y}"] = sm + cloud + lil + leu
         d[f"SUBI_{y}"], d[f"SUBE_{y}"] = sub_i, sub_e
         d[f"D20_{y}"], d[f"D21_{y}"], d[f"D22_{y}"], d[f"D28_{y}"] = rev, cogs, opex, pcash
-        d[f"D23_{y}"] = rev - cogs - opex - pcash
+        d[f"D23_{y}"] = rev - cogs - opex - pcash - d[f"D44_{y}"]
         cum += d[f"D23_{y}"]
         d[f"CUM_{y}"] = cum
         peak = min(peak, cum)
     d["D24"] = peak
     d["D25"] = -peak * (1 + a["A30"])
     d["D26"] = d["D20_5"]
+    d["D45"] = a["S02"] * d["D01"] / a["S11"]
+    # run-rate break-even: Y5 fixed costs net of Israel margin and pilot fees, per European client contribution
+    contrib = eu_orders(a) * (d["D08"] - d["D11"])
+    il_margin = a["A26i_5"] * a_i * (d["D08"] - d["D11"])
+    fixed5 = d["D22_5"] + d["D44_5"] + d["D28_5"]
+    d["D47"] = contrib
+    d["_fixed5"], d["_il_margin5"], d["_pilot_fees5"] = fixed5, il_margin, pilot_fee_rev(a, 5)
+    d["D46"] = (fixed5 - il_margin - pilot_fee_rev(a, 5)) / contrib
     d["D27"] = (d["SUBI_5"] + d["SUBE_5"]) / (d["D34"] + d["D37"])   # subscription revenue / combined SAM
     return d
 
@@ -214,29 +253,37 @@ def main():
     write_csv(DATA / "funnel_check_out.csv", [{k: (format(v, ".10g") if v != "" else "") for k, v in r.items()} for r in frows], list(frows[0]))
 
     # --- check against writer-se's hand numbers (outline section 10.3) ---
-    hand = [  # outline section 10.5 D (IL-O1)
+    hand = [  # hand-check list, rebuilt 2026-11-21 for the new cost lines (A47-A50) and half-year billing (A47)
         ("D02 cost per return", d["D02"], 6.80),
+        ("D45 cost per return, 17% per pair at 28%", d["D45"], 40 * 0.17 / 0.28),
         ("D05 break-even per order", d["D05"], 0.0996),
         ("D08 blended price", d["D08"], 0.036),
-        ("D19i MDE large IL", d["D19i"], 0.079),
-        ("D19i2 MDE mid IL", d["D19i2"], 0.19),
-        ("D19e MDE Europe", d["D19e"], 0.061),
+        ("D19i MDE large IL", d["D19i"], 0.0779),
+        ("D19i2 MDE mid IL", d["D19i2"], 0.1858),
+        ("D19e MDE Europe", d["D19e"], 0.0606),
+        ("D48_5 billed European clients Y5", d["D48_5"], 9),
         ("D20_1 revenue Y1", d["D20_1"], 10000),
         ("D20_2 revenue Y2", d["D20_2"], 28000),
         ("D20_3 revenue Y3", d["D20_3"], 46000),
         ("D20_4 revenue Y4", d["D20_4"], 97500),
-        ("D20_5 revenue Y5", d["D20_5"], 782000),
+        ("D20_5 revenue Y5", d["D20_5"], 458000),
         ("D28_4 pilot cash Y4", d["D28_4"], 49500),
         ("D28_5 pilot cash Y5", d["D28_5"], 73500),
-        ("D23_1 op result Y1", d["D23_1"], -272000),
-        ("D23_2 op result Y2", d["D23_2"], -347750),
-        ("D23_3 op result Y3", d["D23_3"], -423500),
-        ("D23_4 op result Y4", d["D23_4"], -771375),
-        ("D23_5 op result Y5", d["D23_5"], -517750),
-        ("CUM_5", d["CUM_5"], -2332375),
-        ("D24 peak deficit", d["D24"], -2332375),
-        ("D25 ask", d["D25"], 2798850),
-        ("D34 Israeli SAM fee pool", d["D34"], 0.20e6),
+        ("D44_1 extra cost Y1", d["D44_1"], 94000),
+        ("D44_2 extra cost Y2", d["D44_2"], 79000),
+        ("D44_3 extra cost Y3", d["D44_3"], 79000),
+        ("D44_4 extra cost Y4", d["D44_4"], 184000),
+        ("D44_5 extra cost Y5", d["D44_5"], 224000),
+        ("D23_1 op result Y1", d["D23_1"], -366000),
+        ("D23_2 op result Y2", d["D23_2"], -426750),
+        ("D23_3 op result Y3", d["D23_3"], -502500),
+        ("D23_4 op result Y4", d["D23_4"], -955375),
+        ("D23_5 op result Y5", d["D23_5"], -998250),
+        ("CUM_5", d["CUM_5"], -3248875),
+        ("D24 peak deficit", d["D24"], -3248875),
+        ("D25 ask", d["D25"], 3898650),
+        ("D46 run-rate break-even clients", d["D46"], (1080000 + 224000 + 73500 - 42750 - 80000) / 28500),
+        ("D34 Israeli SAM fee pool", d["D34"], 198000),
         ("D18 sample per arm", d["D18"], 6000),
     ]
     print(f"{'value':28s} {'model':>16s} {'hand':>14s} {'delta %':>9s}")

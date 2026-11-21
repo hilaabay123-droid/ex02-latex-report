@@ -1,7 +1,7 @@
 %% closettwin.cls -- ClosetTwin business-plan report class (owner: fix-se)
 %% LuaLaTeX only.  Build from the project root:  lualatex --disable-installer main
 \NeedsTeXFormat{LaTeX2e}[2025/11/01]
-\ProvidesClass{closettwin}[2026/11/20 v0.23 ClosetTwin report class]
+\ProvidesClass{closettwin}[2026/11/21 v0.24 ClosetTwin report class]
 
 \RequirePackage{iftex}
 \ifluatex\else\ClassError{closettwin}{LuaLaTeX is required}{Compile with lualatex.}\fi
@@ -113,7 +113,10 @@
 \newcommand*{\pct}[1]{\mbox{#1\%}}
 % \range{2024}{2026}: always 2024-2026 left to right, also inside a Hebrew (RTL) paragraph
 \newcommand*{\range}[2]{\mbox{\foreignlanguage{english}{#1\textendash #2}}}
-\newcommand*{\usd}[1]{\mbox{\textdollar #1}}
+% (v0.24) a negative amount prints the sign BEFORE the symbol, as a real minus: \usd{-366,000} -> −$366,000
+\def\ct@usdsign{\@ifnextchar-{\ct@usdneg}{\textdollar}}
+\def\ct@usdneg-{\ifdefstring{\languagename}{hebrew}{\foreignlanguage{english}{\char"2212\textdollar}}{\char"2212\textdollar}}
+\newcommand*{\usd}[1]{\mbox{\ct@usdsign#1\relax}}
 \newcommand*{\ils}[1]{\ifdefstring{\languagename}{hebrew}%
   {\mbox{#1\,{\char"05E9}{\char"05F4}{\char"05D7}}}{\mbox{{\char"20AA}#1}}}
 % The one Hebrew page: RTL, ragged (no Hebrew hyphenation), Rubik everywhere.
@@ -197,15 +200,24 @@
 \setlength{\tabcolsep}{6pt}
 % right-aligned numeric column and header row (ivory fill)
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+% (v0.24) N = narrow right-aligned number column of fixed width (0.17 of the text width), not a share of the X widths:
+%   with N the X (text) columns of a table with ONE short number column get the rest of the line: \begin{tabularx}{\textwidth}{XNlX}
+\newcolumntype{N}{>{\raggedleft\arraybackslash}p{0.17\textwidth}}
 % (v0.23) a table with ONE wide label column and n numeric columns: \ctnumcols{n}, then columns W (label,
-% weight 1.6) and V (numbers, right-aligned, weight (n+1-1.6)/n so the weights add up to n+1 as tabularx needs):
+% weight 1.2) and V (numbers, right-aligned, weight (n+1-1.2)/n so the weights add up to n+1 as tabularx needs):
 %   \ctnumcols{4}\begin{tabularx}{\textwidth}{WVVVV} ... \end{tabularx}
-\newcommand*{\ct@v}{0.85}
-\newcommand*{\ctnumcols}[1]{\edef\ct@v{\strip@pt\dimexpr(#1pt+1pt-1.6pt)/#1\relax}}
-\newcolumntype{W}{>{\hsize=1.6\hsize\raggedright\arraybackslash}X}
+\newcommand*{\ct@v}{0.95}
+\newcommand*{\ct@w}{1.2}
+% (v0.24) label weight: 1.2 for up to 4 numeric columns, 1.6 from 5 columns on (narrow numbers); override with \ctnumcols[w]{n}
+\newcommand*{\ctnumcols}[2][]{%
+  \ifx\relax#1\relax\ifnum#2>4 \def\ct@w{1.6}\else\def\ct@w{1.2}\fi\else\def\ct@w{#1}\fi
+  \edef\ct@v{\strip@pt\dimexpr(#2pt+1pt-\ct@w pt)/#2\relax}}
+\newcolumntype{W}{>{\hsize=\ct@w\hsize\raggedright\arraybackslash}X}
 \newcolumntype{V}{>{\hsize=\ct@v\hsize\raggedleft\arraybackslash}X}
 % (v0.20) text columns of a tabularx are ragged right: never justified, so no stretched spaces in a narrow cell
-\renewcommand*{\tabularxcolumn}[1]{>{\raggedright\arraybackslash}p{#1}}
+% (v0.24) RaggedRight (ragged2e): hyphenates, so a narrow first column has no big gaps
+\RequirePackage{ragged2e}
+\renewcommand*{\tabularxcolumn}[1]{>{\RaggedRight\arraybackslash\hyphenpenalty=50\tolerance=2000}p{#1}}
 % (v0.20) the list-of-tables/figures entry of a caption without a short form stops before the first "(":
 % remarks in brackets (file names, model notes) never reach the lists. \caption[short]{long} still wins.
 % (v0.23) cut in Lua (no percent sign, hash or backslash-backslash inside \directlua): the entry stops before the first

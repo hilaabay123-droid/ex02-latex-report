@@ -23,31 +23,64 @@ D20_1,Revenue year 1,10000,USD
 D20_2,Revenue year 2,28000,USD
 D20_3,Revenue year 3,46000,USD
 D20_4,Revenue year 4,97500,USD
-D20_5,Revenue year 5,782000,USD
+D20_5,Revenue year 5,458000,USD
 D21_1,Cost of goods year 1,0,USD
 D21_2,Cost of goods year 2,3750,USD
 D21_3,Cost of goods year 3,7500,USD
 D21_4,Cost of goods year 4,9375,USD
-D21_5,Cost of goods year 5,146250,USD
-D22_1,Operating cost year 1,270000,USD
-D22_2,Operating cost year 2,360000,USD
-D22_3,Operating cost year 3,450000,USD
-D22_4,Operating cost year 4,810000,USD
-D22_5,Operating cost year 5,1080000,USD
-D23_1,Operating result year 1,-272000,USD
-D23_2,Operating result year 2,-347750,USD
-D23_3,Operating result year 3,-423500,USD
-D23_4,Operating result year 4,-771375,USD
-D23_5,Operating result year 5,-517750,USD
-D24,Peak cumulative deficit,-2332375,USD
-D25,Funding ask,2798850,USD
-D26,SOM (year-5 revenue),782000,USD
-D27,Year-5 subscription revenue as share of the combined Israel + Europe SAM,0.02135669793,fraction
+D21_5,Cost of goods year 5,78750,USD
+D22_1,Operating cost year 1 (payroll only),270000,USD
+D22_2,Operating cost year 2 (payroll only),360000,USD
+D22_3,Operating cost year 3 (payroll only),450000,USD
+D22_4,Operating cost year 4 (payroll only),810000,USD
+D22_5,Operating cost year 5 (payroll only),1080000,USD
+D23_1,Operating result year 1,-366000,USD
+D23_2,Operating result year 2,-426750,USD
+D23_3,Operating result year 3,-502500,USD
+D23_4,Operating result year 4,-955375,USD
+D23_5,Operating result year 5,-998250,USD
+D24,Peak cumulative deficit,-3248875,USD
+D25,Funding ask,3898650,USD
+D26,SOM (year-5 revenue),458000,USD
+D27,Year-5 subscription revenue as share of the combined Israel + Europe SAM,0.01149976042,fraction
 D28_1,Pilot cash cost year 1,12000,USD
 D28_2,Pilot cash cost year 2,12000,USD
 D28_3,Pilot cash cost year 3,12000,USD
 D28_4,Pilot cash cost year 4,49500,USD
 D28_5,Pilot cash cost year 5,73500,USD
+D40_1,Sales and marketing non-payroll year 1,40000,USD
+D40_2,Sales and marketing non-payroll year 2,40000,USD
+D40_3,Sales and marketing non-payroll year 3,40000,USD
+D40_4,Sales and marketing non-payroll year 4,120000,USD
+D40_5,Sales and marketing non-payroll year 5,170000,USD
+D41_1,Cloud and tooling year 1,24000,USD
+D41_2,Cloud and tooling year 2,24000,USD
+D41_3,Cloud and tooling year 3,24000,USD
+D41_4,Cloud and tooling year 4,24000,USD
+D41_5,Cloud and tooling year 5,24000,USD
+D42_1,Legal/compliance Israel year 1,30000,USD
+D42_2,Legal/compliance Israel year 2,15000,USD
+D42_3,Legal/compliance Israel year 3,15000,USD
+D42_4,Legal/compliance Israel year 4,15000,USD
+D42_5,Legal/compliance Israel year 5,15000,USD
+D43_1,Legal/compliance Europe year 1,0,USD
+D43_2,Legal/compliance Europe year 2,0,USD
+D43_3,Legal/compliance Europe year 3,0,USD
+D43_4,Legal/compliance Europe year 4,25000,USD
+D43_5,Legal/compliance Europe year 5,15000,USD
+D44_1,Additional operating cost year 1 (D40+D41+D42+D43),94000,USD
+D44_2,Additional operating cost year 2 (D40+D41+D42+D43),79000,USD
+D44_3,Additional operating cost year 3 (D40+D41+D42+D43),79000,USD
+D44_4,Additional operating cost year 4 (D40+D41+D42+D43),184000,USD
+D44_5,Additional operating cost year 5 (D40+D41+D42+D43),224000,USD
+D45,Implied cost per return if 17% is per pair sold at the paper's 28% return rate,24.28571429,USD
+D46,Run-rate break-even European client count (base mix),44.02631579,clients
+D47,Contribution per European client per year (1M orders),28500,USD
+D48_1,Billed European clients year 1,0,clients
+D48_2,Billed European clients year 2,0,clients
+D48_3,Billed European clients year 3,0,clients
+D48_4,Billed European clients year 4,0,clients
+D48_5,Billed European clients year 5,9,clients
 X01,ILS per USD,3.7,NIS per USD
 A11i,"Orders per paying client per year, Israel",250000,orders
 D19e,"MDE in 4 weeks, European retailer 1M orders/yr",0.06058823774,fraction
@@ -66,8 +99,8 @@ D36,Europe TAM fee pool,81680625,USD
 D37,Europe SAM fee pool,32672250,USD
 D38,Average orders per Israeli paying client,250000,orders
 D39,Israeli candidate pool (large + mid),30,retailers
-CUM_1,Cumulative operating result year 1,-272000,USD
-CUM_2,Cumulative operating result year 2,-619750,USD
-CUM_3,Cumulative operating result year 3,-1043250,USD
-CUM_4,Cumulative operating result year 4,-1814625,USD
-CUM_5,Cumulative operating result year 5,-2332375,USD
+CUM_1,Cumulative operating result year 1,-366000,USD
+CUM_2,Cumulative operating result year 2,-792750,USD
+CUM_3,Cumulative operating result year 3,-1295250,USD
+CUM_4,Cumulative operating result year 4,-2250625,USD
+CUM_5,Cumulative operating result year 5,-3248875,USD

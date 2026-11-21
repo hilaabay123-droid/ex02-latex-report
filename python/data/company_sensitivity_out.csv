@@ -1,6 +1,8 @@
-scenario,y5_revenue_usd,y5_operating_result_usd,peak_cumulative_deficit_usd,funding_ask_usd,run_rate_break_even_year,cum_y1_usd,cum_y2_usd,cum_y3_usd,cum_y4_usd,cum_y5_usd
-base,782000,-517750,2332375,2798850,outside model horizon,-272000,-619750,-1043250,-1814625,-2332375
-pilot,571400,-684475,2522612,3027135,outside model horizon,-272000,-624025,-1056075,-1838138,-2522612
-orders,458000,-774250,2588875,3106650,outside model horizon,-272000,-619750,-1043250,-1814625,-2588875
-late,104000,-1033750,2852875,3423450,outside model horizon,-272000,-619750,-1043250,-1819125,-2852875
-scan,782000,-674200,2523850,3028620,outside model horizon,-274400,-628300,-1061700,-1849650,-2523850
+scenario,y5_revenue_usd,y5_operating_result_usd,peak_cumulative_deficit_usd,funding_ask_usd,run_rate_break_even_year,european_clients_end_y5,run_rate_break_even_european_clients,funnel_check,cum_y1_usd,cum_y2_usd,cum_y3_usd,cum_y4_usd,cum_y5_usd
+base,458000,-998250,3248875,3898650,outside model horizon,18,44.0,OK,-366000,-792750,-1295250,-2250625,-3248875
+pilot,344600,-1088025,3362162,4034595,outside model horizon,12.6,44.5,OK,-366000,-797025,-1308075,-2274138,-3362162
+orders,296000,-1126500,3377125,4052550,outside model horizon,18,88.1,OK,-366000,-792750,-1295250,-2250625,-3377125
+lowtouch,275750,-1142531,3393156,4071788,outside model horizon,18,100.6,OK,-366000,-792750,-1295250,-2250625,-3393156
+late,104000,-1207750,3347875,4017450,outside model horizon,0,42.4,OK,-366000,-792750,-1295250,-2140125,-3347875
+scan,458000,-1087200,3372850,4047420,outside model horizon,18,60.8,OK,-368400,-801300,-1313700,-2285650,-3372850
+eu3,998000,-570750,3352375,4022850,outside model horizon,30,44.0,OK,-366000,-792750,-1765750,-2781625,-3352375

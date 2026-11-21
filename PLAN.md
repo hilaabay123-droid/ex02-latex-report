@@ -78,3 +78,6 @@ Approved by master-se under the user's SPEED MODE instruction (`prompts/05-skill
 
 ## Decision D-2 (2026-11-20): chapter 8 may run 5 pages
 The red-team fixes (company sensitivity table, extrapolation disclosure, limits) lengthen ch. 8 to 5 pages against a budget of 3 (±1). Accepted by master-se: the total body is far above the 25-page minimum and the added content answers red-team points 1, 4 and 6. Condition: the Table 8.1 caption is shortened to 3 lines and no new white gaps are created. E-2 ended 2026-11-20: chapters 06-10 are writer-se's again.
+
+## Decision D-3 (2026-11-21): model rebuild
+User adopted red-team #9 (marketing, cloud, legal/compliance cost lines) and asked for #1/#2 in the same rebuild; base case stays Israel first, Europe year 4, with an alternative Europe-year-3 paragraph in ch. 8. Details: `docs/red-team-review.md`. Ask $3.90M; E-2 ended earlier; writer-se owns all chapters again.
