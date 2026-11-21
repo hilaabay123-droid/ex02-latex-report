@@ -153,3 +153,33 @@ Open blocker: 0. Open major: 5 (F-super-01, -02, -03, -04, F-infra-02). The rele
 Human sign-off lines:
 Reviewer: ____________________  Date: ____________
 Course group (Hila Abay, Shirel Giladi): ____________________  Date: ____________
+
+---
+
+# Re-check round (2026-11-21), HEAD c16e590, clean tree for deliverables
+
+Build: root `main.pdf` 46 pages (content ch. 1-10 = PDF 8-41), CLS v0.24. FS6 done as a real `git clone` of HEAD (`qa/tmp/clone`): exit codes 0,0,0,0; 0 errors, 0 undefined; 1 overfull (0.12 pt, ch. 10), 2 underfull; `pdftotext -layout` **byte-identical** to the root `main.pdf`. **FS6 pass on HEAD.**
+
+| Finding | Status in c16e590 | Evidence |
+|---|---|---|
+| F-super-01 (F1 $0.65 M) | **fixed** | `f1-market.tex:25` now `\$0.32\,M`; matches $324,000 |
+| F-super-02 (ch. 2 "$1.04 million") | **fixed** | `02-market.tex:25` now `\$1.30 million` (model 1,295,250) |
+| F-super-03 (cost lines not stated) | **fixed** | `08-finance.tex:17` states cost of goods, payroll, pilot cash cost ($3,000 = 2,400 + 600, 4 direct pilots = 12,000) and the extra lines; reconciliation 10,000 - 0 - 270,000 - 94,000 - 12,000 = -366,000 matches the model; ch. 2:25 cross-reference now has its target |
+| F-super-04 (ch. 10 spill, ch. 8 length) | **ch. 10 fixed, ch. 8 open (see below)** | ch. 10 is one page (PDF 41, text to the page end, 3 paragraphs seen by eye); ch. 8 is 5 pages (PDF 33-37) against budget 3, accept 2-4. The last page (PDF 37) now holds Table 8.2 and Figure 8.2 together, so no page is nearly empty (shortest content page 1,438 characters) |
+| F-super-06 (negative "$-N") | **fixed** | `\usd` in `closettwin.cls:117-119` prints a real minus before the dollar sign; PDF text "-$366,000, -$426,750, ... -$570,750" |
+| F-super-05 (Tables 8.1 and 8.2 first columns) | **improved, still minor** | Table 8.1: "Pilot-to-paying 35%" and the 2-line header cell still wrap (1 data row, was 3); Table 8.2: 2 rows wrap ("Legal setup, IL / EU" amount cell, "Orders per client, IL / EU"), was 8 |
+| F-super-07 (orphan D14-D17 rows) | not re-checked (art-se, minor) | - |
+| F-infra-02 (10 undated @online) | open | `references.bib` unchanged (no decision from master-se) |
+
+Stale-value grep (`782 | 648 | 2.33 | 2.8 M | 37 clients | year 6`) on the new PDF text and on `chapters/ figures/*.tex`: 0 hits (the one regex hit is a bibliography URL). Number spot-check of the changed text: ask 3,898,650, deficit 3,248,875, 44 and 18 clients, Table 8.1 values (seen by eye on PDF 35: all 35 cells unchanged from the audit), Figure 8.1 panel (b) "Peak deficit US$3.25 M", Figure 8.2 4.5% and 6.0%: all match the CSVs. Pages seen by eye: PDF 35, 37, 41. Fonts: LM Math only on pages 15, 30, 34-37 (symbols), JetBrains Mono on PDF 46 only.
+
+## New finding
+
+### F-clsver-01  [major]  iron rule (CLS version log)
+- Where:     closettwin.cls:`\ProvidesClass{closettwin}[2026/11/21 v0.24 ...]` | `fix/CHANGELOG.md`
+- What:      the class is v0.24 but `fix/CHANGELOG.md` has no v0.24 row (last row is v0.23, 2026-11-20); the CLS change in c16e590 (26 lines: the `\usd` sign handling, column weights) is not logged with date, problem, root cause, fix and reporter.
+- Evidence:  `grep -c "v0.24" fix/CHANGELOG.md` = 0; `git show c16e590 --stat`: `closettwin.cls | 26 ++-`, `fix/CHANGELOG.md | 2 +-` (a one-line edit of the v0.23 row).
+- Recurring: no. Owner: fix-se. Status: open
+
+## Open after this round
+Blocker 0. Major 3: **F-super-04 (part: chapter 8 is 5 pages, budget 3; master-se can move the budget in PLAN.md, the layout itself has no empty page)**, **F-infra-02** (10 @online without a year; master-se decides if "Accessed" suffices), **F-clsver-01** (v0.24 not in the changelog). Minor: F-super-05 (one wrapped label row in Table 8.1, two in Table 8.2), F-super-07, one underfull box, one 0.12 pt overfull.

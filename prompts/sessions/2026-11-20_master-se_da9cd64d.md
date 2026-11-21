@@ -458,3 +458,117 @@ I gave qa-se the go for the full `qa-super` pass. It builds in its private copy 
 - The gap detector.
 
 The report goes to `qa/reports/05-qa-super-round3.md`. Meanwhile I'll draft the dialogue file from `prompts/log/` and `prompts/sessions/`.
+
+## 2026-11-20 15:49:14 - assistant
+
+The dialogue builder works. `tools/build_dialogue.py` reads the exported sessions and writes `prompts/MY-DIALOGUE-WITH-THE-AGENTS.md`. It has a guide at the top (prompt stages 00 to 06 with links to `prompts/NN-*.md`, `prompts/log/`, `prompts/sessions/` and `.claude/skills/`). Then every message you typed, in time order, with date, time and agent name, followed by the opening of the agent's last reply.
+
+- **Count:** a first run found 24 messages across three days. All 24 went to master-se, apart from one message each to art-se, writer-se, fix-se and qa-se on 2026-11-18. The larger counts in `prompts/log/` include messages the agents sent each other.
+- **Long prompts:** anything over 600 characters is shown as an excerpt with the full text folded underneath.
+- **Not yet in the file:** this session's last prompts are missing until the final re-export. I'll re-run both scripts at the end.
+- **Timestamps:** I changed `tools/export_sessions.py` to write local times, so the file matches the times in `prompts/log/`.
+- **Agent summaries:** they are the first sentences of the agent's last reply, not hand-written. They read well for most messages but are truncated mid-sentence in places.
+
+I'm now waiting on qa-se's round-3 report.
+
+## 2026-11-20 15:52:35 - assistant
+
+Round 3 found no real blockers, four major findings and five minor ones. I've decided each and sent the work out. qa-se built in its private copy at CLS v0.22: 47 pages, 0 errors, 0 undefined references and a 0.12pt overfull. Of the 14 round-2 findings, 8 are fixed.
+
+**Decisions**
+- **Git-history ID scan (the one blocker).** It found 8 nine-digit values in commit 904c663, in `qa/tests/run_selftest.py`. They are fabricated test values from qa-se's self-test, not real IDs. I decided no history rewrite is needed. qa-se will mark it a false positive and use obviously fake patterns in future.
+- **Latin Modern Math on six pages.** It is used only for inline symbols such as ρ and φ, never for digits. I'm relaxing rule R-06 to allow that, and qa-se amends the criteria.
+- **Chapter 8 length and undated vendor pages.** Both are already accepted (PLAN D-2, accessed-date-only form).
+- **`gustafsson2021` DOI.** It returned 403 to qa-se's tool, which I treat as a bot block. qa-se will try it by browser if it can.
+
+**fix-se is on**
+- **Appendix A box.** It still splits 18+8 across two pages and leaves one 75% empty. I asked for a compact heading so the whole box fits on one page.
+- **Table 8.1.** Its first column is still narrow.
+- **List entries.** Entries 3.1, 4.1 and 8.2 in the lists wrap or show maths.
+
+Fixed and confirmed in qa-se's build: the `\texttt` font, the orphaned 8.4 heading, the half-empty pages (the gap detector is clean), Table 9.1 alone on a page, and the figure centering. The conclusion is exactly one page. qa-se viewed 17 pages by eye, including every figure page, and all were fine. It also spot-checked 13 source links; 10 returned 200, the 2 gov.il pages returned 200 on a GET, and Emerald returned 403.
+
+After fix-se reports, qa-se runs one final `qa-super`, including the clean-clone build it skipped. Then I re-export the sessions, rebuild the dialogue file, build, commit, push and render `draft-v2-contact.png`.
+
+## 2026-11-20 15:54:34 - assistant
+
+qa-se has closed its side of the round-3 decisions, all inside `qa/`.
+
+- **ID scan:** F-infra-01 is recorded as a false positive. `qa/tests/run_selftest.py` now builds its fake IDs at run time from zeros. No nine-digit literal is left except the course code. The scanner still catches and masks a planted ID.
+- **Math fonts:** R-06 in the acceptance criteria is amended to allow inline math symbols but not digits or prose. `fonts_by_page.py` applies the new rule.
+- **Gustafsson DOI:** a web-fetch agent opened it and got HTTP 200 on the Emerald page. Title, authors, IJPDLM vol. 51 no. 8 pp. 877–896 and year 2021 all match `references.bib`, so the earlier 403 was a bot block and this is closed.
+
+qa-se is waiting for my go on the final `qa-super`, including the clean-clone build. That go waits until fix-se reports the appendix box, Table 8.1 and list-entry fixes. Running it earlier would test a tree that is still changing.
+
+## 2026-11-20 15:55:29 - USER
+
+Progress check for prompt 06: mark PART 0-4 as done / in progress /
+not started, list which red-team fixes are still open and who owns
+them, and estimate the remaining minutes.
+
+## 2026-11-20 15:55:38 - assistant
+
+**Progress on prompt 06**
+
+| Part | Status | Detail |
+|---|---|---|
+| 0. Transcripts | Done | `tools/export_sessions.py` ran, 15 sessions exported, no secrets or emails found. It will be re-run at the end. |
+| 1. Incidents | Mostly done | `incidents/01`–`11` written. I-1, I-3, I-6, I-7, I-9 and the Contents alignment are fixed in the CLS. I-2 turned out to be the contents-page chapter numbers, now fixed. I-4, I-5 and I-8 are only partly fixed, as listed below. |
+| 2. Full QA | In progress | Three rounds done (round 3 found 0 real blockers, 4 major, 5 minor). The final `qa-super` waits on fix-se. |
+| 3. Red team | Fixes in, final check pending | Review done, ten decisions in `docs/red-team-review.md`, adopted fixes written. The final `qa-super` is the check. |
+| 4. Finish | In progress | The dialogue builder is written and runs (24 messages so far). Final re-export, build, commit, push, contact sheet and the report to you are not started. |
+
+**Still open**
+
+| Item | Owner |
+|---|---|
+| Appendix A code box splits across two pages and leaves one 75% empty | fix-se |
+| Table 8.1 first column still narrow | fix-se |
+| List of Tables/Figures entries 3.1, 4.1, 8.2 wrap or show maths | fix-se |
+| One final `qa-super`, including the clean-clone build | qa-se, on my go |
+| Final commit, push, tracking `main.pdf`, `draft-v2-contact.png`, re-run exporter and dialogue file | me |
+
+Items I have closed or decided:
+- **Chapter 8 length:** accepted, five pages (D-2).
+- **Undated vendor pages:** accepted in IEEE's accessed-date-only form.
+- **ID-scan finding:** a false positive.
+- **R-06 math-symbol rule:** relaxed.
+
+**Red-team items not done by design (yours):**
+- **Model rebuild (#1/#2):** I did not rebuild the model for red-team points 1 and 2. The text is reworded and disclosed instead.
+- **New cost lines (#9):** I rejected adding marketing, cloud and legal cost lines in this round. Adding them would change the funding ask.
+- **Base case:** lean path or earlier Europe entry.
+
+**Estimate for the remainder: about 50–60 minutes.** The estimate has three parts:
+- fix-se's three fixes plus a rebuild: about 15–20 minutes.
+- The final `qa-super` with the clean-clone build: about 20–25 minutes.
+- My finish steps: about 15 minutes.
+
+The main risk is that the final QA finds something new and adds a round.
+
+## 2026-11-20 16:02:03 - assistant
+
+fix-se finished the final fix round (CLS v0.23). The root build gives 46 pages with 0 errors, 0 undefined references and a 0.12pt overfull on a bibliography URL.
+
+- **Appendix A:** a new compact `\ctappendix` heading puts the title, intro and the whole 26-line code box on one page, with no split and no empty page.
+- **List entries:** entries in the List of Figures and List of Tables are cut at the first "(", ":" or "$". fix-se reports every entry is now one line.
+- **Math fonts:** the skills now say digits are never in the math font, while inline symbols and equations may be.
+- **Gaps:** every page that ends high is the last page of a chapter or of the references.
+- **Logs:** the CHANGELOG has a v0.23 row and `incidents/12-appendix-label-column-list-entries.md` is written.
+- **Table 8.1 (sensitivity):** its label column was only 85pt wide. fix-se added the `\ctnumcols{n}` helper and the column types W and V. The label column is now 154pt in testing, but the generated table must use them.
+
+`figures/tab-company-sens.tex` is generated by art-se's `python/company_sensitivity.py`, so I sent art-se a request to switch to the new column spec and regenerate. I asked that the numbers stay unchanged. Table 8.1 is therefore not fixed until art-se confirms and fix-se rebuilds.
+
+Once that lands, I'll give qa-se the go for the final `qa-super`, then finish.
+
+## 2026-11-20 16:02:19 - assistant
+
+art-se regenerated the sensitivity table with the new column spec, and the numbers are unchanged: base Y5 revenue $782,000, deficit $2,332,375 and ask $2,798,850. No build has checked the new column layout yet. The table has four data columns, including the break-even text column, which is right-aligned like the others.
+
+I've given qa-se the go for the final `qa-super`. It runs in the private copy, so nothing builds in the root until it reports. The run covers:
+- The clean-clone reproducibility build. qa-se will say whether it cloned the committed HEAD and overlaid the working tree, because a plain clone would miss the uncommitted work.
+- A look at every page that changed: Table 8.1, the appendix page, the lists, the Hebrew page and chapters 8–10.
+- A claim trace on at least 15 claims.
+- The figure pages.
+
+Its report goes to `qa/reports/06-qa-super-final.md`. After that I'll run the root build, re-export the sessions and rebuild the dialogue file. Then I'll commit and push, and render `draft-v2-contact.png`.

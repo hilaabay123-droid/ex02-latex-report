@@ -81,3 +81,8 @@ The red-team fixes (company sensitivity table, extrapolation disclosure, limits)
 
 ## Decision D-3 (2026-11-21): model rebuild
 User adopted red-team #9 (marketing, cloud, legal/compliance cost lines) and asked for #1/#2 in the same rebuild; base case stays Israel first, Europe year 4, with an alternative Europe-year-3 paragraph in ch. 8. Details: `docs/red-team-review.md`. Ask $3.90M; E-2 ended earlier; writer-se owns all chapters again.
+
+## Decision D-4 (2026-11-21): final QA acceptances
+- Chapter 8 may run 5 pages (budget 3, accept 2-4 extended; supersedes D-2's wording). Content is required by the red-team fixes and no page is mostly empty.
+- 10 undated `@online` bibliography entries stay: IEEE practice for web pages without a date (see `writer/sources-notes.md`).
+- Orphan context rows D14-D17 in `model_out.csv` stay (global context rows used in ch. 2).

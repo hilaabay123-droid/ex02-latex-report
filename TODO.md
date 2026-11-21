@@ -105,3 +105,8 @@ Check for every chapter: it compiles, it is within ±1 page of budget, every cla
 | T20.11 | Re-check the Hebrew quotes in claim-trace §G (IL01–IL25) against the PDFs (they were transcribed from page images) and, if possible, open the gov.il PPA pages on Amendment 13/biometrics in a browser (the agents got HTTP 403) | user | Quotes confirmed | ☐ |
 
 - [ ] writer-se (when online): references.bib line ~393 has "(in Hebrew)" typed inside title: delete it and add `language = {hebrew}` (rule: PRD 5.x Bibliography, docs/cls-commands.md section 9). Check every other Hebrew-language source the same way (e.g. Amendment 13).
+
+## 2026-11-21: prompt 06 resumed
+- ☑ Model rebuilt (cost lines, half-year billing, Europe-year-3); text, Hebrew summary, figures updated; ask $3.9M (PLAN D-3).
+- ☑ Final qa-super + re-check: 0 blockers; accepted items in PLAN D-4.
+- ☐ T9.3 user: check GDPR Art. 9 and Hebrew quotes in a browser (T1.9, T20.11).

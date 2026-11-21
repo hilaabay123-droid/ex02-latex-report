@@ -16,7 +16,7 @@ One readable record of every message the user typed to any of the five agents (m
 
 Other records: the automatic log of every prompt is in [prompts/log/](log/); full session transcripts (tool output omitted) are in [prompts/sessions/](sessions/); the skills the team uses are in [.claude/skills/](../.claude/skills/); incidents are in [incidents/](../incidents/); QA reports in [qa/reports/](../qa/reports/).
 
-Total: 24 messages.
+Total: 26 messages.
 
 ---
 
@@ -610,4 +610,45 @@ c) Build, commit, push. Show me: page counts, the incident list, the
 
 </details>
 
-**Agent:** Round 3 is under way. writer-se finished its edits: the four \centering lines are gone, and chapter 8 now ends with text and Figure 8.2 instead of a lone table. Page positions there are unverified until a new build. I gave qa-se the go for the full qa-super pass.
+**Agent:** qa-se has closed its side of the round-3 decisions, all inside qa/. - ID scan: F-infra-01 is recorded as a false positive. qa/tests/run_selftest.py now builds its fake IDs at run time from zeros. No nine-digit literal is left except the course code. The scanner still catches and masks a planted ID. - Math fonts:
+
+### 15:55 - master-se
+
+> Progress check for prompt 06: mark PART 0-4 as done / in progress /
+> not started, list which red-team fixes are still open and who owns
+> them, and estimate the remaining minutes.
+
+**Agent:** art-se regenerated the sensitivity table with the new column spec, and the numbers are unchanged: base Y5 revenue $782,000, deficit $2,332,375 and ask $2,798,850. No build has checked the new column layout yet. The table has four data columns, including the break-even text column, which is right-aligned like the others.
+
+## 2026-11-21
+
+### 17:36 - master-se
+
+> RESUME prompt 06: check git status, git log and TODO.md - some work from yesterday may be uncommitted; review it and commit what is good. Then apply my decisions below and finish what is left. My decisions on the open red-team items: - 9 ADOPTED:
+
+<details><summary>full text</summary>
+
+```text
+RESUME prompt 06: check git status, git log and TODO.md - some work from
+yesterday may be uncommitted; review it and commit what is good. Then
+apply my decisions below and finish what is left.
+
+My decisions on the open red-team items:
+- #9 ADOPTED: add marketing, cloud and legal/compliance cost lines
+  (Amendment 13 compliance must have a cost). Use conservative, sourced
+  or clearly labeled assumptions. Re-run python/model.py; update the
+  funding ask, Figure 8.1, Table 8.1 and every place the numbers appear
+  (incl. the Hebrew summary and Chapter 10).
+- #1/#2: since the model is rebuilt anyway, include those fixes in the
+  same rebuild.
+- Base case stays: Israel first, Europe in year 4. Add one short
+  paragraph in Chapter 8 on an alternative "Europe in year 3" scenario
+  and its effect on break-even (from the model, not invented).
+Then finish the open fix-se items, the final qa-super and PART 4
+(export sessions, MY-DIALOGUE-WITH-THE-AGENTS.md, build, commit, push,
+draft-v2-contact.png). Max 1 extra QA round.
+```
+
+</details>
+
+**Agent:** Still waiting on fix-se's CHANGELOG row. qa-se is idle.

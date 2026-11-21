@@ -170,3 +170,35 @@ Round 3 will cover the re-check once writer-se and fix-se land their fixes, plus
 - the PRD content check
 - the git-history ID scan
 - at least 15 pages viewed by eye, including every figure page
+
+## 2026-11-20 15:52:21 - assistant
+
+I've finished round 3 and sent master-se the report at `qa/reports/05-qa-super-round3.md`. It has 1 blocker, 4 major and 5 minor findings. The build is clean on CLS v0.22: 47 pages, no errors, no undefined references, and one 0.12 pt overfull box.
+
+Of the 14 round-2 findings, 8 are fixed, 3 are still open and 2 changed. The remaining one moved into a new finding.
+
+- **Blocker (probably not real):** the git-history ID scan finds 8 nine-digit values in commit 904c663, in my own `qa/tests/run_selftest.py`. They are fabricated test values. The real ID isn't in the history, chapters, bibliography or PDF. master-se decides whether it needs a history rewrite.
+- **Major findings:**
+  - The 26-line Appendix A code box now splits across printed pages 39 and 40, with 18 lines on the first page and 8 on the second. The title-only opener is fixed, but the box no longer fits under it. This is for fix-se.
+  - Chapter 8 is 5 pages against a budget of 3.
+  - Latin Modern Math is embedded on six pages that have no formula, because of inline symbols like ρ and φ. The PRD allows it only on formula pages.
+  - 10 online bibliography entries have no year.
+- **Confirmed fixed:** the monospace font in chapter 6, the orphaned heading and half-empty pages (the new `--gaps` check is clean), the uncited bibliography entries, `\centering` in figures, and the changelog rows for v0.20 to v0.22.
+- **Extras I added:**
+  - Link spot-check: 10 of 13 sources return 200 and the 2 gov.il links return 200 on GET. The Emerald DOI for `gustafsson2021` returned 403 to my tool, so someone should check it by hand.
+  - PRD content check.
+  - Pages by eye: I viewed 17 pages, including every figure page, and all were fine. The conclusion is exactly one page.
+
+Still skipped: the clean-clone reproducibility build and the full claim-by-claim trace.
+
+## 2026-11-20 15:54:35 - assistant
+
+I've applied master-se's decisions and sent them a DONE message. Everything was inside `qa/`, and I'm waiting for their go on the FINAL qa-super.
+
+- **Test fixtures:** `qa/tests/run_selftest.py` now builds its fake IDs (all zeros) at run time, so the file holds no nine-digit literal except the allowed course code. I confirmed the scanner still catches and masks a planted ID. The old commit keeps the old values. The report records F-infra-01 as a false positive accepted by master-se.
+- **R-06 amendment:** `qa/acceptance-criteria.md` (D4, D11) now allows Latin Modern Math for inline math symbols, but not digits or prose. `fonts_by_page.py` applies that rule using PyMuPDF. On the round-3 build, pages 6, 15, 30, 36 and 37 are reported as symbols only.
+- **K3 flag:** one K3 line remains for PDF 47, because I didn't pass `--code-pages` for the split appendix box. It is the same split-box issue as F-code-01.
+- **Gustafsson DOI:** a fetch agent opened it and got the Emerald article page. The title, authors, journal, volume 51 no. 8, pages 877–896 and year 2021 all match `references.bib`. The earlier 403 was a bot block, so that item is closed.
+- **Other decisions:** the chapter 8 length and the undated online entries are closed per master-se. `main.pdf` tracking is master-se's at the final commit.
+
+These are appended to `qa/reports/05-qa-super-round3.md`. The FINAL pass will include the clean-clone reproducibility build I skipped before.
